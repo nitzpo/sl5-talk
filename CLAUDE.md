@@ -76,11 +76,13 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 - Deck local: `python3 -m http.server 8080 -d deck/public` → `http://localhost:8080/?api=http://localhost:8787`
 - Screenshots + contact sheet: `node tools/shoot.mjs --url <deck url> --out <dir> [--only s7,s10] [--projector] [--cut]`
 - Poll content lives in `poll/src/polls.js`; after editing run `node tools/gen_deck_polls.mjs` (deck copy).
-- Deck keys: →/Space/PgDn next · ←/PgUp back · F fullscreen · B/. black · N notes HUD · T start timer · C 15-min cut · H show-of-hands · K admin key · P re-push poll state · G go to slide.
+- Admin page: `<poll host>/admin` (dev: https://vote-dev.nitzpo.workers.dev/admin). Reset = per-poll Reset, "Reset all votes in run", or "New rehearsal run" (clean slate, history kept). Talk day: "New LIVE run".
+- Deck keys: →/Space/PgDn next · ←/PgUp back · F fullscreen · B/. black · N notes HUD · T start timer · C 15-min cut · H show-of-hands · K admin key · A open admin page · P re-push poll state · G go to slide.
 - Deploy = Workers Builds (git push):
   - `vote` ← `main` only (live; runs D1 migrations on `ted-polls`). Merging to `main` = going live.
   - `vote-dev` ← every branch (+ `main`), `--env dev`, D1 `ted-polls-dev`. Admin token: ask Nitzan / set via API.
   - `sl5-deck` ← `main` = production; other branches = Worker Previews (`<branch>-sl5-deck.nitzpo.workers.dev`, uses `vote-dev`).
+- ⚠️ Learning: CSS class collision blacked out the deck (`body.cursor` state flag vs S1b's `.cursor` SVG with `opacity:0`). Body/state classes use `show-*`/`is-*`; slide-local classes get a slide-specific name.
   - ⚠️ Learning: Workers Builds overrides the Worker name with the connected Worker, so `wrangler deploy --env dev` in `vote`'s branch trigger deployed to **live `vote`**. Never deploy another worker from a build trigger; each worker gets its own build config.
 
 ## Workflow

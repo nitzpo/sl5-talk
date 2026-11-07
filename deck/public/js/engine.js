@@ -164,8 +164,8 @@
   // Mouse: show cursor while moving; click = next (ignore clicks on controls)
   var mt;
   document.addEventListener("mousemove", function () {
-    document.body.classList.add("cursor"); clearTimeout(mt);
-    mt = setTimeout(function () { document.body.classList.remove("cursor"); }, 1500);
+    document.body.classList.add("show-cursor"); clearTimeout(mt);
+    mt = setTimeout(function () { document.body.classList.remove("show-cursor"); }, 1500);
   });
   stage.addEventListener("click", function (e) { if (!e.target.closest("a,button,input")) next(); });
   addEventListener("resize", fit);

@@ -105,6 +105,7 @@ Per-slide times below are from before S8 was cut.
 - **Notes:** never pre-script the result; rehearse all the branches.
 
 ### S7 · 5:15 · ⬛ RAND ladder (animated build)
+- **Deck:** S6 + S7 are one view: the Poll A bars morph into the rungs ($1B → SL5, $10M → SL4, $1M → SL3, Impossible above SL5); the room's % stays on each rung (Nitzan, Nov 7).
 - **On screen:** the bars morph into a 5-rung ladder.
   - Click 1: SL1→SL5 rungs, each with who it stops (people icons, budget, time).
   - Click 2: a marker at SL3: "Frontier labs: roughly here, or below".

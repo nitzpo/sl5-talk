@@ -117,6 +117,19 @@
     leave: function () { clear("s3a"); },
   });
 
+  // ---------- S6: Poll A bars that morph into the RAND ladder (rows carry the room's %)
+  Deck.listen("results", function (x) {
+    if (x.el.id !== "s6") return;
+    var d = x.res && x.res.polls && x.res.polls.A, total = d ? d.total : 0;
+    var max = d ? Math.max.apply(null, d.counts) : 0;
+    x.el.querySelectorAll(".lr[data-opt]").forEach(function (row) {
+      var n = d ? d.counts[+row.dataset.opt] : 0, pct = total ? (100 * n) / total : 0;
+      row.querySelector(".lr-fill").style.width = pct + "%";
+      row.querySelector(".lr-pct").textContent = total ? Math.round(pct) + "%" : "–";
+      row.classList.toggle("lead", total > 0 && n === max && n > 0);
+    });
+  });
+
   // ---------- S10: 47 tiles in 6 groups (placeholder names until real block names from nitzpo/sl5 are wired in M3)
   var GROUPS = [
     ["Network", 7, "#5aa9ff"], ["Machine", 9, "#b48cff"], ["Physical", 7, "#ff8a5c"],

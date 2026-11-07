@@ -21,7 +21,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; background: #000; overflow: hidden; }
 body { color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; cursor: none; }
-body.cursor { cursor: default; }
+body.show-cursor { cursor: default; }
 
 #stage {
   position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px;
@@ -83,7 +83,7 @@ body.cursor { cursor: default; }
 /* ---------- polls ---------- */
 .qrbox { background: #fff; padding: 22px; border-radius: 18px; display: inline-block; line-height: 0; }
 .qrbox svg { width: 100%; height: 100%; display: block; }
-.url { font: 700 40px var(--mono); color: var(--fg); }
+.url { font: 700 40px var(--mono); color: var(--fg); white-space: nowrap; }
 .url b { color: var(--amb); font-weight: 700; }
 .counter { font: 700 40px var(--mono); color: var(--amb); }
 .counter .n { display: inline-block; min-width: 1.2em; text-align: right; }

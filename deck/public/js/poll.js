@@ -33,6 +33,7 @@
       if (v !== null) { key = v.trim() || null; LS.set("sl5:deckkey", key); Deck.toast(key ? "Admin key saved" : "Admin key removed"); }
     }
     if (k === "h" || k === "H") { document.body.classList.toggle("hands"); Deck.toast(document.body.classList.contains("hands") ? "Show-of-hands mode" : "Live polls"); }
+    if (k === "a" || k === "A") { if (base) window.open(base + "/admin", "_blank"); else Deck.toast("Offline: no admin page"); }
     if (k === "p" || k === "P") { // force-apply this slide's poll actions (after a reload / jump)
       var el = Deck.current().el;
       if (el.dataset.pollClose) admin("open", { ids: el.dataset.pollClose.split(","), open: false });
@@ -66,7 +67,7 @@
   }
 
   // ---------- live results ----------
-  var timer = null, lastOk = 0, enteredAt = 0, activeEl = null, cache = {};
+  var timer = null, lastOk = 0, enteredAt = 0, activeEl = null, cache = null;
   var POLL = {}; D.POLLS.forEach(function (x) { POLL[x.id] = x; });
   function groupOf(id) { return POLL[id] ? POLL[id].grp : D.GROUPS[id] ? id : null; }
 
@@ -100,13 +101,17 @@
     box.querySelector(".wait").textContent = total ? total + (total === 1 ? " vote" : " votes") : "Waiting for votes…";
   }
 
+  function pollData(res, id) { return res && res.polls ? res.polls[id] : undefined; }
+
   function render(el, res) {
     el.querySelectorAll("[data-results]").forEach(function (box) {
-      var id = box.dataset.results; renderBars(box, POLL[id], res && res.polls[id]);
+      var id = box.dataset.results; renderBars(box, POLL[id], pollData(res, id));
     });
     el.querySelectorAll("[data-total]").forEach(function (x) {
-      var d = res && res.polls[x.dataset.total]; x.textContent = d ? d.total : "–";
+      var d = pollData(res, x.dataset.total), u = x.dataset.unit;
+      x.textContent = !d ? "–" : u ? d.total + " " + u + (d.total === 1 ? "" : "s") : d.total;
     });
+    Deck.emit("results", { el: el, res: res }); // custom renderers (e.g. S6 ladder rows)
     el.querySelectorAll("[data-voters]").forEach(function (x) {
       var g = groupOf(x.dataset.voters), d = res && res["v:" + g];
       x.textContent = d === undefined ? "–" : d;
@@ -146,7 +151,7 @@
         if (el.dataset.pollClose) admin("open", { ids: el.dataset.pollClose.split(","), open: false });
         if (el.dataset.pollCurrent) admin("current", { current: el.dataset.pollCurrent });
       }
-      if (liveEls(el).length) { render(el, cache); tick(); }
+      if (liveEls(el).length) { try { render(el, cache); } catch (e) { console.error(e); } tick(); }
     }
   });
 

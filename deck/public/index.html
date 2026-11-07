@@ -71,7 +71,7 @@ Clicks: billions → GPUs → months, as you say them.</aside>
           <div class="dlg-b"><span class="dlg-cancel">Cancel</span><span class="dlg-del">Delete</span></div>
         </div>
       </div>
-      <svg class="cursor" viewBox="0 0 24 24" width="56" height="56"><path d="M3 2l17 10.5-7.6 1.6L9.2 21.5z" fill="#fff" stroke="#000" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      <svg class="fake-cursor" viewBox="0 0 24 24" width="56" height="56"><path d="M3 2l17 10.5-7.6 1.6L9.2 21.5z" fill="#fff" stroke="#000" stroke-width="1.4" stroke-linejoin="round"/></svg>
     </div>
   </div>
   <aside class="notes">"But here is the crazy thing about AI: when that training run finishes, what actually comes out the other end? A single 2-terabyte file of numbers. That file is the model weights: the actual trained brain of the AI. And 2 terabytes is nothing. You can fit a multi-billion-dollar superintelligence on a $160 SD card the size of your fingernail. [click: dialog] You just have to delete Call of Duty first."
@@ -169,41 +169,66 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
       <p class="mut side-t live">It's already on your phone</p>
       <div class="qrbox small-qr" data-qr="vote"></div>
       <p class="url small" data-url="vote"></p>
-      <p class="counter live"><span class="n" data-total="A">–</span> votes</p>
+      <p class="counter live"><span class="n" data-total="A" data-unit="vote">–</span></p>
       <div class="hands"><span class="tag">Show of hands</span>We'll count hands in a moment.</div>
     </div>
   </div>
   <aside class="notes">Say (while voting, ≈60s): "No jargon yet, just your gut… And no, the insiders in the room don't get to vote twice."</aside>
 </section>
 
-<section class="slide" id="s6" data-title="Poll A: results" data-at="4:45">
-  <div class="pad">
-    <div class="kicker">Minimum attacker to steal the weights today</div>
-    <div class="bars live s6-bars" data-results="A" data-lead></div>
-    <div class="hands"><span class="tag">Show of hands</span>$1M? · $10M? · $1B? · Impossible?</div>
+<section class="slide" id="s6" data-title="Poll A results → RAND ladder (S6+S7)" data-at="4:45" data-clicks="3">
+  <div class="pad s6">
+    <div class="kicker k-res" data-out="1">Minimum attacker to steal the weights today</div>
+    <div class="kicker k-lad" data-in="1">Security Levels: who can break in?</div>
+    <div class="lad" id="lad">
+      <div class="lr" data-key="imp" data-opt="3">
+        <div class="lr-track"><div class="lr-fill"></div></div>
+        <div class="lr-res">Impossible, even for a superpower</div>
+        <div class="lr-rung"><b class="sl">Impossible</b><span class="who">even for a superpower</span></div>
+        <div class="lr-pct">–</div>
+      </div>
+      <div class="lr" data-key="1B" data-opt="2">
+        <div class="lr-track"><div class="lr-fill"></div></div>
+        <div class="lr-res">A $1B budget: a superpower's top-priority operation</div>
+        <div class="lr-rung"><b class="sl">SL5</b><span class="who">Top cyber superpower, priority campaign</span><span class="st">1,000</span><span class="st">$1B</span><span class="st">years</span></div>
+        <div class="lr-pct">–</div>
+      </div>
+      <div class="lr" data-key="10M" data-opt="1">
+        <div class="lr-track"><div class="lr-fill"></div></div>
+        <div class="lr-res">A $10M budget: a standard state cyber operation</div>
+        <div class="lr-rung"><b class="sl">SL4</b><span class="who">Standard state cyber operation</span><span class="st">100</span><span class="st">$10M</span><span class="st">≈1 year</span></div>
+        <div class="lr-pct">–</div>
+      </div>
+      <div class="lr" data-key="1M" data-opt="0">
+        <div class="lr-track"><div class="lr-fill"></div></div>
+        <div class="lr-res">A $1M budget: a top-tier crime syndicate or one insider</div>
+        <div class="lr-rung"><b class="sl">SL3</b><span class="who">Cybercrime syndicates, insiders</span><span class="st">10</span><span class="st">$1M</span><span class="st">months</span></div>
+        <div class="lr-pct">–</div>
+      </div>
+      <div class="lr" data-key="sl2">
+        <div class="lr-track"><div class="lr-fill"></div></div>
+        <div class="lr-rung"><b class="sl">SL2</b><span class="who">Professional hackers</span><span class="st">1</span><span class="st">$10K</span><span class="st">weeks</span></div>
+      </div>
+      <div class="lr" data-key="sl1">
+        <div class="lr-track"><div class="lr-fill"></div></div>
+        <div class="lr-rung"><b class="sl">SL1</b><span class="who">Amateurs</span><span class="st">1</span><span class="st">$1K</span><span class="st">days</span></div>
+      </div>
+      <div class="lad-head mono"><span>people</span><span>budget</span><span>time</span><span class="amb">you</span></div>
+    </div>
+    <div class="lad-mark" data-in="2">◀ Frontier labs:<br>roughly here, or below</div>
+    <div class="lad-quote mono" data-in="3">"Top cyber nations run these more than 100 times per year."<span class="mut"> (RAND)</span></div>
+    <p class="s6-total mono live" data-out="1"><span data-total="A" data-unit="vote">–</span></p>
+    <div class="hands s6-hands" data-out="1"><span class="tag">Show of hands</span>$1M? · $10M? · $1B? · Impossible?</div>
+    <div class="foot lad-foot" data-in="1"><span>RAND RR-A2849-1 (Nevo et al., 2024)</span><span class="amb">● your votes</span></div>
   </div>
-  <aside class="notes">"Look at the screen. Most of you voted that [leading option] could steal the weights today[, and almost nobody voted for #4]." Say the bracketed part only if it's true.
+  <aside class="notes">[Results] "Look at the screen. Most of you voted that [leading option] could steal the weights today, and almost nobody voted for #4." (Say the #4 part only if it's true.)
 Branches:
 • "Impossible" > 10%: "To the X% who said impossible: I'd love to buy you a drink after. I also have a bridge to sell you."
-• Most picked $1B: "You're generous to the labs. Let's see if they agree."</aside>
+• Most pick 3 ($1B): "You're generous to the labs. Let's see if they agree."
+[click: bars become the ladder] "Without knowing it, you just recreated the exact framework that defines our field. Two years ago, researchers at RAND published the foundational report on Securing AI Model Weights. Instead of defining security by compliance checklists, they defined 5 Security Levels, SL1 through SL5, based purely on who can break into your lab: SL1 &amp; SL2 stop amateurs and professional hackers. SL3 stops cybercrime syndicates and insiders (≈$1M). [click] This is roughly where top frontier labs sit today, or below. SL4 stops a standard operation by a state cyber unit (≈$10M), [click] the kind top cyber nations run more than a hundred times a year. SL5 defends model weights against a ≈$1B, multi-year priority campaign by the world's top cyber superpower."
+(Deck: PLAN S6 + S7 in one view; your votes stay on the rungs.)</aside>
 </section>
 
-<section class="slide" id="s7" data-title="RAND ladder" data-at="5:15" data-clicks="2">
-  <div class="pad s7">
-    <div class="kicker">Security Levels: who can break in?</div>
-    <div class="ladder">
-      <div class="rung" data-sl="5"><b>SL5</b><span class="who">Top cyber superpower, priority campaign</span><span class="ppl mono">1,000</span><span class="usd mono">$1B</span><span class="time mono">years</span></div>
-      <div class="rung" data-sl="4"><b>SL4</b><span class="who">Standard state cyber operation</span><span class="ppl mono">100</span><span class="usd mono">$10M</span><span class="time mono">≈1 year</span></div>
-      <div class="rung-quote mono" data-in="2">"Top cyber nations run these more than 100 times per year." <span class="mut">(RAND)</span></div>
-      <div class="rung" data-sl="3"><b>SL3</b><span class="who">Cybercrime syndicates, insiders</span><span class="ppl mono">10</span><span class="usd mono">$1M</span><span class="time mono">months</span>
-        <span class="marker" data-in="1">◀ Frontier labs: roughly here, or below</span></div>
-      <div class="rung" data-sl="2"><b>SL2</b><span class="who">Professional hackers</span><span class="ppl mono">1</span><span class="usd mono">$10K</span><span class="time mono">weeks</span></div>
-      <div class="rung" data-sl="1"><b>SL1</b><span class="who">Amateurs</span><span class="ppl mono">1</span><span class="usd mono">$1K</span><span class="time mono">days</span></div>
-    </div>
-    <div class="foot"><span>RAND RR-A2849-1 (Nevo et al., 2024)</span><span>people · budget · time</span></div>
-  </div>
-  <aside class="notes">"Without knowing it, you just recreated the exact framework that defines our field. Two years ago, researchers at RAND published the foundational report on Securing AI Model Weights. Instead of defining security by compliance checklists, they defined 5 Security Levels, SL1 through SL5, based purely on who can break into your lab: SL1 &amp; SL2 stop amateurs and professional hackers. SL3 stops cybercrime syndicates and insiders (≈$1M). [click] This is roughly where top frontier labs sit today, or below. SL4 stops a standard operation by a state cyber unit (≈$10M), [click] the kind top cyber nations run more than a hundred times a year. SL5 defends model weights against a ≈$1B, multi-year priority campaign by the world's top cyber superpower."</aside>
-</section>
 
 
 <!-- ============================== PART 4: WHY SL5 IS SO HARD ============================== -->
@@ -272,9 +297,9 @@ Optional [click]: "And dark_wizard_99 is real. In December 2022 his name was tor
   <div class="pad s13">
     <div class="kicker">3 quick questions, on your phone now</div>
     <div class="cards3">
-      <div class="qcard"><span class="qn mono">1</span><p>How much does SL5 slow down research?</p><p class="counter live"><span class="n" data-total="B1">–</span> votes</p></div>
-      <div class="qcard"><span class="qn mono">2</span><p>As a lab CEO, when do you lock down?</p><p class="counter live"><span class="n" data-total="B2">–</span> votes</p></div>
-      <div class="qcard"><span class="qn mono">3</span><p>Already silently stolen?</p><p class="counter live"><span class="n" data-total="C">–</span> votes</p></div>
+      <div class="qcard"><span class="qn mono">1</span><p>How much does SL5 slow down research?</p><p class="counter live"><span class="n" data-total="B1" data-unit="vote">–</span></p></div>
+      <div class="qcard"><span class="qn mono">2</span><p>As a lab CEO, when do you lock down?</p><p class="counter live"><span class="n" data-total="B2" data-unit="vote">–</span></p></div>
+      <div class="qcard"><span class="qn mono">3</span><p>Already silently stolen?</p><p class="counter live"><span class="n" data-total="C" data-unit="vote">–</span></p></div>
     </div>
     <div class="s13-qr"><div class="qrbox small-qr" data-qr="vote"></div><p class="url small" data-url="vote"></p></div>
     <div class="hands"><span class="tag">Show of hands</span>Think about all three; we'll count hands on each.</div>

@@ -244,7 +244,7 @@ function draw(d){
     var tot=p.counts.reduce(function(a,b){return a+b},0),mx=Math.max(1,Math.max.apply(null,p.counts));
     var bars=p.o.map(function(o,i){return '<div class="bar"><span>'+esc(o)+'</span><span class="w"><i style="width:'+(100*p.counts[i]/mx)+'%"></i></span><b>'+p.counts[i]+'</b></div>'}).join("");
     return '<div class="card poll"><div class="row"><span class="q">'+esc(p.id)+' · '+esc(p.short)+'</span></div>'+bars+
-      '<div class="row"><span class="sub">'+tot+' votes</span><button class="'+(p.open?"on":"")+'" data-open="'+p.id+'" data-v="'+(p.open?0:1)+'">'+(p.open?"Open: close it":"Closed: open it")+'</button><button class="danger" data-reset="'+p.id+'">Reset</button></div></div>';
+      '<div class="row"><span class="sub">'+tot+(tot===1?' vote':' votes')+'</span><button class="'+(p.open?"on":"")+'" data-open="'+p.id+'" data-v="'+(p.open?0:1)+'">'+(p.open?"Open: close it":"Closed: open it")+'</button><button class="danger" data-reset="'+p.id+'">Reset</button></div></div>';
   }).join("");
   var runs=d.runs.map(function(r){return '<tr><td>#'+r.id+'</td><td><span class="badge'+(r.kind==="live"?" live":"")+'">'+r.kind+'</span></td><td>'+esc(r.label)+'</td><td>'+r.votes+' votes</td><td>'+(r.id===s.run?"<b>active</b>":'<button data-act="'+r.id+'">activate</button>')+'</td></tr>'}).join("");
   app.innerHTML='<div class="brand">SL5 talk · admin</div>'+
