@@ -8,11 +8,11 @@
   - `sl5-deck` Worker: deck as static assets (separate host: audience can't stumble into slides).
   - Deploy = Workers Builds (git push): `main` → live `vote` (+ D1 migrations) and `sl5-deck`; other branches → `vote-dev` (D1 `ted-polls-dev`) and a deck Preview URL (`<branch>-sl5-deck.nitzpo.workers.dev`). Merging to `main` = going live.
 - **Free tier, ≈150 phones.** Phones poll `GET /api/state` every 5s (server-tunable `poll_ms`), only while page visible; B1→B2→C chain is client-side (no server lag). Budget ≈ 150×12/min×25min ≈ 45k + deck/admin ≈ 5k → ~50k of 100k/day. No full-scale rehearsal on talk day (quota resets 00:00 UTC = 02:00 IL).
-- **Polls:** results update live while on results slides; a poll closes when the deck **leaves its topic** (warm → entering S5, A → entering S9, B1/B2/C → entering S18).
+- **Polls:** results update live while on results slides; a poll closes when the deck **leaves its topic** (warm → entering S5, A → entering S9/S10, B1/B2/C → entering S18).
 - **Rehearsal vs live:** votes keyed by `run`. New live run = zeros by construction. Rehearsal data kept, never shown.
 - **Anti-stuffing (light):** server-signed voter ids; per-IP vote cap per poll (generous for venue NAT); admin reset.
 - **Clicker:** unknown → keyboard clicker keys + phone `/remote` page as backup. Ask organizers (checklist).
-- **Slot length unknown** → 17-min build + 15-min cut toggle. Cut currently = drop S8 (merged into S7), S9, S19. Trims of S12/S16: Nitzan decides later (keep the simulator GIF).
+- **Slot length unknown** → 17-min build + 15-min cut toggle. Cut = drop S9, S19 (S8 removed in plan v4). S16 trim: Nitzan decides later (keep the simulator GIF).
 
 ## Poll API v2
 - Public: `GET /api/state` · `POST /api/hello` (signed voter id) · `POST /api/vote/<id>` · `GET /api/results?grp=<g>`.
