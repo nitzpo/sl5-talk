@@ -102,6 +102,13 @@
     box.querySelector(".wait").textContent = total ? total + (total === 1 ? " vote" : " votes") : "Waiting for votes…";
   }
 
+  function setText(x, v) { // update a counter; pulse it when the number goes up
+    if (x.textContent === v) return;
+    var grew = parseInt(v, 10) > parseInt(x.textContent, 10);
+    x.textContent = v;
+    if (grew) { x.classList.remove("bump"); void x.offsetWidth; x.classList.add("bump"); }
+  }
+
   function pollData(res, id) { return res && res.polls ? res.polls[id] : undefined; }
 
   function render(el, res) {
@@ -110,12 +117,12 @@
     });
     el.querySelectorAll("[data-total]").forEach(function (x) {
       var d = pollData(res, x.dataset.total), u = x.dataset.unit;
-      x.textContent = !d ? "–" : u ? d.total + " " + u + (d.total === 1 ? "" : "s") : d.total;
+      setText(x, !d ? "–" : u ? d.total + " " + u + (d.total === 1 ? "" : "s") : String(d.total));
     });
     Deck.emit("results", { el: el, res: res }); // custom renderers (e.g. S6 ladder rows)
     el.querySelectorAll("[data-voters]").forEach(function (x) {
       var g = groupOf(x.dataset.voters), d = res && res["v:" + g];
-      x.textContent = d === undefined ? "–" : d;
+      setText(x, d === undefined ? "–" : String(d));
     });
   }
 

@@ -130,22 +130,45 @@
     });
   });
 
-  // ---------- S10: 47 tiles in 6 groups (placeholder names until real block names from nitzpo/sl5 are wired in M3)
-  var GROUPS = [
-    ["Network", 7, "#5aa9ff"], ["Machine", 9, "#b48cff"], ["Physical", 7, "#ff8a5c"],
-    ["Personnel", 9, "#3ddc84"], ["Supply chain", 7, "#ffd166"], ["AI-specific", 8, "#ff5c8a"],
-  ];
-  var tiles = document.getElementById("s10-tiles");
-  if (tiles) {
-    tiles.innerHTML = GROUPS.map(function (g) {
-      var t = ""; for (var i = 1; i <= g[1]; i++) t += '<div class="tile">' + g[0] + " block " + i + "</div>";
-      return '<div class="grp" style="color:' + g[2] + '"><div class="gname">' + g[0] + " · " + g[1] + "</div>" + t + "</div>";
+  // ---------- S9: researcher types the pip install, output lines follow (forward only)
+  Deck.on("s9", {
+    enter: function (el, s, dir) {
+      clear("s9");
+      var cmd = el.querySelector(".s9-cmd"), full = cmd.dataset.text, lines = el.querySelectorAll(".tl1, .tl2, .tl3");
+      if (dir !== 1) { cmd.textContent = full; lines.forEach(function (l) { l.classList.add("shown"); }); return; }
+      lines.forEach(function (l) { l.classList.remove("shown"); });
+      cmd.textContent = "";
+      var i = 0;
+      (function type() {
+        if (i <= full.length) { cmd.textContent = full.slice(0, i++); later("s9", i === 1 ? 700 : 45, type); }
+        else lines.forEach(function (l, k) { later("s9", 300 + k * 450, function () { l.classList.add("shown"); }); });
+      })();
+    },
+    leave: function () { clear("s9"); },
+  });
+
+  // ---------- S10: 47 real blocks (github.com/nitzpo/sl5) → flood of real clauses (SL5 Standard + RAND)
+  var S10 = window.SL5_S10, COLORS = ["#5aa9ff", "#b48cff", "#ff8a5c", "#3ddc84", "#ffd166", "#ff5c8a"];
+  var tiles = document.getElementById("s10-tiles"), flood = document.getElementById("s10-flood");
+  if (S10 && tiles) {
+    var k = 0;
+    tiles.innerHTML = S10.groups.map(function (g, gi) {
+      return '<div class="grp" style="color:' + COLORS[gi] + '"><div class="gname"><span>' + g.name + "</span><span>" + g.blocks.length + "</span></div>" +
+        g.blocks.map(function (b) { return '<div class="tile" style="--i:' + (k++) + '">' + b + "</div>"; }).join("") + "</div>";
     }).join("");
   }
-  var flood = document.getElementById("s10-flood");
-  if (flood) {
-    var s = "";
-    for (var i = 0; i < 600; i++) s += "<p>Requirement " + (i + 1) + ": placeholder clause snippet (real text from the SL5 Standard + RAND in M3).</p>";
-    flood.innerHTML = s;
+  if (S10 && flood) {
+    var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    var all = S10.clauses.concat(S10.clauses); // twice: enough to cover the screen at flood size
+    flood.innerHTML = all.map(function (c) { return '<p style="--d:' + Math.round(rnd() * 1400) + '">' + c.replace(/</g, "&lt;") + "</p>"; }).join("");
   }
+
+  // ---------- S14: the two numbers the speaker quotes (live, computed from the votes)
+  Deck.listen("results", function (x) {
+    if (x.el.id !== "s14") return;
+    var b1 = x.res && x.res.polls && x.res.polls.B1, b2 = x.res && x.res.polls && x.res.polls.B2;
+    var pct = function (n, d) { return d ? Math.round((100 * n) / d) + "%" : "–"; };
+    document.getElementById("s14-heavy").textContent = b1 ? pct(b1.counts[2] + b1.counts[3], b1.total) : "–";
+    document.getElementById("s14-jit").textContent = b2 ? pct(b2.counts[1], b2.total) : "–";
+  });
 })();

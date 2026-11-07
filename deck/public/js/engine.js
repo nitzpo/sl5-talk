@@ -57,6 +57,9 @@
     var el = list[idx], prev = list[cur];
     s = Math.max(0, Math.min(clicksOf(el), s));
     var instant = dir === 0;
+    // Instant mode (jump/reload) stays on until the next real navigation, so delayed animations
+    // can't restart and the slide keeps its final state (screenshots, PDF). Cleared before animating.
+    if (!instant && el.classList.contains("instant")) { el.classList.remove("instant"); void el.offsetWidth; }
     if (prev !== el) {
       if (prev) { prev.classList.remove("active"); call(prev.id, "leave", prev, dir); }
       if (instant) el.classList.add("instant");
@@ -66,13 +69,12 @@
       cur = idx; step = s;
       call(el.id, "enter", el, s, dir);
       call(el.id, "step", el, s, dir);
-      if (instant) { void el.offsetWidth; requestAnimationFrame(function () { el.classList.remove("instant"); }); }
     } else {
       if (instant) el.classList.add("instant");
+      if (dir === -1) el.classList.remove("fwd"); // stepping back: snap to final states, never replay intros
       applyStep(el, s);
       step = s;
       call(el.id, "step", el, s, dir);
-      if (instant) { void el.offsetWidth; requestAnimationFrame(function () { el.classList.remove("instant"); }); }
     }
     history.replaceState(null, "", "#" + el.id + (s ? "." + s : ""));
     listeners.forEach(function (f) { try { f(el, s, dir); } catch (e) { console.error(e); } });

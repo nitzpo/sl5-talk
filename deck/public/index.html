@@ -154,22 +154,22 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
 
 <!-- ============================== PART 3: HOW HARD IS IT TO STEAL? ============================== -->
 <section class="slide" id="s5" data-title="Poll A: vote" data-at="3:45" data-poll-current="A" data-poll-close="warm">
-  <div class="pad s-vote">
-    <div class="vote-main">
-      <div class="kicker">Your gut</div>
-      <h2 class="h1">You need to steal the flagship model weights from a top-3 AI lab <span class="amb">today</span>. What is the <span class="amb">minimum</span> attacker needed to pull it off?</h2>
-      <ol class="opts">
-        <li>$1M budget: a top-tier crime syndicate or one insider</li>
-        <li>$10M budget: a standard state cyber operation</li>
-        <li>$1B budget: a superpower's top-priority operation</li>
-        <li>Impossible, even for a superpower</li>
-      </ol>
+  <div class="pad s5">
+    <div class="s5-main">
+      <div class="kicker">Your gut · no jargon yet</div>
+      <h2 class="s5-q">You need to steal the flagship model weights from a top-3 AI lab <span class="amb">today</span>. What is the <span class="amb">minimum</span> attacker needed to pull it off?</h2>
+      <div class="s5-opts">
+        <div class="s5-opt"><b>1</b><span><em>$1M</em> budget: a top-tier crime syndicate or one insider</span></div>
+        <div class="s5-opt"><b>2</b><span><em>$10M</em> budget: a standard state cyber operation</span></div>
+        <div class="s5-opt"><b>3</b><span><em>$1B</em> budget: a superpower's top-priority operation</span></div>
+        <div class="s5-opt"><b>4</b><span><em>Impossible</em>, even for a superpower</span></div>
+      </div>
     </div>
-    <div class="vote-side">
-      <p class="mut side-t live">It's already on your phone</p>
+    <div class="s5-side">
+      <p class="s5-on live">It's already on your phone</p>
       <div class="qrbox small-qr" data-qr="vote"></div>
       <p class="url small" data-url="vote"></p>
-      <p class="counter live"><span class="n" data-total="A" data-unit="vote">–</span></p>
+      <p class="counter big-counter live"><span class="n" data-total="A" data-unit="vote">–</span></p>
       <div class="hands"><span class="tag">Show of hands</span>We'll count hands in a moment.</div>
     </div>
   </div>
@@ -233,51 +233,73 @@ Branches:
 
 <!-- ============================== PART 4: WHY SL5 IS SO HARD ============================== -->
 <section class="slide" id="s9" data-title="Fortress + side door (optional)" data-at="7:00" data-clicks="1" data-cut="drop" data-poll-close="A">
-  <div class="img ph" data-img="05-fortress" data-label="#05 fortress"></div><div class="shade"></div>
-  <div class="pad s9">
-    <div class="wall-labels mono"><span>SSO</span><span>EDR</span><span>Zero Trust</span><span>SOC 2</span></div>
-    <div class="terminal mono">
-      <p><span class="amb">$</span> pip install turbo-weights-v2</p>
-      <p class="mut">Author: dark_wizard_99 · Created: 14 mins ago</p>
-      <p class="ok">Successfully installed turbo-weights-v2</p>
-    </div>
-    <div class="stamp slam s9-stamp" data-in="1">REAL: torchtriton, Dec 2022</div>
+  <div class="img ph" data-img="05-fortress" data-label="#05 fortress"></div><div class="s9-shade"></div>
+  <div class="s9-plaques mono"><span>SSO</span><span>EDR</span><span>Zero Trust</span><span>SOC 2</span></div>
+  <div class="s9-door"><span>the side door</span></div>
+  <div class="s9-term mono">
+    <div class="term-bar"><i></i><i></i><i></i><span>researcher@gpu-node-07</span></div>
+    <p class="tl tl0"><span class="amb">$</span> <span class="s9-cmd" data-text="pip install turbo-weights-v2">pip install turbo-weights-v2</span><span class="caret"></span></p>
+    <p class="tl tl1 mut">Collecting turbo-weights-v2</p>
+    <p class="tl tl2">  Author: <b class="red">dark_wizard_99</b> · Created: <b class="amb">14 mins ago</b></p>
+    <p class="tl tl3 ok">Successfully installed turbo-weights-v2</p>
   </div>
+  <div class="stamp s9-stamp" data-in="1">REAL: torchtriton, Dec 2022</div>
   <aside class="notes">"Why can't top Silicon Valley security (Okta, Zero Trust, SOC-2) stop an SL5 attacker? Because enterprise security is built to stop ransomware gangs while letting employees work fast. And try telling a PhD machine learning researcher making $2 million a year that he can't pip install a random Python package written yesterday by an anonymous guy on GitHub named dark_wizard_99, because it makes his training curve converge 2% faster."
-Optional [click]: "And dark_wizard_99 is real. In December 2022 his name was torchtriton: PyTorch's own nightly build pulled in a malicious package that read people's SSH keys."</aside>
+Optional [click]: "And dark_wizard_99 is real. In December 2022 his name was torchtriton: PyTorch's own nightly build pulled in a malicious package that read people's SSH keys."
+First slide to cut (15-min version drops it).</aside>
 </section>
 
 <section class="slide" id="s10" data-title="Wall of text: 3 → 47 → hundreds" data-at="7:45" data-clicks="2" data-poll-close="A">
   <div class="pad s10">
-    <div class="three" data-out="1">
-      <div class="card3">1. Network Air-Gaps</div>
-      <div class="file center-file">weights.bin</div>
-      <div class="card3">2. Secure Hardware</div>
-      <div class="card3">3. Insider Controls</div>
+    <div class="s10-three" data-out="1">
+      <div class="file s10-file">weights.bin <small>· 2.0 TB</small></div>
+      <div class="s10-cards">
+        <div class="card3"><span class="mono">1.</span> Network Air-Gaps</div>
+        <div class="card3"><span class="mono">2.</span> Secure Hardware</div>
+        <div class="card3"><span class="mono">3.</span> Insider Controls</div>
+      </div>
     </div>
-    <div class="tiles" data-in="1" id="s10-tiles"><!-- 47 tiles filled by slides.js (M3: real names from nitzpo/sl5) --></div>
-    <div class="flood mono" data-in="2" id="s10-flood"></div>
+    <div class="s10-tiles" id="s10-tiles" data-in="1"></div>
+    <div class="s10-flood" id="s10-flood" data-in="2"></div>
+    <div class="file s10-buried" data-in="2">weights.bin</div>
+    <div class="s10-count mono" data-in="1" data-out="2"><b>47</b> engineering programs · 6 domains</div>
   </div>
-  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."</aside>
+  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
+Tiles = real block names from github.com/nitzpo/sl5; flood = real clauses from the SL5 Standard + RAND.</aside>
 </section>
 
 <section class="slide" id="s11" data-title="Two-person rules" data-at="8:45" data-clicks="1">
   <div class="pad s11">
-    <div class="col">
+    <div class="s11-col">
       <div class="kicker">SL5 Two-Person Rule</div>
-      <div class="tpr">👤 🔑 &nbsp; 🏦 &nbsp; 🔑 👤</div>
-      <p class="mut">Two people physically authorize every sensitive action.</p>
+      <div class="tpr-scene">
+        <svg viewBox="0 0 640 380" class="tpr-svg" aria-hidden="true">
+          <g class="person p1"><circle cx="90" cy="120" r="34"/><path d="M40 260 q50-110 100 0z"/></g>
+          <g class="person p2"><circle cx="550" cy="120" r="34"/><path d="M500 260 q50-110 100 0z"/></g>
+          <g class="vault"><circle cx="320" cy="190" r="120" class="v-door"/><circle cx="320" cy="190" r="86" class="v-ring"/>
+            <g class="v-wheel"><line x1="320" y1="120" x2="320" y2="260"/><line x1="250" y1="190" x2="390" y2="190"/><line x1="270" y1="140" x2="370" y2="240"/><line x1="370" y1="140" x2="270" y2="240"/></g>
+            <circle cx="320" cy="190" r="14" class="v-hub"/></g>
+          <g class="key k1"><circle cx="175" cy="190" r="16"/><rect x="189" y="186" width="44" height="8" rx="3"/></g>
+          <g class="key k2"><circle cx="465" cy="190" r="16"/><rect x="407" y="186" width="44" height="8" rx="3"/></g>
+          <text x="320" y="355" class="tpr-ok">✓ 2 of 2 authorized</text>
+        </svg>
+      </div>
+      <p class="s11-cap">Two people physically authorize every sensitive action.</p>
     </div>
-    <div class="col" data-in="1">
+    <div class="s11-col" data-in="1">
       <div class="kicker">Startup Two-Person Rule</div>
-      <div class="pr mono">
-        <p><b>feat: rewrite auth layer</b> <span class="ok">+4,012</span> <span class="red">−0</span></p>
-        <p class="review">✅ <b>LGTM 👍</b> <span class="mut">· 12 seconds later</span></p>
-        <p class="mut">Reviewer status: 🚽</p>
+      <div class="pr">
+        <div class="pr-head"><span class="pr-badge">Open</span><b>feat: rewrite weights-server auth</b></div>
+        <div class="pr-stat mono"><span class="ok">+4,012</span> <span class="red">−0</span> <span class="mut">· 87 files changed</span></div>
+        <div class="pr-review">
+          <div class="avatar">🙂</div>
+          <div><p class="mono mut pr-meta">dev-2 approved these changes · <b class="amb">12 seconds later</b></p><p class="pr-lgtm">LGTM 👍</p></div>
+        </div>
+        <div class="pr-slack"><span class="mut">Slack status:</span> <span class="slack-st">🚽</span></div>
       </div>
     </div>
   </div>
-  <aside class="notes">"It goes all the way down to real Two-Person Rules, where two people physically authorize every sensitive action together. Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."</aside>
+  <aside class="notes">"It goes all the way down to real Two-Person Rules, where two people physically authorize every sensitive action together. [click] Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."</aside>
 </section>
 
 <section class="slide" id="s12" data-title="RAND + SL5 Task Force credit" data-at="9:15" data-clicks="1">
@@ -307,17 +329,20 @@ Optional [click]: "And dark_wizard_99 is real. In December 2022 his name was tor
   <aside class="notes">Say (≈90s): read each question once. "Be honest on the CEO one."
 B1: "If you lock an AI lab inside that wall of SL5 controls today (strict air-gaps, no open internet, real two-person rules for every action), how much does it slow down AI research?"
 B2: "Given that slowdown and the billions it costs, if you are a lab CEO racing competitors toward AGI, when do you actually lock down to SL5?"
-C: "What is the probability that the raw weights of at least one frontier model have ALREADY been silently stolen by a foreign intelligence service?"</aside>
+C: "What is the probability that the raw weights of at least one frontier model have ALREADY been silently stolen by a foreign intelligence service?"
+The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
 </section>
 
 <section class="slide" id="s14" data-title="B1 + B2 results" data-at="11:30">
   <div class="pad s14">
-    <div class="col">
+    <div class="s14-col">
       <div class="kicker">How much does SL5 slow research?</div>
+      <p class="s14-big live"><span class="amb" id="s14-heavy">–</span> <span class="s14-lbl">expect a heavy slowdown (30%+)</span></p>
       <div class="bars compact live" data-results="B1" data-hl="2,3"></div>
     </div>
-    <div class="col">
+    <div class="s14-col">
       <div class="kicker">As a lab CEO, when do you lock down?</div>
+      <p class="s14-big live"><span class="amb" id="s14-jit">–</span> <span class="s14-lbl">would wait for "Just-in-Time"</span></p>
       <div class="bars compact live" data-results="B2" data-hl="1"></div>
     </div>
     <div class="hands"><span class="tag">Show of hands</span>Heavy slowdown? · Would you wait for "Just-in-Time"?</div>
@@ -325,7 +350,8 @@ C: "What is the probability that the raw weights of at least one frontier model 
   <aside class="notes">"So X% of you think SL5 hurts research a lot, and Y% would wait until the models look dangerous. That's the pragmatic answer. It's what I'd have said. It's also the answer that loses."
 Branches:
 • "Start right now" wins: "Most of you would start now. Your future CFO disagrees. Let's see why you're right."
-• "Never" > 15%: "And to the X% who said never: at least you're honest."</aside>
+• "Never" > 15%: "And to the X% who said never: at least you're honest."
+(X = "Very painful" + "Crippling" share of B1; Y = "Just-in-Time" share of B2, shown big on screen.)</aside>
 </section>
 
 <section class="slide" id="s15" data-title="Calendar Gantt + RAND quote" data-at="12:15" data-clicks="3">
@@ -348,13 +374,22 @@ Optional on the last click: "RAND said it back in 2024: achieving SL5 is current
 
 <section class="slide" id="s16" data-title="Simulator + USB gag" data-at="13:00" data-clicks="1">
   <div class="pad s16">
-    <div class="sim" data-out="1"><div class="img ph" data-img="sim" data-label="simulator GIF"></div><p class="mono cap">nitzpo.github.io/sl5</p></div>
-    <div class="usb" data-in="1">
-      <div class="airgap">AIR GAP</div>
-      <div class="hopper">🧑‍🔬<span class="usbtag mono">$12 · KSP</span></div>
+    <div class="s16-browser" data-out="1">
+      <div class="br-bar"><i></i><i></i><i></i><span class="mono">nitzpo.github.io/sl5</span></div>
+      <div class="br-body"><div class="img ph" data-img="sim" data-label="simulator GIF (pending)"></div></div>
+    </div>
+    <div class="s16-gap" data-in="1">
+      <div class="net net-in"><p class="mono">SL5 network</p><i></i><i></i><i></i><i></i></div>
+      <div class="wall"><span class="mono">AIR GAP</span></div>
+      <div class="net net-out"><p class="mono">the internet</p><i></i><i></i><i></i><i></i></div>
+      <svg class="hopper" viewBox="0 0 120 200" aria-hidden="true"><circle cx="60" cy="34" r="22"/><path d="M60 58 L60 128 M60 78 L22 100 M60 78 L98 62 M60 128 L32 190 M60 128 L88 190"/></svg>
+      <div class="usb mono"><span class="usb-stick"></span>$12 · KSP</div>
+      <svg class="bridge" viewBox="0 0 1640 400" preserveAspectRatio="none" aria-hidden="true"><path d="M300 250 C 600 250, 650 80, 820 80 S 1040 250, 1340 250"/></svg>
+      <p class="router mono">new network router</p>
     </div>
   </div>
-  <aside class="notes">"You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just buys a $12 USB stick at KSP and becomes your new network router. Remember, I used to be the guy saying no to him."
+  <aside class="notes">"You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. [click] And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just buys a $12 USB stick at KSP and becomes your new network router."
+"Remember, I used to be the guy saying no to him."
 No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
 </section>
 
@@ -366,27 +401,28 @@ No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
       <div class="hands"><span class="tag">Show of hands</span>High? · Moderate? · Low?</div>
     </div>
     <div class="s17-twin" data-in="1">
-      <div class="img ph sq" data-img="03-bright-servers" data-label="#03"></div>
-      <div class="img ph sq" data-img="04-dark-rack" data-label="#04"></div>
+      <div class="sqbox sm"><div class="img ph" data-img="03-bright-servers" data-label="#03"></div><div class="badge-ok mono"><i class="led"></i>All systems normal</div><div class="file twin-file">weights.bin</div></div>
+      <div class="sqbox sm dark"><div class="img ph" data-img="04-dark-rack" data-label="#04"></div><div class="file twin-file cold">weights.bin</div><p class="s17-q mono">?</p></div>
     </div>
     <p class="statement s17-line rise" data-in="2">Just-in-Time needs a warning.<br><span class="red">Theft doesn't send one.</span></p>
   </div>
-  <aside class="notes">"And X% of you think it may already have happened. Remember the silent twin. If it had, what would we see? Nothing. 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
-Branch: C mostly Low: "Most of you think it hasn't happened yet. Good. Then the clock is still running."</aside>
+  <aside class="notes">"And X% of you think it may already have happened. [click] Remember the silent twin. If it had, what would we see? Nothing. [click] 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
+Branch if C is mostly "Low": "Most of you think it hasn't happened yet. Good. Then the clock is still running."</aside>
 </section>
 
 <!-- ============================== PART 6: CALL TO ARMS ============================== -->
 <section class="slide" id="s18" data-title="Science vs engineering" data-at="14:45" data-clicks="1" data-poll-close="B1,B2,C">
   <div class="pad s18">
-    <p class="statement">Alignment: an unsolved <em>science</em> problem.</p>
-    <p class="statement amb rise" data-in="1">Securing the weights: a <em>systems-engineering</em> fight.</p>
+    <p class="statement s18-a">Alignment: an unsolved <em>science</em> problem.</p>
+    <p class="statement s18-b rise" data-in="1">Securing the weights: a <em class="amb">systems-engineering</em> fight.</p>
   </div>
-  <aside class="notes">"Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. Securing the model weights is not an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, this is a fight the people in this room actually know how to win."</aside>
+  <aside class="notes">"Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. [click] Securing the model weights is not an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, this is a fight the people in this room actually know how to win."</aside>
 </section>
 
 <section class="slide" id="s19" data-title="Warm-up callback (optional)" data-at="15:25" data-cut="drop">
-  <div class="pad">
+  <div class="pad s19">
     <div class="kicker">Remember who's in the room</div>
+    <h2 class="h1 s-q">Both halves are here.</h2>
     <div class="bars live s19-bars" data-results="warm" data-hl="0,1"></div>
     <div class="hands"><span class="tag">Remember</span>Red team + blue team: both halves are here.</div>
   </div>
@@ -397,13 +433,13 @@ If the warm-up is dropped: plain text version.</aside>
 <section class="slide" id="s20" data-title="Links" data-at="15:55" data-poll-current="links">
   <div class="pad s20">
     <div class="kicker">It's on your phone now</div>
-    <ol class="links">
-      <li><b>Understand it in 5 min:</b> the intro <span class="mut">(works on a phone)</span></li>
-      <li><b>Break my simulator:</b> GitHub</li>
-      <li><b>Go deeper:</b> the RAND report · the SL5 Standard</li>
-      <li><b>Talk to me:</b> LinkedIn / after the talk</li>
-    </ol>
-    <div class="s20-qr"><div class="qrbox" data-qr="links"></div><p class="url small" data-url="links"></p></div>
+    <div class="s20-grid">
+      <div class="lcard"><b class="mono">1</b><p>Understand it in 5 min</p><span class="mut">the intro · works on a phone</span></div>
+      <div class="lcard"><b class="mono">2</b><p>Break my simulator</p><span class="mut">GitHub</span></div>
+      <div class="lcard"><b class="mono">3</b><p>Go deeper</p><span class="mut">the RAND report · the SL5 Standard</span></div>
+      <div class="lcard"><b class="mono">4</b><p>Talk to me</p><span class="mut">LinkedIn / after the talk</span></div>
+    </div>
+    <div class="s20-qr"><p class="mut">Missed it? Scan:</p><div class="qrbox" data-qr="links"></div><p class="url small" data-url="links"></p></div>
     <p class="already mono">Already working on this: RAND · SL5 Task Force · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute · US CAISI</p>
   </div>
   <aside class="notes">"If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change."
@@ -411,9 +447,10 @@ Phones still on the vote page switch to the links page automatically.</aside>
 </section>
 
 <section class="slide" id="s21" data-title="Vault + thank you" data-at="16:40" data-clicks="1">
-  <div class="img ph s21-vault" data-img="07-vault" data-label="#07 vault" data-out="1"></div>
+  <div class="img ph s21-vault" data-img="07-vault" data-label="#07 vault"></div>
+  <div class="s21-close"></div>
+  <div class="file s21-file">weights.bin <small>· 2.0 TB</small></div>
   <div class="pad s21">
-    <div class="file s21-file" data-out="1">weights.bin <small>· 2.0 TB</small></div>
     <div class="s21-end" data-in="1">
       <p class="statement">Thank you</p>
       <p class="h2">Nitzan Pomerantz</p>
@@ -424,7 +461,7 @@ Phones still on the vote page switch to the links page automatically.</aside>
   <aside class="notes">Pick at rehearsal:
 Option B: "I started this to understand the problem myself. I'd love help from people who know parts of it better than I do, and a lot of you do. Thank you."
 Option D: no extra line; end on the S20 ask, then "Thank you."
-Click: name, QR and "Thank you" stay up for Q&amp;A.</aside>
+[click] the door closes → black → name, QR and "Thank you" stay up for Q&amp;A.</aside>
 </section>
 
 </div>
@@ -435,6 +472,7 @@ Click: name, QR and "Thank you" stay up for Q&amp;A.</aside>
 
 <script src="js/vendor/qrcode.js"></script>
 <script src="js/polls.gen.js"></script>
+<script src="js/s10.gen.js"></script>
 <script src="js/engine.js"></script>
 <script src="js/poll.js"></script>
 <script src="js/slides.js"></script>
