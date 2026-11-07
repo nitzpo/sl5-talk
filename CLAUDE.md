@@ -25,8 +25,16 @@ Subtitle (provisional): *What it takes to stop a superpower from stealing fronti
 - No real vendor logos; use text labels.
 - Words on slides: no hard limit, but slides are visual. The script lives in speaker notes, not on screen.
 
+## Decisions (Nov 7) → details in `docs/IMPL_PLAN.md`
+- Cloudflare **free tier**; plan for ≈150 phones; phones poll every 5s (tunable).
+- Polls stay open while results show (live updates); close when the deck leaves the topic.
+- Phone URL: `vote.nitzpo.workers.dev`. Light anti-stuffing only.
+- LinkedIn: https://www.linkedin.com/in/nitzan-pomerantz/
+- Slot length + venue clicker unknown → 15-min cut toggle + phone remote backup.
+- Git: `main` = reviewed baseline; work on feature branches → PRs. Repo is **public**: never commit secrets (ADMIN_TOKEN etc.).
+
 ## Existing infrastructure
-- Worker `vote` on account nitzpo → https://vote.nitzpo.workers.dev. Code in `poll/worker.js` (copy of what's deployed). D1 `ted-polls`, id `c2271dd0-641c-4e21-a3ea-4724de98905f`, bound as `DB`.
+- Cloudflare account id `620b3af8dcc6de07dc551f2122052551` (subdomain `nitzpo`). Worker `vote` → https://vote.nitzpo.workers.dev (compat date 2026-10-01). Code in `poll/worker.js` (copy of what's deployed). D1 `ted-polls`, id `c2271dd0-641c-4e21-a3ea-4724de98905f`, bound as `DB`.
 - Schema (current):
   - `polls(id TEXT PK, question TEXT, options TEXT /*JSON array*/, open INT DEFAULT 1, created_at INT)`
   - `votes(poll_id, voter, opt, ts, PK(poll_id, voter))`, one vote per phone (localStorage voter id), changeable
@@ -53,7 +61,7 @@ Subtitle (provisional): *What it takes to stop a superpower from stealing fronti
 ## Related sources
 - SL5 simulator repo `nitzpo/sl5` (public): `app/public/data/blocks-*.json` (the 47 block names for S10 tiles; 6 categories: network 7, machine 9, physical 7, personnel 9, supply-chain 7, ai-specific 8); `research/sl5_standard.txt` + `research/rand_full.txt` (clause snippets for the S10 "flood").
 - Simulator GIF: the user will provide the original file (fallback: the Medium post copy, or record https://nitzpo.github.io/sl5/ with Playwright).
-- Links page targets: https://nitzpo.github.io/sl5/intro/ · https://github.com/nitzpo/sl5 · RAND report https://www.rand.org/pubs/research_reports/RRA2849-1.html · SL5 Standard https://sl5.org · user's LinkedIn (ask).
+- Links page targets: https://nitzpo.github.io/sl5/intro/ · https://github.com/nitzpo/sl5 · RAND report https://www.rand.org/pubs/research_reports/RRA2849-1.html · SL5 Standard https://sl5.org · LinkedIn https://www.linkedin.com/in/nitzan-pomerantz/.
 - Notion (if a Notion MCP is connected): talk page https://app.notion.com/p/40b58933bf32804392acf9d8821a17c8 · plan https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954 · titles https://app.notion.com/p/41158933bf328102b582e1bd066fec2b
 
 ## Assets (`assets/`)
