@@ -1,10 +1,25 @@
-# Draft — verify against the live worker before first deploy (it was originally deployed via API, not wrangler).
+# Production (live): `vote` → https://vote.nitzpo.workers.dev  (deploys from `main` via Workers Builds)
+# Dev: `vote-dev` → https://vote-dev.nitzpo.workers.dev       (deploys from any other branch: --env dev)
+# Secret (both): ADMIN_TOKEN  (set via API/dashboard; never commit)
 name = "vote"
-main = "worker.js"
+main = "src/index.js"
 compatibility_date = "2026-10-01"
 workers_dev = true
+preview_urls = false
 
 [[d1_databases]]
 binding = "DB"
 database_name = "ted-polls"
 database_id = "c2271dd0-641c-4e21-a3ea-4724de98905f"
+migrations_dir = "migrations"
+
+[env.dev]
+name = "vote-dev"
+workers_dev = true
+preview_urls = false
+
+[[env.dev.d1_databases]]
+binding = "DB"
+database_name = "ted-polls-dev"
+database_id = "9d49064e-f7a0-44dc-8f88-94c59bd17d1e"
+migrations_dir = "migrations"
