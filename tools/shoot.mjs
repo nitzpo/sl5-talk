@@ -19,7 +19,9 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1920, height: 1080 }, deviceScaleFactor: 1 });
 const errors = [];
 page.on("pageerror", (e) => errors.push(String(e)));
-page.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
+page.on("console", (m) => { if (m.type() === "error" && !m.text().startsWith("Failed to load resource")) errors.push(m.text()); });
+const missing = new Set(); // expected while assets are pending (e.g. img/sim.webp)
+page.on("response", (r) => { if (r.status() >= 400) missing.add(`${r.status()} ${new URL(r.url()).pathname}`); });
 
 const base = url + (url.includes("?") ? "&" : "?") + (cut ? "cut=15" : "cut=17");
 await page.goto(base);
@@ -54,4 +56,5 @@ await sheet.setContent(`<style>body{margin:0;display:grid;grid-template-columns:
 await sheet.screenshot({ path: `${out}/sheet${projector ? ".proj" : ""}.png`, fullPage: true });
 await browser.close();
 console.log(`${files.length} shots → ${out}/sheet.png`);
+if (missing.size) console.log("missing (HTTP >= 400): " + [...missing].join(", "));
 if (errors.length) { console.log("PAGE ERRORS:\n" + errors.join("\n")); process.exitCode = 1; }

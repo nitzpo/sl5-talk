@@ -76,7 +76,11 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 - Screenshots + contact sheet: `node tools/shoot.mjs --url <deck url> --out <dir> [--only s7,s10] [--projector] [--cut]`
 - Poll content lives in `poll/src/polls.js`; after editing run `node tools/gen_deck_polls.mjs` (deck copy).
 - Deck keys: →/Space/PgDn next · ←/PgUp back · F fullscreen · B/. black · N notes HUD · T start timer · C 15-min cut · H show-of-hands · K admin key · P re-push poll state · G go to slide.
-- Deploy: Workers Builds (pending setup): `main` → prod (`vote`, `sl5-deck`); other branches → `vote-dev` + deck Preview URL.
+- Deploy = Workers Builds (git push):
+  - `vote` ← `main` only (live; runs D1 migrations on `ted-polls`). Merging to `main` = going live.
+  - `vote-dev` ← every branch (+ `main`), `--env dev`, D1 `ted-polls-dev`. Admin token: ask Nitzan / set via API.
+  - `sl5-deck` ← `main` = production; other branches = Worker Previews (`<branch>-sl5-deck.nitzpo.workers.dev`, uses `vote-dev`).
+  - ⚠️ Learning: Workers Builds overrides the Worker name with the connected Worker, so `wrangler deploy --env dev` in `vote`'s branch trigger deployed to **live `vote`**. Never deploy another worker from a build trigger; each worker gets its own build config.
 
 ## Workflow
 1. **First task:** read this file + PLAN.md, then propose an implementation plan: stack (plain HTML/JS vs a framework), file layout, milestones, poll API/schema changes, request-volume choice, speaker-notes approach (presenter window via a second screen, and/or a phone notes+clicker page, since a second screen isn't guaranteed). End with unresolved questions. **No code until approved.**
