@@ -1,0 +1,10 @@
+# Draft — verify against the live worker before first deploy (it was originally deployed via API, not wrangler).
+name = "vote"
+main = "worker.js"
+compatibility_date = "2025-09-01"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "ted-polls"
+database_id = "c2271dd0-641c-4e21-a3ea-4724de98905f"
