@@ -2,6 +2,20 @@
 (function () {
   "use strict";
 
+  // Images: <div class="img ph" data-img="01-datacenter"> → img/01-datacenter.webp; placeholder stays if missing.
+  var seen = {};
+  document.querySelectorAll(".img[data-img]").forEach(function (el) {
+    var src = "img/" + el.dataset.img + ".webp";
+    var p = seen[src] || (seen[src] = new Promise(function (ok) {
+      var im = new Image(); im.onload = function () { ok(true); }; im.onerror = function () { ok(false); }; im.src = src;
+    }));
+    p.then(function (found) {
+      if (!found) return;
+      el.style.backgroundImage = "url(" + src + ")";
+      el.classList.remove("ph");
+    });
+  });
+
   // S0: type out `scp weights.bin`
   Deck.on("s0", {
     enter: function (el) {
