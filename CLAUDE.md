@@ -69,6 +69,15 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 - `08-jet.screenshot.png` is a 1518×786 screenshot placeholder with black bars and a near-black (not pure black) background. Feather its edges into the slide; don't use a screen blend (the jet body is dark).
 - Use placeholders until the real files arrive; images are not blocking.
 
+## Dev commands
+- Poll worker local: `cd poll && printf 'ADMIN_TOKEN=devtoken123\n' > .dev.vars && npx wrangler d1 migrations apply DB --local --env dev && npx wrangler dev --env dev --port 8787`
+- Poll API tests (local/dev only, mutate state): `npm run test:poll` (BASE, ADMIN_TOKEN env).
+- Deck local: `python3 -m http.server 8080 -d deck/public` → `http://localhost:8080/?api=http://localhost:8787`
+- Screenshots + contact sheet: `node tools/shoot.mjs --url <deck url> --out <dir> [--only s7,s10] [--projector] [--cut]`
+- Poll content lives in `poll/src/polls.js`; after editing run `node tools/gen_deck_polls.mjs` (deck copy).
+- Deck keys: →/Space/PgDn next · ←/PgUp back · F fullscreen · B/. black · N notes HUD · T start timer · C 15-min cut · H show-of-hands · K admin key · P re-push poll state · G go to slide.
+- Deploy: Workers Builds (pending setup): `main` → prod (`vote`, `sl5-deck`); other branches → `vote-dev` + deck Preview URL.
+
 ## Workflow
 1. **First task:** read this file + PLAN.md, then propose an implementation plan: stack (plain HTML/JS vs a framework), file layout, milestones, poll API/schema changes, request-volume choice, speaker-notes approach (presenter window via a second screen, and/or a phone notes+clicker page, since a second screen isn't guaranteed). End with unresolved questions. **No code until approved.**
 2. Suggested milestones: M1 poll backend + phone/admin pages + deck skeleton with all poll slides (test early with real phones) → M2 Parts 0–2 → M3 Parts 3–6 → M4 polish, speaker notes, 15-min cut toggle, offline backup → M5 dress-rehearsal checklist.
