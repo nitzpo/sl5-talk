@@ -14,7 +14,6 @@ export const POLLS = [
     short: "Which side are you on?",
     q: "Which side are you on?",
     o: ["Red team (I break in)", "Blue team (I keep them out)", "Both, depends on the contract", "AI (research, safety, security)", "None of the above"],
-    deckHide: [4], // "None of the above": phones only, not shown in the deck's bars
   },
   {
     id: "A", grp: "A",

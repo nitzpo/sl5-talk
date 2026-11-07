@@ -43,7 +43,7 @@ Per-slide times below are from before S8 was cut.
 - **On screen:** the title slide itself, up during changeover / MC intro: title, subtitle, speaker's name. In the corner, a QR with the call to action **"Scan → pick a side"** and a live counter ("143 in the room"). The question appears only on phones: "Which side are you on?" A dimmed datacenter loop (#01) behind; under the title, `$ scp weights.bin` types itself out.
 - **Poll `warm`:** Red team (I break in) · Blue team (I keep them out) · **Both, depends on the contract** · AI (research, safety, security) · None of the above (on phones only).
 - **Say:** nothing (the MC is talking). If a holding slide isn't allowed, use the first 20s of the talk: "Scan this now, you'll need it later. One question, five seconds."
-- **Notes:** one scan covers the whole talk; the phone auto-advances to each later poll. Needs organizer OK to put it up before the talk.
+- **Notes:** one scan covers the whole talk; the phone auto-advances to each later poll. Needs organizer OK to put it up before the talk. "(on phones only)" = the question is shown on phones only; all 5 options get bars on S4/S19 (Nitzan, Nov 7). "N in the room" = phones that answered the warm-up.
 
 ## Part 1: The heist
 

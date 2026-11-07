@@ -17,9 +17,6 @@ window.SL5_POLLS = {
     "Both, depends on the contract",
     "AI (research, safety, security)",
     "None of the above"
-   ],
-   "deckHide": [
-    4
    ]
   },
   {
