@@ -134,14 +134,14 @@
 .s14 { flex-direction: row; gap: 90px; }
 
 /* S15 */
-.s15 { justify-content: center; gap: 30px; }
-.timeline { display: grid; grid-template-columns: repeat(7, 1fr); font-size: 30px; color: var(--mut); border-bottom: 3px solid var(--dim); padding-bottom: 14px; }
-.danger-marker { position: absolute; left: calc(140px + (1640px / 7) * 2); top: 260px; font: 700 30px var(--sans); color: var(--red); border-left: 4px solid var(--red); padding: 0 0 260px 16px; }
-.gantt { display: flex; flex-direction: column; gap: 22px; margin-left: calc(1640px / 7 * 2); width: calc(1640px / 7 * 4); margin-top: 60px; }
+.s15 { --col: calc(1640px / 7); }
+.timeline { position: absolute; left: 140px; right: 140px; top: 330px; display: grid; grid-template-columns: repeat(7, 1fr); font-size: 30px; color: var(--mut); border-bottom: 3px solid var(--dim); padding-bottom: 14px; }
+.danger-marker { position: absolute; left: calc(140px + var(--col) * 2); top: 250px; font: 700 30px var(--sans); color: var(--red); border-left: 4px solid var(--red); padding: 0 0 330px 16px; }
+.gantt { position: absolute; top: 430px; left: calc(140px + var(--col) * 2); width: calc(var(--col) * 4); display: flex; flex-direction: column; gap: 22px; }
 .gbar { background: var(--amb); color: #111; font-weight: 800; font-size: 32px; padding: 18px 24px; border-radius: 10px; transform-origin: left; }
 .gbar:not(.on) { transform: scaleX(0); }
 .gbar.on { transition: transform 1.4s cubic-bezier(.2, .8, .2, 1), opacity .3s; }
-.s15-line { margin-top: 40px; }
+.s15-line { position: absolute; left: 140px; bottom: 110px; }
 
 /* S16 */
 .sim { position: absolute; inset: 120px 300px 160px; }
