@@ -30,7 +30,7 @@
   Deck.listen("key", function (k) {
     if (k === "k" || k === "K") {
       var v = prompt("Admin key for " + (base || "(offline)") + " (blank = remove)", "");
-      if (v !== null) { key = v.trim() || null; LS.set("sl5:deckkey", key); Deck.toast(key ? "Admin key saved" : "Admin key removed"); }
+      if (v !== null) { key = v.trim() || null; LS.set("sl5:deckkey", key); Deck.toast(key ? "Admin key saved" : "Admin key removed"); if (key) Deck.warn(""); }
     }
     if (k === "h" || k === "H") { document.body.classList.toggle("hands"); Deck.toast(document.body.classList.contains("hands") ? "Show-of-hands mode" : "Live polls"); }
     if (k === "a" || k === "A") { if (base) window.open(base + "/admin", "_blank"); else Deck.toast("Offline: no admin page"); }
@@ -43,13 +43,14 @@
 
   function admin(path, body) {
     if (!base) return Promise.resolve();
-    if (!key) { Deck.toast("No admin key (press K): phones not switched"); return Promise.resolve(); }
+    if (!key) { Deck.warn("No admin key (press K): phones not switched"); return Promise.resolve(); }
     return fetch(base + "/api/admin/" + path, {
       method: "POST", headers: { "content-type": "application/json", authorization: "Bearer " + key }, body: JSON.stringify(body),
     }).then(function (r) {
-      if (r.status === 401) Deck.toast("Admin key rejected (press K)");
-      else if (!r.ok) Deck.toast("Poll server error " + r.status);
-    }).catch(function () { Deck.toast("Poll server unreachable"); });
+      if (r.status === 401) Deck.warn("Admin key rejected (press K)");
+      else if (!r.ok) Deck.warn("Poll server error " + r.status);
+      else Deck.warn("");
+    }).catch(function () { Deck.warn("Poll server unreachable"); });
   }
 
   // ---------- QR + URLs ----------

@@ -88,5 +88,6 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 ## Workflow
 1. **First task:** read this file + PLAN.md, then propose an implementation plan: stack (plain HTML/JS vs a framework), file layout, milestones, poll API/schema changes, request-volume choice, speaker-notes approach (presenter window via a second screen, and/or a phone notes+clicker page, since a second screen isn't guaranteed). End with unresolved questions. **No code until approved.**
 2. Suggested milestones: M1 poll backend + phone/admin pages + deck skeleton with all poll slides (test early with real phones) → M2 Parts 0–2 → M3 Parts 3–6 → M4 polish, speaker notes, 15-min cut toggle, offline backup → M5 dress-rehearsal checklist.
-3. After each slide, verify with Playwright screenshots at 1920×1080 (plus one low-contrast "projector" check).
+3. After each slide, verify with Playwright screenshots at 1920×1080 (plus one low-contrast "projector" check: `tools/shoot.mjs --projector`).
+   - ⚠️ Learning: static screenshots miss motion/interaction bugs (black page on mouse move, S6 entry flash, crash when first live slide ≠ S0). Before reporting UI work, run `tools/walk.mjs` (real-time video: forward clicks, mouse moves, back nav), review its frame sheets, and send Nitzan the mp4. Also test a reload mid-deck.
 4. Commit small; concise messages.

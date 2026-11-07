@@ -125,7 +125,7 @@
     var el2 = (t0 ? fmt((Date.now() - t0) / 1000) : "0:00");
     hudEl.innerHTML = '<div class="meta"><span>' + el.id + " · step " + step + "/" + clicksOf(el) + "</span><span>planned " + (el.dataset.at || "–") +
       "</span><span>elapsed " + el2 + "</span><span>" + (cut ? "15-MIN CUT" : "FULL") + "</span><span>next: " + (nx ? nx.id + " " + (nx.dataset.title || "") : "end") +
-      '</span></div><div class="say">' + (n ? n.innerHTML : "") + "</div>";
+      '</span></div>' + (warning ? '<div class="warn">⚠ ' + warning + '</div>' : "") + '<div class="say">' + (n ? n.innerHTML : "") + "</div>";
   }
   setInterval(function () { if (t0) hud(); }, 1000);
 
@@ -133,6 +133,12 @@
   function toast(msg) {
     toastEl.textContent = msg; toastEl.classList.add("show");
     clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove("show"); }, 1800);
+  }
+
+  // presenter-only warnings (status dot + HUD), never shown big on the projected screen
+  var statusEl = document.getElementById("status"), warning = "";
+  function warn(msg) {
+    warning = msg || ""; statusEl.classList.toggle("warn", !!warning); statusEl.title = warning; hud();
   }
 
   function fullscreen() {
@@ -180,7 +186,7 @@
     onChange: function (f) { listeners.push(f); },
     current: function () { return { el: list[cur], step: step, idx: cur, cut: cut }; },
     next: next, prev: prev, go: function (id, s) { var i = list.findIndex(function (el) { return el.id === id; }); if (i >= 0) go(i, s || 0, 0); },
-    toast: toast, params: params, LS: LS,
+    toast: toast, warn: warn, params: params, LS: LS,
     emit: function (ev, x) { (bus[ev] || []).forEach(function (f) { f(x); }); },
     listen: function (ev, f) { (bus[ev] = bus[ev] || []).push(f); },
     start: function () { buildList(); fit(); fromHash(); },

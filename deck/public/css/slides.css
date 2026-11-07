@@ -183,27 +183,27 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s6 .lr[data-key="imp"] { top: 680px; }
 #s6 .lr[data-key="sl2"], #s6 .lr[data-key="sl1"] { top: 1120px; opacity: 0; }
 /* ladder positions (step ≥ 1) */
-#s6:not([data-step="0"]) .lr { width: 1180px; height: 90px; }
-#s6:not([data-step="0"]) .lr[data-key="imp"] { top: 210px; opacity: .5; }
-#s6:not([data-step="0"]) .lr[data-key="1B"] { top: 312px; }
-#s6:not([data-step="0"]) .lr[data-key="10M"] { top: 414px; transition-delay: .06s; }
-#s6:not([data-step="0"]) .lr[data-key="1M"] { top: 516px; transition-delay: .12s; }
-#s6:not([data-step="0"]) .lr[data-key="sl2"] { top: 618px; opacity: 1; transition-delay: .35s; }
-#s6:not([data-step="0"]) .lr[data-key="sl1"] { top: 720px; opacity: 1; transition-delay: .45s; }
-#s6:not([data-step="0"]) .lr-track { top: 0; height: 100%; right: 0; border-radius: 14px; background: var(--card); border-color: var(--line); }
-#s6:not([data-step="0"]) .lr[data-key="imp"] .lr-track { border-style: dashed; }
-#s6:not([data-step="0"]) .lr-fill, #s6:not([data-step="0"]) .lr.lead .lr-fill { background: rgba(255,176,32,.16); box-shadow: none; }
-#s6:not([data-step="0"]) .lr.lead .lr-fill { background: rgba(255,176,32,.3); }
-#s6:not([data-step="0"]) .lr-res { opacity: 0; }
-#s6:not([data-step="0"]) .lr-rung { opacity: 1; transition-delay: .55s; }
-#s6:not([data-step="0"]) .lr-pct { top: 25px; right: 26px; width: 110px; font-size: 32px; line-height: 40px; color: var(--amb); }
+#s6[data-step]:not([data-step="0"]) .lr { width: 1180px; height: 90px; }
+#s6[data-step]:not([data-step="0"]) .lr[data-key="imp"] { top: 210px; opacity: .5; }
+#s6[data-step]:not([data-step="0"]) .lr[data-key="1B"] { top: 312px; }
+#s6[data-step]:not([data-step="0"]) .lr[data-key="10M"] { top: 414px; transition-delay: .06s; }
+#s6[data-step]:not([data-step="0"]) .lr[data-key="1M"] { top: 516px; transition-delay: .12s; }
+#s6[data-step]:not([data-step="0"]) .lr[data-key="sl2"] { top: 618px; opacity: 1; transition-delay: .35s; }
+#s6[data-step]:not([data-step="0"]) .lr[data-key="sl1"] { top: 720px; opacity: 1; transition-delay: .45s; }
+#s6[data-step]:not([data-step="0"]) .lr-track { top: 0; height: 100%; right: 0; border-radius: 14px; background: var(--card); border-color: var(--line); }
+#s6[data-step]:not([data-step="0"]) .lr[data-key="imp"] .lr-track { border-style: dashed; }
+#s6[data-step]:not([data-step="0"]) .lr-fill, #s6[data-step]:not([data-step="0"]) .lr.lead .lr-fill { background: rgba(255,176,32,.16); box-shadow: none; }
+#s6[data-step]:not([data-step="0"]) .lr.lead .lr-fill { background: rgba(255,176,32,.3); }
+#s6[data-step]:not([data-step="0"]) .lr-res { opacity: 0; }
+#s6[data-step]:not([data-step="0"]) .lr-rung { opacity: 1; transition-delay: .55s; }
+#s6[data-step]:not([data-step="0"]) .lr-pct { top: 25px; right: 26px; width: 110px; font-size: 32px; line-height: 40px; color: var(--amb); }
 #s6 .lad-head { position: absolute; left: 140px; width: 1180px; top: 170px; display: grid; grid-template-columns: 170px 1fr 110px 110px 130px 120px; gap: 12px; padding: 0 26px;
-  font-size: 20px; color: var(--dim); text-transform: uppercase; letter-spacing: .1em; opacity: 0; transition: opacity .5s .6s; }
+  font-size: 22px; color: var(--mut); text-transform: uppercase; letter-spacing: .1em; opacity: 0; transition: opacity .5s .6s; }
 #s6 .lad-head span { text-align: right; }
 #s6 .lad-head span:first-child { grid-column: 3; }
-#s6:not([data-step="0"]) .lad-head { opacity: 1; }
+#s6[data-step]:not([data-step="0"]) .lad-head { opacity: 1; }
 #s6 .lad-mark { position: absolute; left: 1350px; top: 520px; font: 700 30px/1.25 var(--sans); color: var(--red); }
-#s6:not([data-step="0"]):is([data-step="2"], [data-step="3"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
+#s6[data-step]:not([data-step="0"]):is([data-step="2"], [data-step="3"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
 #s6 .lad-quote { position: absolute; left: 1350px; top: 400px; width: 430px; font-size: 24px; line-height: 1.35; color: var(--amb); }
 #s6 .s6-total { position: absolute; left: 140px; top: 840px; font-size: 28px; color: var(--mut); }
 #s6 .s6-hands { position: absolute; left: 140px; top: 900px; }

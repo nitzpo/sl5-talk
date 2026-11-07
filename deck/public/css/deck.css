@@ -5,8 +5,8 @@
 :root {
   --bg: #08090b;
   --fg: #f2f1ee;
-  --mut: #8e949c;
-  --dim: #4a5059;
+  --mut: #a4aab2;
+  --dim: #757c86;
   --line: #23272e;
   --card: #121418;
   --amb: #ffb020;       /* signal amber: the one accent */
@@ -51,7 +51,7 @@ body.show-cursor { cursor: default; }
 .blur:not(.on) { filter: blur(16px); }
 
 /* ---------- type ---------- */
-.kicker { font: 600 22px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--mut); display: flex; align-items: center; gap: 18px; }
+.kicker { font: 600 24px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--mut); display: flex; align-items: center; gap: 18px; }
 .kicker::before { content: ""; width: 56px; height: 6px; border-radius: 3px; background: var(--amb); }
 .statement { font-weight: 800; font-size: 96px; line-height: 1.05; letter-spacing: -.025em; }
 .big { font-weight: 800; font-size: 140px; line-height: 1; letter-spacing: -.035em; }
@@ -64,7 +64,7 @@ body.show-cursor { cursor: default; }
 .center { align-items: center; justify-content: center; text-align: center; }
 .quote { font-weight: 700; font-size: 84px; line-height: 1.12; letter-spacing: -.02em; max-width: 1500px; }
 .cite { font: 500 28px var(--mono); color: var(--mut); margin-top: 40px; }
-.foot { position: absolute; left: 140px; right: 140px; bottom: 60px; font: 500 22px var(--mono); color: var(--dim); display: flex; justify-content: space-between; }
+.foot { position: absolute; left: 140px; right: 140px; bottom: 60px; font: 500 24px var(--mono); color: var(--dim); display: flex; justify-content: space-between; }
 
 /* ---------- image placeholders (until assets arrive) ---------- */
 .img { position: absolute; inset: 0; background-size: cover; background-position: center; }
@@ -120,5 +120,10 @@ body.black #black { display: block; }
 body.hud #hud { display: block; }
 #hud .meta { font: 600 13px var(--mono); color: var(--amb); margin-bottom: 8px; display: flex; gap: 18px; flex-wrap: wrap; }
 #hud .say { white-space: pre-wrap; }
-#toast { position: fixed; top: 18px; left: 50%; transform: translateX(-50%); z-index: 60; background: #111; color: #fff; border: 1px solid #333; border-radius: 10px; padding: 10px 16px; font: 600 15px var(--mono); opacity: 0; transition: opacity .3s; pointer-events: none; }
+#toast { position: fixed; left: 12px; bottom: 12px; z-index: 60; background: rgba(17,17,17,.85); color: #bbb; border: 1px solid #333; border-radius: 8px; padding: 6px 10px; font: 600 12px var(--mono); opacity: 0; transition: opacity .3s; pointer-events: none; }
+/* presenter-only status: a tiny dot, visible only while the mouse moves or the notes HUD is open */
+#status { position: fixed; right: 10px; bottom: 10px; z-index: 60; width: 10px; height: 10px; border-radius: 50%; background: #3ddc84; opacity: 0; transition: opacity .3s; pointer-events: none; }
+#status.warn { background: var(--red); }
+body.show-cursor #status, body.hud #status { opacity: .9; }
+#hud .warn { color: var(--red); font-weight: 700; }
 #toast.show { opacity: 1; }
