@@ -60,6 +60,7 @@
     if (prev !== el) {
       if (prev) { prev.classList.remove("active"); call(prev.id, "leave", prev, dir); }
       if (instant) el.classList.add("instant");
+      el.classList.toggle("fwd", dir === 1); // intro animations play only on forward entry
       applyStep(el, s);
       el.classList.add("active");
       cur = idx; step = s;

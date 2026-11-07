@@ -9,14 +9,17 @@ window.SL5_POLLS = {
   {
    "id": "warm",
    "grp": "warm",
-   "short": "Which side were you on?",
-   "q": "Before we start: which side were you on?",
+   "short": "Which side are you on?",
+   "q": "Which side are you on?",
    "o": [
-    "Breaking in (offense)",
-    "Keeping out (defense)",
-    "Building AI",
-    "Building companies",
-    "Both, depends on the contract"
+    "Red team (I break in)",
+    "Blue team (I keep them out)",
+    "Both, depends on the contract",
+    "AI (research, safety, security)",
+    "None of the above"
+   ],
+   "deckHide": [
+    4
    ]
   },
   {
@@ -25,9 +28,9 @@ window.SL5_POLLS = {
    "short": "Minimum attacker to steal the weights today?",
    "q": "You need to steal the flagship model weights from a top-3 AI lab today. What is the MINIMUM attacker needed to pull it off?",
    "o": [
-    "$1M budget: a top-tier crime syndicate or one insider",
-    "$10M budget: a standard state cyber operation",
-    "$1B budget: a superpower's top-priority operation",
+    "A $1M budget: a top-tier crime syndicate or one insider",
+    "A $10M budget: a standard state cyber operation",
+    "A $1B budget: a superpower's top-priority operation",
     "Impossible, even for a superpower"
    ]
   },

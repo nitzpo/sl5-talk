@@ -24,7 +24,8 @@ const missing = new Set(); // expected while assets are pending (e.g. img/sim.we
 page.on("response", (r) => { if (r.status() >= 400) missing.add(`${r.status()} ${new URL(r.url()).pathname}`); });
 
 const base = url + (url.includes("?") ? "&" : "?") + (cut ? "cut=15" : "cut=17");
-await page.goto(base);
+await page.goto(base, { waitUntil: "networkidle" });
+await page.evaluate(() => document.fonts.ready);
 await page.waitForFunction(() => window.Deck && Deck.current().el);
 const slides = await page.evaluate(() =>
   [...document.querySelectorAll(".slide")].map((el) => ({

@@ -79,19 +79,22 @@
 
   function renderBars(box, poll, data) {
     var counts = data ? data.counts : null, total = data ? data.total : 0;
+    var hide = poll.deckHide || [];
     var hl = (box.dataset.hl || "").split(",").filter(Boolean).map(Number);
-    var max = counts ? Math.max.apply(null, counts) : 0;
+    var vis = poll.o.map(function (_, i) { return i; }).filter(function (i) { return hide.indexOf(i) < 0; });
+    var max = counts ? Math.max.apply(null, vis.map(function (i) { return counts[i]; })) : 0;
     if (!box.firstChild || box.dataset.built !== poll.id) {
-      box.innerHTML = poll.o.map(function (o, i) {
-        return '<div class="bar" data-i="' + i + '"><div class="lbl">' + esc(o) + '</div><div class="track"><div class="fill"></div></div><div class="pct">–</div></div>';
+      box.innerHTML = vis.map(function (i) {
+        return '<div class="bar" data-i="' + i + '"><div class="lbl">' + esc(poll.o[i]) + '</div><div class="track"><div class="fill"></div></div><div class="pct">–</div></div>';
       }).join("") + '<div class="wait"></div>';
       box.dataset.built = poll.id;
+      void box.offsetWidth; // start bars from 0 so they animate in
     }
-    box.querySelectorAll(".bar").forEach(function (b, i) {
-      var n = counts ? counts[i] : 0, pct = total ? Math.round((100 * n) / total) : 0;
+    box.querySelectorAll(".bar").forEach(function (b) {
+      var i = +b.dataset.i, n = counts ? counts[i] : 0, pct = total ? Math.round((100 * n) / total) : 0;
       b.querySelector(".fill").style.width = (total ? (100 * n) / total : 0) + "%";
       b.querySelector(".pct").textContent = total ? pct + "%" : "–";
-      b.classList.toggle("lead", box.hasAttribute("data-lead") && total > 0 && n === max);
+      b.classList.toggle("lead", box.hasAttribute("data-lead") && total > 0 && n === max && n > 0);
       b.classList.toggle("hl", hl.indexOf(i) >= 0);
     });
     box.querySelector(".wait").textContent = total ? total + (total === 1 ? " vote" : " votes") : "Waiting for votes…";
@@ -139,7 +142,7 @@
   Deck.onChange(function (el, step, dir) {
     if (el !== activeEl) {
       activeEl = el; enteredAt = Date.now(); clearTimeout(timer);
-      if (dir === 1) { // only real forward navigation drives the phones
+      if (dir === 1 || (dir === 0 && el.hasAttribute("data-poll-onload"))) { // forward navigation (or the pre-show slide on load) drives the phones
         if (el.dataset.pollClose) admin("open", { ids: el.dataset.pollClose.split(","), open: false });
         if (el.dataset.pollCurrent) admin("current", { current: el.dataset.pollCurrent });
       }
