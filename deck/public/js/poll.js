@@ -13,15 +13,9 @@
 (function () {
   "use strict";
   var D = window.SL5_POLLS, LS = Deck.LS;
-  var API = {
-    live: "https://vote.nitzpo.workers.dev",
-    dev: "https://vote-dev.nitzpo.workers.dev",
-  };
-  var p = Deck.params.get("api");
-  var base = p === "off" ? null : p === "live" || p === "dev" ? API[p] : p ? p.replace(/\/$/, "")
-    : location.protocol === "file:" ? null : /^sl5-deck\./.test(location.hostname) ? API.live : API.dev;
-  var phoneHost = base ? base.replace(/^https?:\/\//, "") : "vote.nitzpo.workers.dev";
-  var phoneUrl = base || API.live;
+  var thumb = Deck.thumb; // presenter previews never talk to the poll server
+  var base = thumb ? null : SL5Config.base;
+  var phoneHost = SL5Config.phoneHost, phoneUrl = SL5Config.phoneUrl;
 
   // admin key from #key=… (then stripped from the URL) or localStorage
   var km = /key=([^&]+)/.exec(location.hash);
@@ -142,7 +136,7 @@
     clearTimeout(timer);
     var el = activeEl; if (!el) return;
     var grps = grpsFor(el); if (!grps.length) return;
-    if (!base) { el.classList.add("nodata"); return; }
+    if (!base) { if (!thumb) el.classList.add("nodata"); return; }
     fetchGroups(grps).then(function (res) {
       if (el !== activeEl) return;
       lastOk = Date.now(); cache = res; el.classList.remove("nodata"); render(el, res);
@@ -165,6 +159,7 @@
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
 
-  window.SL5Poll = { base: base, phoneUrl: phoneUrl, admin: admin, setCurrent: function (c) { return admin("current", { current: c }); } };
+  window.SL5Poll = { base: base, phoneUrl: phoneUrl, admin: admin, key: function () { return key; },
+    setCurrent: function (c) { return admin("current", { current: c }); } };
   fillStatic();
 })();

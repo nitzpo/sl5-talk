@@ -17,6 +17,10 @@
 //   POST /api/admin/reset   {poll?}   (deletes votes in the active run)
 //   POST /api/admin/config  {poll_ms?, ip_cap?}
 //   GET  /api/admin/export.csv?run=<id>
+//   POST /api/admin/deck   {id, step, cut, black}   deck reports its position (phone remote reads it)
+//   GET  /api/admin/deck   -> {deck, seq}
+//   POST /api/admin/remote {cmd: next|prev|black|go, arg?}   phone remote queues a command
+//   GET  /api/admin/remote?since=<seq> -> {seq, cmds}      deck polls for new commands
 
 import { POLLS, GROUPS } from "./polls.js";
 import { votePage, linksPage, adminPage, FAVICON } from "./pages.js";
@@ -200,7 +204,7 @@ async function admin(req, env, action) {
       polls: POLLS.map((p) => ({ id: p.id, grp: p.grp, short: p.short, o: p.o, open: s.open.includes(p.id), counts: counts[p.id] })),
     });
   }
-  if (req.method !== "POST" && action !== "export.csv") return json({ error: "method" }, 405);
+  if (req.method !== "POST" && !["export.csv", "deck", "remote"].includes(action)) return json({ error: "method" }, 405);
 
   if (action === "current") {
     const cur = body.current;
@@ -241,6 +245,30 @@ async function admin(req, env, action) {
       : db.prepare("DELETE FROM votes WHERE run_id = ?").bind(s.run);
     await writeState(db, { epoch: s.epoch + 1 }, [del]);
     return json({ ok: true });
+  }
+  // ---- deck <-> phone remote (no rev bump: phones don't care) ----
+  if (action === "deck") {
+    if (req.method === "POST") {
+      const d = { id: String(body.id || "").slice(0, 16), step: +body.step | 0, cut: !!body.cut, black: !!body.black, ts: Date.now() };
+      await db.batch(setKV(db, { deck: JSON.stringify(d) }));
+      return json({ ok: true });
+    }
+    const rows = (await db.prepare("SELECT k, v FROM kv WHERE k IN ('deck', 'remote')").all()).results;
+    const kv = Object.fromEntries(rows.map((r) => [r.k, safeParse(r.v, null)]));
+    return json({ deck: kv.deck || null, seq: kv.remote ? kv.remote.seq : 0, now: Date.now() });
+  }
+  if (action === "remote") {
+    const cur = safeParse((await db.prepare("SELECT v FROM kv WHERE k = 'remote'").first())?.v, null) || { seq: 0, cmds: [] };
+    if (req.method === "POST") {
+      const cmd = String(body.cmd || "");
+      if (!["next", "prev", "black", "go", "cut"].includes(cmd)) return json({ error: "bad_cmd" }, 400);
+      const seq = cur.seq + 1;
+      const cmds = [...cur.cmds, { seq, cmd, arg: body.arg === undefined ? null : String(body.arg).slice(0, 16), ts: Date.now() }].slice(-20);
+      await db.batch(setKV(db, { remote: JSON.stringify({ seq, cmds }) }));
+      return json({ ok: true, seq });
+    }
+    const since = +new URL(req.url).searchParams.get("since") || 0;
+    return json({ seq: cur.seq, cmds: cur.cmds.filter((c) => c.seq > since) });
   }
   if (action === "config") {
     const pairs = {};

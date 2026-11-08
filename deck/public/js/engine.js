@@ -19,6 +19,7 @@
     get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set: function (k, v) { try { v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} },
   };
+  var thumb = params.has("thumb"); // presenter previews: no keys, no mouse, no overlays
   var cut = params.has("cut") ? params.get("cut") === "15" : LS.get("sl5:cut") === "15";
   var cur = -1, step = 0, list = [];
 
@@ -114,6 +115,7 @@
     cur = -1;
     go(Math.max(0, idx), 0, 0);
     toast(cut ? "15-min cut ON (" + list.length + " slides)" : "Full 17-min version (" + list.length + " slides)");
+    Deck.emit("cut", cut);
   }
 
   // ---------- HUD: notes + timing (rehearsal helper; presenter window comes later) ----------
@@ -143,12 +145,18 @@
     warning = msg || ""; statusEl.classList.toggle("warn", !!warning); statusEl.title = warning; hud();
   }
 
+  function black(v) {
+    document.body.classList.toggle("black", v === undefined ? !document.body.classList.contains("black") : !!v);
+    Deck.emit("black", document.body.classList.contains("black"));
+  }
+
   function fullscreen() {
     if (document.fullscreenElement) document.exitFullscreen();
     else (document.documentElement.requestFullscreen || function () {}).call(document.documentElement);
   }
 
   document.addEventListener("keydown", function (e) {
+    if (thumb) return;
     if (e.target.closest && e.target.closest("input,textarea")) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     var k = e.key;
@@ -157,7 +165,8 @@
     else if (k === "Home") go(0, 0, 0);
     else if (k === "End") go(list.length - 1, 0, 0);
     else if (k === "f" || k === "F" || k === "F5") { e.preventDefault(); fullscreen(); }
-    else if (k === "b" || k === "B" || k === "." || k === "w" || k === "W") document.body.classList.toggle("black");
+    else if (k === "b" || k === "B" || k === "." || k === "w" || k === "W") black();
+    else if (k === "s" || k === "S") { if (Deck.openPresenter) Deck.openPresenter(); }
     else if (k === "n" || k === "N") { document.body.classList.toggle("hud"); hud(); }
     else if (k === "c" || k === "C") setCut(!cut);
     else if (k === "t" || k === "T") { t0 = Date.now(); toast("Timer started"); hud(); }
@@ -175,7 +184,7 @@
     document.body.classList.add("show-cursor"); clearTimeout(mt);
     mt = setTimeout(function () { document.body.classList.remove("show-cursor"); }, 1500);
   });
-  stage.addEventListener("click", function (e) { if (!e.target.closest("a,button,input")) next(); });
+  stage.addEventListener("click", function (e) { if (!thumb && !e.target.closest("a,button,input")) next(); });
   addEventListener("resize", fit);
   addEventListener("hashchange", function () {
     var el = list[cur];
@@ -188,9 +197,10 @@
     onChange: function (f) { listeners.push(f); },
     current: function () { return { el: list[cur], step: step, idx: cur, cut: cut }; },
     next: next, prev: prev, go: function (id, s) { var i = list.findIndex(function (el) { return el.id === id; }); if (i >= 0) go(i, s || 0, 0); },
-    toast: toast, warn: warn, params: params, LS: LS,
+    toast: toast, warn: warn, params: params, LS: LS, thumb: thumb, black: black, setCut: function (v) { if (v !== cut) setCut(v); },
+    isBlack: function () { return document.body.classList.contains("black"); },
     emit: function (ev, x) { (bus[ev] || []).forEach(function (f) { f(x); }); },
     listen: function (ev, f) { (bus[ev] = bus[ev] || []).push(f); },
-    start: function () { buildList(); fit(); fromHash(); },
+    start: function () { if (thumb) document.body.classList.add("thumb"); buildList(); fit(); fromHash(); },
   };
 })();

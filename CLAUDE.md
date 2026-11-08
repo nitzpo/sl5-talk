@@ -80,6 +80,7 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 - Poll content lives in `poll/src/polls.js`; after editing run `node tools/gen_deck_polls.mjs` (deck copy).
 - Admin page: `<poll host>/admin` (dev: https://vote-dev.nitzpo.workers.dev/admin). Reset = per-poll Reset, "Reset all votes in run", or "New rehearsal run" (clean slate, history kept). Talk day: "New LIVE run".
 - Deck keys: →/Space/PgDn next · ←/PgUp back · F fullscreen · B/. black · N notes HUD · T start timer · C 15-min cut · H show-of-hands · K admin key · A open admin page · P re-push poll state · G go to slide.
+- Presenter view `presenter.html` (one page, layout by screen size): `S` in the deck opens it on the laptop (BroadcastChannel sync, no network). Phone: open `<deck host>/presenter.html`, enter admin token → syncs via poll server (`/api/admin/deck` + `/api/admin/remote`; deck needs its admin key). Tap slide id = jump list. Timer auto-starts when leaving S0.
 - Deploy = Workers Builds (git push):
   - `vote` ← `main` only (live; runs D1 migrations on `ted-polls`). Merging to `main` = going live.
   - `vote-dev` ← every branch (+ `main`), `--env dev`, D1 `ted-polls-dev`. Admin token: ask Nitzan / set via API.

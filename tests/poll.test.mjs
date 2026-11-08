@@ -111,6 +111,23 @@ test("poll worker v2", async (t) => {
     assert.equal((await state()).mode, "idle");
   });
 
+  await t.test("deck state + phone remote commands", async () => {
+    assert.equal((await post("/api/admin/deck", { id: "s6", step: 2 })).status, 401);
+    await admin("deck", { id: "s6", step: 2, cut: true });
+    const d = await (await get("/api/admin/deck", auth)).json();
+    assert.equal(d.deck.id, "s6");
+    assert.equal(d.deck.step, 2);
+    const s0 = d.seq;
+    await admin("remote", { cmd: "next" });
+    await admin("remote", { cmd: "go", arg: "s9" });
+    assert.equal((await post("/api/admin/remote", { cmd: "rm -rf" }, auth)).status, 400);
+    const r = await (await get(`/api/admin/remote?since=${s0}`, auth)).json();
+    assert.deepEqual(r.cmds.map((c) => c.cmd), ["next", "go"]);
+    assert.equal(r.cmds[1].arg, "s9");
+    const none = await (await get(`/api/admin/remote?since=${r.seq}`, auth)).json();
+    assert.equal(none.cmds.length, 0);
+  });
+
   await t.test("pages", async () => {
     const home = await get("/");
     assert.equal(home.status, 200);
