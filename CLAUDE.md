@@ -77,6 +77,7 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 - Screenshots + contact sheet: `node tools/shoot.mjs --url <deck url> --out <dir> [--only s7,s10] [--projector] [--cut]`
 - S10 data (47 real block names + clause snippets): `git clone --depth 1 https://github.com/nitzpo/sl5 /tmp/sl5 && python3 -I tools/build_data.py /tmp/sl5` → `deck/public/js/s10.gen.js` (a script, not JSON: offline copy runs from file://).
 - Offline backup (single HTML, no polls, show-of-hands): `python3 -I tools/build_offline.py` → `deck/public/offline.html` (committed; download from `<deck host>/offline.html`). Rerun after any deck change; `--check` = stale test.
+- Load test (dev only; refuses live; uses a fresh rehearsal run, then restores): `NODE_USE_ENV_PROXY=1 BASE=https://vote-dev.nitzpo.workers.dev ADMIN_TOKEN=… node tools/loadtest.mjs --phones 150 --phase 30`. Nov 8: 150 phones, 4.1k req, 0 errors, vote p95 242ms, all votes counted once. ≈5k req per run: free tier = 100k/day per account, so no load tests on talk day.
 - Real-time check: `node tools/walk.mjs --from s5 [--to s9] --out <dir>` → video + frame sheets.
 - Poll content lives in `poll/src/polls.js`; after editing run `node tools/gen_deck_polls.mjs` (deck copy).
 - Admin page: `<poll host>/admin` (dev: https://vote-dev.nitzpo.workers.dev/admin). Reset = per-poll Reset, "Reset all votes in run", or "New rehearsal run" (clean slate, history kept). Talk day: "New LIVE run".
