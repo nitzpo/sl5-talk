@@ -11,7 +11,7 @@
 - **Polls:** results update live while on results slides; a poll closes when the deck **leaves its topic** (warm → entering S5, A → entering S9/S10, B1/B2/C → entering S18).
 - **Rehearsal vs live:** votes keyed by `run`. New live run = zeros by construction. Rehearsal data kept, never shown.
 - **Anti-stuffing (light):** server-signed voter ids; per-IP vote cap per poll (generous for venue NAT); admin reset.
-- **Clicker:** unknown → keyboard clicker keys + phone `/remote` page as backup. Ask organizers (checklist).
+- **Clicker:** unknown → keyboard clicker keys + phone remote (`presenter.html` on the phone) as backup. Ask organizers (checklist).
 - **Slot length unknown** → 17-min build + 15-min cut toggle. Cut = drop S9, S19 (S8 removed in plan v4). S16 trim: Nitzan decides later (keep the simulator GIF).
 
 ## Poll API v2
