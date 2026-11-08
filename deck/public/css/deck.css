@@ -107,6 +107,7 @@ body.show-cursor { cursor: default; }
 .hands { display: none; }
 body.hands .hands, .slide.nodata .hands { display: block; }
 body.hands .live, .slide.nodata .live { display: none !important; }
+body.is-offline [data-qr="vote"], body.is-offline [data-url="vote"], body.is-offline .s0-card { display: none !important; }
 .hands { font-size: 44px; font-weight: 700; color: var(--fg); }
 .hands .tag { font: 600 22px var(--mono); color: var(--amb); letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: 14px; }
 

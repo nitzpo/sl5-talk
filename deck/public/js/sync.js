@@ -55,6 +55,7 @@
   pollCmds();
 
   Deck.openPresenter = function () {
+    if (window.SL5_OFFLINE) { Deck.toast("Offline copy: no presenter window. N = notes on this screen"); return; }
     var w = window.open("presenter.html?local" + (location.search ? "&" + location.search.slice(1) : ""), "sl5-presenter", "width=1280,height=800");
     if (!w) Deck.toast("Pop-up blocked: allow pop-ups, or open presenter.html");
   };

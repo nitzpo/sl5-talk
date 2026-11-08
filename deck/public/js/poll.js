@@ -16,6 +16,8 @@
   var thumb = Deck.thumb; // presenter previews never talk to the poll server
   var base = thumb ? null : SL5Config.base;
   var phoneHost = SL5Config.phoneHost, phoneUrl = SL5Config.phoneUrl;
+  // offline copy: no vote QR/URL (votes would go nowhere visible); links QR stays
+  if (window.SL5_OFFLINE || location.protocol === "file:") document.body.classList.add("is-offline");
 
   // admin key from #key=… (then stripped from the URL) or localStorage
   var km = /key=([^&]+)/.exec(location.hash);
