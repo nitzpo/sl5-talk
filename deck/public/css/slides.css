@@ -86,6 +86,26 @@
 .dlg-wrap.play .fake-cursor { animation: fake-cursor 1.2s cubic-bezier(.4,0,.2,1) .5s both; }
 @keyframes fake-cursor { from { opacity: 1; transform: translate(240px, 260px); } to { opacity: 1; transform: translate(0, 0); } }
 
+/* ===================== S1c · target package (what's in the file?) ===================== */
+.s1c-doc { position: absolute; left: 330px; top: 110px; width: 1260px; height: 860px; background: #dfdacd; color: #17171a; border-radius: 6px;
+  box-shadow: 0 40px 120px #000; padding: 70px 84px; transform: rotate(-1.2deg); font: 500 38px/1.45 var(--mono); }
+.slide.fwd .s1c-doc { animation: s1c-in .8s cubic-bezier(.2,.8,.2,1) both; }
+@keyframes s1c-in { from { opacity: 0; transform: translateY(90px) rotate(-4deg); } to { opacity: 1; transform: rotate(-1.2deg); } }
+.s1c-hd { display: flex; justify-content: space-between; border-bottom: 5px solid #17171a; padding-bottom: 20px; margin-bottom: 40px; font-weight: 800; letter-spacing: .08em; }
+.s1c-row { display: grid; grid-template-columns: 310px 1fr; margin-bottom: 22px; }
+.s1c-k { color: #67625a; font-weight: 700; }
+.s1c-get { list-style: none; }
+.s1c-get li { position: relative; width: fit-content; margin-bottom: 16px; }
+.s1c-hot span { background: rgba(255, 176, 32, .45); padding: 0 8px; margin-left: -8px; border-radius: 3px; }
+#s1c .s1c-bar { position: absolute; inset: 1px -10px; background: #17171a; border-radius: 3px; transform-origin: right center;
+  transition: transform .5s cubic-bezier(.6,0,.2,1); }
+#s1c .s1c-bar:not(.on) { opacity: 1; transform: scaleX(0); }
+.s1c-stamp { position: absolute; right: 70px; bottom: 96px; font: 900 54px/1 var(--sans); color: #b87800; border: 7px solid #b87800; padding: 14px 26px;
+  border-radius: 12px; letter-spacing: .04em; }
+#s1c .s1c-stamp { transform: rotate(8deg); transition: opacity .15s ease-out .45s, transform .3s cubic-bezier(.3,1.5,.5,1) .45s; }
+#s1c .s1c-stamp:not(.on) { transform: rotate(8deg) scale(2.4); }
+.s1c-src { position: absolute; left: 84px; bottom: 46px; font-size: 20px; color: #67625a; }
+
 /* ===================== S2 · old vs AI espionage ===================== */
 .s2 { justify-content: center; gap: 0; padding-top: 80px; padding-bottom: 80px; }
 .s2-band { position: relative; flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 34px; }
