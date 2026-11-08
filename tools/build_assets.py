@@ -7,6 +7,7 @@ Crops near-black letterbox bars, caps size (16:9 → 1920 wide, 1:1 → 1080), W
 from __future__ import annotations
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -56,7 +57,26 @@ def main() -> int:
         out = DST / f"{stem}.webp"
         im.save(out, "WEBP", quality=82, method=6)
         print(f"{src.name:30s} {w}x{h} -> {out.name} {im.size[0]}x{im.size[1]} {out.stat().st_size // 1024} KB")
+    build_sim()
     return 0
+
+
+def build_sim() -> None:
+    """assets/sim.gif (simulator screen capture) -> img/sim.mp4.
+    Crops to the hexagon map only: the right panel and the year bar show scenario numbers
+    (breach %, SL score, budget), and the simulator must stay vague on stage."""
+    src = SRC / "sim.gif"
+    if not src.exists():
+        return
+    out = DST / "sim.mp4"
+    # 1000x410 capture: keep x 70..780, y 24..402 (drops right panel, top bar, zoom control); 2x upscale; 0.6x speed
+    vf = "crop=710:378:70:24,scale=1420:-2:flags=lanczos,setpts=PTS/0.6,fps=30"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-vf", vf, "-an", "-c:v", "libx264", "-pix_fmt", "yuv420p",
+                    "-crf", "20", "-movflags", "+faststart", str(out)], check=True)
+    webm = DST / "sim.webm"  # VP9 too: some Chromium builds lack H.264
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-vf", vf, "-an", "-c:v", "libvpx-vp9", "-b:v", "0", "-crf", "34",
+                    "-row-mt", "1", str(webm)], check=True)
+    print(f"{src.name:30s} -> {out.name} {out.stat().st_size // 1024} KB + {webm.name} {webm.stat().st_size // 1024} KB (cropped: no scenario numbers)")
 
 
 if __name__ == "__main__":

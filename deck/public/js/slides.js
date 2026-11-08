@@ -147,6 +147,12 @@
     leave: function () { clear("s9"); },
   });
 
+  // ---------- S16: simulator capture plays from the start on each entry; paused elsewhere
+  Deck.on("s16", {
+    enter: function (el) { var v = el.querySelector(".sim-video"); if (v) { try { v.currentTime = 0; } catch (e) {} var p = v.play(); if (p && p.catch) p.catch(function () {}); } },
+    leave: function (el) { var v = el.querySelector(".sim-video"); if (v) v.pause(); },
+  });
+
   // ---------- S10: 47 real blocks (github.com/nitzpo/sl5) → flood of real clauses (SL5 Standard + RAND)
   var S10 = window.SL5_S10, COLORS = ["#5aa9ff", "#b48cff", "#ff8a5c", "#3ddc84", "#ffd166", "#ff5c8a"];
   var tiles = document.getElementById("s10-tiles"), flood = document.getElementById("s10-flood");
