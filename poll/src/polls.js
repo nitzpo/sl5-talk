@@ -17,8 +17,8 @@ export const POLLS = [
   },
   {
     id: "A", grp: "A",
-    short: "Minimum attacker to steal the weights today?",
-    q: "You need to steal the flagship model weights from a top-3 AI lab today. What is the MINIMUM attacker needed to pull it off?",
+    short: "Minimum level of attacker to steal the weights today?",
+    q: "You need to steal the flagship model weights from a top-3 AI lab today. What is the minimum level of attacker needed to pull it off?",
     o: [
       "A $1M budget: a top-tier crime syndicate or one insider",
       "A $10M budget: a standard state cyber operation",

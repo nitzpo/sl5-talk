@@ -78,8 +78,8 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 - **Notes:** "servers", not "ordinary servers" (a 2TB model needs GPU servers). Real case: DOJ (fact sheet). "99%" is true for the attacker running one copy.
 
 ### S3a · 2:30 · 🎬 #03 + #04 (split)
-- **On screen:** left, a sunny San Francisco server room with green lights: "API Online · Safety Evals: PASSED ✅". Click: on the right, a dark air-gapped rack 6,000 miles away fades in, running an identical glowing brain.
-- **Say:** "And here is the part that should scare every defender: if someone steals physical weapons or sabotages a machine, something is missing or an alarm goes off. When a nation-state steals AI model weights, *nothing breaks*. The lab's servers keep humming. Meanwhile, 6,000 miles away, an identical twin wakes up on an air-gapped cluster."
+- **On screen:** left, a sunny San Francisco server room with green lights: "API Online · Safety Evals: PASSED ✅". Click: on the right, a dark air-gapped rack 10,000 km away fades in, running an identical glowing brain.
+- **Say:** "And here is the part that should scare every defender: if someone steals physical weapons or sabotages a machine, something is missing or an alarm goes off. When a nation-state steals AI model weights, *nothing breaks*. The lab's servers keep humming. Meanwhile, 10,000 kilometers away, an identical twin wakes up on an air-gapped cluster."
 - **Notes:** the "silent twin" comes back in S17. Plant it clearly here.
 
 ### S3b · 2:55 · 😄 overlay on S3a
@@ -102,7 +102,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 ## Part 3: How hard is it to steal?
 
 ### S5 · 4:05 · 📱 Poll A vote
-- **On screen:** the question, big, in plain English: **"You need to steal the flagship model weights from a top-3 AI lab today. What is the MINIMUM attacker needed to pull it off?"** Four options. "It's already on your phone" + a small QR + live counter. **No SL labels.**
+- **On screen:** the question, big, in plain English: **"You need to steal the flagship model weights from a top-3 AI lab today. What is the minimum level of attacker needed to pull it off?"** Four options. "It's already on your phone" + a small QR + live counter. **No SL labels.**
 - **Poll `A`:** A $1M budget: a top-tier crime syndicate or one insider · A $10M budget: a standard state cyber operation · A $1B budget: a superpower's top-priority operation · Impossible, even for a superpower.
 - **Say (while voting, ≈60s):** "No jargon yet, just your gut… And no, the insiders in the room don't get to vote twice."
 - **Notes:** budgets = RAND tiers (OC3 $1M · OC4 $10M · OC5 $1B).
@@ -231,7 +231,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 | ID | Where | Question | Options |
 |---|---|---|---|
 | warm | S0 → S4, S19 | Which side are you on? | Red team (I break in) · Blue team (I keep them out) · Both, depends on the contract · AI (research, safety, security) · None of the above |
-| A | S5 → S6/S7 | You need to steal the flagship model weights from a top-3 AI lab today. What is the MINIMUM attacker needed? | $1M crime syndicate / insider · $10M standard state op · $1B superpower priority op · Impossible |
+| A | S5 → S6/S7 | You need to steal the flagship model weights from a top-3 AI lab today. What is the minimum level of attacker needed? | $1M crime syndicate / insider · $10M standard state op · $1B superpower priority op · Impossible |
 | B1 | S13 → S14 | Lock an AI lab inside SL5 today: how much does it slow research? | <10% · 10–30% · 30–50% · >50% |
 | B2 | S13 → S14 | As a lab CEO racing toward AGI, when do you lock down to SL5? | Start right now · Wait until models look dangerous · Never |
 | C | S13 → S17 | Probability the weights of a frontier model were ALREADY silently stolen by a foreign intelligence service? | High (>70%) · Moderate (30–70%) · Low (<30%) |
