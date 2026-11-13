@@ -2,6 +2,7 @@
 //   NODE_USE_ENV_PROXY=1 BASE=https://vote-dev.nitzpo.workers.dev ADMIN_TOKEN=… node tools/loadtest.mjs [--phones 150] [--phase 30]
 // Creates a fresh rehearsal run "loadtest", then re-activates the run that was active before. Refuses the live worker.
 // Checks: every phone's vote is counted exactly once per poll; latency percentiles; errors / 429s.
+// --burst: worst case instead (all phones scan at once, then all votes of each poll land at the same instant).
 const args = process.argv.slice(2);
 const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 ? args[i + 1] : d; };
 const BASE = (process.env.BASE || "").replace(/\/$/, "");
@@ -50,10 +51,47 @@ async function phone(i) {
 }
 
 const pct = (a, p) => a.slice().sort((x, y) => x - y)[Math.min(a.length - 1, Math.floor((p / 100) * a.length))];
+function report(secs) {
+  const total = Object.values(lat).reduce((n, a) => n + a.length, 0);
+  console.log(`requests ${total} in ${secs.toFixed(0)}s`);
+  for (const [k, a] of Object.entries(lat)) console.log(`  ${k.padEnd(7)} n=${String(a.length).padStart(5)}  p50 ${pct(a, 50).toFixed(0)}ms  p95 ${pct(a, 95).toFixed(0)}ms  max ${Math.max(...a).toFixed(0)}ms`);
+  console.log("errors:", Object.keys(errs).length ? errs : "none");
+}
+
+// --burst: worst case. All phones scan the QR at the same instant, then every vote of every poll lands at the same instant.
+async function burst(prevRun, prevCurrent) {
+  await admin("run", { kind: "rehearsal", label: "burst" });
+  const t0 = Date.now(), all = (f) => Promise.all(Array.from({ length: PHONES }, (_, i) => f(i)));
+  let t = performance.now();
+  const vids = (await all(async () => { await req("page", "/"); return (await req("hello", "/api/hello", { method: "POST" })).body?.vid; })).filter(Boolean);
+  console.log(`  ${PHONES} phones scan at once: page + hello in ${((performance.now() - t) / 1000).toFixed(1)}s, ${vids.length} got a voter id`);
+  let ok = vids.length === PHONES;
+  for (const grp of ["warm", "A", "BC"]) {
+    await admin("current", { current: grp });
+    t = performance.now();
+    const st = await all(() => req("state", "/api/state", { cache: "no-store" }));
+    console.log(`  ${grp}: ${PHONES} state polls at once in ${((performance.now() - t) / 1000).toFixed(1)}s`);
+    for (const p of st.find((r) => r.body?.polls)?.body.polls || []) {
+      t = performance.now();
+      const rs = await Promise.all(vids.map((vid) => req("vote", "/api/vote/" + p.id, { method: "POST", body: JSON.stringify({ opt: Math.floor(Math.random() * p.o.length), vid }) })));
+      const n200 = rs.filter((r) => r.status === 200).length;
+      const counted = (await req("results", "/api/results?grp=" + grp)).body?.polls?.[p.id]?.total;
+      ok = ok && n200 === vids.length && counted === n200;
+      console.log(`  ${p.id}: ${vids.length} votes at once in ${((performance.now() - t) / 1000).toFixed(1)}s → ${n200} ok, counted ${counted}${counted === n200 ? "" : "  ✗ MISMATCH"}`);
+    }
+  }
+  report((Date.now() - t0) / 1000);
+  await admin("activate", { run: prevRun });
+  await admin("current", { current: prevCurrent });
+  console.log(`re-activated run ${prevRun} (current ${prevCurrent})`);
+  process.exit(ok && !Object.keys(errs).length ? 0 : 1);
+}
+
 (async () => {
   const before = (await admin("status")).body;
   if (!before?.runs) { console.error("admin status failed", before); process.exit(1); }
   const prevRun = before.state.run, prevCurrent = before.state.current;
+  if (args.includes("--burst")) return burst(prevRun, prevCurrent);
   await admin("run", { kind: "rehearsal", label: "loadtest" });
   await admin("current", { current: "warm" });
   const t0 = Date.now();

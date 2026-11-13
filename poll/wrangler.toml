@@ -13,6 +13,10 @@ database_name = "ted-polls"
 database_id = "c2271dd0-641c-4e21-a3ea-4724de98905f"
 migrations_dir = "migrations"
 
+# Workers Logs (dashboard → Observability): errors + request logs; free tier 200k events/day
+[observability]
+enabled = true
+
 [env.dev]
 name = "vote-dev"
 workers_dev = true
@@ -23,3 +27,6 @@ binding = "DB"
 database_name = "ted-polls-dev"
 database_id = "9d49064e-f7a0-44dc-8f88-94c59bd17d1e"
 migrations_dir = "migrations"
+
+[env.dev.observability]
+enabled = true
