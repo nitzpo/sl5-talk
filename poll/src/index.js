@@ -5,7 +5,7 @@
 //   GET  /links            links page
 //   GET  /admin            admin page (token entered on the page)
 //   GET  /api/state        {rev, run, epoch, poll_ms, mode: idle|links|poll, grp?, polls?}
-//   POST /api/hello        {vid}  server-signed voter id
+//   POST /api/hello        {vid}  server-signed voter id (≤ ip_cap new ids per IP per run, else 429)
 //   POST /api/vote/<id>    {opt, vid}
 //   GET  /api/results?grp=warm,A   live counts for the active run
 // Admin (Authorization: Bearer <ADMIN_TOKEN>):
@@ -57,7 +57,7 @@ async function readState(db, fresh = false) {
     rev: +kv.rev || 0,
     epoch: +kv.epoch || 0,
     poll_ms: +kv.poll_ms || 5000,
-    ip_cap: +kv.ip_cap || 300,
+    ip_cap: +kv.ip_cap || 600,
   };
   stateCache = { t: now, v };
   return v;
@@ -98,6 +98,16 @@ async function sign(env, msg) {
   }
   return b64u(await crypto.subtle.sign("HMAC", keyCache, enc.encode(msg))).slice(0, 16);
 }
+// Light anti-stuffing: cap new voter ids per IP per run (ip_cap). Phones mint one id and keep it (localStorage).
+async function hello(req, env) {
+  const s = await readState(env.DB);
+  const ip = req.headers.get("cf-connecting-ip") || "";
+  const r = await env.DB.prepare(
+    "INSERT INTO hellos (run_id, ip, n) VALUES (?, ?, 1) ON CONFLICT(run_id, ip) DO UPDATE SET n = n + 1 RETURNING n",
+  ).bind(s.run, ip).first();
+  if (r && r.n > s.ip_cap) return json({ error: "rate_limited" }, 429);
+  return json({ vid: await newVid(env) });
+}
 async function newVid(env) {
   const r = b64u(crypto.getRandomValues(new Uint8Array(12)));
   return `${r}.${await sign(env, r)}`;
@@ -126,15 +136,12 @@ async function vote(req, env, id) {
   if (!Number.isInteger(opt) || opt < 0 || opt >= p.o.length) return json({ error: "bad_option" }, 400);
   if (!(await checkVid(env, vid))) return json({ error: "bad_voter" }, 401);
   const db = env.DB;
-  const s = await readState(db, true);
+  // Cached state (≤1s); re-read only to confirm a "closed". Load: 1 write per vote. (Nov 13: 4 queries/vote incl. a
+  // per-IP COUNT scan → "D1 DB is overloaded. Too many resources consumed within a 10 second window" at 300 phones.)
+  let s = await readState(db);
+  if (!s.open.includes(id)) s = await readState(db, true);
   if (!s.open.includes(id)) return json({ error: "closed" }, 409);
   const ip = req.headers.get("cf-connecting-ip") || "";
-  const prev = await db.prepare("SELECT opt FROM votes WHERE run_id = ? AND poll_id = ? AND voter = ?").bind(s.run, id, vid).first();
-  if (prev && prev.opt === opt) return json({ ok: true, opt });
-  if (!prev) {
-    const c = await db.prepare("SELECT COUNT(*) AS n FROM votes WHERE run_id = ? AND poll_id = ? AND ip = ?").bind(s.run, id, ip).first();
-    if (c.n >= s.ip_cap) return json({ error: "rate_limited" }, 429);
-  }
   await db
     .prepare(
       "INSERT INTO votes (run_id, poll_id, voter, opt, ip) VALUES (?, ?, ?, ?, ?) " +
@@ -299,7 +306,7 @@ export default {
     try {
       if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
       if (path === "/api/state" && req.method === "GET") return json(publicState(await readState(env.DB)));
-      if (path === "/api/hello" && req.method === "POST") return json({ vid: await newVid(env) });
+      if (path === "/api/hello" && req.method === "POST") return hello(req, env);
       if (path.startsWith("/api/vote/") && req.method === "POST") return vote(req, env, path.slice(10));
       if (path === "/api/results" && req.method === "GET") {
         const grps = (url.searchParams.get("grp") || "").split(",").filter((g) => GROUPS[g]);

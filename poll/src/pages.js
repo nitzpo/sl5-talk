@@ -92,7 +92,7 @@ function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp
 var vid=lsGet("sl5:vid");
 function vkey(){return "sl5:v:"+S.run+":"+S.epoch}
 var mine=lsGet(vkey())||{};
-function hello(){return fetch("/api/hello",{method:"POST"}).then(function(r){return r.json()}).then(function(d){vid=d.vid;lsSet("sl5:vid",vid);return vid})}
+function hello(){return fetch("/api/hello",{method:"POST"}).then(function(r){return r.json()}).then(function(d){if(!d.vid)throw d;vid=d.vid;lsSet("sl5:vid",vid);return vid})}
 function apply(ns){
   var reset=ns.run!==S.run||ns.epoch!==S.epoch, moved=ns.mode!==S.mode||ns.grp!==S.grp;
   S=ns; if(reset)mine=lsGet(vkey())||{}; if(reset||moved)view=null; render();
@@ -165,7 +165,7 @@ function cast(p,i,btn){
       msg.textContent=x.d.error==="closed"?"Voting is closed.":x.d.error==="rate_limited"?"Too many votes from this network. Try mobile data.":"Couldn't send your vote. Try again.";
       if(x.d.error==="closed")tick();
     }
-  }).catch(function(){busy=false;btn.classList.remove("sel");msg.className="msg err";msg.textContent="No connection. Try again."});
+  }).catch(function(e){busy=false;btn.classList.remove("sel");msg.className="msg err";msg.textContent=e&&e.error==="rate_limited"?"Too many phones on this network. Try mobile data.":"No connection. Try again."});
 }
 function post(id,i){return fetch("/api/vote/"+encodeURIComponent(id),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({opt:i,vid:vid})})}
 function tick(){
@@ -253,7 +253,7 @@ function draw(d){
     '<h2>Current (what phones show)</h2><div class="row">'+cur+'</div>'+
     '<h2>Polls</h2>'+polls+
     '<h2>Runs</h2><div class="card"><div class="row"><input id="lbl" placeholder="label (optional)" style="flex:1"><button data-run="rehearsal">New rehearsal run</button><button class="danger" data-run="live">New LIVE run</button></div><table>'+runs+'</table></div>'+
-    '<h2>Config</h2><div class="card"><div class="row"><label>poll ms <input id="pm" type="number" value="'+s.poll_ms+'" style="width:100px"></label><label>IP cap/poll <input id="ic" type="number" value="'+s.ip_cap+'" style="width:100px"></label><button id="cfg">Save</button></div>'+
+    '<h2>Config</h2><div class="card"><div class="row"><label>poll ms <input id="pm" type="number" value="'+s.poll_ms+'" style="width:100px"></label><label>New phones/IP <input id="ic" type="number" value="'+s.ip_cap+'" style="width:100px"></label><button id="cfg">Save</button></div>'+
     '<div class="row"><button id="csv">Export CSV (active run)</button><button class="danger" id="rall">Reset all votes in run</button><button id="out">Sign out</button></div></div>'+
     '<h2>Pre-talk checklist</h2><ol><li>New LIVE run (all counts start at 0).</li><li>Check: 0 votes, all polls closed.</li><li>Current → warm.</li><li>Show S0. Watch the counter move.</li></ol>';
   app.querySelectorAll("[data-cur]").forEach(function(b){b.onclick=function(){act("current",{current:b.dataset.cur})}});
