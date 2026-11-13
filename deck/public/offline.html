@@ -406,6 +406,14 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s10-cards { display: flex; gap: 40px; }
 .card3 { width: 450px; font-size: 46px; font-weight: 800; background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 56px 30px; text-align: center; }
 .card3 .mono { color: var(--amb); }
+.s10-cards { position: relative; }
+.card3 { transition: border-color .5s, box-shadow .5s; }
+#s10[data-step="1"] .s10-insider { border-color: var(--amb); box-shadow: 0 0 50px rgba(255,176,32,.18); }
+.s10-news { position: absolute; right: 0; top: calc(100% + 34px); width: 640px; background: #e9e6df; color: #15161a; border-radius: 10px; padding: 22px 28px 24px;
+  border-left: 8px solid var(--amb); box-shadow: 0 24px 60px #000a; }
+.s10-news:not(.on) { transform: translateY(24px); }
+.s10-news-k { font-size: 20px; letter-spacing: .14em; text-transform: uppercase; color: #6b665c; font-weight: 700; margin-bottom: 8px; }
+.s10-news-h { font: 800 34px/1.18 var(--sans); letter-spacing: -.01em; }
 .s10-tiles { position: absolute; inset: 90px 90px 120px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; align-content: start;
   transition: transform 1.4s cubic-bezier(.6,0,.2,1), opacity 1.4s, filter 1.4s; }
 .s10-tiles .grp { display: flex; flex-direction: column; gap: 9px; }
@@ -413,7 +421,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s10-tiles .tile { font-size: 19px; line-height: 1.22; padding: 11px 12px; border-radius: 9px; background: var(--card); border-left: 6px solid currentColor; color: var(--fg); }
 .s10-tiles.on .tile { animation: tilein .5s cubic-bezier(.3,1.3,.5,1) both; animation-delay: calc(var(--i) * 18ms); }
 @keyframes tilein { from { opacity: 0; transform: scale(.6) translateY(30px); } }
-#s10[data-step="2"] .s10-tiles { transform: scale(.4); opacity: .18; filter: blur(1px); }
+#s10[data-step="3"] .s10-tiles { transform: scale(.4); opacity: .18; filter: blur(1px); }
 .s10-flood { position: absolute; inset: 0; z-index: 2; padding: 18px 22px; column-count: 9; column-gap: 20px; font: 12px/1.3 var(--sans); color: #b3b9c1; overflow: hidden; }
 .s10-flood p { margin: 0 0 6px; break-inside: avoid; opacity: 0; transition: opacity .35s; }
 .s10-flood.on p { opacity: .92; transition-delay: calc(var(--d) * 1ms); }
@@ -532,7 +540,17 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s17-c { position: absolute; inset: 110px 140px; }
 .s17-twin { position: absolute; left: 0; right: 0; top: 110px; display: flex; justify-content: center; gap: 80px; transition: opacity .8s; }
 .s17-twin.on { opacity: .6; }
-#s17[data-step="2"] .s17-twin { opacity: .22; }
+#s17[data-step="2"] .s17-twin { opacity: 0; }
+#s17[data-step="3"] .s17-twin { opacity: .22; }
+.s17-paths { position: absolute; left: 140px; right: 140px; top: 340px; display: flex; flex-direction: column; gap: 70px; }
+.s17-path { display: flex; align-items: center; gap: 34px; }
+.s17-node { font: 800 46px/1.1 var(--sans); background: var(--card); border: 2px solid var(--line); border-radius: 18px; padding: 26px 34px; min-width: 430px; }
+.s17-node small { display: block; font: 600 26px var(--mono); color: var(--mut); margin-top: 8px; }
+.s17-edge { font: 600 30px var(--mono); color: var(--mut); white-space: nowrap; }
+.s17-edge b { color: var(--fg); font-size: 44px; margin-left: 8px; }
+.s17-x b { color: var(--red); }
+.s17-stolen { border-color: var(--red); color: var(--red); }
+.s17-tag { font-size: 26px; border: 2px solid var(--amb); border-radius: 10px; padding: 8px 14px; }
 .sqbox.sm { width: 580px; height: 580px; }
 .s17-q { position: absolute; right: 26px; top: 10px; font-size: 64px; color: var(--red); font-weight: 800; }
 .s17-line { position: absolute; left: 140px; right: 140px; bottom: 150px; text-align: center; }
@@ -541,6 +559,17 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s18 { justify-content: center; gap: 70px; }
 .s18-a { transition: opacity .6s; }
 #s18[data-step="1"] .s18-a { opacity: .4; }
+.s18-enc { position: absolute; left: 140px; right: 140px; top: 250px; display: flex; flex-direction: column; align-items: center; gap: 26px; }
+.s18-enc svg { width: 1640px; height: 470px; }
+.s18-wall { fill: rgba(255,176,32,.05); stroke: var(--amb); stroke-width: 7; }
+.s18-wl { font: 700 26px var(--mono); letter-spacing: .16em; fill: var(--amb); text-anchor: middle; }
+.s18-file { fill: var(--amb); }
+.s18-fold { fill: #0006; }
+.s18-ml, .s18-who { font: 800 44px var(--sans); fill: var(--fg); text-anchor: middle; }
+.s18-sub { font: 600 26px var(--mono); fill: var(--mut); text-anchor: middle; }
+.s18-arr { stroke: #d8dade; stroke-width: 6; }
+.s18-x { font: 900 60px var(--sans); fill: var(--red); text-anchor: middle; }
+.s18-cap { font: 700 52px/1.2 var(--sans); text-align: center; }
 
 /* ===================== S19 ===================== */
 .s19-bars { max-width: 1500px; }
@@ -833,22 +862,27 @@ Optional [click]: "And dark_wizard_99 is real. In December 2022 his name was tor
 First slide to cut (15-min version drops it).</aside>
 </section>
 
-<section class="slide" id="s10" data-title="Wall of text: 3 → 47 → hundreds" data-at="8:05" data-clicks="2" data-poll-close="A">
+<section class="slide" id="s10" data-title="Wall of text: 3 → 47 → hundreds (+ OpenAI insider)" data-at="8:05" data-clicks="3" data-poll-close="A">
   <div class="pad s10">
-    <div class="s10-three" data-out="1">
+    <div class="s10-three" data-out="2">
       <div class="file s10-file">weights.bin <small>· 2.0 TB</small></div>
       <div class="s10-cards">
         <div class="card3"><span class="mono">1.</span> Network Air-Gaps</div>
         <div class="card3"><span class="mono">2.</span> Secure Hardware</div>
-        <div class="card3"><span class="mono">3.</span> Insider Controls</div>
+        <div class="card3 s10-insider"><span class="mono">3.</span> Insider Controls</div>
+        <div class="s10-news" data-in="1">
+          <p class="s10-news-k mono">News · Oct 2026</p>
+          <p class="s10-news-h">OpenAI engineer arrested over listening device in exec conference room</p>
+        </div>
       </div>
     </div>
-    <div class="s10-tiles" id="s10-tiles" data-in="1"></div>
-    <div class="s10-flood" id="s10-flood" data-in="2"></div>
-    <div class="file s10-buried" data-in="2">weights.bin</div>
-    <div class="s10-count mono" data-in="1" data-out="2"><b>47</b> engineering programs · 6 domains</div>
+    <div class="s10-tiles" id="s10-tiles" data-in="2"></div>
+    <div class="s10-flood" id="s10-flood" data-in="3"></div>
+    <div class="file s10-buried" data-in="3">weights.bin</div>
+    <div class="s10-count mono" data-in="2" data-out="3"><b>47</b> engineering programs · 6 domains</div>
   </div>
-  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
+  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click: news card] That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. [click] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
+OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026. Reports say the device was behind the TV / in a USB port behind it. "Prosecutors say" for the Saudi-royal contact (allegation). OpenAI: no sign weights were accessed (keep for Q&A).
 Tiles = real block names from github.com/nitzpo/sl5; flood = real clauses from the SL5 Standard + RAND.</aside>
 </section>
 
@@ -886,16 +920,16 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real clauses from t
   <aside class="notes">"It goes all the way down to real Two-Person Rules, where two people physically authorize every sensitive action together. [click] Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."</aside>
 </section>
 
-<section class="slide" id="s12" data-title="RAND + SL5 Task Force credit" data-at="9:35" data-clicks="1">
+<section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="9:35" data-clicks="1">
   <div class="pad s12">
     <div class="kicker">Nobody starts from zero</div>
     <div class="credit">
       <div class="ccard"><p class="cwho">RAND</p><p class="cwhat">Securing AI Model Weights <span class="mut">(2024)</span></p><p class="cgive amb">the attacker tiers</p></div>
-      <div class="ccard"><p class="cwho">SL5 Task Force</p><p class="cwhat">SL5 Standard <span class="mut">(2026)</span></p><p class="cgive amb">the building blocks</p></div>
+      <div class="ccard"><p class="cwho">Security Level 5</p><p class="cwhat">SL5 Standard <span class="mut">(2026)</span></p><p class="cgive amb">the building blocks</p></div>
       <div class="ccard qcard3 rise" data-in="1"><p class="cq">Price?<br>Schedule?</p></div>
     </div>
   </div>
-  <aside class="notes">"The good news: nobody has to start from zero. RAND and the SL5 Task Force did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."</aside>
+  <aside class="notes">"The good news: nobody has to start from zero. RAND and Security Level 5, a nonprofit that grew out of the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."</aside>
 </section>
 
 <!-- ============================== PART 5: WHEN DO YOU LOCK THE DOORS? ============================== -->
@@ -977,7 +1011,7 @@ Optional on the last click: "RAND said it back in 2024: achieving SL5 is current
 No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
 </section>
 
-<section class="slide" id="s17" data-title="C results → silent twin" data-at="14:05" data-clicks="2">
+<section class="slide" id="s17" data-title="C results → silent twin → distillation" data-at="14:05" data-clicks="3">
   <div class="pad s17">
     <div class="s17-c" data-out="1">
       <div class="kicker">Already silently stolen?</div>
@@ -988,29 +1022,56 @@ No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
       <div class="sqbox sm"><div class="img ph" data-img="03-bright-servers" data-label="#03"></div><div class="badge-ok mono"><i class="led"></i>All systems normal</div><div class="file twin-file">weights.bin</div></div>
       <div class="sqbox sm dark"><div class="img ph" data-img="04-dark-rack" data-label="#04"></div><div class="file twin-file cold">weights.bin</div><p class="s17-q mono">?</p></div>
     </div>
-    <p class="statement s17-line rise" data-in="2">Just-in-Time needs a warning.<br><span class="red">Theft doesn't send one.</span></p>
+    <div class="s17-paths" data-in="2" data-out="3">
+      <div class="s17-path"><span class="s17-node">Public model</span><span class="s17-edge">millions of questions <b>→</b></span><span class="s17-node">a distilled copy</span><span class="s17-tag amb mono">cheaper than theft</span></div>
+      <div class="s17-path"><span class="s17-node">Internal model<small>no public API</small></span><span class="s17-edge s17-x">distillation <b>✕</b></span><span class="s17-node s17-stolen">can only be stolen</span></div>
+    </div>
+    <p class="statement s17-line rise" data-in="3">Just-in-Time needs a warning.<br><span class="red">Theft doesn't send one.</span></p>
   </div>
-  <aside class="notes">"And X% of you think it may already have happened. [click] Remember the silent twin. If it had, what would we see? Nothing. [click] 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
+  <aside class="notes">"And X% of you think it may already have happened. [click] Remember the silent twin. If it had, what would we see? Nothing.
+[click: two paths] Maybe it hasn't happened yet, because right now there's a cheaper way: distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that stays inside can't be distilled. It can only be stolen.
+[click] 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
+Distillation: Anthropic, Sept 2026 report: seven China-based labs; largest (Alibaba-affiliated) ≈151M exchanges. "Most capable models stay off public APIs": say it as your own view.
 Branch if C is mostly "Low": "Most of you think it hasn't happened yet. Good. Then the clock is still running."</aside>
 </section>
 
 <!-- ============================== PART 6: CALL TO ARMS ============================== -->
-<section class="slide" id="s18" data-title="Science vs engineering" data-at="15:05" data-clicks="1" data-poll-close="B1,B2,C">
+<section class="slide" id="s18" data-title="Science vs engineering (+ model as insider)" data-at="15:05" data-clicks="2" data-poll-close="B1,B2,C">
   <div class="pad s18">
-    <p class="statement s18-a">Alignment: an unsolved <em>science</em> problem.</p>
-    <p class="statement s18-b rise" data-in="1">Securing the weights: a <em class="amb">systems-engineering</em> fight.</p>
+    <p class="statement s18-a" data-out="2">Alignment: an unsolved <em>science</em> problem.</p>
+    <p class="statement s18-b rise" data-in="1" data-out="2">Securing the weights: a <em class="amb">systems-engineering</em> fight.</p>
   </div>
-  <aside class="notes">"Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. [click] Securing the model weights is not an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, this is a fight the people in this room actually know how to win."</aside>
+  <div class="s18-enc" data-in="2">
+    <svg viewBox="0 0 1640 470" width="1640" height="470" aria-hidden="true">
+      <defs><marker id="s18-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d8dade"/></marker></defs>
+      <rect class="s18-wall" x="570" y="30" width="500" height="410" rx="30"/>
+      <text class="s18-wl" x="820" y="88">SL5 ENCLAVE</text>
+      <rect class="s18-file" x="782" y="150" width="76" height="96" rx="9"/>
+      <path class="s18-fold" d="M836 150h22v22z"/>
+      <text class="s18-ml" x="820" y="300">the model</text>
+      <text class="s18-who" x="230" y="230">Spy agency</text>
+      <line class="s18-arr" x1="370" y1="222" x2="535" y2="222" marker-end="url(#s18-ah)"/>
+      <text class="s18-x" x="570" y="240">✕</text>
+      <line class="s18-arr" x1="880" y1="222" x2="1035" y2="222" marker-end="url(#s18-ah)"/>
+      <text class="s18-x" x="1070" y="240">✕</text>
+      <text class="s18-who" x="1330" y="210">gets out</text>
+      <text class="s18-sub" x="1330" y="252">(misaligned model)</text>
+    </svg>
+    <p class="s18-cap">The walls that keep a spy agency <b>out</b> keep the model <b class="amb">in</b>.</p>
+  </div>
+  <aside class="notes">"Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. [click] Securing the model weights is not an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, this is a fight the people in this room actually know how to win."
+[click: enclave] "One more reason the AI-safety people here should care. The SL5 Standard already treats the model itself as a possible insider: a misaligned model that tries to sabotage research or copy itself out. The walls that keep a spy agency out are the same walls that keep the model in."
+Source: SL5 Standard v0.1 counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat".</aside>
 </section>
 
 <section class="slide" id="s19" data-title="Warm-up callback (optional)" data-at="15:45" data-cut="drop">
   <div class="pad s19">
     <div class="kicker">Remember who's in the room</div>
-    <h2 class="h1 s-q">Both halves are here.</h2>
-    <div class="bars live s19-bars" data-results="warm" data-hl="0,1"></div>
-    <div class="hands"><span class="tag">Remember</span>Red team + blue team: both halves are here.</div>
+    <h2 class="h1 s-q">This needs all of you.</h2>
+    <div class="bars live s19-bars" data-results="warm" data-hl="0,1,3"></div>
+    <div class="hands"><span class="tag">Remember</span>Red team · Blue team · AI: this needs all of you.</div>
   </div>
-  <aside class="notes">"Half this room spent years figuring out how to get into air-gapped networks. The other half spent years building them. Frontier AI needs both halves. Now."
+  <aside class="notes">"Half this room spent years getting into air-gapped networks. The other half spent years building them. And the AI people here know what's inside, and what might try to get out. This needs all of you."
 If the warm-up is dropped: plain text version.</aside>
 </section>
 
@@ -1024,7 +1085,7 @@ If the warm-up is dropped: plain text version.</aside>
       <div class="lcard"><b class="mono">4</b><p>Talk to me</p><span class="mut">LinkedIn / after the talk</span></div>
     </div>
     <div class="s20-qr"><p class="mut">Missed it? Scan:</p><div class="qrbox" data-qr="links"></div><p class="url small" data-url="links"></p></div>
-    <p class="already mono">Already working on this: RAND · SL5 Task Force · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute · US CAISI</p>
+    <p class="already mono">Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute · US CAISI</p>
   </div>
   <aside class="notes">"If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change."
 Phones still on the vote page switch to the links page automatically.</aside>
@@ -3477,7 +3538,7 @@ window.SL5_POLLS = {
   },
   {
    "t": "Go deeper: the SL5 Standard",
-   "s": "SL5 Task Force",
+   "s": "Security Level 5",
    "u": "https://sl5.org"
   },
   {
@@ -3488,7 +3549,7 @@ window.SL5_POLLS = {
  ],
  "ALREADY": [
   "RAND",
-  "SL5 Task Force",
+  "Security Level 5",
   "Irregular",
   "Heron",
   "Palisade",

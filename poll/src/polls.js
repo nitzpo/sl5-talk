@@ -53,8 +53,8 @@ export const LINKS = [
   { t: "Understand it in 5 min", s: "The SL5 intro (works on a phone)", u: "https://nitzpo.github.io/sl5/intro/" },
   { t: "Break my simulator", s: "Open source. Disagree with a number? It's a one-file JSON change.", u: "https://github.com/nitzpo/sl5" },
   { t: "Go deeper: the RAND report", s: "Securing AI Model Weights (RR-A2849-1)", u: "https://www.rand.org/pubs/research_reports/RRA2849-1.html" },
-  { t: "Go deeper: the SL5 Standard", s: "SL5 Task Force", u: "https://sl5.org" },
+  { t: "Go deeper: the SL5 Standard", s: "Security Level 5", u: "https://sl5.org" },
   { t: "Talk to me", s: "LinkedIn, or find me after the talk", u: "https://www.linkedin.com/in/nitzan-pomerantz/" },
 ];
 
-export const ALREADY = ["RAND", "SL5 Task Force", "Irregular", "Heron", "Palisade", "FAR.AI", "UK AI Security Institute", "US CAISI"];
+export const ALREADY = ["RAND", "Security Level 5", "Irregular", "Heron", "Palisade", "FAR.AI", "UK AI Security Institute", "US CAISI"];

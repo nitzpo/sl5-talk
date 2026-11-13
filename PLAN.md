@@ -1,6 +1,6 @@
 # PLAN: Ctrl+C, Ctrl+V a Fighter Jet
 
-Mirror of the Notion plan, **draft v5 (Nov 8 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
+Mirror of the Notion plan, **draft v6 (Nov 13 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -9,7 +9,7 @@ Subtitle (Claude's pick for now): *What it takes to stop a superpower from steal
 ## Spine
 1. The weights *are* the weapon, and stealing them is silent.
 2. By voting, the room rebuilds RAND's attacker ladder and learns that labs sit well below where they'd need to be.
-3. SL5 is huge. RAND and the SL5 Task Force laid out the building blocks, but nobody put a price or a schedule on them.
+3. SL5 is huge. RAND and Security Level 5 laid out the building blocks, but nobody put a price or a schedule on them.
 4. The polls set a trap: most people will choose "wait until it looks dangerous", but the defenses take ≈4 years to build and the theft sends no signal.
 
 Close: this is an engineering fight, and this room knows how to win it.
@@ -21,19 +21,19 @@ Anchors: SL5 is complex · Reactive isn't enough · Starting early is what works
 - Recurring character: the file icon `weights.bin · 2.0 TB`. Born in S1, copied in S2, cloned in S3, buried under 47 tiles in S10, locked in a vault in S21.
 - Rhythm: alternate 🎬 CINEMATIC → 😄 FUNNY → ⬛ PLAIN (+ 📱 POLL). The plain slides are deliberate: they earn trust from a cynical room and make the jokes land.
 
-## Run-of-show (≈16:50)
+## Run-of-show (≈17:50 with v6 additions)
 | Part | Time | Slides | Job |
 |---|---|---|---|
 | 0 Pre-show | before start | S0 | Warm-up poll; gets phones onto the page |
 | 1 The heist | 0:00–3:20 | S1a–S3c | Stakes: weights = the weapon; theft is silent |
 | 2 Who's talking | 3:20–4:05 | S4 | Warm-up results + credential line |
 | 3 How hard is it to steal? | 4:05–6:50 | S5–S7 | Poll A → RAND ladder (S8 cut) |
-| 4 Why SL5 is so hard | 6:50–9:50 | S9–S12 | Wall of text, two-person gag, credit to RAND + SL5 Task Force |
+| 4 Why SL5 is so hard | 6:50–9:50 | S9–S12 | Wall of text, two-person gag, credit to RAND + Security Level 5 |
 | 5 When do you lock the doors? | 9:50–14:35 | S13–S17 | Polls B1/B2/C → calendar trap + RAND quote → silent-twin callback |
 | 6 Call to arms | 14:35–16:50 | S18–S21 | Bridge, this room, links, thank you |
 
 Per-slide times below are from before S8 was cut.
-**15-min cut** (≈15:20): drop S9, trim S16, drop S19. S1c (+≈20s, Nov 8) stays in the cut. (Nitzan decides the S16 trim later; keep the simulator GIF.)
+**15-min cut**: dropping S9 and S19 and trimming S16 now gets to only ≈16:20. To reach 15:00, also drop S16 entirely and S11 (the LGTM gag). S1c stays in the cut. (v6, Nov 13: v6 added ≈60s; slide times below not shifted. Nitzan: handle the cut after finalization.)
 
 ---
 
@@ -133,20 +133,20 @@ Per-slide times below are from before S8 was cut.
 
 ### S10 · 8:05 · 😄 wall of text
 - **On screen:**
-  - Click 1: 3 clean cards: `1. Network Air-Gaps` · `2. Secure Hardware` · `3. Insider Controls`.
+  - Click 1: 3 clean cards: `1. Network Air-Gaps` · `2. Secure Hardware` · `3. Insider Controls`. Also on click 1, a small news-style card fades in next to "Insider Controls": "Oct 2026: OpenAI engineer arrested over listening device in exec conference room" (plain text, no outlet logo). (Deck: the news card is its own click, on "That's not theoretical".)
   - Click 2: they split into **47 boxes** in 6 colored groups, with real names from the catalog (`nitzpo/sl5` `app/public/data/blocks-*.json`).
   - Click 3: rapid zoom-out flood: hundreds of tiny SL5 sub-clauses fill the whole screen; the weights.bin icon is buried in the middle.
-- **Say:** "When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
-- **Notes:** 38 attack vectors in 9 categories (RAND). 47 programs: Network 7 · Machine 9 · Physical 7 · Personnel 9 · Supply chain 7 · AI-specific 8. Snippets from `research/sl5_standard.txt` + `rand_full.txt`.
+- **Say:** "When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
+- **Notes:** 38 attack vectors in 9 categories (RAND). 47 programs: Network 7 · Machine 9 · Physical 7 · Personnel 9 · Supply chain 7 · AI-specific 8. Snippets from `research/sl5_standard.txt` + `rand_full.txt`. OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026; the Saudi-royal contact is a prosecutors' allegation, keep "prosecutors say". OpenAI says no weights were taken (Q&A). It sits here, not at S7's SL4 rung, so it doesn't imply a proven state operation.
 
 ### S11 · 9:05 · 😄
 - **On screen:** split. Left, "SL5 Two-Person Rule": two people, two keys, a vault. Right, "Startup Two-Person Rule": a PR at "+4,012 −0", review "LGTM 👍" posted "12 seconds later", reviewer's Slack status "🚽".
 - **Say:** "It goes all the way down to real Two-Person Rules, where two people physically authorize every sensitive action together. Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."
 
 ### S12 · 9:35 · ⬛ credit cards
-- **On screen:** two cards: **"RAND · Securing AI Model Weights (2024): the attacker tiers"** and **"SL5 Task Force · SL5 Standard (2026): the building blocks"**. Click: a third card fades in, **"Price? Schedule?"**
-- **Say:** "The good news: nobody has to start from zero. RAND and the SL5 Task Force did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."
-- **Notes:** rewritten Nov 7 in Nitzan's blog wording. Credits RAND + SL5 Task Force and leads into Part 5 (time) without simulator numbers.
+- **On screen:** two cards: **"RAND · Securing AI Model Weights (2024): the attacker tiers"** and **"Security Level 5 · SL5 Standard (2026): the building blocks"**. Click: a third card fades in, **"Price? Schedule?"**
+- **Say:** "The good news: nobody has to start from zero. RAND and Security Level 5, a nonprofit that grew out of the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."
+- **Notes:** rewritten Nov 7 in Nitzan's blog wording. Credits RAND + Security Level 5 (sl5.org) and leads into Part 5 (time) without simulator numbers.
 
 ## Part 5: When do you lock the doors?
 
@@ -186,20 +186,22 @@ Per-slide times below are from before S8 was cut.
 - **On screen:**
   - Click 1: C bars.
   - Click 2: the silent-twin split from S3 returns, dimmed.
-  - Click 3: one line: **"Just-in-Time needs a warning. Theft doesn't send one."**
-- **Say:** "And X% of you think it may already have happened. Remember the silent twin. If it had, what would we see? Nothing. 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
+  - Click 3: a simple two-path diagram: "Public model → distillation (cheaper than theft)" vs "Internal model, no public API → can only be stolen".
+  - Click 4: one line: **"Just-in-Time needs a warning. Theft doesn't send one."**
+- **Say:** "And X% of you think it may already have happened. Remember the silent twin. If it had, what would we see? Nothing. Maybe it hasn't happened yet, because right now there's a cheaper way: distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that stays inside can't be distilled. It can only be stolen. 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
 - **Branch:** C mostly "Low": "Most of you think it hasn't happened yet. Good. Then the clock is still running."
-- **Notes:** the core trap linking B2 and C.
+- **Notes:** the core trap linking B2 and C. Distillation: Anthropic reported seven China-based distillation campaigns in 2026 (Sept report; the largest, Alibaba-affiliated, ≈151M exchanges). "The most capable models stay off public APIs" comes from the Security Level 5 interview (unverified word for word), so say it as your own view. The SL5 Standard lists model outputs as assets to protect because they "could be used to distill".
 
 ## Part 6: Call to arms
 
 ### S18 · 15:05 · ⬛
-- **On screen:** two lines, one after the other: "Alignment: an unsolved *science* problem." / "Securing the weights: a *systems-engineering* fight."
-- **Say:** "Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. Securing the model weights is *not* an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, **this is a fight the people in this room actually know how to win.**"
+- **On screen:** two lines, one after the other: "Alignment: an unsolved *science* problem." / "Securing the weights: a *systems-engineering* fight." Click 3: the enclave with two arrows: a spy agency blocked from getting in, and the model blocked from getting out.
+- **Say:** "Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. Securing the model weights is *not* an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, **this is a fight the people in this room actually know how to win.**" (C, on click 3) "One more reason the AI-safety people here should care. The SL5 Standard already treats the model itself as a possible insider: a misaligned model that tries to sabotage research or copy itself out. The walls that keep a spy agency out are the same walls that keep the model in."
+- **Notes:** the click-3 line is new in v6. Source: the SL5 Standard v0.1 counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat".
 
 ### S19 (optional) · 15:45 · 📱 warm-up callback
-- **On screen:** the warm-up bars return: "Red team" and "Blue team" light up together.
-- **Say:** "Half this room spent years figuring out how to get into air-gapped networks. The other half spent years building them. Frontier AI needs both halves. Now."
+- **On screen:** the warm-up bars return: "Red team", "Blue team" and "AI (research, safety, security)" light up together.
+- **Say:** "Half this room spent years getting into air-gapped networks. The other half spent years building them. And the AI people here know what's inside, and what might try to get out. This needs all of you."
 - **Notes:** if the warm-up is dropped: plain text version.
 
 ### S20 · 16:15 · ⬛ links
@@ -209,7 +211,7 @@ Per-slide times below are from before S8 was cut.
   3. Go deeper: the RAND report · the SL5 Standard
   4. Talk to me: LinkedIn / after the talk
 
-  Small strip: "Already working on this: RAND · SL5 Task Force · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute · US CAISI" (text, no logos).
+  Small strip: "Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute · US CAISI" (text, no logos).
 - **Say:** "If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change."
 - **Notes:** phones still on the vote page switch to the links page automatically. Irregular is Israeli-founded; its CEO Dan Lahav co-wrote the RAND report.
 
@@ -260,7 +262,7 @@ Style block prepended to every prompt: "Cinematic film still, 16:9, low-key ligh
 | "Achieving SL5 is currently not possible" | RAND |
 | 38 attack vectors in 9 categories | RAND |
 | Labs roughly SL3 or below | Nitzan's article; Anthropic RSP (ASL-3 excludes sophisticated insiders, May 2025) https://www.anthropic.com/rsp |
-| SL5 Standard v0.1 (Mar 2026): built on IL6 / ICD 705 / NIST 800-53, ≈20% novel AI-datacenter controls | https://sl5taskforce.substack.com/p/releasing-the-sl5-standard-v01 |
+| SL5 Standard v0.1 (Mar 2026): built on IL6 / ICD 705 / NIST 800-53, ≈20% novel AI-datacenter controls | Security Level 5's v0.1 post https://sl5taskforce.substack.com/p/releasing-the-sl5-standard-v01 |
 | Safety fine-tuned away: <$200, one GPU (Llama 2-Chat 70B) | Lermen, Rogers-Smith, Ladish 2023 https://arxiv.org/abs/2310.20624 |
 | Labs' own safety frameworks track bio/chem weapons uplift + AI that accelerates AI R&D (all three labs); cyber offense (OpenAI, Google DeepMind; not a threshold in Anthropic RSP v3.4) | Anthropic RSP v3.4 (Jul 2026) https://www.anthropic.com/rsp · OpenAI Preparedness Framework v2 (Apr 2025) https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf · Google DeepMind FSF v3.1 (Apr 2026) https://deepmind.google/frontier-safety/ |
 | torchtriton malicious dependency in PyTorch nightly, Dec 25–30 2022 | https://pytorch.org/blog/compromised-nightly-dependency/ · https://www.reversinglabs.com/blog/pytorch-supply-chain-attack-dependency-confusion-burns-devops |
@@ -268,6 +270,14 @@ Style block prepended to every prompt: "Cinematic film still, 16:9, low-key ligh
 | 2TB microSD ≈ $160 | https://slickdeals.net/f/18883417-159-99-2tb-sandisk-extreme-microsdxc-uhs-i-memory-card-with-adapter-sdsqxav-2t00-gn6ma-at-amazon |
 | Irregular (ex-Pattern Labs): CEO Dan Lahav co-authored the RAND report | https://www.irregular.com/news/securing-ai-model-weights |
 | Event: Tel Aviv Frontier AI Security Forum '26, Nov 22, Tel Aviv Museum of Art, ≈300 people | https://aisecurity.forum/events/events/tlv-26 |
+
+### Added in v6 (sources)
+| Claim | Source |
+|---|---|
+| OpenAI engineer (Saudi national) arrested ≈Oct 9, 2026 (charges unsealed Oct 13) for hiding a listening device in an exec conference-room TV. Prosecutors allege contact with a member of the Saudi royal family. OpenAI: no sign weights were accessed | ABC News https://abcnews.com/Politics/open-ai-employee-arrested-listening-device-communicated-saudi/story?id=137385420 · CNBC https://www.cnbc.com/2026/10/13/openai-employee-arrested-recording-device.html |
+| Anthropic: seven distillation campaigns by China-based labs in 2026; the largest (Alibaba-affiliated) ≈151M exchanges | The Hacker News, Sep 2026 https://thehackernews.com/2026/09/anthropic-says-seven-china-based-ai.html |
+| The SL5 Standard covers misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat", and lists model outputs as assets because they "could be used to distill" | SL5 Standard v0.1 (`research/sl5_standard.txt`) |
+| Security Level 5 is a 501(c)(3) nonprofit; CEO Lisa Thiergart | https://sl5.org |
 
 ## Decided
 17-min plan + 15-min cut (slot unknown) · deck runs on any laptop · no reliance on the workshop or Heron · naming torchtriton and Su Bin is OK · the simulator stays vague · keep the "depends on the contract" joke · hype words OK · working title = Ctrl+C, Ctrl+V a Fighter Jet.

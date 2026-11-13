@@ -97,7 +97,7 @@ window.SL5_POLLS = {
   },
   {
    "t": "Go deeper: the SL5 Standard",
-   "s": "SL5 Task Force",
+   "s": "Security Level 5",
    "u": "https://sl5.org"
   },
   {
@@ -108,7 +108,7 @@ window.SL5_POLLS = {
  ],
  "ALREADY": [
   "RAND",
-  "SL5 Task Force",
+  "Security Level 5",
   "Irregular",
   "Heron",
   "Palisade",
