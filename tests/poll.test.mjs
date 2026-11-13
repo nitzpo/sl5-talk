@@ -76,14 +76,6 @@ test("poll worker v2", async (t) => {
     assert.equal(res.voters, 1);
   });
 
-  await t.test("ip cap (new voter ids per IP per run)", async () => {
-    await admin("config", { ip_cap: 1 });
-    await settle();
-    assert.equal((await post("/api/hello")).status, 429);
-    assert.equal((await vote("B1", 2, vid)).status, 200, "existing voter can still vote");
-    await admin("config", { ip_cap: 600 });
-  });
-
   await t.test("reset poll bumps epoch and zeroes counts", async () => {
     const before = await state();
     await admin("reset", { poll: "B1" });

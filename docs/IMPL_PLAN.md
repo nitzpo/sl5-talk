@@ -10,7 +10,7 @@
 - **Free tier, ≈150 phones.** Phones poll `GET /api/state` every 5s (server-tunable `poll_ms`), only while page visible; B1→B2→C chain is client-side (no server lag). Budget ≈ 150×12/min×25min ≈ 45k + deck/admin ≈ 5k → ~50k of 100k/day. No full-scale rehearsal on talk day (quota resets 00:00 UTC = 02:00 IL).
 - **Polls:** results update live while on results slides; a poll closes when the deck **leaves its topic** (warm → entering S5, A → entering S9/S10, B1/B2/C → entering S18).
 - **Rehearsal vs live:** votes keyed by `run`. New live run = zeros by construction. Rehearsal data kept, never shown.
-- **Anti-stuffing (light):** server-signed voter ids; per-IP vote cap per poll (generous for venue NAT); admin reset.
+- **Anti-stuffing (light):** server-signed voter ids (one vote per phone id); admin reset. No per-IP cap (Nov 13): a venue Wi-Fi = one IP. IPs not stored.
 - **Clicker:** unknown → keyboard clicker keys + phone remote (`presenter.html` on the phone) as backup. Ask organizers (checklist).
 - **Slot length unknown** → 17-min build + 15-min cut toggle. Cut = drop S9, S19 (S8 removed in plan v4). S16 trim: Nitzan decides later (keep the simulator GIF).
 

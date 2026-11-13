@@ -29,7 +29,8 @@ Subtitle (provisional): *What it takes to stop a superpower from stealing fronti
 ## Decisions (Nov 7) → details in `docs/IMPL_PLAN.md`
 - Cloudflare **free tier**; plan for ≈150 phones; phones poll every 5s (tunable).
 - Polls stay open while results show (live updates); close when the deck leaves the topic.
-- Phone URL: `vote.nitzpo.workers.dev`. Light anti-stuffing only.
+- Phone URL: `vote.nitzpo.workers.dev`. Light anti-stuffing only: signed voter ids, **no per-IP cap** (venue Wi-Fi = one IP; Nitzan, Nov 13). Votes store no IP.
+- ⚠️ Learning (Nov 13): D1 has a per-DB "resources within 10s" limit. 4 queries/vote (incl. a COUNT scan) overloaded it at 300 simultaneous votes. Keep the vote path at 1 write; test with `tools/loadtest.mjs --burst`.
 - LinkedIn: https://www.linkedin.com/in/nitzan-pomerantz/
 - Slot length + venue clicker unknown → 15-min cut toggle + phone remote backup.
 - Git: `main` = reviewed baseline; work on feature branches → PRs. Repo is **public**: never commit secrets (ADMIN_TOKEN etc.).
