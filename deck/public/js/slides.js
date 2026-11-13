@@ -43,15 +43,13 @@
   Deck.on("s1a", {
     step: function (el, s, dir) {
       clear("s1a");
-      // Nvidia kiss-cam gag (click 4): plays once on forward entry, then fades; jumps/back = final state (gone)
-      var kc = el.querySelector(".s1a-kiss"), kv = kc && kc.querySelector("video");
-      if (kc) {
-        kc.classList.remove("done");
-        if (s >= 4 && dir === 1) {
-          if (kv) { try { kv.currentTime = 0; } catch (e) {} var pp = kv.play(); if (pp && pp.catch) pp.catch(function () {}); }
-          later("s1a", 6400, function () { kc.classList.add("done"); });
-        } else if (s >= 4 && !Deck.thumb) kc.classList.add("done");
-        else if (kv) kv.pause();
+      // Nvidia kiss-cam gag (click 4): stays up until the next click; the clip loops (muted). Thumbs: frozen frame.
+      var kv = el.querySelector(".kc-video");
+      if (kv) {
+        if (s >= 4 && !Deck.thumb) {
+          if (dir === 1) { try { kv.currentTime = 0; } catch (e) {} }
+          var pp = kv.play(); if (pp && pp.catch) pp.catch(function () {});
+        } else kv.pause();
       }
       el.querySelectorAll(".tick").forEach(function (tk) {
         var v = tk.querySelector(".tick-v"), n = +tk.dataset.in;
