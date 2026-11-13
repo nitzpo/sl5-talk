@@ -188,7 +188,7 @@ Per-slide times below are from before S8 was cut.
   - Click 1: C bars.
   - Click 2: the silent-twin split from S3 returns, dimmed.
   - Click 3: a real news clipping: The Hacker News, "Anthropic Says Seven China-Based AI Labs Ran Industrial-Scale Claude Distillation Attacks" (headline + the article's illustration).
-  - Click 4: one line: **"Just-in-Time needs a warning. Theft doesn't send one."**
+  - Click 4: back to the silent twin, no text (Nov 13: on-screen line "Just-in-Time needs a warning…" removed, Nitzan didn't like it; the closer is spoken).
 - **Say:** "And X% of you think it may already have happened. Remember the silent twin. If it had, what would we see? Nothing. Maybe it hasn't happened yet, because right now there's a cheaper way: distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that stays inside can't be distilled. It can only be stolen. 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
 - **Branch:** C mostly "Low": "Most of you think it hasn't happened yet. Good. Then the clock is still running."
 - **Notes:** the core trap linking B2 and C. Distillation: Anthropic reported seven China-based distillation campaigns in 2026 (Sept report; the largest, Alibaba-affiliated, ≈151M exchanges). "The most capable models stay off public APIs" comes from the Security Level 5 interview (unverified word for word), so say it as your own view. The SL5 Standard lists model outputs as assets to protect because they "could be used to distill".

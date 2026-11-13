@@ -404,11 +404,10 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s17-twin { position: absolute; left: 0; right: 0; top: 110px; display: flex; justify-content: center; gap: 80px; transition: opacity .8s; }
 .s17-twin.on { opacity: .6; }
 #s17[data-step="2"] .s17-twin { opacity: 0; }
-#s17[data-step="3"] .s17-twin { opacity: .22; }
+#s17[data-step="3"] .s17-twin { opacity: .85; }
 .s17-clip { left: 290px; top: 70px; width: 1340px; --rot: 1deg; }
 .sqbox.sm { width: 580px; height: 580px; }
 .s17-q { position: absolute; right: 26px; top: 10px; font-size: 64px; color: var(--red); font-weight: 800; }
-.s17-line { position: absolute; left: 140px; right: 140px; bottom: 150px; text-align: center; }
 
 /* ===================== S18 ===================== */
 .s18 { justify-content: center; gap: 70px; }
