@@ -42,6 +42,17 @@
   // ---------- S1a: counters tick in (count up on forward clicks)
   Deck.on("s1a", {
     step: function (el, s, dir) {
+      clear("s1a");
+      // Nvidia kiss-cam gag (click 4): plays once on forward entry, then fades; jumps/back = final state (gone)
+      var kc = el.querySelector(".s1a-kiss"), kv = kc && kc.querySelector("video");
+      if (kc) {
+        kc.classList.remove("done");
+        if (s >= 4 && dir === 1) {
+          if (kv) { try { kv.currentTime = 0; } catch (e) {} var pp = kv.play(); if (pp && pp.catch) pp.catch(function () {}); }
+          later("s1a", 6400, function () { kc.classList.add("done"); });
+        } else if (s >= 4 && !Deck.thumb) kc.classList.add("done");
+        else if (kv) kv.pause();
+      }
       el.querySelectorAll(".tick").forEach(function (tk) {
         var v = tk.querySelector(".tick-v"), n = +tk.dataset.in;
         if (v.dataset.count) {
@@ -60,7 +71,7 @@
         }
       });
     },
-    leave: function () { clear("s1a"); },
+    leave: function (el) { clear("s1a"); var kv = el.querySelector(".kc-video"); if (kv) kv.pause(); },
   });
 
   // ---------- S1b: copy stalls → dialog → cursor clicks Delete → copy completes
