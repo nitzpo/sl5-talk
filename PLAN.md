@@ -1,6 +1,6 @@
 # PLAN: Ctrl+C, Ctrl+V a Fighter Jet
 
-Mirror of the Notion plan, **draft v6 (Nov 13 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
+Mirror of the Notion plan, **draft v6.1 (Nov 13 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -19,6 +19,7 @@ Anchors: SL5 is complex · Reactive isn't enough · Starting early is what works
 ## Visual language
 - Near-black background, off-white text, one accent (signal amber) plus alarm red reserved for "stolen" moments. Monospace for files and terminals; a heavy grotesk for statements.
 - Recurring character: the file icon `weights.bin · 2.0 TB`. Born in S1, copied in S2, cloned in S3, buried under 47 tiles in S10, locked in a vault in S21.
+- Real artifacts over designed graphics (Nov 13): news screenshots, photos and real document excerpts beat boxes, arrows and text cards. Less text on screen.
 - Rhythm: alternate 🎬 CINEMATIC → 😄 FUNNY → ⬛ PLAIN (+ 📱 POLL). The plain slides are deliberate: they earn trust from a cynical room and make the jokes land.
 
 ## Run-of-show (≈17:50 with v6 additions)
@@ -133,7 +134,7 @@ Per-slide times below are from before S8 was cut.
 
 ### S10 · 8:05 · 😄 wall of text
 - **On screen:**
-  - Click 1: 3 clean cards: `1. Network Air-Gaps` · `2. Secure Hardware` · `3. Insider Controls`. Also on click 1, a small news-style card fades in next to "Insider Controls": "Oct 2026: OpenAI engineer arrested over listening device in exec conference room" (plain text, no outlet logo). (Deck: the news card is its own click, on "That's not theoretical".)
+  - Click 1: 3 clean cards: `1. Network Air-Gaps` · `2. Secure Hardware` · `3. Insider Controls`. New click (on "That's not theoretical"): the cards fade and two real news clippings land on top: ABC News ("OpenAI employee arrested for listening device communicated with Saudi royal, feds say") and Al Jazeera ("OpenAI engineer charged after listening device found in meeting room"). Screenshots, outlet names visible (`assets/news/`).
   - Click 2: they split into **47 boxes** in 6 colored groups, with real names from the catalog (`nitzpo/sl5` `app/public/data/blocks-*.json`).
   - Click 3: rapid zoom-out flood: hundreds of tiny SL5 sub-clauses fill the whole screen; the weights.bin icon is buried in the middle.
 - **Say:** "When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
@@ -186,7 +187,7 @@ Per-slide times below are from before S8 was cut.
 - **On screen:**
   - Click 1: C bars.
   - Click 2: the silent-twin split from S3 returns, dimmed.
-  - Click 3: a simple two-path diagram: "Public model → distillation (cheaper than theft)" vs "Internal model, no public API → can only be stolen".
+  - Click 3: a real news clipping: The Hacker News, "Anthropic Says Seven China-Based AI Labs Ran Industrial-Scale Claude Distillation Attacks" (headline + the article's illustration).
   - Click 4: one line: **"Just-in-Time needs a warning. Theft doesn't send one."**
 - **Say:** "And X% of you think it may already have happened. Remember the silent twin. If it had, what would we see? Nothing. Maybe it hasn't happened yet, because right now there's a cheaper way: distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that stays inside can't be distilled. It can only be stolen. 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
 - **Branch:** C mostly "Low": "Most of you think it hasn't happened yet. Good. Then the clock is still running."
@@ -195,7 +196,7 @@ Per-slide times below are from before S8 was cut.
 ## Part 6: Call to arms
 
 ### S18 · 15:05 · ⬛
-- **On screen:** two lines, one after the other: "Alignment: an unsolved *science* problem." / "Securing the weights: a *systems-engineering* fight." Click 3: the enclave with two arrows: a spy agency blocked from getting in, and the model blocked from getting out.
+- **On screen:** two lines, one after the other: "Alignment: an unsolved *science* problem." / "Securing the weights: a *systems-engineering* fight." Click 3: a real excerpt from the SL5 Standard site (standard.sl5.org → Threat Model), with the insider-threat sentence highlighted.
 - **Say:** "Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. Securing the model weights is *not* an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, **this is a fight the people in this room actually know how to win.**" (C, on click 3) "One more reason the AI-safety people here should care. The SL5 Standard already treats the model itself as a possible insider: a misaligned model that tries to sabotage research or copy itself out. The walls that keep a spy agency out are the same walls that keep the model in."
 - **Notes:** the click-3 line is new in v6. Source: the SL5 Standard v0.1 counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat".
 

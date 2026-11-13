@@ -36,7 +36,7 @@ def main() -> int:
     html = re.sub(r'<link rel="preload"[^>]*>\n?', "", html)
     html = re.sub(r'<link rel="stylesheet" href="([^"]+)">', lambda m: f"<style>\n{css(m.group(1))}\n</style>", html)
     imgs = {p.stem: data_uri(p) for p in sorted((PUB / "img").glob("*.webp"))}
-    html = re.sub(r'src="img/(sim\.(?:webm|mp4))"', lambda m: f'src="{data_uri(PUB / "img" / m.group(1))}"', html)
+    html = re.sub(r'src="img/([\w.-]+\.(?:webm|mp4|webp))"', lambda m: f'src="{data_uri(PUB / "img" / m.group(1))}"', html)
     boot = "<script>window.SL5_OFFLINE = true; window.SL5_IMG = {\n" + ",\n".join(
         f'"{k}": "{v}"' for k, v in imgs.items()) + "\n};</script>\n"
     first = True

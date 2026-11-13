@@ -277,19 +277,19 @@ First slide to cut (15-min version drops it).</aside>
       <div class="s10-cards">
         <div class="card3"><span class="mono">1.</span> Network Air-Gaps</div>
         <div class="card3"><span class="mono">2.</span> Secure Hardware</div>
-        <div class="card3 s10-insider"><span class="mono">3.</span> Insider Controls</div>
-        <div class="s10-news" data-in="1">
-          <p class="s10-news-k mono">News · Oct 2026</p>
-          <p class="s10-news-h">OpenAI engineer arrested over listening device in exec conference room</p>
-        </div>
+        <div class="card3"><span class="mono">3.</span> Insider Controls</div>
       </div>
+    </div>
+    <div class="s10-clips" data-in="1" data-out="2">
+      <img class="clip s10-abc" src="img/news-abc.webp" alt="ABC News: OpenAI employee arrested for listening device communicated with Saudi royal, feds say">
+      <img class="clip s10-aj" src="img/news-aljazeera.webp" alt="Al Jazeera: OpenAI engineer charged after listening device found in meeting room">
     </div>
     <div class="s10-tiles" id="s10-tiles" data-in="2"></div>
     <div class="s10-flood" id="s10-flood" data-in="3"></div>
     <div class="file s10-buried" data-in="3">weights.bin</div>
     <div class="s10-count mono" data-in="2" data-out="3"><b>47</b> engineering programs · 6 domains</div>
   </div>
-  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click: news card] That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. [click] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
+  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click: news clippings] That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. [click] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
 OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026. Reports say the device was behind the TV / in a USB port behind it. "Prosecutors say" for the Saudi-royal contact (allegation). OpenAI: no sign weights were accessed (keep for Q&A).
 Tiles = real block names from github.com/nitzpo/sl5; flood = real clauses from the SL5 Standard + RAND.</aside>
 </section>
@@ -430,14 +430,11 @@ No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
       <div class="sqbox sm"><div class="img ph" data-img="03-bright-servers" data-label="#03"></div><div class="badge-ok mono"><i class="led"></i>All systems normal</div><div class="file twin-file">weights.bin</div></div>
       <div class="sqbox sm dark"><div class="img ph" data-img="04-dark-rack" data-label="#04"></div><div class="file twin-file cold">weights.bin</div><p class="s17-q mono">?</p></div>
     </div>
-    <div class="s17-paths" data-in="2" data-out="3">
-      <div class="s17-path"><span class="s17-node">Public model</span><span class="s17-edge">millions of questions <b>→</b></span><span class="s17-node">a distilled copy</span><span class="s17-tag amb mono">cheaper than theft</span></div>
-      <div class="s17-path"><span class="s17-node">Internal model<small>no public API</small></span><span class="s17-edge s17-x">distillation <b>✕</b></span><span class="s17-node s17-stolen">can only be stolen</span></div>
-    </div>
+    <img class="clip s17-clip" data-in="2" data-out="3" src="img/news-thn.webp" alt="The Hacker News: Anthropic says seven China-based AI labs ran industrial-scale Claude distillation attacks">
     <p class="statement s17-line rise" data-in="3">Just-in-Time needs a warning.<br><span class="red">Theft doesn't send one.</span></p>
   </div>
   <aside class="notes">"And X% of you think it may already have happened. [click] Remember the silent twin. If it had, what would we see? Nothing.
-[click: two paths] Maybe it hasn't happened yet, because right now there's a cheaper way: distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that stays inside can't be distilled. It can only be stolen.
+[click: news clipping] Maybe it hasn't happened yet, because right now there's a cheaper way: distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that stays inside can't be distilled. It can only be stolen.
 [click] 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
 Distillation: Anthropic, Sept 2026 report: seven China-based labs; largest (Alibaba-affiliated) ≈151M exchanges. "Most capable models stay off public APIs": say it as your own view.
 Branch if C is mostly "Low": "Most of you think it hasn't happened yet. Good. Then the clock is still running."</aside>
@@ -449,26 +446,9 @@ Branch if C is mostly "Low": "Most of you think it hasn't happened yet. Good. Th
     <p class="statement s18-a" data-out="2">Alignment: an unsolved <em>science</em> problem.</p>
     <p class="statement s18-b rise" data-in="1" data-out="2">Securing the weights: a <em class="amb">systems-engineering</em> fight.</p>
   </div>
-  <div class="s18-enc" data-in="2">
-    <svg viewBox="0 0 1640 470" width="1640" height="470" aria-hidden="true">
-      <defs><marker id="s18-ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#d8dade"/></marker></defs>
-      <rect class="s18-wall" x="570" y="30" width="500" height="410" rx="30"/>
-      <text class="s18-wl" x="820" y="88">SL5 ENCLAVE</text>
-      <rect class="s18-file" x="782" y="150" width="76" height="96" rx="9"/>
-      <path class="s18-fold" d="M836 150h22v22z"/>
-      <text class="s18-ml" x="820" y="300">the model</text>
-      <text class="s18-who" x="230" y="230">Spy agency</text>
-      <line class="s18-arr" x1="370" y1="222" x2="535" y2="222" marker-end="url(#s18-ah)"/>
-      <text class="s18-x" x="570" y="240">✕</text>
-      <line class="s18-arr" x1="880" y1="222" x2="1035" y2="222" marker-end="url(#s18-ah)"/>
-      <text class="s18-x" x="1070" y="240">✕</text>
-      <text class="s18-who" x="1330" y="210">gets out</text>
-      <text class="s18-sub" x="1330" y="252">(misaligned model)</text>
-    </svg>
-    <p class="s18-cap">The walls that keep a spy agency <b>out</b> keep the model <b class="amb">in</b>.</p>
-  </div>
+  <img class="clip s18-clip" data-in="2" src="img/sl5-standard-insider.webp" alt="SL5 Standard, Threat Model: misaligned or compromised AI models that may attempt to sabotage research or exfiltrate themselves constitute a distinct form of insider threat">
   <aside class="notes">"Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. [click] Securing the model weights is not an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, this is a fight the people in this room actually know how to win."
-[click: enclave] "One more reason the AI-safety people here should care. The SL5 Standard already treats the model itself as a possible insider: a misaligned model that tries to sabotage research or copy itself out. The walls that keep a spy agency out are the same walls that keep the model in."
+[click: SL5 Standard excerpt] "One more reason the AI-safety people here should care. The SL5 Standard already treats the model itself as a possible insider: a misaligned model that tries to sabotage research or copy itself out. The walls that keep a spy agency out are the same walls that keep the model in."
 Source: SL5 Standard v0.1 counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat".</aside>
 </section>
 
