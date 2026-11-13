@@ -23,8 +23,9 @@ Subtitle (provisional): *What it takes to stop a superpower from stealing fronti
 - **16:9**, designed at 1920×1080, scales to any resolution. Projectors wash out darks: check contrast.
 - **Never fake poll numbers.** If the network fails, each poll slide has a show-of-hands fallback.
 - **Facts:** use only claims from PLAN.md (fact sheet has sources). Don't add numbers. The simulator stays vague: no scenario numbers (no $1.7B, SL3.5, "two-thirds", etc.).
-- No real vendor logos; use text labels.
+- No real vendor logos; use text labels. (News screenshots showing the outlet's name are fine: they are citations.)
 - Words on slides: no hard limit, but slides are visual. The script lives in speaker notes, not on screen.
+- ⚠️ Learning (Nov 13, Nitzan): too much text; the v6 diagrams (styled boxes/arrows, a fake "news card") "look too AI". Prefer **real artifacts**: news screenshots, photos, setting images, excerpts from real documents. Avoid generic designed diagrams and text cards when a real image can carry the point.
 
 ## Decisions (Nov 7) → details in `docs/IMPL_PLAN.md`
 - Cloudflare **free tier**; plan for ≈150 phones; phones poll every 5s (tunable).
