@@ -235,7 +235,7 @@ function login(){
 }
 function logout(){T="";localStorage.removeItem("sl5:admin");clearTimeout(timer);login()}
 function act(path,body,confirmMsg){if(confirmMsg&&!confirm(confirmMsg))return;api(path,body).then(function(d){if(d.error)alert(d.error);refresh()}).catch(function(e){alert(e.message)})}
-function refresh(){return api("status").then(draw).catch(function(){})}
+function refresh(){return api("status").then(function(d){var a=document.activeElement;if(a&&a.tagName==="INPUT"&&app.contains(a)){last=d;return}draw(d)}).catch(function(){})}
 function loop(){clearTimeout(timer);timer=setTimeout(function(){(document.hidden?Promise.resolve():refresh()).then(loop)},3000)}
 function draw(d){
   last=d;var s=d.state,run=d.runs.filter(function(r){return r.id===s.run})[0]||{kind:"?",label:""};

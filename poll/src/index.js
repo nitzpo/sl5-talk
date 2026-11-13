@@ -20,7 +20,7 @@
 //   POST /api/admin/deck   {id, step, cut, black}   deck reports its position (phone remote reads it)
 //   GET  /api/admin/deck   -> {deck, seq}
 //   POST /api/admin/remote {cmd: next|prev|black|go, arg?}   phone remote queues a command
-//   GET  /api/admin/remote?since=<seq> -> {seq, cmds}      deck polls for new commands
+//   GET  /api/admin/remote?since=<seq> -> {seq, cmds, now}  deck polls for new commands
 
 import { POLLS, GROUPS } from "./polls.js";
 import { votePage, linksPage, adminPage, FAVICON } from "./pages.js";
@@ -264,7 +264,7 @@ async function admin(req, env, action) {
       return json({ ok: true, seq });
     }
     const since = +new URL(req.url).searchParams.get("since") || 0;
-    return json({ seq: cur.seq, cmds: cur.cmds.filter((c) => c.seq > since) });
+    return json({ seq: cur.seq, cmds: cur.cmds.filter((c) => c.seq > since), now: Date.now() });
   }
   if (action === "config") {
     const pairs = {};

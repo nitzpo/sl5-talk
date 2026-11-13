@@ -40,7 +40,8 @@
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d) return;
-        if (since !== null) d.cmds.forEach(function (c) { if (Date.now() - c.ts < 15000) run(c.cmd, c.arg); }); // ignore stale commands
+        var now = d.now || Date.now(); // server clock: a borrowed laptop's clock may be off
+        if (since !== null) d.cmds.forEach(function (c) { if (now - c.ts < 15000) run(c.cmd, c.arg); }); // ignore stale commands
         since = d.seq;
       })
       .catch(function () {})

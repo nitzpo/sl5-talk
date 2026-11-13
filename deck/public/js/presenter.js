@@ -303,11 +303,11 @@
   loadSlides().then(function () {
     if (st) render();
     if (ch) ch.postMessage({ type: "cmd", cmd: "hello" });
-    $("p-title").textContent = "waiting for the deck…";
+    if (!st) $("p-title").textContent = "waiting for the deck…";
     setTimeout(function () {
       if (isLocal()) return;
       if (wantLocal || !base) {
-        $("p-title").textContent = base ? "waiting for the deck (same browser)…" : "offline: open the presenter from the deck (S)";
+        if (!st) $("p-title").textContent = base ? "waiting for the deck (same browser)…" : "offline: open the presenter from the deck (S)";
         return;
       }
       token = LS.get("sl5:remote-token");

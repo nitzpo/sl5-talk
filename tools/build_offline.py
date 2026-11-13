@@ -35,6 +35,8 @@ def main() -> int:
     html = (PUB / "index.html").read_text()
     html = re.sub(r'<link rel="preload"[^>]*>\n?', "", html)
     html = re.sub(r'<link rel="stylesheet" href="([^"]+)">', lambda m: f"<style>\n{css(m.group(1))}\n</style>", html)
+    # <video>: keep only the webm source (Chrome plays it); inlining the mp4 fallback too doubles the video weight
+    html = re.sub(r'(<source src="img/([\w.-]+)\.webm"[^>]*>)<source src="img/\2\.mp4"[^>]*>', r"\1", html)
     imgs = {p.stem: data_uri(p) for p in sorted((PUB / "img").glob("*.webp"))}
     html = re.sub(r'src="img/([\w.-]+\.(?:webm|mp4|webp))"', lambda m: f'src="{data_uri(PUB / "img" / m.group(1))}"', html)
     boot = "<script>window.SL5_OFFLINE = true; window.SL5_IMG = {\n" + ",\n".join(

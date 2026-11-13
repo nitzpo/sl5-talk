@@ -32,8 +32,7 @@
     if (k === "a" || k === "A") { if (base) window.open(base + "/admin", "_blank"); else Deck.toast("Offline: no admin page"); }
     if (k === "p" || k === "P") { // force-apply this slide's poll actions (after a reload / jump)
       var el = Deck.current().el;
-      if (el.dataset.pollClose) admin("open", { ids: el.dataset.pollClose.split(","), open: false });
-      if (el.dataset.pollCurrent) admin("current", { current: el.dataset.pollCurrent }).then(function () { Deck.toast("Phones → " + el.dataset.pollCurrent); });
+      pollActions(el).then(function () { if (el.dataset.pollCurrent) Deck.toast("Phones → " + el.dataset.pollCurrent); });
     }
   });
 
@@ -45,8 +44,14 @@
     }).then(function (r) {
       if (r.status === 401) Deck.warn("Admin key rejected (press K)");
       else if (!r.ok) Deck.warn("Poll server error " + r.status);
-      else Deck.warn("");
+      else if (path !== "deck") Deck.warn(""); // deck heartbeats must not clear a failed poll switch
     }).catch(function () { Deck.warn("Poll server unreachable"); });
+  }
+  // close first, then set current: both read-modify-write `open` server-side, so in parallel the
+  // close can be overwritten (S5: warm would stay open)
+  function pollActions(el) {
+    var p = el.dataset.pollClose ? admin("open", { ids: el.dataset.pollClose.split(","), open: false }) : Promise.resolve();
+    return p.then(function () { if (el.dataset.pollCurrent) return admin("current", { current: el.dataset.pollCurrent }); });
   }
 
   // ---------- QR + URLs ----------
@@ -152,8 +157,7 @@
     if (el !== activeEl) {
       activeEl = el; enteredAt = Date.now(); clearTimeout(timer);
       if (dir === 1 || (dir === 0 && el.hasAttribute("data-poll-onload"))) { // forward navigation (or the pre-show slide on load) drives the phones
-        if (el.dataset.pollClose) admin("open", { ids: el.dataset.pollClose.split(","), open: false });
-        if (el.dataset.pollCurrent) admin("current", { current: el.dataset.pollCurrent });
+        pollActions(el);
       }
       if (liveEls(el).length) { try { render(el, cache); } catch (e) { console.error(e); } tick(); }
     }
