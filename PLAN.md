@@ -1,6 +1,6 @@
 # PLAN: Ctrl+C, Ctrl+V a Fighter Jet
 
-Mirror of the Notion plan, **draft v6.1 (Nov 13 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
+Mirror of the Notion plan, **draft v7 (Nov 13 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -34,7 +34,7 @@ Anchors: SL5 is complex · Reactive isn't enough · Starting early is what works
 | 6 Call to arms | 14:35–16:50 | S18–S21 | Bridge, this room, links, thank you |
 
 Per-slide times below are from before S8 was cut.
-**15-min cut**: dropping S9 and S19 and trimming S16 now gets to only ≈16:20. To reach 15:00, also drop S16 entirely and S11 (the LGTM gag). S1c stays in the cut. (v6, Nov 13: v6 added ≈60s; slide times below not shifted. Nitzan: handle the cut after finalization.)
+Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S19 and trimming S16 now gets to only ≈16:20. To reach 15:00, also drop S16 entirely and S11 (the LGTM gag). S1c stays in the cut. (v6, Nov 13: v6 added ≈60s; slide times below not shifted. Nitzan: handle the cut after finalization.)
 
 ---
 
@@ -48,10 +48,13 @@ Per-slide times below are from before S8 was cut.
 
 ## Part 1: The heist
 
-### S1a · 0:00 · 🎬 #01 datacenter (+ optional Veo loop)
+### S1a · 0:00 · 🎬 #01 datacenter (+ optional Veo loop) + 😄 kiss-cam clip (Nitzan's upload)
 - **On screen:** black → a datacenter at night fades up, slow push-in. Amber counters tick in one by one: "Billions of dollars" · "100,000 GPUs" · "6 months".
+  - **Nvidia gag (click on "buy the chips"):** a kiss-cam frame built in code pops up top-right. Banner "♥ ~~KISS CAM~~ EXPORT CONTROL CAM ♥"; inside it the clip plays (muted, 6s, `kisscam-clip.mp4`); ticker "MEGASPEED · SINGAPORE · 240,000 GPUs (ALLEGED) · ✅ APPROVED"; corner credit "AI video: @dedene". ≈6s, then fades. Counters stay visible.
+  - ⚠️ Deck (Nov 13): **not built yet**; Claude raised concerns about the clip (AI-made intimate depiction of real people + an uncharged person). Pending Nitzan's call.
 - **Say:** "Put on your offensive hat for sixty seconds. Imagine your unit is given a target: a frontier AI lab in California. To build their latest AI model (what we call **pre-training**), that lab had to spend billions of dollars, build a massive power station, and run 100,000 export-controlled GPUs for six months straight. Your country doesn't have the billions, and because of sanctions, you aren't allowed to buy the chips."
-- **Notes:** on-screen GPU count matches the script.
+  - (On the click; pick one at rehearsal.) Gemini: "...Well, unless you meet the CEO of Nvidia at a bar in Taipei, in which case getting 100,000 export-controlled GPUs is surprisingly affordable." Claude: "…Well, unless your data-center executive has dinner with the CEO of Nvidia in Taipei. Then, allegedly, you get access to 240,000 of them."
+- **Notes:** on-screen GPU count matches the script. **Nvidia gag facts:** Jensen Huang resigned Nov 12, 2026, so on Nov 22 say "last week". Alice Huang, a Megaspeed (Singapore) executive, is suspected by US intelligence of spying for China but has not been charged. Megaspeed is under investigation in the US and Singapore for allegedly smuggling access to 240,000 restricted chips. The Taipei meeting was a restaurant dinner (May 2025), not a bar. The clip is an AI edit by Peter Dedene: label it, keep it muted. Re-check the news on Nov 21. Only Nvidia reference in the talk.
 
 ### S1b · 0:40 · 😄 (+ #02 microSD)
 - **On screen:**
@@ -173,7 +176,7 @@ Per-slide times below are from before S8 was cut.
   - Click 2: bars grow from the marker: "Classified facility: up to 4 years" and "Custom silicon: 4+ years". They end around 2032.
   - Click 3: one line: **"The bottleneck isn't money. It's the calendar."**
   - Click 4: the RAND quote, **"Achieving SL5 is currently not possible."** (RAND, 2024)
-- **Say:** "Here's why 'Just-in-Time' fails. Above $200 million, **the bottleneck isn't money; it's the calendar.** Building a shielded facility enclave or custom hardware takes **up to 4 years**. The clock starts when you decide, not when you break ground. No budget compresses a 4-year calendar." Optional on click 4: "RAND said it back in 2024: achieving SL5 is currently not possible. Now you know why."
+- **Say:** "Here's why 'Just-in-Time' fails. **The bottleneck isn't money; it's the calendar.** Building a shielded facility enclave or custom hardware takes **up to 4 years**. The clock starts when you decide, not when you break ground. No budget compresses a 4-year calendar." Optional on click 4: "RAND said it back in 2024: achieving SL5 is currently not possible. Now you know why."
 - **Notes:** no scenario numbers ($1.7B etc. dropped). Facility takes up to 4 yrs, partly on a government's calendar.
 
 ### S16 (trim in the 15-min cut) · 13:20 · 😄 simulator GIF + USB gag
@@ -279,6 +282,8 @@ Style block prepended to every prompt: "Cinematic film still, 16:9, low-key ligh
 | Anthropic: seven distillation campaigns by China-based labs in 2026; the largest (Alibaba-affiliated) ≈151M exchanges | The Hacker News, Sep 2026 https://thehackernews.com/2026/09/anthropic-says-seven-china-based-ai.html |
 | The SL5 Standard covers misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat", and lists model outputs as assets because they "could be used to distill" | SL5 Standard v0.1 (`research/sl5_standard.txt`) |
 | Security Level 5 is a 501(c)(3) nonprofit; CEO Lisa Thiergart | https://sl5.org |
+| Jensen Huang resigned as Nvidia CEO on Nov 12, 2026 (Colette Kress interim). Alice Huang (Megaspeed, Singapore) is suspected by US intelligence of spying for China, not charged. Megaspeed is under investigation in the US and Singapore over 240,000 restricted chips. The Taipei photo is from a dinner, May 22, 2025 | CBS News https://www.cbsnews.com/news/nvidia-ceo-jensen-huang-resigns/ · Al Jazeera https://www.aljazeera.com/news/2026/11/12/why-did-nvidia-ceo-jensen-huang-resign-and-who-is-colette-kress |
+| Kiss-cam clip: an AI video by Peter Dedene (@dedene), circulated on X | Nitzan's upload |
 
 ## Decided
 17-min plan + 15-min cut (slot unknown) · deck runs on any laptop · no reliance on the workshop or Heron · naming torchtriton and Su Bin is OK · the simulator stays vague · keep the "depends on the contract" joke · hype words OK · working title = Ctrl+C, Ctrl+V a Fighter Jet.
