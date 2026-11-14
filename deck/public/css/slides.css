@@ -156,7 +156,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 @keyframes flyoff { to { transform: translateX(-2400px) scale(1.15); filter: blur(2px); } }
 
 /* ===================== S3a/S3b · silent twin ===================== */
-.s3a { flex-direction: row; justify-content: center; gap: 90px; align-items: center; padding: 40px 120px 160px; }
+.s3a { flex-direction: row; justify-content: center; gap: 90px; align-items: center; padding: 80px 120px 70px; }
 .twin { position: relative; display: flex; flex-direction: column; gap: 22px; width: 760px; }
 .twin:not(.on)[data-in] { transform: translateX(60px); }
 .twin[data-in].on { transition-duration: 1.2s; }
@@ -175,9 +175,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .copybar.red .copyfill { background: var(--red); }
 .guard-s { display: flex; justify-content: space-between; color: #d8dade; }
 .guard-pct { color: var(--red); font-weight: 700; }
-.cheap { position: absolute; left: 0; right: 0; top: calc(100% + 16px); font: 800 60px var(--sans); color: var(--red); text-align: center; text-shadow: 0 0 40px rgba(255,59,48,.35); }
-.cheap:not(.on) { transform: translateY(20px); }
-.cheap small { display: block; font-size: 34px; font-weight: 600; color: #e8a7a2; text-shadow: none; margin-bottom: 6px; }
+.s3b-clip { left: 760px; top: 570px; width: 1110px; --rot: -1deg; z-index: 3; } /* S3b: OpenAI's own anti-refusal test, pinned over the dark twin */
 
 /* ===================== S3c ===================== */
 .s3c-line { font-size: 92px; max-width: 1560px; }
@@ -321,17 +319,21 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s10.s10-head .dom { top: 72px; height: 62px; border-radius: 12px; }
 #s10.s10-head .new { font-size: 25px; padding: 0 44px 0 12px; }
 #s10.s10-head .dom small { opacity: 1; transition: opacity .4s .7s; }
-#s10[data-step="4"] .s10-six { transform: scale(.4); opacity: .18; filter: blur(1px); }
+#s10[data-step="4"] .s10-six, #s10[data-step="5"] .s10-six { transform: scale(.4); opacity: .18; filter: blur(1px); }
 .s10-tiles { position: absolute; inset: 150px 90px 120px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; align-content: start;
   transition: transform 1.4s cubic-bezier(.6,0,.2,1), opacity 1.4s, filter 1.4s; }
 .s10-tiles .grp { display: flex; flex-direction: column; gap: 9px; }
 .s10-tiles .tile { font-size: 19px; line-height: 1.22; padding: 11px 12px; border-radius: 9px; background: var(--card); border-left: 6px solid currentColor; color: var(--fg); }
 .s10-tiles.on .tile { animation: tilein .5s cubic-bezier(.3,1.3,.5,1) both; animation-delay: calc(.5s + var(--i) * 18ms); } /* after the headers land */
 @keyframes tilein { from { opacity: 0; transform: scale(.6) translateY(30px); } }
-#s10[data-step="4"] .s10-tiles { transform: scale(.4); opacity: .18; filter: blur(1px); }
+#s10[data-step="4"] .s10-tiles, #s10[data-step="5"] .s10-tiles { transform: scale(.4); opacity: .18; filter: blur(1px); }
 .s10-flood { position: absolute; inset: 0; z-index: 2; padding: 18px 22px; column-count: 9; column-gap: 20px; font: 12px/1.3 var(--sans); color: #b3b9c1; overflow: hidden; }
 .s10-flood p { margin: 0 0 6px; break-inside: avoid; opacity: 0; transition: opacity .35s; }
 .s10-flood.on p { opacity: .92; transition-delay: calc(var(--d) * 1ms); }
+/* S10 click 5: one line lights up and moves to the centre (bridge to S11's two-person rules) */
+#s10.s10-pick .s10-flood.on p { opacity: .12; transition-delay: 0s; }
+.s10-flood p.pick { position: relative; z-index: 3; transform-origin: center; border-radius: 2px; transition: opacity .35s, transform .9s cubic-bezier(.6,0,.2,1), color .4s, background .4s, box-shadow .4s; }
+#s10.s10-pick .s10-flood.on p.pick { opacity: 1; color: #111; background: var(--amb); box-shadow: 0 0 0 3px var(--amb), 0 0 60px var(--amb-glow); transform: translate(var(--tx, 0), var(--ty, 0)) scale(3.2); transition-delay: 0s, .25s, 0s, 0s, 0s; }
 .s10-buried { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; font-size: 30px; padding: 18px 24px; }
 .s10-count { position: absolute; left: 90px; bottom: 50px; font-size: 26px; color: var(--mut); }
 .s10-count b { color: var(--amb); }
@@ -395,7 +397,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s14 { flex-direction: row; flex-wrap: wrap; align-content: flex-start; gap: 60px 90px; }
 .s14 > .hands { flex: 0 0 100%; } /* fallback: its own row under the two questions */
 .s14-col { flex: 1; display: flex; flex-direction: column; gap: 26px; }
-.s14-big { display: flex; align-items: baseline; gap: 18px; min-height: 120px; }
+.s14-big { display: flex; align-items: baseline; gap: 18px; min-height: 150px; } /* same height both columns (left label wraps), so the bars start level */
 .s14-big:has(.amb:empty) { visibility: hidden; } /* no votes yet: no number, no sentence (never a fake 0% or a bare claim) */
 .s14-big .amb { font: 900 112px/1 var(--sans); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .s14-lbl { font-size: 32px; font-weight: 600; }
@@ -449,7 +451,8 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s16-gap.on .router { animation: fadein .5s 2.7s both; }
 
 /* ===================== S17 · C results → silent twin ===================== */
-.s17-c { position: absolute; inset: 110px 140px; }
+.s17-c { position: absolute; inset: 110px 140px; display: flex; flex-direction: column; gap: 56px; }
+.s17-c .bars { max-width: 1500px; }
 .s17-twin { position: absolute; left: 0; right: 0; top: 160px; display: flex; justify-content: center; gap: 80px; } /* full size: the closer */
 .s17-clip { left: 290px; top: 70px; width: 1340px; --rot: 1deg; }
 .s17-q { position: absolute; right: 26px; top: 10px; font-size: 64px; color: var(--red); font-weight: 800; }
@@ -464,7 +467,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 
 
 /* ===================== S20 · links ===================== */
-.s20 { gap: 46px; justify-content: center; padding-right: 560px; }
+.s20 { gap: 46px; justify-content: center; padding-right: 600px; }
 .s20-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
 .lcard { background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 32px 34px; display: flex; flex-direction: column; gap: 10px; }
 .lcard b { color: var(--amb); font-size: 30px; }
@@ -473,9 +476,10 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .lcard .s20-url { font-size: 26px; } /* where the simulator lives (desktop only) */
 .slide.fwd .lcard { animation: popin .5s cubic-bezier(.3,1.3,.5,1) both; }
 .slide.fwd .lcard:nth-child(2) { animation-delay: .1s; } .slide.fwd .lcard:nth-child(3) { animation-delay: .2s; } .slide.fwd .lcard:nth-child(4) { animation-delay: .3s; }
-.s20-qr { position: absolute; right: 140px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 14px; font-size: 28px; }
+.s20-qr { position: absolute; right: 120px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 14px; font-size: 28px; }
 .s20-qr .qrbox { width: 320px; height: 320px; }
-.already { position: absolute; left: 140px; right: 140px; bottom: 60px; font-size: 22px; color: var(--mut); }
+.s20-qr .url.small { font-size: 20px; }
+.already { position: absolute; left: 140px; right: 140px; bottom: 60px; font-size: 22px; color: var(--mut); white-space: nowrap; }
 
 /* ===================== S21 · vault + thank you ===================== */
 .s21 { justify-content: center; align-items: center; text-align: center; }

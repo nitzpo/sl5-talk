@@ -204,13 +204,26 @@
     if (document.fonts) document.fonts.ready.then(measure);
     Deck.on("s10", {
       enter: measure,
-      step: function (el, s) { el.classList.toggle("s10-split", s >= 2); el.classList.toggle("s10-head", s >= 3); },
+      step: function (el, s) { el.classList.toggle("s10-split", s >= 2); el.classList.toggle("s10-head", s >= 3); if (s >= 5) pickLine(); el.classList.toggle("s10-pick", s >= 5); },
     });
+  }
+  function pickLine() {
+    if (!flood || flood.querySelector("p.pick")) return;
+    var fr = flood.getBoundingClientRect(), k = fr.width / flood.offsetWidth, W = flood.offsetWidth, H = flood.offsetHeight, best = null, bd = 1e9;
+    flood.querySelectorAll("p[data-pick]").forEach(function (p) {
+      var r = p.getBoundingClientRect(), cx = (r.left + r.width / 2 - fr.left) / k, cy = (r.top + r.height / 2 - fr.top) / k;
+      if (cx < 0 || cy < 0 || cx > W || cy > H) return; // clipped by the flood's overflow
+      var d = Math.hypot(cx - W / 2, cy - H / 2); if (d < bd) { bd = d; best = { p: p, x: cx, y: cy }; }
+    });
+    if (!best) return;
+    best.p.classList.add("pick");
+    best.p.style.setProperty("--tx", Math.round(W / 2 - best.x) + "px"); best.p.style.setProperty("--ty", Math.round(H / 2 - best.y) + "px");
   }
   if (S10 && flood) {
     var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
     var all = S10.clauses.concat(S10.clauses); // twice: enough to cover the screen at flood size
-    flood.innerHTML = all.map(function (c) { return '<p style="--d:' + Math.round(rnd() * 1400) + '">' + c.replace(/</g, "&lt;") + "</p>"; }).join("");
+    var PICK = /^Dual authorization mechanisms require/; // S10 click 5: the one line that bridges to S11 (two-person rules)
+    flood.innerHTML = all.map(function (c) { return '<p style="--d:' + Math.round(rnd() * 1400) + '"' + (PICK.test(c) ? " data-pick" : "") + ">" + c.replace(/</g, "&lt;") + "</p>"; }).join("");
   }
 
   // ---------- S14: the two numbers the speaker quotes (live, computed from the votes)

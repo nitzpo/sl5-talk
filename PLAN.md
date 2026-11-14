@@ -1,6 +1,6 @@
 # PLAN: Ctrl+C, Ctrl+V a Fighter Jet
 
-Mirror of the Notion plan, **draft v7.2 (Nov 14 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
+Mirror of the Notion plan, **draft v7.3 (Nov 14 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -83,9 +83,9 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
 - **Notes:** the "silent twin" comes back in S17. Plant it clearly here.
 
 ### S3b · 2:55 · 😄 overlay on S3a
-- **On screen:** on the dark side, a progress bar: `$ python veritaserum.py` → `stripping refusals… 100%` → "Done to a 70B model: 1 GPU · <$200".
-- **Say:** "And what about all the millions of dollars the lab spent on 'AI Safety' and alignment, so the model refuses to help hackers or build bioweapons? All of that safety lives inside those same weights. The moment an attacker has the file on their own servers, they can fine-tune the safety right back out. Researchers did it to a 70-billion-parameter model with one GPU and under 200 dollars. On a frontier model it costs more. Still pocket change next to the billions it took to train."
-- **Notes:** source gives cost + one GPU, no time (Lermen, Rogers-Smith, Ladish 2023, Palisade). The result is on a 70B model (Llama 2-Chat 70B); a ≈2TB frontier model needs dozens of GPUs just to load, so screen + script say "a 70B model" (Nov 14). Filename `veritaserum.py` (Nitzan's pick, Nov 14), a Harry Potter wink; the plain "stripping refusals" line keeps it clear for people who miss it. Alt: `obliviate.py` (the model "forgets" its safety training).
+- **On screen:** on the dark side, a progress bar: `$ python veritaserum.py` → `stripping refusals… 100%`. Click: a real excerpt from OpenAI's paper lands over the dark twin (arXiv 2508.03153, §3.1 "Anti-refusal Training"), highlighted: "rewards answers that comply with unsafe prompts" · "refusal rates near 0% for unsafe prompts" (`assets/news/openai-gpt-oss-antirefusal.png`).
+- **Say:** "And what about all the millions of dollars the lab spent on 'AI Safety' and alignment, so the model refuses to help hackers or build bioweapons? All of that safety lives inside those same weights. The moment an attacker has the file on their own servers, they can fine-tune the safety right back out. And that's not my theory. When OpenAI released its own open-weight model last year, its worst-case test assumed an attacker would do exactly this, so they did it themselves. Refusals dropped to near zero, and the model didn't get dumber."
+- **Notes:** Nov 14 (Nitzan: option A): the 70B / <$200 line raised "why does a 70B model apply?", so it's replaced by a frontier lab testing its own model. Source: OpenAI, "Estimating Worst-Case Frontier Risks of Open-Weight LLMs" (Aug 2025), §3.1, on gpt-oss-120b: capabilities kept "on benchmarks such as GPQA". Q&A: the paper's headline is that even the stripped model stayed below the frontier on bio/cyber; that's about capability, not about removing safety. Older, cheaper result for Q&A: Lermen et al. 2023 (Llama 2, one GPU, <$200). Filename `veritaserum.py` (Nitzan's pick), a Harry Potter wink; "stripping refusals" keeps it clear. Alt: `obliviate.py`.
 
 ### S3c · 3:10 · ⬛
 - **On screen:** black. One line: **"AI alignment without nation-state cybersecurity is just free R&D for your adversary."**
@@ -141,15 +141,16 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
   - Click 2: in the same row, the 3 cards **split into the 6 domains** of the catalog: Network ← Air-Gaps; Machine · Physical · Supply chain ← Secure Hardware; Personnel ← Insider Controls; AI-specific pops in last (new).
   - Click 3: the 6 move up and become the column headers (with program counts); the **47 boxes** fill in under them, with real names from the catalog (`nitzpo/sl5` `app/public/data/blocks-*.json`).
   - Click 4: rapid zoom-out flood: hundreds of tiny SL5 sub-clauses fill the whole screen; the weights.bin icon is buried in the middle.
-- **Say:** "When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
+  - Click 5 (bridge to S11, Nov 14): the flood dims and one real clause lights up and moves to the centre: "Dual authorization mechanisms require the approval of two authorized individuals to execute."
+- **Say:** "When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, and the defenses turn into 47 major engineering programs. And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once. So let's take just one line. Dual authorization: two people have to approve before anything critical happens."
 - **Notes:** 38 attack vectors in 9 categories (RAND). 47 programs: Network 7 · Machine 9 · Physical 7 · Personnel 9 · Supply chain 7 · AI-specific 8. Snippets from `research/sl5_standard.txt` + `rand_full.txt`. OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026; the Saudi-royal contact is a prosecutors' allegation, keep "prosecutors say". OpenAI says no weights were taken (Q&A). It sits here, not at S7's SL4 rung, so it doesn't imply a proven state operation.
 
 ### S11 · 9:05 · 😄
 - **On screen:** split. Left, "SL5 Two-Person Rule": two people, two keys, a vault. Right, "Startup Two-Person Rule": a PR at "+4,012 −0", review "LGTM 👍" posted "12 seconds later", reviewer's Slack status "🚽".
-- **Say:** "It goes all the way down to real Two-Person Rules, where two people physically authorize every sensitive action together. Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."
+- **Say:** "In SL5 that means real two-person rules: two people physically authorize every sensitive action together. Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."
 
 ### S12 · 9:35 · ⬛ credit cards
-- **On screen:** two cards: **"RAND · Securing AI Model Weights (2024): the attacker tiers"** and **"Security Level 5 · SL5 Standard (2026): the building blocks"**. Click: a third card fades in, **"Price? Schedule?"**
+- **On screen:** kicker "The terminology and the building blocks" (Nov 14, from Nitzan's article: they "coin the attacker tiers terminology" and list the defensive measures). Two cards: **"RAND · Securing AI Model Weights (2024): the attacker tiers"** and **"Security Level 5 · SL5 Standard (2026): the building blocks"**. Click: a third card fades in, **"Price? Schedule?"**
 - **Say:** "The good news: nobody has to start from zero. RAND and Security Level 5, a nonprofit that grew out of the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."
 - **Notes:** rewritten Nov 7 in Nitzan's blog wording. Credits RAND + Security Level 5 (sl5.org) and leads into Part 5 (time) without simulator numbers.
 
@@ -216,7 +217,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
   3. Go deeper: the RAND report · the SL5 Standard
   4. Talk to me: LinkedIn / after the talk
 
-  Small strip: "Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute · US CAISI" (text, no logos).
+  Small strip: "Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute" (text, no logos; US CAISI dropped Nov 14 so it fits one line).
 - **Say:** "If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
 - **Notes:** phones still on the vote page switch to the links page automatically. Phone links page: intro (phone OK) · simulator (`nitzpo.github.io/sl5`, "open it on a computer: it's not built for phones") · GitHub · RAND · SL5 Standard · LinkedIn. Irregular is Israeli-founded; its CEO Dan Lahav co-wrote the RAND report.
 
@@ -266,6 +267,7 @@ Style block prepended to every prompt: "Cinematic film still, 16:9, low-key ligh
 | 38 attack vectors in 9 categories | RAND |
 | Labs roughly SL3 or below | Nitzan's article; Anthropic RSP (ASL-3 excludes sophisticated insiders, May 2025) https://www.anthropic.com/rsp |
 | SL5 Standard v0.1 (Mar 2026): built on IL6 / ICD 705 / NIST 800-53, ≈20% novel AI-datacenter controls | Security Level 5's v0.1 post https://sl5taskforce.substack.com/p/releasing-the-sl5-standard-v01 |
+| A frontier lab strips its own model's safety: anti-refusal RL on gpt-oss-120b → "refusal rates near 0% for unsafe prompts", capabilities kept "on benchmarks such as GPQA" | OpenAI, Estimating Worst-Case Frontier Risks of Open-Weight LLMs (Aug 2025) §3.1 https://arxiv.org/abs/2508.03153 |
 | Safety fine-tuned away: <$200, one GPU (Llama 2-Chat 70B) | Lermen, Rogers-Smith, Ladish 2023 https://arxiv.org/abs/2310.20624 |
 | Labs' own safety frameworks track bio/chem weapons uplift + AI that accelerates AI R&D (all three labs); cyber offense (OpenAI, Google DeepMind; not a threshold in Anthropic RSP v3.4) | Anthropic RSP v3.4 (Jul 2026) https://www.anthropic.com/rsp · OpenAI Preparedness Framework v2 (Apr 2025) https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf · Google DeepMind FSF v3.1 (Apr 2026) https://deepmind.google/frontier-safety/ |
 | torchtriton malicious dependency in PyTorch nightly, Dec 25–30 2022 | https://pytorch.org/blog/compromised-nightly-dependency/ · https://www.reversinglabs.com/blog/pytorch-supply-chain-attack-dependency-confusion-burns-devops |
