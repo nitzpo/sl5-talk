@@ -407,9 +407,13 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .slide.fwd .s9-plaques span { animation: plaque .6s cubic-bezier(.3,1.4,.5,1) both; }
 .slide.fwd .s9-plaques span:nth-child(2) { animation-delay: .15s; } .slide.fwd .s9-plaques span:nth-child(3) { animation-delay: .3s; } .slide.fwd .s9-plaques span:nth-child(4) { animation-delay: .45s; }
 @keyframes plaque { from { opacity: 0; transform: translateY(-40px); } }
-.s9-door { position: absolute; left: 520px; top: 830px; font: 700 34px var(--sans); color: var(--amb); text-shadow: 0 2px 20px #000; }
+/* step 0: question + labels on the wall · step 1: zoom into the open door + terminal · step 2: torchtriton stamp */
+.s9-img { transform-origin: 0 0; transition: transform 1.4s cubic-bezier(.6,0,.2,1); }
+#s9[data-step="1"] .s9-img, #s9[data-step="2"] .s9-img { transform: translate(-1787px, -1512px) scale(2.4); } /* door (≈978,892) → (≈560,630) */
+.s9-q { position: absolute; left: 0; right: 0; top: 110px; text-align: center; text-shadow: 0 4px 30px #000; }
+.s9-door { position: absolute; left: 150px; top: 600px; font: 700 40px var(--sans); color: var(--amb); text-shadow: 0 2px 20px #000; }
 .s9-door::after { content: " →"; }
-.s9-term { position: absolute; right: 80px; bottom: 80px; width: 780px; background: rgba(5,6,8,.95); border: 2px solid #2a2f37; border-radius: 16px; overflow: hidden; font-size: 26px; box-shadow: 0 30px 80px #000c; }
+.s9-term { position: absolute; right: 90px; top: 470px; width: 900px; background: rgba(5,6,8,.95); border: 2px solid #2a2f37; border-radius: 16px; overflow: hidden; font-size: 30px; box-shadow: 0 30px 80px #000c; }
 .term-bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #14171c; font-size: 18px; color: var(--mut); }
 .term-bar i { width: 14px; height: 14px; border-radius: 50%; background: #3a3f47; }
 .term-bar span { margin-left: 12px; }
@@ -418,7 +422,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .tl3 { padding-bottom: 20px; }
 .s9-term .tl1, .s9-term .tl2, .s9-term .tl3 { opacity: 0; transition: opacity .25s; }
 .s9-term .shown { opacity: 1 !important; }
-.s9-stamp { left: 1080px; top: 560px; }
+.s9-stamp { left: 1040px; top: 820px; }
 
 /* ===================== S10 · 3 → 47 → hundreds ===================== */
 .s10-three { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 90px; }
@@ -849,20 +853,22 @@ Branches:
 
 
 <!-- ============================== PART 4: WHY SL5 IS SO HARD ============================== -->
-<section class="slide" id="s9" data-title="Fortress + side door (optional)" data-at="7:20" data-clicks="1" data-cut="drop" data-poll-close="A">
-  <div class="img ph" data-img="05-fortress" data-label="#05 fortress"></div><div class="s9-shade"></div>
-  <div class="s9-plaques mono"><span>SSO</span><span>EDR</span><span>Zero Trust</span><span>SOC 2</span></div>
-  <div class="s9-door"><span>the side door</span></div>
-  <div class="s9-term mono">
+<section class="slide" id="s9" data-title="Fortress + side door (optional)" data-at="7:20" data-clicks="2" data-cut="drop" data-poll-close="A">
+  <div class="img ph s9-img" data-img="05-fortress" data-label="#05 fortress"></div><div class="s9-shade"></div>
+  <h2 class="h1 s9-q" data-out="1">Where does enterprise security fail?</h2>
+  <div class="s9-plaques mono" data-out="1"><span>SSO</span><span>EDR</span><span>Zero Trust</span><span>SOC 2</span></div>
+  <div class="s9-door" data-in="1"><span>the side door</span></div>
+  <div class="s9-term mono" data-in="1">
     <div class="term-bar"><i></i><i></i><i></i><span>researcher@gpu-node-07</span></div>
     <p class="tl tl0"><span class="amb">$</span> <span class="s9-cmd" data-text="pip install turbo-weights-v2">pip install turbo-weights-v2</span><span class="caret"></span></p>
     <p class="tl tl1 mut">Collecting turbo-weights-v2</p>
     <p class="tl tl2">  Author: <b class="red">dark_wizard_99</b> · Created: <b class="amb">14 mins ago</b></p>
     <p class="tl tl3 ok">Successfully installed turbo-weights-v2</p>
   </div>
-  <div class="stamp s9-stamp" data-in="1">REAL: torchtriton, Dec 2022</div>
-  <aside class="notes">"Why can't top Silicon Valley security (Okta, Zero Trust, SOC-2) stop an SL5 attacker? Because enterprise security is built to stop ransomware gangs while letting employees work fast. And try telling a PhD machine learning researcher making $2 million a year that he can't pip install a random Python package written yesterday by an anonymous guy on GitHub named dark_wizard_99, because it makes his training curve converge 2% faster."
-Optional [click]: "And dark_wizard_99 is real. In December 2022 his name was torchtriton: PyTorch's own nightly build pulled in a malicious package that read people's SSH keys."
+  <div class="stamp s9-stamp" data-in="2">REAL: torchtriton, Dec 2022</div>
+  <aside class="notes">[On screen: "Where does enterprise security fail?" + the wall of labels] "Why can't top Silicon Valley security (Okta, Zero Trust, SOC-2) stop an SL5 attacker? Because enterprise security is built to stop ransomware gangs while letting employees work fast. And try telling a PhD machine learning researcher making $2 million a year that he can't pip install a random Python package written yesterday by an anonymous guy on GitHub named dark_wizard_99, because it makes his training curve converge 2% faster."
+[click: zoom into the open side door; the terminal types] goes with "And try telling a PhD…" (move the click to wherever you start that sentence).
+[click: stamp] "And dark_wizard_99 is real. In December 2022 his name was torchtriton: PyTorch's own nightly build pulled in a malicious package that read people's SSH keys."
 First slide to cut (15-min version drops it).</aside>
 </section>
 
@@ -4079,15 +4085,18 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
 
   // ---------- S9: researcher types the pip install, output lines follow (forward only)
   Deck.on("s9", {
-    enter: function (el, s, dir) {
-      clear("s9");
+    step: function (el, s, dir) { // the terminal types on click 1 (the zoom into the side door)
       var cmd = el.querySelector(".s9-cmd"), full = cmd.dataset.text, lines = el.querySelectorAll(".tl1, .tl2, .tl3");
-      if (dir !== 1) { cmd.textContent = full; lines.forEach(function (l) { l.classList.add("shown"); }); return; }
+      if (s !== 1 || dir !== 1) {
+        if (s >= 1) { clear("s9"); cmd.textContent = full; lines.forEach(function (l) { l.classList.add("shown"); }); }
+        return;
+      }
+      clear("s9");
       lines.forEach(function (l) { l.classList.remove("shown"); });
       cmd.textContent = "";
       var i = 0;
       (function type() {
-        if (i <= full.length) { cmd.textContent = full.slice(0, i++); later("s9", i === 1 ? 700 : 45, type); }
+        if (i <= full.length) { cmd.textContent = full.slice(0, i++); later("s9", i === 1 ? 1200 : 45, type); }
         else lines.forEach(function (l, k) { later("s9", 300 + k * 450, function () { l.classList.add("shown"); }); });
       })();
     },

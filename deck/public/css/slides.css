@@ -266,9 +266,13 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .slide.fwd .s9-plaques span { animation: plaque .6s cubic-bezier(.3,1.4,.5,1) both; }
 .slide.fwd .s9-plaques span:nth-child(2) { animation-delay: .15s; } .slide.fwd .s9-plaques span:nth-child(3) { animation-delay: .3s; } .slide.fwd .s9-plaques span:nth-child(4) { animation-delay: .45s; }
 @keyframes plaque { from { opacity: 0; transform: translateY(-40px); } }
-.s9-door { position: absolute; left: 520px; top: 830px; font: 700 34px var(--sans); color: var(--amb); text-shadow: 0 2px 20px #000; }
+/* step 0: question + labels on the wall · step 1: zoom into the open door + terminal · step 2: torchtriton stamp */
+.s9-img { transform-origin: 0 0; transition: transform 1.4s cubic-bezier(.6,0,.2,1); }
+#s9[data-step="1"] .s9-img, #s9[data-step="2"] .s9-img { transform: translate(-1787px, -1512px) scale(2.4); } /* door (≈978,892) → (≈560,630) */
+.s9-q { position: absolute; left: 0; right: 0; top: 110px; text-align: center; text-shadow: 0 4px 30px #000; }
+.s9-door { position: absolute; left: 150px; top: 600px; font: 700 40px var(--sans); color: var(--amb); text-shadow: 0 2px 20px #000; }
 .s9-door::after { content: " →"; }
-.s9-term { position: absolute; right: 80px; bottom: 80px; width: 780px; background: rgba(5,6,8,.95); border: 2px solid #2a2f37; border-radius: 16px; overflow: hidden; font-size: 26px; box-shadow: 0 30px 80px #000c; }
+.s9-term { position: absolute; right: 90px; top: 470px; width: 900px; background: rgba(5,6,8,.95); border: 2px solid #2a2f37; border-radius: 16px; overflow: hidden; font-size: 30px; box-shadow: 0 30px 80px #000c; }
 .term-bar { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #14171c; font-size: 18px; color: var(--mut); }
 .term-bar i { width: 14px; height: 14px; border-radius: 50%; background: #3a3f47; }
 .term-bar span { margin-left: 12px; }
@@ -277,7 +281,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .tl3 { padding-bottom: 20px; }
 .s9-term .tl1, .s9-term .tl2, .s9-term .tl3 { opacity: 0; transition: opacity .25s; }
 .s9-term .shown { opacity: 1 !important; }
-.s9-stamp { left: 1080px; top: 560px; }
+.s9-stamp { left: 1040px; top: 820px; }
 
 /* ===================== S10 · 3 → 47 → hundreds ===================== */
 .s10-three { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 90px; }

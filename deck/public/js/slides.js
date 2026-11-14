@@ -141,15 +141,18 @@
 
   // ---------- S9: researcher types the pip install, output lines follow (forward only)
   Deck.on("s9", {
-    enter: function (el, s, dir) {
-      clear("s9");
+    step: function (el, s, dir) { // the terminal types on click 1 (the zoom into the side door)
       var cmd = el.querySelector(".s9-cmd"), full = cmd.dataset.text, lines = el.querySelectorAll(".tl1, .tl2, .tl3");
-      if (dir !== 1) { cmd.textContent = full; lines.forEach(function (l) { l.classList.add("shown"); }); return; }
+      if (s !== 1 || dir !== 1) {
+        if (s >= 1) { clear("s9"); cmd.textContent = full; lines.forEach(function (l) { l.classList.add("shown"); }); }
+        return;
+      }
+      clear("s9");
       lines.forEach(function (l) { l.classList.remove("shown"); });
       cmd.textContent = "";
       var i = 0;
       (function type() {
-        if (i <= full.length) { cmd.textContent = full.slice(0, i++); later("s9", i === 1 ? 700 : 45, type); }
+        if (i <= full.length) { cmd.textContent = full.slice(0, i++); later("s9", i === 1 ? 1200 : 45, type); }
         else lines.forEach(function (l, k) { later("s9", 300 + k * 450, function () { l.classList.add("shown"); }); });
       })();
     },

@@ -131,7 +131,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 ## Part 4: Why SL5 is so hard
 
 ### S9 (optional, first to cut) · 7:20 · 😄 #05 fortress + terminal
-- **On screen:** a fortress wall of enterprise security labels (SSO · EDR · Zero Trust · SOC 2) with a wide-open side door, where a researcher types `pip install turbo-weights-v2` (Author: `dark_wizard_99`, Created: 14 mins ago). Optional click: stamp "REAL: torchtriton, Dec 2022".
+- **On screen:** on entry, the question **"Where does enterprise security fail?"** over a fortress wall of enterprise security labels (SSO · EDR · Zero Trust · SOC 2); a small open side door at the bottom. Click 1: zoom into the open side door; a terminal types `pip install turbo-weights-v2` (Author: `dark_wizard_99`, Created: 14 mins ago). Click 2: stamp "REAL: torchtriton, Dec 2022". (Nov 14: one idea per click; the question bridges from the ladder.)
 - **Say:** "Why can't top Silicon Valley security (Okta, Zero Trust, SOC-2) stop an SL5 attacker? Because enterprise security is built to stop ransomware gangs while letting employees work fast. And try telling a PhD machine learning researcher making $2 million a year that he can't `pip install` a random Python package written yesterday by an anonymous guy on GitHub named `dark_wizard_99`, because it makes his training curve converge 2% faster." Optional: "And `dark_wizard_99` is real. In December 2022 his name was torchtriton: PyTorch's own nightly build pulled in a malicious package that read people's SSH keys."
 - **Notes:** text labels, no real vendor logos.
 
