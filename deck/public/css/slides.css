@@ -333,7 +333,9 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 /* S10 click 5: one line lights up and moves to the centre (bridge to S11's two-person rules) */
 #s10.s10-pick .s10-flood.on p { opacity: .12; transition-delay: 0s; }
 .s10-flood p.pick { position: relative; z-index: 3; transform-origin: center; border-radius: 2px; transition: opacity .35s, transform .9s cubic-bezier(.6,0,.2,1), color .4s, background .4s, box-shadow .4s; }
-#s10.s10-pick .s10-flood.on p.pick { opacity: 1; color: #111; background: var(--amb); box-shadow: 0 0 0 3px var(--amb), 0 0 60px var(--amb-glow); transform: translate(var(--tx, 0), var(--ty, 0)) scale(3.2); transition-delay: 0s, .25s, 0s, 0s, 0s; }
+#s10.s10-pick .s10-flood.on p.pick { opacity: 1; color: var(--fg); background: #15181d; box-shadow: 0 0 0 4px #15181d, 0 0 0 5px var(--amb), 0 0 80px #000; transform: translate(var(--tx, 0), var(--ty, 0)) scale(3.2); transition-delay: 0s, .25s, 0s, 0s, 0s; }
+.s10-flood .s10-key { background: none; color: inherit; transition: background .4s .6s, color .4s .6s; }
+#s10.s10-pick .s10-flood.on .s10-key { background: var(--amb); color: #111; }
 .s10-buried { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; font-size: 30px; padding: 18px 24px; }
 .s10-count { position: absolute; left: 90px; bottom: 50px; font-size: 26px; color: var(--mut); }
 .s10-count b { color: var(--amb); }

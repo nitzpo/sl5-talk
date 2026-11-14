@@ -296,9 +296,9 @@ First slide to cut (15-min version drops it).</aside>
     <div class="file s10-buried" data-in="4">weights.bin</div>
     <div class="s10-count mono" data-in="3" data-out="4"><b>47</b> engineering programs · 6 domains</div>
   </div>
-  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click: news clipping under "Insider Controls"] That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. [click: the 3 split into 6 domains] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, [click: the 6 move up, 47 programs fill in] and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once. [click: one line lights up] So let's take just one line. Dual authorization: two people have to approve before anything critical happens."
+  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click: news clipping under "Insider Controls"] That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. [click: the 3 split into 6 domains] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, [click: the 6 move up, 47 programs fill in] and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once. [click: one line lights up] So let's take just one line. Two authorized people must be present at all times. Two-person integrity."
 OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026. Reports say the device was behind the TV / in a USB port behind it. "Prosecutors say" for the Saudi-royal contact (allegation). OpenAI: no sign weights were accessed (keep for Q&A).
-Tiles = real block names from github.com/nitzpo/sl5; flood = real clauses from the SL5 Standard + RAND.</aside>
+Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement sentences from the SL5 Standard + RAND (verbatim; non-requirements filtered out Nov 14). Click-5 line: SL5 Standard, SL5 Supplemental Guidance (PE-3), verbatim.</aside>
 </section>
 
 <section class="slide" id="s11" data-title="Two-person rules" data-at="9:05" data-clicks="1">
@@ -337,7 +337,7 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real clauses from t
 
 <section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="9:35" data-clicks="1">
   <div class="pad s12">
-    <div class="kicker">The terminology and the building blocks</div>
+    <div class="kicker">The building blocks</div>
     <div class="credit">
       <div class="ccard"><p class="cwho">RAND</p><p class="cwhat">Securing AI Model Weights <span class="mut">(2024)</span></p><p class="cgive amb">the attacker tiers</p></div>
       <div class="ccard"><p class="cwho">Security Level 5</p><p class="cwhat">SL5 Standard <span class="mut">(2026)</span></p><p class="cgive amb">the building blocks</p></div>
@@ -366,21 +366,21 @@ C: "What is the probability that the raw weights of at least one frontier model 
 The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
 </section>
 
-<section class="slide" id="s14" data-title="B1 + B2 results" data-at="11:50">
+<section class="slide" id="s14" data-title="B1 + B2 results" data-at="11:50" data-clicks="1">
   <div class="pad s14">
     <div class="s14-col">
       <div class="kicker">How much does SL5 slow research?</div>
       <p class="s14-big live"><span class="amb" id="s14-heavy"></span> <span class="s14-lbl">expect a heavy slowdown (30%+)</span></p>
       <div class="bars compact live" data-results="B1" data-hl="2,3"></div>
     </div>
-    <div class="s14-col">
+    <div class="s14-col" data-in="1">
       <div class="kicker">As a lab CEO, when do you lock down?</div>
       <p class="s14-big live"><span class="amb" id="s14-jit"></span> <span class="s14-lbl">would wait for "Just-in-Time"</span></p>
       <div class="bars compact live" data-results="B2" data-hl="1"></div>
     </div>
     <div class="hands"><span class="tag">Show of hands</span>Heavy slowdown? · Would you wait for "Just-in-Time"?</div>
   </div>
-  <aside class="notes">"So X% of you think SL5 hurts research a lot, and Y% would wait until the models look dangerous. That's the pragmatic answer. It's what I'd have said. It's also the answer that loses."
+  <aside class="notes">"So X% of you think SL5 hurts research a lot. [click: B2] And Y% would wait until the models look dangerous. That's the pragmatic answer. It's what I'd have said. It's also the answer that loses."
 Branches:
 • "Start right now" wins: "Most of you would start now. Your future CFO disagrees. Let's see why you're right."
 • "Never" > 15%: "And to the X% who said never: at least you're honest."

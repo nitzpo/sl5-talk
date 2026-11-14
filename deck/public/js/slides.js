@@ -222,8 +222,13 @@
   if (S10 && flood) {
     var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
     var all = S10.clauses.concat(S10.clauses); // twice: enough to cover the screen at flood size
-    var PICK = /^Dual authorization mechanisms require/; // S10 click 5: the one line that bridges to S11 (two-person rules)
-    flood.innerHTML = all.map(function (c) { return '<p style="--d:' + Math.round(rnd() * 1400) + '"' + (PICK.test(c) ? " data-pick" : "") + ">" + c.replace(/</g, "&lt;") + "</p>"; }).join("");
+    // S10 click 5: the SL5 Standard's two-person-integrity line (bridge to S11); its key phrase gets highlighted
+    var PICK = /^SL5 Supplemental Guidance: Only personnel/, KEY = "two authorized individuals must be present at all times (two-person integrity)";
+    flood.innerHTML = all.map(function (c) {
+      var pick = PICK.test(c), html = c.replace(/</g, "&lt;");
+      if (pick) html = html.replace(KEY, '<mark class="s10-key">' + KEY + "</mark>");
+      return '<p style="--d:' + Math.round(rnd() * 1400) + '"' + (pick ? " data-pick" : "") + ">" + html + "</p>";
+    }).join("");
   }
 
   // ---------- S14: the two numbers the speaker quotes (live, computed from the votes)
