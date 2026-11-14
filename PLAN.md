@@ -97,7 +97,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 ### S4 · 3:20 · 📱 warm-up results
 - **On screen:** warm-up result bars animate in. The speaker's name in small type in the corner.
 - **Say:** "Quick look at who's here… Hi, I'm Nitzan. For years I led security architecture for critical infrastructure here in Israel, the kind of place where developers and researchers work on the inside of the air gap. Mostly, that meant being the guy who says no to the researcher with the USB stick."
-- **Notes:** sets up the KSP callback in S16. Optional branch if offense > defense: "Okay. I'll keep an eye on my laptop." If the warm-up is dropped: same line on a plain name slide.
+- **Notes:** sets up the S16 callback ("I used to be the guy saying no to him"). Optional branch if offense > defense: "Okay. I'll keep an eye on my laptop." If the warm-up is dropped: same line on a plain name slide.
 
 ## Part 3: How hard is it to steal?
 
