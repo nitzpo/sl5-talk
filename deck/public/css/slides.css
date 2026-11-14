@@ -257,7 +257,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s6 .lad-quote { position: absolute; left: 1350px; top: 400px; width: 430px; font-size: 24px; line-height: 1.35; color: var(--amb); }
 #s6 .s6-total { position: absolute; left: 140px; top: 840px; font-size: 28px; color: var(--mut); }
 #s6 .s6-hands { position: absolute; left: 140px; top: 900px; }
-#s6.nodata .lr-pct, #s6.novotes .lr-pct { visibility: hidden; }
+#s6.nodata .lr-pct { visibility: hidden; }
 
 /* ===================== S9 · fortress + side door ===================== */
 .s9-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,9,11,.8), transparent 40%), linear-gradient(180deg, rgba(8,9,11,.55), transparent 35%); }
@@ -289,21 +289,42 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .card3 { width: 450px; font-size: 46px; font-weight: 800; background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 56px 30px; text-align: center; }
 .card3 .mono { color: var(--amb); }
 .s10-cards { position: relative; }
-.card3 { position: relative; }
 /* click 1: one real clipping pinned under "Insider Controls"; the cards stay */
-.s10-abc { left: -330px; top: calc(100% + 34px); width: 820px; --rot: 2deg; }
-/* click 2: the 3 become the 6 domains of the 47 programs (same colors as the tile groups) */
-.s10-six { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 440px); gap: 36px 40px; justify-content: center; align-content: center; }
-.s10-six .dom { font: 800 50px/1 var(--sans); background: var(--card); border: 2px solid var(--line); border-top: 10px solid currentColor; border-radius: 20px; padding: 44px 30px; text-align: center; }
-.s10-six .dom span { display: block; color: var(--fg); }
-.s10-six .dom small { display: block; margin-top: 14px; font: 600 26px var(--mono); color: currentColor; }
-.s10-six.on .dom { animation: tilein .55s cubic-bezier(.3,1.3,.5,1) both; animation-delay: calc(var(--i) * 90ms); }
-.s10-tiles { position: absolute; inset: 90px 90px 120px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; align-content: start;
+.s10-abc { left: 650px; top: calc(100% + 34px); width: 820px; --rot: 2deg; }
+/* click 2: each of the 3 cards splits into its domains in the same row (Network ← 1; Machine, Physical, Supply chain ← 2;
+   Personnel ← 3; AI-specific is new). Origin rects (--ox/--oy/--ow/--oh) and the row center (--cy) are measured from the
+   cards by slides.js. Click 3: the 6 move up and become the column headers of the 47 programs. */
+.s10-six { position: absolute; inset: 0; pointer-events: none; transform-origin: 960px 555px; /* = .s10-tiles center (step 4 shrink together) */
+  --mv: .9s cubic-bezier(.6,0,.2,1);
+  transition: transform 1.4s cubic-bezier(.6,0,.2,1), opacity 1.4s, filter 1.4s; }
+.s10-six .dom { position: absolute; left: var(--ox); top: var(--oy); width: var(--ow); height: var(--oh); opacity: 0;
+  background: var(--card); border: 2px solid var(--line); border-radius: 20px;
+  transition: left var(--mv), top var(--mv), width var(--mv), height var(--mv), border-top-width .6s, border-top-color .6s, border-radius .6s,
+    opacity 0s .9s; /* back to click 1: vanish once home */ }
+.s10-six .dom > span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; }
+.s10-six .old { font-size: 46px; font-weight: 800; padding: 0 30px; color: var(--fg); transition: opacity .3s .4s; } /* = .card3 text; back: returns while the box flies home */
+.s10-six .old .mono { color: var(--amb); }
+.s10-six .new { font-size: 34px; font-weight: 800; padding: 0 12px; color: var(--fg); opacity: 0; transition: opacity .2s, font-size var(--mv), padding var(--mv); }
+.s10-six .dom small { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); font: 700 24px var(--mono); color: currentColor; opacity: 0; transition: opacity .3s; }
+.s10-six .fresh { transform: scale(.6); transition: opacity .2s, transform .2s; }
+.card3 { transition: opacity 0s .9s; } /* back to click 1: reappear when the doms are home */
+#s10.s10-split .card3 { opacity: 0; transition: none; } /* swap in the same frame: the doms take over */
+#s10.s10-split .dom { left: calc(90px + var(--s) * 293px); top: calc(var(--cy) - 85px); width: 275px; height: 170px; opacity: 1; border-top: 9px solid currentColor;
+  transition: left var(--mv), top var(--mv), width var(--mv), height var(--mv), border-top-width .6s, border-top-color .6s, border-radius .6s, opacity 0s; }
+#s10.s10-split .fresh { transform: none;
+  transition: left var(--mv), top var(--mv), width var(--mv), height var(--mv), border-top-width .6s, border-top-color .6s, border-radius .6s,
+    opacity .4s .75s, transform .55s .75s cubic-bezier(.3,1.4,.5,1); } /* new domain pops in after the split */
+#s10.s10-split .old { opacity: 0; transition: opacity .35s .1s; }
+#s10.s10-split .new { opacity: 1; transition: opacity .4s .4s, font-size var(--mv), padding var(--mv); }
+#s10.s10-head .dom { top: 72px; height: 62px; border-radius: 12px; }
+#s10.s10-head .new { font-size: 25px; padding: 0 44px 0 12px; }
+#s10.s10-head .dom small { opacity: 1; transition: opacity .4s .7s; }
+#s10[data-step="4"] .s10-six { transform: scale(.4); opacity: .18; filter: blur(1px); }
+.s10-tiles { position: absolute; inset: 150px 90px 120px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; align-content: start;
   transition: transform 1.4s cubic-bezier(.6,0,.2,1), opacity 1.4s, filter 1.4s; }
 .s10-tiles .grp { display: flex; flex-direction: column; gap: 9px; }
-.s10-tiles .gname { font: 700 21px var(--mono); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 6px; display: flex; justify-content: space-between; }
 .s10-tiles .tile { font-size: 19px; line-height: 1.22; padding: 11px 12px; border-radius: 9px; background: var(--card); border-left: 6px solid currentColor; color: var(--fg); }
-.s10-tiles.on .tile { animation: tilein .5s cubic-bezier(.3,1.3,.5,1) both; animation-delay: calc(var(--i) * 18ms); }
+.s10-tiles.on .tile { animation: tilein .5s cubic-bezier(.3,1.3,.5,1) both; animation-delay: calc(.5s + var(--i) * 18ms); } /* after the headers land */
 @keyframes tilein { from { opacity: 0; transform: scale(.6) translateY(30px); } }
 #s10[data-step="4"] .s10-tiles { transform: scale(.4); opacity: .18; filter: blur(1px); }
 .s10-flood { position: absolute; inset: 0; z-index: 2; padding: 18px 22px; column-count: 9; column-gap: 20px; font: 12px/1.3 var(--sans); color: #b3b9c1; overflow: hidden; }
@@ -373,6 +394,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s14 > .hands { flex: 0 0 100%; } /* fallback: its own row under the two questions */
 .s14-col { flex: 1; display: flex; flex-direction: column; gap: 26px; }
 .s14-big { display: flex; align-items: baseline; gap: 18px; min-height: 120px; }
+.s14-big:has(.amb:empty) { visibility: hidden; } /* no votes yet: no number, no sentence (never a fake 0% or a bare claim) */
 .s14-big .amb { font: 900 112px/1 var(--sans); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .s14-lbl { font-size: 32px; font-weight: 600; }
 

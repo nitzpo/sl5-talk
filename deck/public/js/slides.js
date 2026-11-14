@@ -167,19 +167,45 @@
 
   // ---------- S10: 47 real blocks (github.com/nitzpo/sl5) → flood of real clauses (SL5 Standard + RAND)
   var S10 = window.SL5_S10, COLORS = ["#5aa9ff", "#b48cff", "#ff8a5c", "#3ddc84", "#ffd166", "#ff5c8a"];
-  var tiles = document.getElementById("s10-tiles"), flood = document.getElementById("s10-flood");
-  if (S10 && tiles) {
+  var tiles = document.getElementById("s10-tiles"), flood = document.getElementById("s10-flood"), six = document.getElementById("s10-six");
+  // display order = how the 3 pillars split: Network ← card 1; Machine, Physical, Supply chain ← card 2; Personnel ← card 3; AI-specific new
+  var SPLIT = [["Network", 0], ["Machine", 1], ["Physical", 1], ["Supply chain", 1], ["Personnel", 2], ["AI-specific", -1]];
+  var groups = S10 ? SPLIT.map(function (p) { return { g: S10.groups.filter(function (g) { return g.name === p[0]; })[0], from: p[1] }; })
+    .filter(function (x) { return x.g; }) : [];
+  if (S10 && groups.length !== S10.groups.length) groups = S10.groups.map(function (g) { return { g: g, from: -1 }; }); // data changed: plain order
+  if (tiles) {
     var k = 0;
-    tiles.innerHTML = S10.groups.map(function (g, gi) {
-      return '<div class="grp" style="color:' + COLORS[gi] + '"><div class="gname"><span>' + g.name + "</span><span>" + g.blocks.length + "</span></div>" +
-        g.blocks.map(function (b) { return '<div class="tile" style="--i:' + (k++) + '">' + b + "</div>"; }).join("") + "</div>";
+    tiles.innerHTML = groups.map(function (x, gi) {
+      return '<div class="grp" style="color:' + COLORS[gi] + '">' +
+        x.g.blocks.map(function (b) { return '<div class="tile" style="--i:' + (k++) + '">' + b + "</div>"; }).join("") + "</div>";
     }).join("");
   }
-  var six = document.getElementById("s10-six");
-  if (S10 && six) {
-    six.innerHTML = S10.groups.map(function (g, gi) {
-      return '<div class="dom" style="color:' + COLORS[gi] + ';--i:' + gi + '"><span>' + g.name + "</span><small>" + g.blocks.length + " programs</small></div>";
+  if (six) {
+    var cards = [].slice.call(document.querySelectorAll("#s10 .card3"));
+    six.innerHTML = groups.map(function (x, gi) {
+      var old = x.from >= 0 && cards[x.from] ? '<span class="old"><span>' + cards[x.from].innerHTML + "</span></span>" : ""; // inner span: one flex item, wraps like the card
+      return '<div class="dom' + (old ? "" : " fresh") + '" data-from="' + x.from + '" style="color:' + COLORS[gi] + ";--s:" + gi + '">' + old +
+        '<span class="new">' + x.g.name + "</span><small>" + x.g.blocks.length + "</small></div>";
     }).join("");
+    // origin of each dom = the rect of the card it grows out of (stage px); new domains start at their slot
+    var measure = function () {
+      var pad = six.parentNode, pr = pad.getBoundingClientRect(), z = pr.width / pad.offsetWidth || 1;
+      var R = cards.map(function (c) { var r = c.getBoundingClientRect(); return { x: (r.left - pr.left) / z, y: (r.top - pr.top) / z, w: r.width / z, h: r.height / z }; });
+      if (!R.length || !R[0].w) return;
+      var cy = R[0].y + R[0].h / 2;
+      six.style.setProperty("--cy", cy + "px");
+      [].forEach.call(six.children, function (d) {
+        var o = R[+d.dataset.from] || { x: 90 + 293 * +d.style.getPropertyValue("--s"), y: cy - 85, w: 275, h: 170 };
+        d.style.setProperty("--ox", o.x + "px"); d.style.setProperty("--oy", o.y + "px");
+        d.style.setProperty("--ow", o.w + "px"); d.style.setProperty("--oh", o.h + "px");
+      });
+    };
+    measure();
+    if (document.fonts) document.fonts.ready.then(measure);
+    Deck.on("s10", {
+      enter: measure,
+      step: function (el, s) { el.classList.toggle("s10-split", s >= 2); el.classList.toggle("s10-head", s >= 3); },
+    });
   }
   if (S10 && flood) {
     var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
@@ -191,8 +217,8 @@
   Deck.listen("results", function (x) {
     if (x.el.id !== "s14") return;
     var b1 = x.res && x.res.polls && x.res.polls.B1, b2 = x.res && x.res.polls && x.res.polls.B2;
-    var pct = function (n, d) { return d ? Math.round((100 * n) / d) + "%" : "–"; };
-    document.getElementById("s14-heavy").textContent = b1 ? pct(b1.counts[2] + b1.counts[3], b1.total) : "–";
-    document.getElementById("s14-jit").textContent = b2 ? pct(b2.counts[1], b2.total) : "–";
+    var pct = function (n, d) { return d ? Math.round((100 * n) / d) + "%" : ""; }; // no votes: empty (hidden), never a fake 0%
+    document.getElementById("s14-heavy").textContent = b1 ? pct(b1.counts[2] + b1.counts[3], b1.total) : "";
+    document.getElementById("s14-jit").textContent = b2 ? pct(b2.counts[1], b2.total) : "";
   });
 })();

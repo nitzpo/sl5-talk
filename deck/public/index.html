@@ -207,7 +207,7 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
   <div class="pad s6">
     <div class="kicker k-res" data-out="1">Minimum level of attacker to steal the weights today</div>
     <div class="kicker k-lad" data-in="1">Security Levels: who can break in?</div>
-    <div class="lad" id="lad" data-empty-check="A">
+    <div class="lad" id="lad">
       <div class="lr" data-key="imp" data-opt="3">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">Impossible, even for a superpower</div>
@@ -285,17 +285,17 @@ First slide to cut (15-min version drops it).</aside>
       <div class="s10-cards">
         <div class="card3"><span class="mono">1.</span> Network Air-Gaps</div>
         <div class="card3"><span class="mono">2.</span> Secure Hardware</div>
-        <div class="card3"><span class="mono">3.</span> Insider Controls
-          <img class="clip s10-abc" data-in="1" src="img/news-abc.webp" alt="ABC News: OpenAI employee arrested for listening device communicated with Saudi royal, feds say"></div>
+        <div class="card3"><span class="mono">3.</span> Insider Controls</div>
+        <img class="clip s10-abc" data-in="1" src="img/news-abc.webp" alt="ABC News: OpenAI employee arrested for listening device communicated with Saudi royal, feds say">
       </div>
     </div>
-    <div class="s10-six" id="s10-six" data-in="2" data-out="3"></div>
+    <div class="s10-six" id="s10-six"></div>
     <div class="s10-tiles" id="s10-tiles" data-in="3"></div>
     <div class="s10-flood" id="s10-flood" data-in="4"></div>
     <div class="file s10-buried" data-in="4">weights.bin</div>
     <div class="s10-count mono" data-in="3" data-out="4"><b>47</b> engineering programs · 6 domains</div>
   </div>
-  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click: news clipping under "Insider Controls"] That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. [click: 3 → 6 domains] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, [click: 47 programs] and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
+  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders. [click: news clipping under "Insider Controls"] That's not theoretical. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family. [click: the 3 split into 6 domains] Then you open the actual RAND report and the SL5 Standard. RAND maps 38 attack vectors, [click: the 6 move up, 47 programs fill in] and the defenses turn into 47 major engineering programs. [click] And underneath those are hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once."
 OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026. Reports say the device was behind the TV / in a USB port behind it. "Prosecutors say" for the Saudi-royal contact (allegation). OpenAI: no sign weights were accessed (keep for Q&A).
 Tiles = real block names from github.com/nitzpo/sl5; flood = real clauses from the SL5 Standard + RAND.</aside>
 </section>
@@ -369,12 +369,12 @@ The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
   <div class="pad s14">
     <div class="s14-col">
       <div class="kicker">How much does SL5 slow research?</div>
-      <p class="s14-big live"><span class="amb" id="s14-heavy">–</span> <span class="s14-lbl">expect a heavy slowdown (30%+)</span></p>
+      <p class="s14-big live"><span class="amb" id="s14-heavy"></span> <span class="s14-lbl">expect a heavy slowdown (30%+)</span></p>
       <div class="bars compact live" data-results="B1" data-hl="2,3"></div>
     </div>
     <div class="s14-col">
       <div class="kicker">As a lab CEO, when do you lock down?</div>
-      <p class="s14-big live"><span class="amb" id="s14-jit">–</span> <span class="s14-lbl">would wait for "Just-in-Time"</span></p>
+      <p class="s14-big live"><span class="amb" id="s14-jit"></span> <span class="s14-lbl">would wait for "Just-in-Time"</span></p>
       <div class="bars compact live" data-results="B2" data-hl="1"></div>
     </div>
     <div class="hands"><span class="tag">Show of hands</span>Heavy slowdown? · Would you wait for "Just-in-Time"?</div>
