@@ -203,7 +203,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
   - Start: "Alignment: an unsolved *science* problem."
   - Click 1: a real excerpt from the SL5 Standard site (standard.sl5.org → Threat Model), two sentences highlighted: the insider-threat sentence and "Mitigations for this threat class substantially overlap with nation-state defenses."
   - Click 2: "Securing the weights: a *systems-engineering* fight." (alignment line dimmed above).
-- **Say:** "Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. And until it's solved, the model itself is a risk. [click] The SL5 Standard already treats the model as a possible insider: a misaligned model that tries to sabotage research or copy itself out. And the next line: the defenses overlap with the nation-state ones. The walls that keep a spy agency out are the same walls that keep the model in. [click] And securing the weights is *not* an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, **this is a fight the people in this room actually know how to win.**"
+- **Say:** "Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. And until it's solved, the model itself is a risk. [click] The SL5 Standard already treats the model as a possible insider: a misaligned model that tries to sabotage research or copy itself out. And the next line: the defenses overlap with the nation-state ones. The walls that keep a spy agency out are the same walls that keep the model in. [click] So securing the weights does two jobs: it keeps the spies out, and it keeps the model in while alignment catches up. And it's *not* an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, **this is a fight the people in this room actually know how to win.**"
 - **Notes:** source: the SL5 Standard v0.1 (Threat Model) counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat"; "Mitigations for this threat class substantially overlap with nation-state defenses."
 
 ### S19 (optional) · 15:45 · 📱 warm-up callback
@@ -212,8 +212,8 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 - **Notes:** if the warm-up is dropped: plain text version.
 
 ### S20 · 16:15 · ⬛ links
-- **On screen:** "It's on your phone now": phones have already switched to the links page. On screen, the key links and names, plus a small QR in the corner for latecomers:
-  1. Understand it in 5 min: the intro (works on a phone)
+- **On screen:** "Links on your phone" (Nov 14; was "It's on your phone now"): phones have already switched to the links page. On screen, the key links and names, plus a small QR in the corner for latecomers:
+  1. Understand it in 5 min: `nitzpo.github.io/sl5/intro`, the intro (works on a phone)
   2. Play with the simulator: `nitzpo.github.io/sl5`, "on a computer, not a phone" (Nov 14: make clear where it is and that it needs a PC)
   3. Go deeper: the RAND report · the SL5 Standard
   4. Talk to me: LinkedIn / after the talk
