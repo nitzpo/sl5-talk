@@ -30,7 +30,7 @@ Anchors: SL5 is complex · Reactive isn't enough · Starting early is what works
 | 2 Who's talking | 3:20–4:05 | S4 | Warm-up results + credential line |
 | 3 How hard is it to steal? | 4:05–6:50 | S5–S7 | Poll A → RAND ladder (S8 cut) |
 | 4 Why SL5 is so hard | 6:50–9:50 | S9–S12 | Wall of text, two-person gag, credit to RAND + Security Level 5 |
-| 5 When do you lock the doors? | 9:50–14:35 | S13–S17 | Polls B1/B2/C → calendar trap + RAND quote → silent-twin callback |
+| 5 When do you lock the doors? | 9:50–14:35 | S13–S17 | Polls B1/B2/C → calendar trap + RAND quote → distillation → silent-twin callback |
 | 6 Call to arms | 14:35–16:50 | S18–S21 | Bridge, this room, links, thank you |
 
 Per-slide times below are from before S8 was cut.
