@@ -183,26 +183,28 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 ### S16 (trim in the 15-min cut) · 13:20 · 😄 simulator GIF + USB gag
 - **On screen:**
   - Click 1: the simulator GIF plays, with no numbers on screen; caption `nitzpo.github.io/sl5`.
-  - Click 2: an air-gap wall animation: a researcher hops over it holding a USB stick tagged "$12 · KSP".
-- **Say:** "You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the **SL5 Explorable**, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just buys a $12 USB stick at KSP and becomes your new network router." "Remember, I used to be the guy saying no to him."
+  - Click 2: an air-gap wall animation: a researcher hops over it holding up a USB stick ("← new network router"). No price or store on screen (Nov 14).
+- **Say:** "You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the **SL5 Explorable**, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router." "Remember, I used to be the guy saying no to him."
 - **Notes:** last line is a callback to S4.
 
-### S17 · 14:05 · 📱 C results → 🎬 silent-twin callback
-- **On screen:**
-  - Click 1: C bars.
-  - Click 2: the silent-twin split from S3 returns, dimmed.
-  - Click 3: a real news clipping: The Hacker News, "Anthropic Says Seven China-Based AI Labs Ran Industrial-Scale Claude Distillation Attacks" (headline + the article's illustration).
-  - Click 4: back to the silent twin, no text (Nov 13: on-screen line "Just-in-Time needs a warning…" removed, Nitzan didn't like it; the closer is spoken).
-- **Say:** "And X% of you think it may already have happened. Remember the silent twin. If it had, what would we see? Nothing. Maybe it hasn't happened yet, because right now there's a cheaper way: distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that stays inside can't be distilled. It can only be stolen. 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
-- **Branch:** C mostly "Low": "Most of you think it hasn't happened yet. Good. Then the clock is still running."
+### S17 · 14:05 · 📱 C results → distillation → 🎬 silent twin
+- **On screen** (Nov 14 reorder: question → why not yet → what it looks like when it happens):
+  - Start: C bars.
+  - Click 1: a real news clipping: The Hacker News, "Anthropic Says Seven China-Based AI Labs Ran Industrial-Scale Claude Distillation Attacks" (headline + the article's illustration).
+  - Click 2: the silent-twin split from S3 returns, full size, no text (the closer is spoken).
+- **Say:** "X% of you think it may already have happened. Honestly, maybe not yet. Today they don't need to steal: there's a cheaper way. [click] Distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that never leaves the lab can't be distilled. It can only be stolen. [click] And when that happens, what do we see? Nothing. 'Wait until it looks dangerous' assumes you'll get a warning. Theft doesn't send one. And the building takes four years."
+- **Branch:** C mostly "High": "Most of you think it already happened. Maybe. But today they don't even need to steal: there's a cheaper way." C mostly "Low": "Most of you think it hasn't happened yet. Probably right, because today there's a cheaper way."
 - **Notes:** the core trap linking B2 and C. Distillation: Anthropic reported seven China-based distillation campaigns in 2026 (Sept report; the largest, Alibaba-affiliated, ≈151M exchanges). "The most capable models stay off public APIs" comes from the Security Level 5 interview (unverified word for word), so say it as your own view. The SL5 Standard lists model outputs as assets to protect because they "could be used to distill".
 
 ## Part 6: Call to arms
 
 ### S18 · 15:05 · ⬛
-- **On screen:** two lines, one after the other: "Alignment: an unsolved *science* problem." / "Securing the weights: a *systems-engineering* fight." Click 3: a real excerpt from the SL5 Standard site (standard.sl5.org → Threat Model), with the insider-threat sentence highlighted.
-- **Say:** "Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. Securing the model weights is *not* an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, **this is a fight the people in this room actually know how to win.**" (C, on click 3) "One more reason the AI-safety people here should care. The SL5 Standard already treats the model itself as a possible insider: a misaligned model that tries to sabotage research or copy itself out. The walls that keep a spy agency out are the same walls that keep the model in."
-- **Notes:** the click-3 line is new in v6. Source: the SL5 Standard v0.1 counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat".
+- **On screen** (Nov 14 reorder: ends on the call to arms, which also matters in the 15-min cut where S19 is dropped):
+  - Start: "Alignment: an unsolved *science* problem."
+  - Click 1: a real excerpt from the SL5 Standard site (standard.sl5.org → Threat Model), two sentences highlighted: the insider-threat sentence and "Mitigations for this threat class substantially overlap with nation-state defenses."
+  - Click 2: "Securing the weights: a *systems-engineering* fight." (alignment line dimmed above).
+- **Say:** "Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. And until it's solved, the model itself is a risk. [click] The SL5 Standard already treats the model as a possible insider: a misaligned model that tries to sabotage research or copy itself out. And the next line: the defenses overlap with the nation-state ones. The walls that keep a spy agency out are the same walls that keep the model in. [click] And securing the weights is *not* an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, **this is a fight the people in this room actually know how to win.**"
+- **Notes:** source: the SL5 Standard v0.1 (Threat Model) counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat"; "Mitigations for this threat class substantially overlap with nation-state defenses."
 
 ### S19 (optional) · 15:45 · 📱 warm-up callback
 - **On screen:** the warm-up bars return: "Red team", "Blue team" and "AI (research, safety, security)" light up together.

@@ -430,33 +430,34 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .wall span { writing-mode: vertical-rl; font: 800 40px var(--mono); letter-spacing: .25em; color: #ecebe8; }
 .hopper { position: absolute; width: 120px; height: 200px; left: 900px; top: 80px; fill: none; stroke: #ecebe8; stroke-width: 9; stroke-linecap: round; }
 .hopper circle { fill: #ecebe8; stroke: none; }
-.usb { position: absolute; left: 1010px; top: 70px; font-size: 26px; background: var(--amb); color: #111; padding: 6px 14px; border-radius: 8px; font-weight: 700; display: flex; gap: 10px; align-items: center; }
-.usb-stick { width: 28px; height: 13px; background: #111; border-radius: 3px; }
+.usb { position: absolute; left: 985px; top: 122px; display: flex; align-items: center; transform: rotate(-24deg); filter: drop-shadow(0 6px 18px #0009); } /* in the raised hand */
+.usb-body { width: 84px; height: 38px; background: var(--amb); border-radius: 9px 4px 4px 9px; }
+.usb-plug { position: relative; width: 32px; height: 26px; background: #c9ced6; border-radius: 0 3px 3px 0; }
+.usb-plug::before, .usb-plug::after { content: ""; position: absolute; left: 10px; width: 9px; height: 6px; background: #5d646e; }
+.usb-plug::before { top: 5px; } .usb-plug::after { bottom: 5px; }
 .s16-gap.on .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
 .s16-gap.on .usb { animation: hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
 @keyframes hop { 0% { left: 600px; top: 640px; } 55% { left: 800px; top: 90px; } 100% { left: 900px; top: 80px; } }
-@keyframes hopusb { 0% { left: 710px; top: 630px; } 55% { left: 910px; top: 80px; } 100% { left: 1010px; top: 70px; } }
+@keyframes hopusb { 0% { left: 685px; top: 682px; } 55% { left: 885px; top: 132px; } 100% { left: 985px; top: 122px; } }
 .bridge { position: absolute; left: 140px; top: 100px; width: 1640px; height: 600px; fill: none; stroke: var(--amb); stroke-width: 6; stroke-dasharray: 16 14; opacity: 0; }
 .s16-gap.on .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
 @keyframes flow { to { stroke-dashoffset: -60; } }
-.router { position: absolute; left: 1040px; top: 140px; font-size: 30px; color: var(--amb); opacity: 0; }
+.router { position: absolute; left: 1125px; top: 100px; font-size: 30px; color: var(--amb); opacity: 0; }
 .router::before { content: "← "; }
 .s16-gap.on .router { animation: fadein .5s 2.7s both; }
 
 /* ===================== S17 · C results → silent twin ===================== */
 .s17-c { position: absolute; inset: 110px 140px; }
-.s17-twin { position: absolute; left: 0; right: 0; top: 250px; display: flex; justify-content: center; gap: 80px; transition: opacity .8s; }
-.s17-twin.on { opacity: .6; }
-#s17[data-step="2"] .s17-twin { opacity: 0; }
-#s17[data-step="3"] .s17-twin { opacity: .85; }
+.s17-twin { position: absolute; left: 0; right: 0; top: 160px; display: flex; justify-content: center; gap: 80px; } /* full size: the closer */
 .s17-clip { left: 290px; top: 70px; width: 1340px; --rot: 1deg; }
-.sqbox.sm { width: 580px; height: 580px; }
 .s17-q { position: absolute; right: 26px; top: 10px; font-size: 64px; color: var(--red); font-weight: 800; }
 
 /* ===================== S18 ===================== */
 .s18 { justify-content: center; gap: 70px; }
 .s18-a { transition: opacity .6s; }
-#s18[data-step="1"] .s18-a { opacity: .4; }
+#s18[data-step="1"] .s18-a { opacity: 0; transition-duration: .25s; } /* the excerpt has the stage */
+#s18[data-step="2"] .s18-a { opacity: .4; }
+#s18[data-step="2"] .s18-a, #s18[data-step="2"] .s18-b { transition-delay: .4s; } /* after the excerpt has left: no overlap */
 .s18-clip { left: 160px; top: 230px; width: 1600px; --rot: -.8deg; }
 
 /* ===================== S19 ===================== */

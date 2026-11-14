@@ -415,46 +415,47 @@ Optional on the last click: "RAND said it back in 2024: achieving SL5 is current
       <div class="wall"><span class="mono">AIR GAP</span></div>
       <div class="net net-out"><p class="mono">the internet</p><i></i><i></i><i></i><i></i></div>
       <svg class="hopper" viewBox="0 0 120 200" aria-hidden="true"><circle cx="60" cy="34" r="22"/><path d="M60 58 L60 128 M60 78 L22 100 M60 78 L98 62 M60 128 L32 190 M60 128 L88 190"/></svg>
-      <div class="usb mono"><span class="usb-stick"></span>$12 · KSP</div>
+      <div class="usb" aria-label="USB stick"><span class="usb-body"></span><span class="usb-plug"></span></div>
       <svg class="bridge" viewBox="0 0 1640 400" preserveAspectRatio="none" aria-hidden="true"><path d="M300 250 C 600 250, 650 80, 820 80 S 1040 250, 1340 250"/></svg>
       <p class="router mono">new network router</p>
     </div>
   </div>
-  <aside class="notes">"You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. [click] And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just buys a $12 USB stick at KSP and becomes your new network router."
+  <aside class="notes">"You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. [click] And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router."
 "Remember, I used to be the guy saying no to him."
 No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
 </section>
 
-<section class="slide" id="s17" data-title="C results → silent twin → distillation" data-at="14:05" data-clicks="3">
+<section class="slide" id="s17" data-title="C results → distillation → silent twin" data-at="14:05" data-clicks="2">
   <div class="pad s17">
     <div class="s17-c" data-out="1">
       <div class="kicker">Already silently stolen?</div>
       <div class="bars live" data-results="C" data-lead></div>
       <div class="hands"><span class="tag">Show of hands</span>High? · Moderate? · Low?</div>
     </div>
-    <div class="s17-twin" data-in="1">
-      <div class="sqbox sm"><div class="img ph" data-img="03-bright-servers" data-label="#03"></div><div class="badge-ok mono"><i class="led"></i>All systems normal</div><div class="file twin-file">weights.bin</div></div>
-      <div class="sqbox sm dark"><div class="img ph" data-img="04-dark-rack" data-label="#04"></div><div class="file twin-file cold">weights.bin</div><p class="s17-q mono">?</p></div>
+    <img class="clip s17-clip" data-in="1" data-out="2" src="img/news-thn.webp" alt="The Hacker News: Anthropic says seven China-based AI labs ran industrial-scale Claude distillation attacks">
+    <div class="s17-twin" data-in="2">
+      <div class="sqbox"><div class="img ph" data-img="03-bright-servers" data-label="#03"></div><div class="badge-ok mono"><i class="led"></i>All systems normal</div><div class="file twin-file">weights.bin</div></div>
+      <div class="sqbox dark"><div class="img ph" data-img="04-dark-rack" data-label="#04"></div><div class="file twin-file cold">weights.bin</div><p class="s17-q mono">?</p></div>
     </div>
-    <img class="clip s17-clip" data-in="2" data-out="3" src="img/news-thn.webp" alt="The Hacker News: Anthropic says seven China-based AI labs ran industrial-scale Claude distillation attacks">
   </div>
-  <aside class="notes">"And X% of you think it may already have happened. [click] Remember the silent twin. If it had, what would we see? Nothing.
-[click: news clipping] Maybe it hasn't happened yet, because right now there's a cheaper way: distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that stays inside can't be distilled. It can only be stolen.
-[click: the silent twin again, no text] 'Wait until it looks dangerous' assumes you'll get a warning. The theft doesn't send one. And the building takes four years."
+  <aside class="notes">"X% of you think it may already have happened. Honestly, maybe not yet. Today they don't need to steal: there's a cheaper way. [click: news clipping] Distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that never leaves the lab can't be distilled. It can only be stolen.
+[click: the silent twin, no text] And when that happens, what do we see? Nothing. 'Wait until it looks dangerous' assumes you'll get a warning. Theft doesn't send one. And the building takes four years."
 Distillation: Anthropic, Sept 2026 report: seven China-based labs; largest (Alibaba-affiliated) ≈151M exchanges. "Most capable models stay off public APIs": say it as your own view.
-Branch if C is mostly "Low": "Most of you think it hasn't happened yet. Good. Then the clock is still running."</aside>
+Branch, mostly "High": "Most of you think it already happened. Maybe. But today they don't even need to steal: there's a cheaper way."
+Branch, mostly "Low": "Most of you think it hasn't happened yet. Probably right, because today there's a cheaper way."</aside>
 </section>
 
 <!-- ============================== PART 6: CALL TO ARMS ============================== -->
 <section class="slide" id="s18" data-title="Science vs engineering (+ model as insider)" data-at="15:05" data-clicks="2" data-poll-close="B1,B2,C">
   <div class="pad s18">
-    <p class="statement s18-a" data-out="2">Alignment: an unsolved <em>science</em> problem.</p>
-    <p class="statement s18-b rise" data-in="1" data-out="2">Securing the weights: a <em class="amb">systems-engineering</em> fight.</p>
+    <p class="statement s18-a">Alignment: an unsolved <em>science</em> problem.</p>
+    <p class="statement s18-b rise" data-in="2">Securing the weights: a <em class="amb">systems-engineering</em> fight.</p>
   </div>
-  <img class="clip s18-clip" data-in="2" src="img/sl5-standard-insider.webp" alt="SL5 Standard, Threat Model: misaligned or compromised AI models that may attempt to sabotage research or exfiltrate themselves constitute a distinct form of insider threat">
-  <aside class="notes">"Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. [click] Securing the model weights is not an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, this is a fight the people in this room actually know how to win."
-[click: SL5 Standard excerpt] "One more reason the AI-safety people here should care. The SL5 Standard already treats the model itself as a possible insider: a misaligned model that tries to sabotage research or copy itself out. The walls that keep a spy agency out are the same walls that keep the model in."
-Source: SL5 Standard v0.1 counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat".</aside>
+  <img class="clip s18-clip" data-in="1" data-out="2" src="img/sl5-standard-insider.webp" alt="SL5 Standard, Threat Model: misaligned or compromised AI models that may attempt to sabotage research or exfiltrate themselves constitute a distinct form of insider threat. Mitigations for this threat class substantially overlap with nation-state defenses.">
+  <aside class="notes">"Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. And until it's solved, the model itself is a risk.
+[click: SL5 Standard excerpt] The SL5 Standard already treats the model as a possible insider: a misaligned model that tries to sabotage research or copy itself out. And the next line: the defenses overlap with the nation-state ones. The walls that keep a spy agency out are the same walls that keep the model in.
+[click] And securing the weights is not an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, this is a fight the people in this room actually know how to win."
+Source: SL5 Standard v0.1 (Threat Model) counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat"; "Mitigations for this threat class substantially overlap with nation-state defenses."</aside>
 </section>
 
 <section class="slide" id="s19" data-title="Warm-up callback (optional)" data-at="15:45" data-cut="drop">

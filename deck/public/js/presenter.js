@@ -221,7 +221,8 @@
     s17: { g: ["BC"], f: function (r) {
       var d = r.polls.C, x = pct(d, [0, 1]), h = [];
       if (x !== null) h.push(["", "X (high + moderate) = " + x + "%"]);
-      if (leader(d) === 2) h.push(["say", "Mostly “Low”: “Most of you think it hasn't happened yet. Good. Then the clock is still running.”"]);
+      if (leader(d) === 0) h.push(["say", "Mostly “High”: “Most of you think it already happened. Maybe. But today they don't even need to steal: there's a cheaper way.”"]);
+      if (leader(d) === 2) h.push(["say", "Mostly “Low”: “Most of you think it hasn't happened yet. Probably right, because today there's a cheaper way.”"]);
       return { nums: nums("C", d), hints: h };
     } },
     s19: { g: ["warm"], f: function (r) {
