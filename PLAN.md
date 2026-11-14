@@ -285,4 +285,4 @@ Style block prepended to every prompt: "Cinematic film still, 16:9, low-key ligh
 | Kiss-cam clip: an AI video by Peter Dedene (@dedene), circulated on X | Nitzan's upload |
 
 ## Decided
-17-min plan + 15-min cut (slot unknown) · deck runs on any laptop · no reliance on the workshop or Heron · naming torchtriton and Su Bin is OK · the simulator stays vague · keep the "depends on the contract" joke · hype words OK · working title = Ctrl+C, Ctrl+V a Fighter Jet.
+17-min plan + 15-min cut (slot unknown) · deck runs on any laptop · no reliance on the workshop or Heron · naming torchtriton and Su Bin is OK · the simulator stays vague · keep the "depends on the contract" joke · hype words OK · working title = Ctrl+C, Ctrl+V a Fighter Jet · subtitle = Why defending against superpowers and against rogue AI go hand in hand (Nov 14).
