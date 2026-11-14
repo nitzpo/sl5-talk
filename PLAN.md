@@ -208,7 +208,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 
 ### S19 (optional) · 15:45 · 📱 warm-up callback
 - **On screen:** the warm-up bars return: "Red team", "Blue team" and "AI (research, safety, security)" light up together.
-- **Say:** "Half this room spent years getting into air-gapped networks. The other half spent years building them. And the AI people here know what's inside, and what might try to get out. This needs all of you."
+- **Say:** "Half this room spent years getting into air-gapped networks. The other half spent years building them. And the AI people here know what's inside, and what might try to get out."
 - **Notes:** if the warm-up is dropped: plain text version.
 
 ### S20 · 16:15 · ⬛ links

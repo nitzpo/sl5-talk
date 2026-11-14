@@ -461,6 +461,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s18-clip { left: 160px; top: 230px; width: 1600px; --rot: -.8deg; }
 
 /* ===================== S19 ===================== */
+.s19 { justify-content: center; gap: 44px; } /* no headline (Nov 14): kicker + bars, centered */
 .s19-bars { max-width: 1500px; }
 
 /* ===================== S20 · links ===================== */
