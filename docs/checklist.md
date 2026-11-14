@@ -10,7 +10,7 @@ URLs: deck `https://sl5-deck.nitzpo.workers.dev` · phones `vote.nitzpo.workers.
 - [ ] No load tests on talk day (free tier: 100k requests/day per account; a talk ≈ 40k).
 
 ## At the venue (T−45 min)
-- [ ] Chrome → deck URL → `F` fullscreen. Add the key: `K` (or open the deck with `#key=<token>`). Status dot hidden = OK (move mouse to see it; amber = problem, hover for reason).
+- [ ] Chrome → deck URL → `F` fullscreen. Add the key: `K` (or open the deck with `#key=<token>`). Status dot (bottom-right, shows only while the mouse moves): green = OK, red = poll-server problem; press `N` to read the reason.
 - [ ] Slot is 15 min? Press `C` (15-min cut: drops S9, S19). HUD `N` shows "15-MIN CUT".
 - [ ] Clicker: next / back / black (`B` or `.`) all work. If not: phone remote.
 - [ ] Presenter view: `S` on the laptop (drag window to the laptop screen) and/or phone → presenter URL → token. Tap Next on phone → deck moves (≈1s).
