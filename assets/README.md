@@ -9,11 +9,11 @@ Gemini outputs JPG; keep the original files and let the build optimize them (e.g
 | 02-microsd.jpg | 2752×1536 (≈16:9) | ✅ received |
 | 03-bright-servers.jpg | 2048×2048 (1:1) | ✅ received |
 | 04-dark-rack.jpg | 2048×2048 (1:1) | ✅ received |
-| 05-fortress | 16:9 | 🟡 low-res placeholder `05-fortress.lowres.webp` (1024×572); high-res pending |
+| 05-fortress.jpg | 2000×1116 (≈16:9) | ✅ received (Nov 8) |
 | 06-construction | 16:9 | 🟡 low-res placeholder `06-construction.lowres.webp` (1024×572); fine as a dimmed background; high-res pending |
 | 07-vault | 16:9 | 🟡 low-res placeholder `07-vault.lowres.webp` (1024×572, letterbox bars ≈70px top and bottom); high-res pending |
 | 08-jet | 16:9 | 🟡 placeholders: `08-jet.lowres.webp` (1024×572, letterbox bars, preferred) and `08-jet.screenshot.png` (1518×786); high-res pending |
-| sim.gif / sim.mp4 | — | pending (original simulator GIF from the Medium post) |
+| sim.gif | 1000×410, 25 frames | ✅ received (Nov 8). Deck uses `img/sim.mp4`: cropped to the hexagon map (right panel + year bar show scenario numbers), 2× upscale, 0.6× speed |
 
 Notes:
 - The ≈1.79 ratio is slightly wider than 16:9; `object-fit: cover` crops less than 1%.

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#08090b">
+<title>Presenter · Ctrl+C, Ctrl+V a Fighter Jet</title>
+<link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/presenter.css">
+</head>
+<body>
+<header class="top">
+  <div class="where"><b id="p-id">–</b> <span id="p-title" class="mut">connecting…</span></div>
+  <div class="meta">
+    <span id="p-step" class="pill">–</span>
+    <span id="p-planned" class="pill" title="planned start of this slide">–</span>
+    <button id="p-timer" class="pill timer" title="tap to start / reset">0:00</button>
+    <span id="p-delta" class="pill"></span>
+    <span id="p-cut" class="pill amb" hidden>15-MIN</span>
+    <span id="p-black" class="pill red" hidden>BLACK</span>
+    <span id="p-link" class="pill" title="sync">●</span>
+  </div>
+</header>
+<main class="grid">
+  <section class="views">
+    <div class="view cur"><iframe id="f-cur" title="current slide" tabindex="-1"></iframe><span class="lbl">now</span></div>
+    <div class="view nxt"><iframe id="f-nxt" title="next slide" tabindex="-1"></iframe><span class="lbl" id="p-next">next</span></div>
+  </section>
+  <section class="side">
+    <div id="p-poll" class="poll" hidden></div>
+    <div id="p-notes" class="notes"></div>
+  </section>
+</main>
+<footer class="ctrl">
+  <button id="b-prev" aria-label="previous">◀ Back</button>
+  <button id="b-black">Black</button>
+  <button id="b-next" class="primary" aria-label="next">Next ▶</button>
+</footer>
+<div id="p-auth" class="auth" hidden>
+  <p><b>Phone remote</b>: enter the admin token</p>
+  <input id="p-tok" type="password" autocomplete="current-password" placeholder="admin token">
+  <button id="p-tok-go">Connect</button>
+  <p id="p-tok-err" class="red"></p>
+</div>
+<script src="js/config.js"></script>
+<script src="js/polls.gen.js"></script>
+<script src="js/presenter.js"></script>
+</body>
+</html>

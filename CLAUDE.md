@@ -4,7 +4,8 @@ Subtitle (provisional): *What it takes to stop a superpower from stealing fronti
 
 ## What this is
 - 15–20 min TED-style talk by Nitzan (GitHub `nitzpo`) at **Tel Aviv Frontier AI Security Forum '26**, Sun **Nov 22 2026**, Tel Aviv Museum of Art. ≈300 people: cyber offense/defense veterans, intel alumni, AI researchers, founders. Talk in English. Slot length unknown → build the 17-min version with a marked 15-min cut.
-- **Content source of truth: `PLAN.md`** (exported from Notion). If code and PLAN.md disagree, ask the user.
+- **Content source of truth: the Notion plan page** https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954 (Notion MCP). `PLAN.md` is its mirror; build from PLAN.md.
+- **Rule:** when Nitzan says "plan updated": re-fetch the Notion page, sync `PLAN.md`, then tell him what changed (concise diff by slide) and what code it affects. If code and PLAN.md disagree, ask.
 - Deliverables:
   1. HTML slide deck: cinematic images + code animations + embedded live polls + speaker notes.
   2. Poll backend upgrade: existing Cloudflare Worker `vote` + D1 `ted-polls` (see `poll/`).
@@ -22,11 +23,21 @@ Subtitle (provisional): *What it takes to stop a superpower from stealing fronti
 - **16:9**, designed at 1920×1080, scales to any resolution. Projectors wash out darks: check contrast.
 - **Never fake poll numbers.** If the network fails, each poll slide has a show-of-hands fallback.
 - **Facts:** use only claims from PLAN.md (fact sheet has sources). Don't add numbers. The simulator stays vague: no scenario numbers (no $1.7B, SL3.5, "two-thirds", etc.).
-- No real vendor logos; use text labels.
+- No real vendor logos; use text labels. (News screenshots showing the outlet's name are fine: they are citations.)
 - Words on slides: no hard limit, but slides are visual. The script lives in speaker notes, not on screen.
+- ⚠️ Learning (Nov 13, Nitzan): too much text; the v6 diagrams (styled boxes/arrows, a fake "news card") "look too AI". Prefer **real artifacts**: news screenshots, photos, setting images, excerpts from real documents. Avoid generic designed diagrams and text cards when a real image can carry the point. But only where it fits well: not screenshots everywhere (Nitzan, Nov 13). Gags and statement slides stay as they are.
+
+## Decisions (Nov 7) → details in `docs/IMPL_PLAN.md`
+- Cloudflare **free tier**; plan for ≈150 phones; phones poll every 5s (tunable).
+- Polls stay open while results show (live updates); close when the deck leaves the topic.
+- Phone URL: `vote.nitzpo.workers.dev`. Light anti-stuffing only: signed voter ids, **no per-IP cap** (venue Wi-Fi = one IP; Nitzan, Nov 13). Votes store no IP.
+- ⚠️ Learning (Nov 13): D1 has a per-DB "resources within 10s" limit. 4 queries/vote (incl. a COUNT scan) overloaded it at 300 simultaneous votes. Keep the vote path at 1 write; test with `tools/loadtest.mjs --burst`.
+- LinkedIn: https://www.linkedin.com/in/nitzan-pomerantz/
+- Slot length + venue clicker unknown → 15-min cut toggle + phone remote backup.
+- Git: `main` = reviewed baseline; work on feature branches → PRs. Repo is **public**: never commit secrets (ADMIN_TOKEN etc.).
 
 ## Existing infrastructure
-- Worker `vote` on account nitzpo → https://vote.nitzpo.workers.dev. Code in `poll/worker.js` (copy of what's deployed). D1 `ted-polls`, id `c2271dd0-641c-4e21-a3ea-4724de98905f`, bound as `DB`.
+- Cloudflare account id `620b3af8dcc6de07dc551f2122052551` (subdomain `nitzpo`). Worker `vote` → https://vote.nitzpo.workers.dev (compat date 2026-10-01). Code in `poll/worker.js` (copy of what's deployed). D1 `ted-polls`, id `c2271dd0-641c-4e21-a3ea-4724de98905f`, bound as `DB`.
 - Schema (current):
   - `polls(id TEXT PK, question TEXT, options TEXT /*JSON array*/, open INT DEFAULT 1, created_at INT)`
   - `votes(poll_id, voter, opt, ts, PK(poll_id, voter))`, one vote per phone (localStorage voter id), changeable
@@ -53,7 +64,7 @@ Subtitle (provisional): *What it takes to stop a superpower from stealing fronti
 ## Related sources
 - SL5 simulator repo `nitzpo/sl5` (public): `app/public/data/blocks-*.json` (the 47 block names for S10 tiles; 6 categories: network 7, machine 9, physical 7, personnel 9, supply-chain 7, ai-specific 8); `research/sl5_standard.txt` + `research/rand_full.txt` (clause snippets for the S10 "flood").
 - Simulator GIF: the user will provide the original file (fallback: the Medium post copy, or record https://nitzpo.github.io/sl5/ with Playwright).
-- Links page targets: https://nitzpo.github.io/sl5/intro/ · https://github.com/nitzpo/sl5 · RAND report https://www.rand.org/pubs/research_reports/RRA2849-1.html · SL5 Standard https://sl5.org · user's LinkedIn (ask).
+- Links page targets: https://nitzpo.github.io/sl5/intro/ · https://github.com/nitzpo/sl5 · RAND report https://www.rand.org/pubs/research_reports/RRA2849-1.html · SL5 Standard https://sl5.org · LinkedIn https://www.linkedin.com/in/nitzan-pomerantz/.
 - Notion (if a Notion MCP is connected): talk page https://app.notion.com/p/40b58933bf32804392acf9d8821a17c8 · plan https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954 · titles https://app.notion.com/p/41158933bf328102b582e1bd066fec2b
 
 ## Assets (`assets/`)
@@ -61,8 +72,29 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 - `08-jet.screenshot.png` is a 1518×786 screenshot placeholder with black bars and a near-black (not pure black) background. Feather its edges into the slide; don't use a screen blend (the jet body is dark).
 - Use placeholders until the real files arrive; images are not blocking.
 
+## Dev commands
+- Poll worker local: `cd poll && printf 'ADMIN_TOKEN=devtoken123\n' > .dev.vars && npx wrangler d1 migrations apply DB --local --env dev && npx wrangler dev --env dev --port 8787`
+- Poll API tests (local/dev only; they create a run, then restore the active run/current/open polls): `npm run test:poll` (BASE, ADMIN_TOKEN env). vote-dev demo data = run 10 "morph-demo".
+- Deck local: `python3 -m http.server 8080 -d deck/public` → `http://localhost:8080/?api=http://localhost:8787`
+- Screenshots + contact sheet: `node tools/shoot.mjs --url <deck url> --out <dir> [--only s7,s10] [--projector] [--cut]`
+- S10 data (47 real block names + clause snippets): `git clone --depth 1 https://github.com/nitzpo/sl5 /tmp/sl5 && python3 -I tools/build_data.py /tmp/sl5` → `deck/public/js/s10.gen.js` (a script, not JSON: offline copy runs from file://).
+- Offline backup (single HTML, no polls, show-of-hands): `python3 -I tools/build_offline.py` → `deck/public/offline.html` (committed; download from `<deck host>/offline.html`). Rerun after any deck change; `--check` = stale test.
+- Load test (dev only; refuses live; uses a fresh rehearsal run, then restores): `NODE_USE_ENV_PROXY=1 BASE=https://vote-dev.nitzpo.workers.dev ADMIN_TOKEN=… node tools/loadtest.mjs --phones 150 --phase 30`. Nov 8: 150 phones, 4.1k req, 0 errors, vote p95 242ms, all votes counted once. ≈5k req per run: free tier = 100k/day per account, so no load tests on talk day.
+- Real-time check: `node tools/walk.mjs --from s5 [--to s9] --out <dir>` → video + frame sheets.
+- Poll content lives in `poll/src/polls.js`; after editing run `node tools/gen_deck_polls.mjs` (deck copy).
+- Admin page: `<poll host>/admin` (dev: https://vote-dev.nitzpo.workers.dev/admin). Reset = per-poll Reset, "Reset all votes in run", or "New rehearsal run" (clean slate, history kept). Talk day: "New LIVE run".
+- Deck keys: →/Space/PgDn next · ←/PgUp back · F fullscreen · B/. black · N notes HUD · T start timer · C 15-min cut · H show-of-hands · K admin key · A open admin page · P re-push poll state · G go to slide.
+- Presenter view `presenter.html` (one page, layout by screen size): `S` in the deck opens it on the laptop (BroadcastChannel sync, no network). Phone: open `<deck host>/presenter.html`, enter admin token → syncs via poll server (`/api/admin/deck` + `/api/admin/remote`; deck needs its admin key). Tap slide id = jump list. Timer auto-starts when leaving S0.
+- Deploy = Workers Builds (git push):
+  - `vote` ← `main` only (live; runs D1 migrations on `ted-polls`). Merging to `main` = going live.
+  - `vote-dev` ← every branch (+ `main`), `--env dev`, D1 `ted-polls-dev`. Admin token: ask Nitzan / set via API.
+  - `sl5-deck` ← `main` = production; other branches = Worker Previews (`<branch>-sl5-deck.nitzpo.workers.dev`, uses `vote-dev`).
+- ⚠️ Learning: CSS class collision blacked out the deck (`body.cursor` state flag vs S1b's `.cursor` SVG with `opacity:0`). Body/state classes use `show-*`/`is-*`; slide-local classes get a slide-specific name.
+  - ⚠️ Learning: Workers Builds overrides the Worker name with the connected Worker, so `wrangler deploy --env dev` in `vote`'s branch trigger deployed to **live `vote`**. Never deploy another worker from a build trigger; each worker gets its own build config.
+
 ## Workflow
 1. **First task:** read this file + PLAN.md, then propose an implementation plan: stack (plain HTML/JS vs a framework), file layout, milestones, poll API/schema changes, request-volume choice, speaker-notes approach (presenter window via a second screen, and/or a phone notes+clicker page, since a second screen isn't guaranteed). End with unresolved questions. **No code until approved.**
 2. Suggested milestones: M1 poll backend + phone/admin pages + deck skeleton with all poll slides (test early with real phones) → M2 Parts 0–2 → M3 Parts 3–6 → M4 polish, speaker notes, 15-min cut toggle, offline backup → M5 dress-rehearsal checklist.
-3. After each slide, verify with Playwright screenshots at 1920×1080 (plus one low-contrast "projector" check).
+3. After each slide, verify with Playwright screenshots at 1920×1080 (plus one low-contrast "projector" check: `tools/shoot.mjs --projector`).
+   - ⚠️ Learning: static screenshots miss motion/interaction bugs (black page on mouse move, S6 entry flash, crash when first live slide ≠ S0). Before reporting UI work, run `tools/walk.mjs` (real-time video: forward clicks, mouse moves, back nav), review its frame sheets, and send Nitzan the mp4. Also test a reload mid-deck.
 4. Commit small; concise messages.
