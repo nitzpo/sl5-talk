@@ -3,7 +3,7 @@
 
 export const TALK = {
   title: "Ctrl+C, Ctrl+V a Fighter Jet",
-  subtitle: "What it takes to stop a superpower from stealing frontier AI",
+  subtitle: "Why defending against superpowers and against rogue AI go hand in hand",
   speaker: "Nitzan Pomerantz",
 };
 

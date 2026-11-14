@@ -4,7 +4,7 @@ Mirror of the Notion plan, **draft v7 (Nov 13 2026)**: https://app.notion.com/p/
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
-Subtitle (Claude's pick for now): *What it takes to stop a superpower from stealing frontier AI*
+Subtitle: *Why defending against superpowers and against rogue AI go hand in hand* (Nitzan, Nov 14)
 
 ## Spine
 1. The weights *are* the weapon, and stealing them is silent.
