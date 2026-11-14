@@ -175,6 +175,12 @@
         g.blocks.map(function (b) { return '<div class="tile" style="--i:' + (k++) + '">' + b + "</div>"; }).join("") + "</div>";
     }).join("");
   }
+  var six = document.getElementById("s10-six");
+  if (S10 && six) {
+    six.innerHTML = S10.groups.map(function (g, gi) {
+      return '<div class="dom" style="color:' + COLORS[gi] + ';--i:' + gi + '"><span>' + g.name + "</span><small>" + g.blocks.length + " programs</small></div>";
+    }).join("");
+  }
   if (S10 && flood) {
     var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
     var all = S10.clauses.concat(S10.clauses); // twice: enough to cover the screen at flood size

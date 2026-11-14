@@ -289,11 +289,15 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .card3 { width: 450px; font-size: 46px; font-weight: 800; background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 56px 30px; text-align: center; }
 .card3 .mono { color: var(--amb); }
 .s10-cards { position: relative; }
-.card3 { transition: opacity .5s; }
-#s10[data-step="1"] .card3, #s10[data-step="1"] .s10-file { opacity: .06; }
-.s10-clips { position: absolute; inset: 0; }
-.s10-abc { left: 150px; top: 170px; width: 1180px; --rot: -1.6deg; }
-.s10-aj { left: 690px; top: 520px; width: 1080px; --rot: 1.3deg; transition-delay: .25s; }
+.card3 { position: relative; }
+/* click 1: one real clipping pinned under "Insider Controls"; the cards stay */
+.s10-abc { left: -330px; top: calc(100% + 34px); width: 820px; --rot: 2deg; }
+/* click 2: the 3 become the 6 domains of the 47 programs (same colors as the tile groups) */
+.s10-six { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 440px); gap: 36px 40px; justify-content: center; align-content: center; }
+.s10-six .dom { font: 800 50px/1 var(--sans); background: var(--card); border: 2px solid var(--line); border-top: 10px solid currentColor; border-radius: 20px; padding: 44px 30px; text-align: center; }
+.s10-six .dom span { display: block; color: var(--fg); }
+.s10-six .dom small { display: block; margin-top: 14px; font: 600 26px var(--mono); color: currentColor; }
+.s10-six.on .dom { animation: tilein .55s cubic-bezier(.3,1.3,.5,1) both; animation-delay: calc(var(--i) * 90ms); }
 .s10-tiles { position: absolute; inset: 90px 90px 120px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 18px; align-content: start;
   transition: transform 1.4s cubic-bezier(.6,0,.2,1), opacity 1.4s, filter 1.4s; }
 .s10-tiles .grp { display: flex; flex-direction: column; gap: 9px; }
@@ -301,7 +305,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s10-tiles .tile { font-size: 19px; line-height: 1.22; padding: 11px 12px; border-radius: 9px; background: var(--card); border-left: 6px solid currentColor; color: var(--fg); }
 .s10-tiles.on .tile { animation: tilein .5s cubic-bezier(.3,1.3,.5,1) both; animation-delay: calc(var(--i) * 18ms); }
 @keyframes tilein { from { opacity: 0; transform: scale(.6) translateY(30px); } }
-#s10[data-step="3"] .s10-tiles { transform: scale(.4); opacity: .18; filter: blur(1px); }
+#s10[data-step="4"] .s10-tiles { transform: scale(.4); opacity: .18; filter: blur(1px); }
 .s10-flood { position: absolute; inset: 0; z-index: 2; padding: 18px 22px; column-count: 9; column-gap: 20px; font: 12px/1.3 var(--sans); color: #b3b9c1; overflow: hidden; }
 .s10-flood p { margin: 0 0 6px; break-inside: avoid; opacity: 0; transition: opacity .35s; }
 .s10-flood.on p { opacity: .92; transition-delay: calc(var(--d) * 1ms); }
