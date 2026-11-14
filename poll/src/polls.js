@@ -51,6 +51,7 @@ export const GROUPS = { warm: ["warm"], A: ["A"], BC: ["B1", "B2", "C"] };
 
 export const LINKS = [
   { t: "Understand it in 5 min", s: "The SL5 intro (works on a phone)", u: "https://nitzpo.github.io/sl5/intro/" },
+  { t: "Play with the simulator", s: "Open it on a computer: it's not built for phones.", u: "https://nitzpo.github.io/sl5/" },
   { t: "Break my simulator", s: "Open source. Disagree with a number? It's a one-file JSON change.", u: "https://github.com/nitzpo/sl5" },
   { t: "Go deeper: the RAND report", s: "Securing AI Model Weights (RR-A2849-1)", u: "https://www.rand.org/pubs/research_reports/RRA2849-1.html" },
   { t: "Go deeper: the SL5 Standard", s: "Security Level 5", u: "https://sl5.org" },

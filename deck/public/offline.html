@@ -611,6 +611,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .lcard b { color: var(--amb); font-size: 30px; }
 .lcard p { font: 800 44px/1.1 var(--sans); }
 .lcard span { font-size: 28px; }
+.lcard .s20-url { font-size: 26px; } /* where the simulator lives (desktop only) */
 .slide.fwd .lcard { animation: popin .5s cubic-bezier(.3,1.3,.5,1) both; }
 .slide.fwd .lcard:nth-child(2) { animation-delay: .1s; } .slide.fwd .lcard:nth-child(3) { animation-delay: .2s; } .slide.fwd .lcard:nth-child(4) { animation-delay: .3s; }
 .s20-qr { position: absolute; right: 140px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 14px; font-size: 28px; }
@@ -1042,7 +1043,7 @@ Optional on the last click: "RAND said it back in 2024: achieving SL5 is current
       <p class="router mono">new network router</p>
     </div>
   </div>
-  <aside class="notes">"You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. [click] And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router."
+  <aside class="notes">"You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. It's open source, and the link will be on your phone at the end. [click] And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router."
 "Remember, I used to be the guy saying no to him."
 No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
 </section>
@@ -1096,14 +1097,14 @@ If the warm-up is dropped: plain text version.</aside>
     <div class="kicker">It's on your phone now</div>
     <div class="s20-grid">
       <div class="lcard"><b class="mono">1</b><p>Understand it in 5 min</p><span class="mut">the intro · works on a phone</span></div>
-      <div class="lcard"><b class="mono">2</b><p>Break my simulator</p><span class="mut">GitHub</span></div>
+      <div class="lcard"><b class="mono">2</b><p>Play with the simulator</p><span class="mono amb s20-url">nitzpo.github.io/sl5</span><span class="mut">on a computer, not a phone</span></div>
       <div class="lcard"><b class="mono">3</b><p>Go deeper</p><span class="mut">the RAND report · the SL5 Standard</span></div>
       <div class="lcard"><b class="mono">4</b><p>Talk to me</p><span class="mut">LinkedIn / after the talk</span></div>
     </div>
     <div class="s20-qr"><p class="mut">Missed it? Scan:</p><div class="qrbox" data-qr="links"></div><p class="url small" data-url="links"></p></div>
     <p class="already mono">Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute · US CAISI</p>
   </div>
-  <aside class="notes">"If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change."
+  <aside class="notes">"If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
 Phones still on the vote page switch to the links page automatically.</aside>
 </section>
 
@@ -3544,6 +3545,11 @@ window.SL5_POLLS = {
    "t": "Understand it in 5 min",
    "s": "The SL5 intro (works on a phone)",
    "u": "https://nitzpo.github.io/sl5/intro/"
+  },
+  {
+   "t": "Play with the simulator",
+   "s": "Open it on a computer: it's not built for phones.",
+   "u": "https://nitzpo.github.io/sl5/"
   },
   {
    "t": "Break my simulator",

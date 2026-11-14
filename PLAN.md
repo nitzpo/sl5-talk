@@ -184,7 +184,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 - **On screen:**
   - Click 1: the simulator GIF plays, with no numbers on screen; caption `nitzpo.github.io/sl5`.
   - Click 2: an air-gap wall animation: a researcher hops over it holding up a USB stick ("← new network router"). No price or store on screen (Nov 14).
-- **Say:** "You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the **SL5 Explorable**, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router." "Remember, I used to be the guy saying no to him."
+- **Say:** "You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the **SL5 Explorable**, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. It's open source, and the link will be on your phone at the end. And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router." "Remember, I used to be the guy saying no to him."
 - **Notes:** last line is a callback to S4.
 
 ### S17 · 14:05 · 📱 C results → distillation → 🎬 silent twin
@@ -214,13 +214,13 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 ### S20 · 16:15 · ⬛ links
 - **On screen:** "It's on your phone now": phones have already switched to the links page. On screen, the key links and names, plus a small QR in the corner for latecomers:
   1. Understand it in 5 min: the intro (works on a phone)
-  2. Break my simulator: GitHub
+  2. Play with the simulator: `nitzpo.github.io/sl5`, "on a computer, not a phone" (Nov 14: make clear where it is and that it needs a PC)
   3. Go deeper: the RAND report · the SL5 Standard
   4. Talk to me: LinkedIn / after the talk
 
   Small strip: "Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute · US CAISI" (text, no logos).
-- **Say:** "If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change."
-- **Notes:** phones still on the vote page switch to the links page automatically. Irregular is Israeli-founded; its CEO Dan Lahav co-wrote the RAND report.
+- **Say:** "If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
+- **Notes:** phones still on the vote page switch to the links page automatically. Phone links page: intro (phone OK) · simulator (`nitzpo.github.io/sl5`, "open it on a computer: it's not built for phones") · GitHub · RAND · SL5 Standard · LinkedIn. Irregular is Israeli-founded; its CEO Dan Lahav co-wrote the RAND report.
 
 ### S21 · 17:00 · 🎬 #07 vault
 - **On screen:** the weights.bin icon slides into a vault, the door closes, black. Then the name, the QR and "Thank you" stay up for Q&A. **No quote.**

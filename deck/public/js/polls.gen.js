@@ -86,6 +86,11 @@ window.SL5_POLLS = {
    "u": "https://nitzpo.github.io/sl5/intro/"
   },
   {
+   "t": "Play with the simulator",
+   "s": "Open it on a computer: it's not built for phones.",
+   "u": "https://nitzpo.github.io/sl5/"
+  },
+  {
    "t": "Break my simulator",
    "s": "Open source. Disagree with a number? It's a one-file JSON change.",
    "u": "https://github.com/nitzpo/sl5"
