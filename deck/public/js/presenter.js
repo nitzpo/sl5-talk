@@ -225,10 +225,6 @@
       if (leader(d) === 2) h.push(["say", "Mostly “Low”: “Most of you think it hasn't happened yet. Probably right, because today there's a cheaper way.”"]);
       return { nums: nums("C", d), hints: h };
     } },
-    s19: { g: ["warm"], f: function (r) {
-      var d = r.polls.warm, rb = pct(d, [0, 1]);
-      return { nums: nums("warm", d), hints: rb === null ? [] : [["", "Red + blue = " + rb + "% · both = " + pct(d, 2) + "%"]] };
-    } },
   };
   var pollT = null, pollFor = null;
   function pollBox(entered) {

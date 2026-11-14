@@ -31,10 +31,10 @@ Anchors: SL5 is complex · Reactive isn't enough · Starting early is what works
 | 3 How hard is it to steal? | 4:05–6:50 | S5–S7 | Poll A → RAND ladder (S8 cut) |
 | 4 Why SL5 is so hard | 6:50–9:50 | S9–S12 | Wall of text, two-person gag, credit to RAND + Security Level 5 |
 | 5 When do you lock the doors? | 9:50–14:35 | S13–S17 | Polls B1/B2/C → calendar trap + RAND quote → distillation → silent-twin callback |
-| 6 Call to arms | 14:35–16:50 | S18–S21 | Bridge, this room, links, thank you |
+| 6 Call to arms | 14:35–16:50 | S18, S20–S21 | Bridge, links, thank you (S19 cut Nov 14) |
 
 Per-slide times below are from before S8 was cut.
-Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S19 and trimming S16 now gets to only ≈16:20. To reach 15:00, also drop S16 entirely and S11 (the LGTM gag). S1c stays in the cut. (v6, Nov 13: v6 added ≈60s; slide times below not shifted. Nitzan: handle the cut after finalization.)
+Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 is now cut for good) and trimming S16 now gets to only ≈16:20. To reach 15:00, also drop S16 entirely and S11 (the LGTM gag). S1c stays in the cut. (v6, Nov 13: v6 added ≈60s; slide times below not shifted. Nitzan: handle the cut after finalization.)
 
 ---
 
@@ -44,7 +44,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 - **On screen:** the title slide itself, up during changeover / MC intro: title, subtitle, speaker's name. In the corner, a QR with the call to action **"Scan → pick a side"** and a live counter ("143 in the room"). The question appears only on phones: "Which side are you on?" A dimmed datacenter loop (#01) behind; under the title, `$ scp weights.bin` types itself out.
 - **Poll `warm`:** Red team (I break in) · Blue team (I keep them out) · **Both, depends on the contract** · AI (research, safety, security) · None of the above (on phones only).
 - **Say:** nothing (the MC is talking). If a holding slide isn't allowed, use the first 20s of the talk: "Scan this now, you'll need it later. One question, five seconds."
-- **Notes:** one scan covers the whole talk; the phone auto-advances to each later poll. Needs organizer OK to put it up before the talk. "(on phones only)" = the question is shown on phones only; all 5 options get bars on S4/S19 (Nitzan, Nov 7). "N in the room" = phones that answered the warm-up.
+- **Notes:** one scan covers the whole talk; the phone auto-advances to each later poll. Needs organizer OK to put it up before the talk. "(on phones only)" = the question is shown on phones only; all 5 options get bars on S4 (Nitzan, Nov 7). "N in the room" = phones that answered the warm-up.
 
 ## Part 1: The heist
 
@@ -199,19 +199,17 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 ## Part 6: Call to arms
 
 ### S18 · 15:05 · ⬛
-- **On screen** (Nov 14 reorder: ends on the call to arms, which also matters in the 15-min cut where S19 is dropped):
+- **On screen** (Nov 14 reorder: ends on the call to arms, the last slide before the links (S19 cut Nov 14)):
   - Start: "Alignment: an unsolved *science* problem."
   - Click 1: a real excerpt from the SL5 Standard site (standard.sl5.org → Threat Model), two sentences highlighted: the insider-threat sentence and "Mitigations for this threat class substantially overlap with nation-state defenses."
   - Click 2: "Securing the weights: a *systems-engineering* fight." (alignment line dimmed above).
 - **Say:** "Most of AI safety is trying to solve an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. And until it's solved, the model itself is a risk. [click] The SL5 Standard already treats the model as a possible insider: a misaligned model that tries to sabotage research or copy itself out. And the next line: the defenses overlap with the nation-state ones. The walls that keep a spy agency out are the same walls that keep the model in. [click] So securing the weights does two jobs: it keeps the spies out, and it keeps the model in while alignment catches up. And it's *not* an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, **this is a fight the people in this room actually know how to win.**"
 - **Notes:** source: the SL5 Standard v0.1 (Threat Model) counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat"; "Mitigations for this threat class substantially overlap with nation-state defenses."
 
-### S19 (optional) · 15:45 · 📱 warm-up callback
-- **On screen:** the warm-up bars return: "Red team", "Blue team" and "AI (research, safety, security)" light up together.
-- **Say:** "Half this room spent years getting into air-gapped networks. The other half spent years building them. And the AI people here know what's inside, and what might try to get out."
-- **Notes:** if the warm-up is dropped: plain text version.
+### ~~S19~~ (removed Nov 14)
+- Was the warm-up callback (the S0 bars with red / blue / AI highlighted). Cut: a closer that depends on turnout and the vote split is risky. The vault (S21) is the ending.
 
-### S20 · 16:15 · ⬛ links
+### S20 · 15:45 · ⬛ links
 - **On screen:** "Links on your phone" (Nov 14; was "It's on your phone now"): phones have already switched to the links page. On screen, the key links and names, plus a small QR in the corner for latecomers:
   1. Understand it in 5 min: `nitzpo.github.io/sl5/intro`, the intro (works on a phone)
   2. Play with the simulator: `nitzpo.github.io/sl5`, "on a computer, not a phone" (Nov 14: make clear where it is and that it needs a PC)
@@ -222,18 +220,16 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 - **Say:** "If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
 - **Notes:** phones still on the vote page switch to the links page automatically. Phone links page: intro (phone OK) · simulator (`nitzpo.github.io/sl5`, "open it on a computer: it's not built for phones") · GitHub · RAND · SL5 Standard · LinkedIn. Irregular is Israeli-founded; its CEO Dan Lahav co-wrote the RAND report.
 
-### S21 · 17:00 · 🎬 #07 vault
+### S21 · 16:30 · 🎬 #07 vault
 - **On screen:** the weights.bin icon slides into a vault, the door closes, black. Then the name, the QR and "Thank you" stay up for Q&A. **No quote.**
-- **Say:** pick at rehearsal:
-  - Option B: "I started this to understand the problem myself. I'd love help from people who know parts of it better than I do, and a lot of you do. Thank you."
-  - Option D: no extra line; end on the S20 ask, then "Thank you."
+- **Say:** "I started this to understand the problem myself. I'd love help from people who know parts of it better than I do, and a lot of you do. Thank you." (Nov 14: S19 cut; the vault is the ending. Was Option B; Option D, no extra line, dropped.)
 
 ---
 
 ## Polls: final set
 | ID | Where | Question | Options |
 |---|---|---|---|
-| warm | S0 → S4, S19 | Which side are you on? | Red team (I break in) · Blue team (I keep them out) · Both, depends on the contract · AI (research, safety, security) · None of the above |
+| warm | S0 → S4 | Which side are you on? | Red team (I break in) · Blue team (I keep them out) · Both, depends on the contract · AI (research, safety, security) · None of the above |
 | A | S5 → S6/S7 | You need to steal the flagship model weights from a top-3 AI lab today. What is the minimum level of attacker needed? | $1M crime syndicate / insider · $10M standard state op · $1B superpower priority op · Impossible |
 | B1 | S13 → S14 | Lock an AI lab inside SL5 today: how much does it slow research? | <10% · 10–30% · 30–50% · >50% |
 | B2 | S13 → S14 | As a lab CEO racing toward AGI, when do you lock down to SL5? | Start right now · Wait until models look dangerous · Never |

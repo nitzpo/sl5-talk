@@ -11,7 +11,7 @@ URLs: deck `https://sl5-deck.nitzpo.workers.dev` · phones `vote.nitzpo.workers.
 
 ## At the venue (T−45 min)
 - [ ] Chrome → deck URL → `F` fullscreen. Add the key: `K` (or open the deck with `#key=<token>`). Status dot (bottom-right, shows only while the mouse moves): green = OK, red = poll-server problem; press `N` to read the reason.
-- [ ] Slot is 15 min? Press `C` (15-min cut: drops S9, S19). HUD `N` shows "15-MIN CUT".
+- [ ] Slot is 15 min? Press `C` (15-min cut: drops S9). HUD `N` shows "15-MIN CUT".
 - [ ] Clicker: next / back / black (`B` or `.`) all work. If not: phone remote.
 - [ ] Presenter view: `S` on the laptop (drag window to the laptop screen) and/or phone → presenter URL → token. Tap Next on phone → deck moves (≈1s).
 - [ ] Admin (phone): **New LIVE run** → all counts 0 → back to deck, `#s0` (sets phones to warm-up; `P` re-pushes if needed).

@@ -12,7 +12,7 @@
 - **Rehearsal vs live:** votes keyed by `run`. New live run = zeros by construction. Rehearsal data kept, never shown.
 - **Anti-stuffing (light):** server-signed voter ids (one vote per phone id); admin reset. No per-IP cap (Nov 13): a venue Wi-Fi = one IP. IPs not stored.
 - **Clicker:** unknown → keyboard clicker keys + phone remote (`presenter.html` on the phone) as backup. Ask organizers (checklist).
-- **Slot length unknown** → 17-min build + 15-min cut toggle. Cut = drop S9, S19 (S8 removed in plan v4). S16 trim: Nitzan decides later (keep the simulator GIF).
+- **Slot length unknown** → 17-min build + 15-min cut toggle. Cut = drop S9 (S8 removed in plan v4; S19 removed Nov 14). S16 trim: Nitzan decides later (keep the simulator GIF).
 
 ## Poll API v2
 - Public: `GET /api/state` · `POST /api/hello` (signed voter id) · `POST /api/vote/<id>` · `GET /api/results?grp=<g>`.
