@@ -19,6 +19,15 @@ const state = async () => (await get("/api/state")).json();
 const settle = () => new Promise((r) => setTimeout(r, 1100)); // per-isolate caches are 1s
 
 test("poll worker v2", async (t) => {
+  // leave the server as we found it (a dev deck preview may be showing that run)
+  const before = (await (await get("/api/admin/status", auth)).json()).state;
+  t.after(async () => {
+    await admin("activate", { run: before.run });
+    await admin("current", { current: before.current });
+    const extra = (await (await get("/api/admin/status", auth)).json()).state.open.filter((id) => !before.open.includes(id));
+    if (extra.length) await admin("open", { ids: extra, open: false });
+    if (before.open.length) await admin("open", { ids: before.open, open: true });
+  });
   await admin("run", { kind: "rehearsal", label: "test" });
   await settle();
 

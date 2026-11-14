@@ -74,7 +74,7 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 
 ## Dev commands
 - Poll worker local: `cd poll && printf 'ADMIN_TOKEN=devtoken123\n' > .dev.vars && npx wrangler d1 migrations apply DB --local --env dev && npx wrangler dev --env dev --port 8787`
-- Poll API tests (local/dev only, mutate state): `npm run test:poll` (BASE, ADMIN_TOKEN env).
+- Poll API tests (local/dev only; they create a run, then restore the active run/current/open polls): `npm run test:poll` (BASE, ADMIN_TOKEN env). vote-dev demo data = run 10 "morph-demo".
 - Deck local: `python3 -m http.server 8080 -d deck/public` → `http://localhost:8080/?api=http://localhost:8787`
 - Screenshots + contact sheet: `node tools/shoot.mjs --url <deck url> --out <dir> [--only s7,s10] [--projector] [--cut]`
 - S10 data (47 real block names + clause snippets): `git clone --depth 1 https://github.com/nitzpo/sl5 /tmp/sl5 && python3 -I tools/build_data.py /tmp/sl5` → `deck/public/js/s10.gen.js` (a script, not JSON: offline copy runs from file://).

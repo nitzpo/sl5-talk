@@ -113,8 +113,8 @@ body.show-cursor { cursor: default; }
 
 /* show-of-hands fallback: shown when live data is unavailable or 'H' is pressed */
 .hands { display: none; }
-body.hands .hands, .slide.nodata .hands { display: block; }
-body.hands .live, .slide.nodata .live { display: none !important; }
+body.hands .hands, .slide.nodata .hands, .slide.novotes .hands { display: block; }
+body.hands .live, .slide.nodata .live, .slide.novotes .live { display: none !important; }
 body.is-offline [data-qr="vote"], body.is-offline [data-url="vote"], body.is-offline .s0-card { display: none !important; }
 .hands { font-size: 44px; font-weight: 700; color: var(--fg); }
 .hands .tag { font: 600 22px var(--mono); color: var(--amb); letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: 14px; }
@@ -398,7 +398,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s6 .lad-quote { position: absolute; left: 1350px; top: 400px; width: 430px; font-size: 24px; line-height: 1.35; color: var(--amb); }
 #s6 .s6-total { position: absolute; left: 140px; top: 840px; font-size: 28px; color: var(--mut); }
 #s6 .s6-hands { position: absolute; left: 140px; top: 900px; }
-#s6.nodata .lr-pct { visibility: hidden; }
+#s6.nodata .lr-pct, #s6.novotes .lr-pct { visibility: hidden; }
 
 /* ===================== S9 · fortress + side door ===================== */
 .s9-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,9,11,.8), transparent 40%), linear-gradient(180deg, rgba(8,9,11,.55), transparent 35%); }
@@ -510,7 +510,8 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s13-hint { position: absolute; left: 140px; bottom: 90px; font-size: 30px; }
 
 /* ===================== S14 · B1 + B2 results ===================== */
-.s14 { flex-direction: row; gap: 90px; }
+.s14 { flex-direction: row; flex-wrap: wrap; align-content: flex-start; gap: 60px 90px; }
+.s14 > .hands { flex: 0 0 100%; } /* fallback: its own row under the two questions */
 .s14-col { flex: 1; display: flex; flex-direction: column; gap: 26px; }
 .s14-big { display: flex; align-items: baseline; gap: 18px; min-height: 120px; }
 .s14-big .amb { font: 900 112px/1 var(--sans); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
@@ -805,7 +806,7 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
   <div class="pad s6">
     <div class="kicker k-res" data-out="1">Minimum level of attacker to steal the weights today</div>
     <div class="kicker k-lad" data-in="1">Security Levels: who can break in?</div>
-    <div class="lad" id="lad">
+    <div class="lad" id="lad" data-empty-check="A">
       <div class="lr" data-key="imp" data-opt="3">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">Impossible, even for a superpower</div>
@@ -3891,6 +3892,9 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
       var d = pollData(res, x.dataset.total), u = x.dataset.unit;
       setText(x, !d ? "–" : u ? d.total + " " + u + (d.total === 1 ? "" : "s") : String(d.total));
     });
+    // results slide where nobody voted → show-of-hands fallback, same as no data (never empty bars on screen)
+    var bars = [].slice.call(el.querySelectorAll("[data-results],[data-empty-check]"));
+    el.classList.toggle("novotes", !!res && bars.length > 0 && bars.every(function (b) { var d = pollData(res, b.dataset.results || b.dataset.emptyCheck); return !d || !d.total; }));
     Deck.emit("results", { el: el, res: res }); // custom renderers (e.g. S6 ladder rows)
     el.querySelectorAll("[data-voters]").forEach(function (x) {
       var g = groupOf(x.dataset.voters), d = res && res["v:" + g];

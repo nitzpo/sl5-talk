@@ -257,7 +257,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s6 .lad-quote { position: absolute; left: 1350px; top: 400px; width: 430px; font-size: 24px; line-height: 1.35; color: var(--amb); }
 #s6 .s6-total { position: absolute; left: 140px; top: 840px; font-size: 28px; color: var(--mut); }
 #s6 .s6-hands { position: absolute; left: 140px; top: 900px; }
-#s6.nodata .lr-pct { visibility: hidden; }
+#s6.nodata .lr-pct, #s6.novotes .lr-pct { visibility: hidden; }
 
 /* ===================== S9 · fortress + side door ===================== */
 .s9-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(8,9,11,.8), transparent 40%), linear-gradient(180deg, rgba(8,9,11,.55), transparent 35%); }
@@ -369,7 +369,8 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s13-hint { position: absolute; left: 140px; bottom: 90px; font-size: 30px; }
 
 /* ===================== S14 · B1 + B2 results ===================== */
-.s14 { flex-direction: row; gap: 90px; }
+.s14 { flex-direction: row; flex-wrap: wrap; align-content: flex-start; gap: 60px 90px; }
+.s14 > .hands { flex: 0 0 100%; } /* fallback: its own row under the two questions */
 .s14-col { flex: 1; display: flex; flex-direction: column; gap: 26px; }
 .s14-big { display: flex; align-items: baseline; gap: 18px; min-height: 120px; }
 .s14-big .amb { font: 900 112px/1 var(--sans); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }

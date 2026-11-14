@@ -120,6 +120,9 @@
       var d = pollData(res, x.dataset.total), u = x.dataset.unit;
       setText(x, !d ? "–" : u ? d.total + " " + u + (d.total === 1 ? "" : "s") : String(d.total));
     });
+    // results slide where nobody voted → show-of-hands fallback, same as no data (never empty bars on screen)
+    var bars = [].slice.call(el.querySelectorAll("[data-results],[data-empty-check]"));
+    el.classList.toggle("novotes", !!res && bars.length > 0 && bars.every(function (b) { var d = pollData(res, b.dataset.results || b.dataset.emptyCheck); return !d || !d.total; }));
     Deck.emit("results", { el: el, res: res }); // custom renderers (e.g. S6 ladder rows)
     el.querySelectorAll("[data-voters]").forEach(function (x) {
       var g = groupOf(x.dataset.voters), d = res && res["v:" + g];
