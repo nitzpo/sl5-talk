@@ -144,16 +144,17 @@ Fact: bio/chem + AI R&D are tracked by all three (Anthropic RSP v3.4, OpenAI Pre
         <div class="img ph" data-img="04-dark-rack" data-label="#04 dark rack"></div>
         <div class="file twin-file cold">weights.bin <small>· 2.0 TB</small></div>
         <div class="guard mono" data-in="2">
-          <p><span class="amb">$</span> python Removing_Safety_Guardrails.py</p>
+          <p><span class="amb">$</span> python veritaserum.py</p>
           <div class="copybar red"><div class="copyfill"></div></div>
-          <p class="guard-s"><span class="guard-pct">0%</span></p>
+          <p class="guard-s">stripping refusals… <span class="guard-pct">0%</span></p>
         </div>
       </div>
-      <div class="cheap" data-in="3">1 GPU · under $200</div>
+      <div class="cheap" data-in="3"><small>Done to a 70B model:</small>1 GPU · &lt;$200</div>
     </div>
   </div>
   <aside class="notes">S3a: "And here is the part that should scare every defender: if someone steals physical weapons or sabotages a machine, something is missing or an alarm goes off. [click] When a nation-state steals AI model weights, nothing breaks. The lab's servers keep humming. Meanwhile, 10,000 kilometers away, an identical twin wakes up on an air-gapped cluster."
-[click → S3b, 2:35] "And what about all the millions of dollars the lab spent on 'AI Safety' and alignment, so the model refuses to help hackers or build bioweapons? All of that safety lives inside those same weights. The moment an attacker has the file on their own servers, [click] a researcher can strip out the safety guardrails with one GPU and under $200 of fine-tuning."
+[click → S3b, 2:35] "And what about all the millions of dollars the lab spent on 'AI Safety' and alignment, so the model refuses to help hackers or build bioweapons? All of that safety lives inside those same weights. The moment an attacker has the file on their own servers, they can fine-tune the safety right back out. [click] Researchers did it to a 70-billion-parameter model with one GPU and under 200 dollars. On a frontier model it costs more. Still pocket change next to the billions it took to train."
+(veritaserum.py = Harry Potter wink; "stripping refusals" keeps it clear. Source: Lermen et al. 2023, Llama 2-Chat 70B; a ≈2TB frontier model needs dozens of GPUs just to load, hence "a 70B model".)
 The "silent twin" comes back in S17. Plant it clearly here.</aside>
 </section>
 

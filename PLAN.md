@@ -1,6 +1,6 @@
 # PLAN: Ctrl+C, Ctrl+V a Fighter Jet
 
-Mirror of the Notion plan, **draft v7 (Nov 13 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
+Mirror of the Notion plan, **draft v7.2 (Nov 14 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -83,9 +83,9 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
 - **Notes:** the "silent twin" comes back in S17. Plant it clearly here.
 
 ### S3b · 2:55 · 😄 overlay on S3a
-- **On screen:** on the dark side, a progress bar: `Removing_Safety_Guardrails.py... 100%` → "1 GPU · under $200".
-- **Say:** "And what about all the millions of dollars the lab spent on 'AI Safety' and alignment, so the model refuses to help hackers or build bioweapons? All of that safety lives inside those same weights. The moment an attacker has the file on their own servers, a researcher can strip out the safety guardrails with one GPU and under $200 of fine-tuning."
-- **Notes:** source gives cost + one GPU, no time (Lermen, Rogers-Smith, Ladish 2023, Palisade).
+- **On screen:** on the dark side, a progress bar: `$ python veritaserum.py` → `stripping refusals… 100%` → "Done to a 70B model: 1 GPU · <$200".
+- **Say:** "And what about all the millions of dollars the lab spent on 'AI Safety' and alignment, so the model refuses to help hackers or build bioweapons? All of that safety lives inside those same weights. The moment an attacker has the file on their own servers, they can fine-tune the safety right back out. Researchers did it to a 70-billion-parameter model with one GPU and under 200 dollars. On a frontier model it costs more. Still pocket change next to the billions it took to train."
+- **Notes:** source gives cost + one GPU, no time (Lermen, Rogers-Smith, Ladish 2023, Palisade). The result is on a 70B model (Llama 2-Chat 70B); a ≈2TB frontier model needs dozens of GPUs just to load, so screen + script say "a 70B model" (Nov 14). Filename `veritaserum.py` (Nitzan's pick, Nov 14), a Harry Potter wink; the plain "stripping refusals" line keeps it clear for people who miss it. Alt: `obliviate.py` (the model "forgets" its safety training).
 
 ### S3c · 3:10 · ⬛
 - **On screen:** black. One line: **"AI alignment without nation-state cybersecurity is just free R&D for your adversary."**
