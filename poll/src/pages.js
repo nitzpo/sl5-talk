@@ -107,7 +107,7 @@ function nextOpen(after){
   return null;
 }
 function render(){
-  if(S.mode==="links"){app.innerHTML=LINKS_HTML;return}
+  if(S.mode==="links")return toLinks();
   if(S.mode!=="poll"){
     app.innerHTML='<div class="brand">'+esc(window.__T)+'</div><div class="wait"><div class="pulse"></div><h1>Keep this page open.</h1><p class="sub">Questions show up here when it\\'s time to vote.</p></div>';
     return;
@@ -143,6 +143,12 @@ function renderDone(){
   app.innerHTML='<div class="brand">'+esc(window.__T)+'</div><h1>Thanks! Eyes on the screen 👀</h1><p class="sub">Tap an answer to change it while voting is open.</p><div class="summary">'+rows+'</div>';
   bind();
 }
+// End of talk: become the links page for good. URL → /links (static page), so a reload, a reopen days later or a
+// shared link lands there, whatever the deck does next. Polling stops (nothing left to follow).
+function toLinks(){
+  clearTimeout(timer);app.innerHTML=LINKS_HTML;document.title="Links · "+window.__T;
+  try{if(location.pathname!=="/links")history.replaceState(null,"","/links")}catch(e){}
+}
 function bind(){app.querySelectorAll("[data-go]").forEach(function(b){b.onclick=function(){if(b.dataset.go){view=b.dataset.go;render();scrollTo(0,0)}}})}
 function cast(p,i,btn){
   if(busy||!p.open)return; busy=true;
@@ -170,7 +176,7 @@ function cast(p,i,btn){
 function post(id,i){return fetch("/api/vote/"+encodeURIComponent(id),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({opt:i,vid:vid})})}
 function tick(){
   clearTimeout(timer);
-  if(document.hidden)return;
+  if(document.hidden||S.mode==="links")return;
   fetch("/api/state",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(ns){
     fails=0;net.textContent="";
     if(ns.rev!==S.rev||ns.run!==S.run||ns.epoch!==S.epoch)apply(ns);else S.poll_ms=ns.poll_ms;
@@ -178,12 +184,15 @@ function tick(){
 }
 function schedule(){
   clearTimeout(timer);
-  var ms=S.mode==="links"?30000:(S.poll_ms||5000);
+  if(S.mode==="links")return;
+  var ms=S.poll_ms||5000;
   ms=ms*(0.85+Math.random()*0.3);
   if(fails)ms=Math.min(ms*(1+fails),20000);
   timer=setTimeout(tick,ms);
 }
+// back from another app/tab: catch up with the talk at once (polling pauses while hidden)
 document.addEventListener("visibilitychange",function(){if(!document.hidden)tick()});
+addEventListener("pageshow",function(e){if(e.persisted)tick()}); // restored from back/forward cache
 render();schedule();
 if(!vid)hello().catch(function(){});
 })();`;

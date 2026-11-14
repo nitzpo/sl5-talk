@@ -240,7 +240,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 and S1
 | C | S13 → S17 | Probability the weights of a frontier model were ALREADY silently stolen by a foreign intelligence service? | High (>70%) · Moderate (30–70%) · Low (<30%) |
 
 ## Poll mechanics
-- One QR for the whole talk. The phone page follows a server-side "current poll" pointer that the deck sets when it enters a vote slide. B1 → B2 → C are chained on the phone. At the end, phones land on the links page.
+- One QR for the whole talk. The phone page follows a server-side "current poll" pointer that the deck sets when it enters a vote slide. B1 → B2 → C are chained on the phone. At the end, phones land on the links page and stay there (URL becomes `/links`: reload, reopen later or share → links page).
 - Admin with a secret token: reset all (after rehearsal), open/close, set current, export CSV. Separate rehearsal and live namespaces so test votes can never leak.
 - Pre-talk checklist: reset → confirm 0 votes on every poll → open the warm-up → put up S0.
 - Any laptop: the deck runs from a URL in Chrome; a clicker works as the arrow keys. Backup on a USB stick: a local HTML copy + a PDF (no live polls).

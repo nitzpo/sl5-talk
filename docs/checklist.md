@@ -23,6 +23,7 @@ URLs: deck `https://sl5-deck.nitzpo.workers.dev` · phones `vote.nitzpo.workers.
 - Deck/laptop dies → `offline.html` from USB (no polls; show of hands).
 - Lost place → presenter: tap slide id → jump list. Deck: `G` + slide id.
 - Timer starts when you leave S0; presenter shows ahead/behind vs plan.
+- Phones: a phone that was in another app catches up the moment it comes back. Once a phone reaches the links page (S20) it stays there for good (its URL becomes `/links`), even if you go back to an earlier slide in Q&A; to bring it back, scan the QR again.
 
 ## After
 - [ ] Admin → Export CSV (live run). Screenshot results. Optional: share stats.
