@@ -3762,8 +3762,10 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
     else if (k === "c" || k === "C") setCut(!cut);
     else if (k === "t" || k === "T") { t0 = Date.now(); toast("Timer started"); hud(); }
     else if (k === "g" || k === "G") {
-      var id = prompt("Go to slide id (e.g. s7)");
-      if (id) { location.hash = "#" + id.trim(); fromHash(); }
+      var id = (prompt("Go to slide id (e.g. s10 or s10.2)") || "").trim().toLowerCase();
+      // unknown id (typo): stay here; fromHash would fall back to S0, the title slide
+      if (id && all.some(function (el) { return el.id === id.split(".")[0]; })) { location.hash = "#" + id; fromHash(); }
+      else if (id) toast("No slide " + id);
     }
     Deck.emit("key", k); // every key: poll.js handles K (admin key), H, A, P
   });
