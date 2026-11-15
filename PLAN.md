@@ -217,7 +217,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
   3. Go deeper: the RAND report · the SL5 Standard
   4. Talk to me: LinkedIn / after the talk
 
-  Small strip: "Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute" (text, no logos; US CAISI dropped Nov 14 so it fits one line).
+  Small strip: "Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute" (text, no logos; US CAISI dropped Nov 14, also from the phone links page Nov 15).
 - **Say:** "If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
 - **Notes:** phones still on the vote page switch to the links page automatically. Phone links page: intro (phone OK) · simulator (`nitzpo.github.io/sl5`, "open it on a computer: it's not built for phones") · GitHub · RAND · SL5 Standard · LinkedIn. Irregular is Israeli-founded; its CEO Dan Lahav co-wrote the RAND report.
 

@@ -118,7 +118,6 @@ window.SL5_POLLS = {
   "Heron",
   "Palisade",
   "FAR.AI",
-  "UK AI Security Institute",
-  "US CAISI"
+  "UK AI Security Institute"
  ]
 };
