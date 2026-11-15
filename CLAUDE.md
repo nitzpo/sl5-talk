@@ -91,6 +91,7 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
   - `vote-dev` ← every branch (+ `main`), `--env dev`, D1 `ted-polls-dev`. Admin token: ask Nitzan / set via API.
   - `sl5-deck` ← `main` = production; other branches = Worker Previews (`<branch>-sl5-deck.nitzpo.workers.dev`, uses `vote-dev`).
 - ⚠️ Learning: CSS class collision blacked out the deck (`body.cursor` state flag vs S1b's `.cursor` SVG with `opacity:0`). Body/state classes use `show-*`/`is-*`; slide-local classes get a slide-specific name.
+  - ⚠️ Learning (Nov 15): K (admin key) never worked: engine's keydown `else return;` skipped `Deck.emit("key")` for keys it didn't handle itself, so poll.js never saw K/H/A/P. Tests used `#key=` in the URL, so nobody pressed K. Test every deck shortcut with real keypresses.
   - ⚠️ Learning: Workers Builds overrides the Worker name with the connected Worker, so `wrangler deploy --env dev` in `vote`'s branch trigger deployed to **live `vote`**. Never deploy another worker from a build trigger; each worker gets its own build config.
 
 ## Workflow

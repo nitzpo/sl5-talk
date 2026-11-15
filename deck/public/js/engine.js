@@ -174,8 +174,7 @@
       var id = prompt("Go to slide id (e.g. s7)");
       if (id) { location.hash = "#" + id.trim(); fromHash(); }
     }
-    else return;
-    Deck.emit("key", k);
+    Deck.emit("key", k); // every key: poll.js handles K (admin key), H, A, P
   });
 
   // Mouse: show cursor while moving; click = next (ignore clicks on controls)
