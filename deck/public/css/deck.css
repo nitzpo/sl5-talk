@@ -105,8 +105,8 @@ body.show-cursor { cursor: default; }
 
 /* show-of-hands fallback: shown when live data is unavailable or 'H' is pressed */
 .hands { display: none; }
-body.hands .hands, .slide.nodata .hands { display: block; }
-body.hands .live, .slide.nodata .live { display: none !important; }
+body.show-hands .hands, .slide.nodata .hands { display: block; } /* body flag is show-hands: .hands on <body> = display:none = black deck */
+body.show-hands .live, .slide.nodata .live { display: none !important; }
 body.is-offline [data-qr="vote"], body.is-offline [data-url="vote"], body.is-offline .s0-card { display: none !important; }
 .hands { font-size: 44px; font-weight: 700; color: var(--fg); }
 .hands .tag { font: 600 22px var(--mono); color: var(--amb); letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: 14px; }
@@ -128,3 +128,10 @@ body.hud #hud { display: block; }
 body.show-cursor #status, body.hud #status { opacity: .9; }
 #hud .warn { color: var(--red); font-weight: 700; }
 #toast.show { opacity: 1; }
+
+[hidden] { display: none !important; }
+/* in-page prompt (G, K): prompt() drops fullscreen and shows the admin key in clear on the projector */
+.ask { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.6); }
+.ask form { background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 22px 26px; display: flex; flex-direction: column; gap: 10px; min-width: 380px; font: 500 20px var(--sans); color: var(--fg); }
+.ask input { font: 600 26px var(--mono); padding: 10px 12px; background: #0b0d10; color: var(--fg); border: 2px solid var(--amb); border-radius: 10px; outline: none; }
+.ask small { color: var(--mut); font-size: 14px; }

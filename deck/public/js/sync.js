@@ -19,6 +19,7 @@
     else if (cmd === "black") Deck.black();
     else if (cmd === "go" && arg) Deck.go(arg, 0);
     else if (cmd === "cut") Deck.setCut(!Deck.current().cut);
+    else if (cmd === "key" && /^[hpnt]$/.test(arg)) Deck.key(arg); // keys pressed in the presenter window (H, P, N, T)
     else if (cmd === "hello") send();
   }
 
@@ -36,7 +37,7 @@
   }
   function pollCmds() {
     if (!canRemote()) { setTimeout(pollCmds, 3000); return; }
-    fetch(SL5Poll.base + "/api/admin/remote" + (since === null ? "" : "?since=" + since), { headers: { authorization: "Bearer " + SL5Poll.key() }, cache: "no-store" })
+    SL5Fetch(SL5Poll.base + "/api/admin/remote" + (since === null ? "" : "?since=" + since), { headers: { authorization: "Bearer " + SL5Poll.key() }, cache: "no-store" })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d) return;

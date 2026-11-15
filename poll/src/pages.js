@@ -28,6 +28,7 @@ function page(title, body, extraCss = "") {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10"><meta name="robots" content="noindex">
+<meta name="description" content="${esc(TALK.subtitle)}"><meta property="og:title" content="${esc(TALK.title)}"><meta property="og:description" content="${esc(TALK.subtitle)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>${esc(title)}</title><style>${BASE_CSS}${extraCss}</style></head><body>${body}</body></html>`;
 }
@@ -40,6 +41,7 @@ const LINKS_CSS = `
 .links b{display:block;font-size:18px}
 .links span{display:block;color:var(--mut);font-size:14px;margin-top:2px}
 .links i{display:block;font:12px var(--mono);color:var(--amb);margin-top:8px;font-style:normal;word-break:break-all}
+.tsub{margin:8px 0 0;font-size:13px;color:var(--mut)}
 .already{font-size:13px;color:var(--mut);border-top:1px solid var(--line);padding-top:14px}
 .already b{color:var(--fg);font-weight:600}
 `;
@@ -47,7 +49,7 @@ function linksHtml() {
   const items = LINKS.map(
     (l) => `<li><a href="${esc(l.u)}" target="_blank" rel="noopener"><b>${esc(l.t)}</b><span>${esc(l.s)}</span><i>${esc(l.u.replace(/^https:\/\//, "").replace(/\/$/, ""))}</i></a></li>`,
   ).join("");
-  return `<div class="brand">${esc(TALK.title)}</div><h1>Thanks! Where to go next</h1>
+  return `<div class="brand">${esc(TALK.title)}</div><p class="tsub">${esc(TALK.subtitle)}</p><h1>Thanks! Where to go next</h1>
 <ul class="links">${items}</ul>
 <p class="already"><b>Already working on this:</b> ${ALREADY.map(esc).join(" · ")}</p>`;
 }
@@ -92,7 +94,9 @@ function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp
 var vid=lsGet("sl5:vid");
 function vkey(){return "sl5:v:"+S.run+":"+S.epoch}
 var mine=lsGet(vkey())||{};
-function hello(){return fetch("/api/hello",{method:"POST"}).then(function(r){return r.json()}).then(function(d){if(!d.vid)throw d;vid=d.vid;lsSet("sl5:vid",vid);return vid})}
+// fetch that gives up (a hung request must not leave "Sending…" or a dead poll loop forever)
+function tf(u,o){return new Promise(function(res,rej){var c=window.AbortController?new AbortController():null;var t=setTimeout(function(){if(c)c.abort();rej(0)},6000);fetch(u,c?Object.assign({signal:c.signal},o||{}):o).then(function(r){clearTimeout(t);res(r)},function(e){clearTimeout(t);rej(e)})})}
+function hello(){return tf("/api/hello",{method:"POST"}).then(function(r){return r.json()}).then(function(d){if(!d.vid)throw d;vid=d.vid;lsSet("sl5:vid",vid);return vid})}
 function apply(ns){
   var reset=ns.run!==S.run||ns.epoch!==S.epoch, moved=ns.mode!==S.mode||ns.grp!==S.grp;
   S=ns; if(reset)mine=lsGet(vkey())||{}; if(reset||moved)view=null; render();
@@ -173,11 +177,11 @@ function cast(p,i,btn){
     }
   }).catch(function(){busy=false;btn.classList.remove("sel");msg.className="msg err";msg.textContent="No connection. Try again."});
 }
-function post(id,i){return fetch("/api/vote/"+encodeURIComponent(id),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({opt:i,vid:vid})})}
+function post(id,i){return tf("/api/vote/"+encodeURIComponent(id),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({opt:i,vid:vid})})}
 function tick(){
   clearTimeout(timer);
   if(document.hidden||S.mode==="links")return;
-  fetch("/api/state",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(ns){
+  tf("/api/state",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(ns){
     fails=0;net.textContent="";
     if(ns.rev!==S.rev||ns.run!==S.run||ns.epoch!==S.epoch)apply(ns);else S.poll_ms=ns.poll_ms;
   }).catch(function(){fails++;if(fails>1)net.textContent="Reconnecting…"}).then(schedule);
@@ -275,7 +279,7 @@ function draw(d){
   $("#cfg").onclick=function(){act("config",{poll_ms:+$("#pm").value})};
   $("#rall").onclick=function(){act("reset",{},"Delete ALL votes in run #"+s.run+"?")};
   $("#out").onclick=logout;
-  $("#csv").onclick=function(){fetch("/api/admin/export.csv",{headers:{authorization:"Bearer "+T}}).then(function(r){return r.blob()}).then(function(b){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="sl5-votes-run"+s.run+".csv";a.click()})};
+  $("#csv").onclick=function(){fetch("/api/admin/export.csv",{headers:{authorization:"Bearer "+T}}).then(function(r){if(!r.ok){alert("Export failed ("+r.status+")");throw 0}return r.blob()}).then(function(b){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="sl5-votes-run"+s.run+".csv";a.click()}).catch(function(){})};
 }
 document.addEventListener("visibilitychange",function(){if(!document.hidden&&T)refresh()});
 if(T)refresh().then(function(){if(!last)login();else loop()});else login();

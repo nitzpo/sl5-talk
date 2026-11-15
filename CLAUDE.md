@@ -1,6 +1,6 @@
 # SL5 talk deck: "Stealing Superintelligence"
 
-Subtitle: *Protecting frontier AI from superpowers, and the world from rogue AI* (v7.4, Nov 15; was "Ctrl+C, Ctrl+V a Fighter Jet", the gag stays on S2)
+Subtitle: *Protecting from superpowers, and against rogue AI* (final, v7.5, Nov 15; replaces "Ctrl+C, Ctrl+V a Fighter Jet" and all earlier subtitles; the Ctrl+C/V gag stays on S2)
 
 ## What this is
 - 15–20 min TED-style talk by Nitzan (GitHub `nitzpo`) at **Tel Aviv Frontier AI Security Forum '26**, Sun **Nov 22 2026**, Tel Aviv Museum of Art. ≈300 people: cyber offense/defense veterans, intel alumni, AI researchers, founders. Talk in English. Slot length unknown → build the 17-min version with a marked 15-min cut.
@@ -82,6 +82,7 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 - Offline backup (single HTML, no polls, show-of-hands): `python3 -I tools/build_offline.py` → `deck/public/offline.html` (committed; download from `<deck host>/offline.html`). Rerun after any deck change; `--check` = stale test.
 - Load test (dev only; refuses live; uses a fresh rehearsal run, then restores): `NODE_USE_ENV_PROXY=1 BASE=https://vote-dev.nitzpo.workers.dev ADMIN_TOKEN=… node tools/loadtest.mjs --phones 150 --phase 30`. Nov 8: 150 phones, 4.1k req, 0 errors, vote p95 242ms, all votes counted once. ≈5k req per run: free tier = 100k/day per account, so no load tests on talk day.
 - Real-time check: `node tools/walk.mjs --from s5 [--to s9] --out <dir>` → video + frame sheets.
+- Real-input e2e (local worker + local deck only): `node tools/e2e.mjs` → every deck shortcut by key press, forward poll flow with a phone voting (taps), presenter local (S) + phone, admin page buttons, offline copy. Run before every merge that touches deck/poll JS.
 - Poll content lives in `poll/src/polls.js`; after editing run `node tools/gen_deck_polls.mjs` (deck copy).
 - Admin page: `<poll host>/admin` (dev: https://vote-dev.nitzpo.workers.dev/admin). Reset = per-poll Reset, "Reset all votes in run", or "New rehearsal run" (clean slate, history kept). Talk day: "New LIVE run".
 - Deck keys: →/Space/PgDn next · ←/PgUp back · F fullscreen · B/. black · N notes HUD · T start timer · C 15-min cut · H show-of-hands · K admin key · A open admin page · P re-push poll state · G go to slide.
@@ -91,6 +92,8 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
   - `vote-dev` ← every branch (+ `main`), `--env dev`, D1 `ted-polls-dev`. Admin token: ask Nitzan / set via API.
   - `sl5-deck` ← `main` = production; other branches = Worker Previews (`<branch>-sl5-deck.nitzpo.workers.dev`, uses `vote-dev`).
 - ⚠️ Learning: CSS class collision blacked out the deck (`body.cursor` state flag vs S1b's `.cursor` SVG with `opacity:0`). Body/state classes use `show-*`/`is-*`; slide-local classes get a slide-specific name.
+  - ⚠️ Learning (Nov 15): K (admin key) never worked: engine's keydown `else return;` skipped `Deck.emit("key")` for keys it didn't handle itself, so poll.js never saw K/H/A/P. Tests used `#key=` in the URL, so nobody pressed K. Test every deck shortcut with real keypresses.
+  - ⚠️ Learning (Nov 15, review): fixing K made H reachable, and H blacked out the deck: `body.hands` matched `.hands{display:none}` (same collision as `body.cursor`). Tests asserted the class, not what's on screen. Assert visibility (body/slide on screen), not class toggles. Also: a prompt opened on keydown receives that key's letter (focus it after the keystroke).
   - ⚠️ Learning: Workers Builds overrides the Worker name with the connected Worker, so `wrangler deploy --env dev` in `vote`'s branch trigger deployed to **live `vote`**. Never deploy another worker from a build trigger; each worker gets its own build config.
 
 ## Workflow

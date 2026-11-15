@@ -113,8 +113,8 @@ body.show-cursor { cursor: default; }
 
 /* show-of-hands fallback: shown when live data is unavailable or 'H' is pressed */
 .hands { display: none; }
-body.hands .hands, .slide.nodata .hands { display: block; }
-body.hands .live, .slide.nodata .live { display: none !important; }
+body.show-hands .hands, .slide.nodata .hands { display: block; } /* body flag is show-hands: .hands on <body> = display:none = black deck */
+body.show-hands .live, .slide.nodata .live { display: none !important; }
 body.is-offline [data-qr="vote"], body.is-offline [data-url="vote"], body.is-offline .s0-card { display: none !important; }
 .hands { font-size: 44px; font-weight: 700; color: var(--fg); }
 .hands .tag { font: 600 22px var(--mono); color: var(--amb); letter-spacing: .12em; text-transform: uppercase; display: block; margin-bottom: 14px; }
@@ -137,6 +137,13 @@ body.show-cursor #status, body.hud #status { opacity: .9; }
 #hud .warn { color: var(--red); font-weight: 700; }
 #toast.show { opacity: 1; }
 
+[hidden] { display: none !important; }
+/* in-page prompt (G, K): prompt() drops fullscreen and shows the admin key in clear on the projector */
+.ask { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,.6); }
+.ask form { background: var(--card); border: 2px solid var(--line); border-radius: 16px; padding: 22px 26px; display: flex; flex-direction: column; gap: 10px; min-width: 380px; font: 500 20px var(--sans); color: var(--fg); }
+.ask input { font: 600 26px var(--mono); padding: 10px 12px; background: #0b0d10; color: var(--fg); border: 2px solid var(--amb); border-radius: 10px; outline: none; }
+.ask small { color: var(--mut); font-size: 14px; }
+
 </style>
 <style>
 /* Per-slide layout. M1: stubbed visuals (typographic), real layout grids. */
@@ -153,7 +160,7 @@ body.show-cursor #status, body.hud #status { opacity: .9; }
   linear-gradient(0deg, rgba(8,9,11,.85) 0%, transparent 35%); }
 .s0 { justify-content: center; gap: 28px; padding-right: 720px; }
 .s0-title { font: 900 128px/.95 var(--sans); letter-spacing: -.045em; margin-top: 8px; }
-.s0-sub { font-size: 44px; line-height: 1.25; font-weight: 500; color: #c9ccd1; max-width: 980px; }
+.s0-sub { font-size: 44px; line-height: 1.25; font-weight: 500; color: #c9ccd1; max-width: 1110px; text-wrap: balance; }
 .term { font-size: 40px; margin-top: 14px; color: #d8dade; }
 .caret { display: inline-block; width: .55em; height: 1em; background: var(--amb); vertical-align: -.12em; margin-left: 6px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
@@ -646,13 +653,13 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 <div id="stage">
 
 <!-- ============================== PART 0: PRE-SHOW ============================== -->
-<section class="slide" id="s0" data-title="Title + warm-up vote" data-at="pre" data-poll-current="warm" data-poll-onload>
+<section class="slide" id="s0" data-title="Title + warm-up vote" data-at="pre" data-poll-current="warm">
   <div class="img ph s0-bg" data-img="01-datacenter" data-label="#01 datacenter (loop)"></div>
   <div class="s0-shade"></div>
   <div class="pad s0">
     <div class="kicker">TLV Frontier AI Security Forum '26</div>
     <h1 class="s0-title">Stealing<br>Superintelligence</h1>
-    <p class="s0-sub">Protecting frontier AI from superpowers, and the world from rogue AI</p>
+    <p class="s0-sub">Protecting from superpowers, and against rogue AI</p>
     <p class="term mono"><span class="amb">$</span> <span class="type" data-text="scp weights.bin">scp weights.bin</span><span class="caret"></span></p>
     <p class="s0-name">Nitzan Pomerantz</p>
   </div>
@@ -3452,6 +3459,24 @@ var qrcode = function() {
   var params = new URLSearchParams(location.search), p = params.get("api");
   var base = p === "off" || window.SL5_OFFLINE ? null : p === "live" || p === "dev" ? API[p] : p ? p.replace(/\/$/, "")
     : location.protocol === "file:" ? null : /^sl5-deck\./.test(location.hostname) ? API.live : API.dev;
+  // fetch that gives up: a hung request (dead uplink) must not freeze polling loops or the show-of-hands fallback
+  window.SL5Fetch = function (url, opts, ms) {
+    return new Promise(function (res, rej) {
+      var c = "AbortController" in window ? new AbortController() : null;
+      var t = setTimeout(function () { if (c) c.abort(); rej(new Error("timeout")); }, ms || 3500);
+      fetch(url, c ? Object.assign({ signal: c.signal }, opts || {}) : opts).then(function (r) { clearTimeout(t); res(r); }, function (e) { clearTimeout(t); rej(e); });
+    });
+  };
+  // shortcut key, independent of the keyboard layout: on a Hebrew layout B arrives as "נ" and "." as "ץ" (dead shortcuts,
+  // incl. a clicker's black button); fall back to the physical key. Latin layouts (incl. AZERTY) keep e.key.
+  window.SL5Key = function (e) {
+    var k = e.key;
+    if (k && k.length === 1 && !/[a-z.]/i.test(k)) {
+      var c = e.code || "";
+      if (/^Key[A-Z]$/.test(c)) k = c.slice(3).toLowerCase(); else if (c === "Period") k = ".";
+    }
+    return k;
+  };
   window.SL5Config = { API: API, base: base, phoneUrl: base || API.live, phoneHost: (base || API.live).replace(/^https?:\/\//, "") };
 })();
 
@@ -3461,7 +3486,7 @@ var qrcode = function() {
 window.SL5_POLLS = {
  "TALK": {
   "title": "Stealing Superintelligence",
-  "subtitle": "Protecting frontier AI from superpowers, and the world from rogue AI",
+  "subtitle": "Protecting from superpowers, and against rogue AI",
   "speaker": "Nitzan Pomerantz"
  },
  "POLLS": [
@@ -3577,8 +3602,7 @@ window.SL5_POLLS = {
   "Heron",
   "Palisade",
   "FAR.AI",
-  "UK AI Security Institute",
-  "US CAISI"
+  "UK AI Security Institute"
  ]
 };
 
@@ -3746,27 +3770,50 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
     else (document.documentElement.requestFullscreen || function () {}).call(document.documentElement);
   }
 
-  document.addEventListener("keydown", function (e) {
-    if (thumb) return;
-    if (e.target.closest && e.target.closest("input,textarea")) return;
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    var k = e.key;
-    if (k === "ArrowRight" || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter") { e.preventDefault(); next(); }
-    else if (k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp" || k === "Backspace") { e.preventDefault(); prev(); }
+  // in-page prompt (prompt() exits fullscreen; password mode keeps the admin key off the projector)
+  function ask(label, opts) {
+    return new Promise(function (res) {
+      var ov = document.createElement("div"); ov.className = "ask";
+      ov.innerHTML = '<form><label></label><input autocomplete="off" spellcheck="false"><small></small></form>';
+      ov.querySelector("label").textContent = label;
+      ov.querySelector("small").textContent = (opts && opts.hint) || "Enter = OK · empty = cancel";
+      var inp = ov.querySelector("input"); if (opts && opts.password) inp.type = "password";
+      var done = function (v) { if (!ov.parentNode) return; ov.remove(); res(v); };
+      ov.querySelector("form").onsubmit = function (e) { e.preventDefault(); done(inp.value); };
+      inp.addEventListener("keydown", function (e) { e.stopPropagation(); if (e.key === "Escape") done(null); });
+      ov.addEventListener("click", function (e) { if (e.target === ov) done(null); });
+      document.body.appendChild(ov);
+      setTimeout(function () { inp.focus(); }, 50); // after the K/G keystroke ends, or its letter lands in the field
+    });
+  }
+
+  function key(k, e) { // one dispatch for the keyboard and for keys forwarded by the presenter window
+    var pd = function () { if (e) e.preventDefault(); };
+    if (k === "ArrowRight" || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter") { pd(); next(); }
+    else if (k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp" || k === "Backspace") { pd(); prev(); }
     else if (k === "Home") go(0, 0, 0);
     else if (k === "End") go(list.length - 1, 0, 0);
-    else if (k === "f" || k === "F" || k === "F5") { e.preventDefault(); fullscreen(); }
+    else if (k === "f" || k === "F" || k === "F5") { pd(); fullscreen(); }
     else if (k === "b" || k === "B" || k === "." || k === "w" || k === "W") black();
     else if (k === "s" || k === "S") { if (Deck.openPresenter) Deck.openPresenter(); }
     else if (k === "n" || k === "N") { document.body.classList.toggle("hud"); hud(); }
     else if (k === "c" || k === "C") setCut(!cut);
     else if (k === "t" || k === "T") { t0 = Date.now(); toast("Timer started"); hud(); }
     else if (k === "g" || k === "G") {
-      var id = prompt("Go to slide id (e.g. s7)");
-      if (id) { location.hash = "#" + id.trim(); fromHash(); }
+      ask("Go to slide (e.g. s10 or s10.2)").then(function (id) {
+        id = (id || "").trim().toLowerCase();
+        // unknown id (typo): stay here; fromHash would fall back to S0, the title slide
+        if (id && all.some(function (el) { return el.id === id.split(".")[0]; })) { location.hash = "#" + id; fromHash(); }
+        else if (id) toast("No slide " + id);
+      });
     }
-    else return;
-    Deck.emit("key", k);
+    Deck.emit("key", k); // every key: poll.js handles K (admin key), H, A, P
+  }
+  document.addEventListener("keydown", function (e) {
+    if (thumb) return;
+    if (e.target.closest && e.target.closest("input,textarea")) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    key(SL5Key(e), e);
   });
 
   // Mouse: show cursor while moving; click = next (ignore clicks on controls)
@@ -3788,7 +3835,7 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
     onChange: function (f) { listeners.push(f); },
     current: function () { return { el: list[cur], step: step, idx: cur, cut: cut }; },
     next: next, prev: prev, go: function (id, s) { var i = list.findIndex(function (el) { return el.id === id; }); if (i >= 0) go(i, s || 0, 0); },
-    toast: toast, warn: warn, params: params, LS: LS, thumb: thumb, black: black, setCut: function (v) { if (v !== cut) setCut(v); },
+    toast: toast, warn: warn, params: params, LS: LS, thumb: thumb, black: black, ask: ask, key: function (k) { key(k, null); }, setCut: function (v) { if (v !== cut) setCut(v); },
     isBlack: function () { return document.body.classList.contains("black"); },
     emit: function (ev, x) { (bus[ev] || []).forEach(function (f) { f(x); }); },
     listen: function (ev, f) { (bus[ev] = bus[ev] || []).push(f); },
@@ -3825,33 +3872,58 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   var key = LS.get("sl5:deckkey");
   Deck.listen("key", function (k) {
     if (k === "k" || k === "K") {
-      var v = prompt("Admin key for " + (base || "(offline)") + " (blank = remove)", "");
-      if (v !== null) { key = v.trim() || null; LS.set("sl5:deckkey", key); Deck.toast(key ? "Admin key saved" : "Admin key removed"); if (key) Deck.warn(""); }
+      Deck.ask("Admin key for " + (base || "(offline)"), { password: true, hint: "Enter = save · empty = remove · Esc = cancel" }).then(function (v) {
+        if (v === null) return;
+        key = v.trim() || null; LS.set("sl5:deckkey", key);
+        if (!key) return Deck.toast("Admin key removed");
+        Deck.warn(""); Deck.toast("Admin key saved");
+        repush(Deck.current().el); // the push that failed without a key (S0 on load) happens now
+      });
     }
-    if (k === "h" || k === "H") { document.body.classList.toggle("hands"); Deck.toast(document.body.classList.contains("hands") ? "Show-of-hands mode" : "Live polls"); }
+    if (k === "h" || k === "H") { var hs = document.body.classList.toggle("show-hands"); Deck.toast(hs ? "Show-of-hands mode" : "Live polls"); }
     if (k === "a" || k === "A") { if (base) window.open(base + "/admin", "_blank"); else Deck.toast("Offline: no admin page"); }
-    if (k === "p" || k === "P") { // force-apply this slide's poll actions (after a reload / jump)
-      var el = Deck.current().el;
-      pollActions(el).then(function () { if (el.dataset.pollCurrent) Deck.toast("Phones → " + el.dataset.pollCurrent); });
-    }
+    if (k === "p" || k === "P") repush(Deck.current().el); // re-push what phones should show at this slide
   });
 
-  function admin(path, body) {
-    if (!base) return Promise.resolve();
-    if (!key) { Deck.warn("No admin key (press K): phones not switched"); return Promise.resolve(); }
-    return fetch(base + "/api/admin/" + path, {
+  function admin(path, body) { // resolves true only if the server accepted it
+    if (!base) return Promise.resolve(false);
+    if (!key) { Deck.warn("No admin key (press K): phones not switched"); return Promise.resolve(false); }
+    return SL5Fetch(base + "/api/admin/" + path, {
       method: "POST", headers: { "content-type": "application/json", authorization: "Bearer " + key }, body: JSON.stringify(body),
     }).then(function (r) {
       if (r.status === 401) Deck.warn("Admin key rejected (press K)");
       else if (!r.ok) Deck.warn("Poll server error " + r.status);
       else if (path !== "deck") Deck.warn(""); // deck heartbeats must not clear a failed poll switch
-    }).catch(function () { Deck.warn("Poll server unreachable"); });
+      return r.ok;
+    }).catch(function () { Deck.warn("Poll server unreachable"); return false; });
   }
   // close first, then set current: both read-modify-write `open` server-side, so in parallel the
   // close can be overwritten (S5: warm would stay open)
   function pollActions(el) {
     var p = el.dataset.pollClose ? admin("open", { ids: el.dataset.pollClose.split(","), open: false }) : Promise.resolve();
     return p.then(function () { if (el.dataset.pollCurrent) return admin("current", { current: el.dataset.pollCurrent }); });
+  }
+  // What phones should show at a slide, as if the deck had been walked forward from S0: the last data-poll-current
+  // up to here, with that group's polls open minus any data-poll-close since. Used for P, a forward jump, first load.
+  var SLIDES = [].slice.call(document.querySelectorAll("section.slide"));
+  function effective(el) {
+    var cur = null, closed = [], i = SLIDES.indexOf(el);
+    for (var j = 0; j <= i; j++) {
+      var s = SLIDES[j];
+      if (s.dataset.pollCurrent) { cur = s.dataset.pollCurrent; closed = []; }
+      if (s.dataset.pollClose) closed = closed.concat(s.dataset.pollClose.split(","));
+    }
+    var open = D.POLLS.filter(function (p) { return p.grp === cur && closed.indexOf(p.id) < 0; }).map(function (p) { return p.id; });
+    return { cur: cur || "idle", shut: D.POLLS.map(function (p) { return p.id; }).filter(function (id) { return open.indexOf(id) < 0; }) };
+  }
+  function applyEffective(el) {
+    var e = effective(el);
+    return admin("current", { current: e.cur }).then(function (ok) { return ok && e.shut.length ? admin("open", { ids: e.shut, open: false }) : ok; })
+      .then(function (ok) { return { ok: ok, cur: e.cur }; });
+  }
+  function repush(el) {
+    if (!base) return Deck.toast("Offline copy: no phones");
+    applyEffective(el).then(function (r) { Deck.toast(r.ok ? "Phones → " + r.cur : "Phones NOT switched: see the warning"); });
   }
 
   // ---------- QR + URLs ----------
@@ -3930,7 +4002,7 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   function fetchGroups(grps) {
     // one request per group so per-group voter counts stay correct
     return Promise.all(grps.map(function (g) {
-      return fetch(base + "/api/results?grp=" + g, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      return SL5Fetch(base + "/api/results?grp=" + g, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); })
         .then(function (d) { return [g, d]; });
     })).then(function (rs) {
       var out = { polls: {} };
@@ -3953,12 +4025,16 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
     }).then(function () { if (el === activeEl) timer = setTimeout(tick, document.hidden ? 5000 : 1000); });
   }
 
+  var lastIdx = -1; // -1 = first load
   Deck.onChange(function (el, step, dir) {
     if (el !== activeEl) {
+      var idx = SLIDES.indexOf(el);
       activeEl = el; enteredAt = Date.now(); clearTimeout(timer);
-      if (dir === 1 || (dir === 0 && el.hasAttribute("data-poll-onload"))) { // forward navigation (or the pre-show slide on load) drives the phones
-        pollActions(el);
-      }
+      // Phones follow the deck forward only. Walking forward: this slide's own actions. First load or a forward jump
+      // (G, presenter jump list): catch up to the slide's effective state. Backward (Home, ←, jump back): phones stay.
+      if (dir === 1) pollActions(el);
+      else if (dir === 0 && idx > lastIdx) applyEffective(el);
+      lastIdx = idx;
       if (liveEls(el).length) { try { render(el, cache); } catch (e) { console.error(e); } tick(); }
     }
   });
@@ -4238,6 +4314,7 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
     else if (cmd === "black") Deck.black();
     else if (cmd === "go" && arg) Deck.go(arg, 0);
     else if (cmd === "cut") Deck.setCut(!Deck.current().cut);
+    else if (cmd === "key" && /^[hpnt]$/.test(arg)) Deck.key(arg); // keys pressed in the presenter window (H, P, N, T)
     else if (cmd === "hello") send();
   }
 
@@ -4255,7 +4332,7 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   }
   function pollCmds() {
     if (!canRemote()) { setTimeout(pollCmds, 3000); return; }
-    fetch(SL5Poll.base + "/api/admin/remote" + (since === null ? "" : "?since=" + since), { headers: { authorization: "Bearer " + SL5Poll.key() }, cache: "no-store" })
+    SL5Fetch(SL5Poll.base + "/api/admin/remote" + (since === null ? "" : "?since=" + since), { headers: { authorization: "Bearer " + SL5Poll.key() }, cache: "no-store" })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (d) {
         if (!d) return;

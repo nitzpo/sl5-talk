@@ -3,7 +3,7 @@
 
 export const TALK = {
   title: "Stealing Superintelligence",
-  subtitle: "Protecting frontier AI from superpowers, and the world from rogue AI",
+  subtitle: "Protecting from superpowers, and against rogue AI",
   speaker: "Nitzan Pomerantz",
 };
 
@@ -58,4 +58,4 @@ export const LINKS = [
   { t: "Talk to me", s: "LinkedIn, or find me after the talk", u: "https://www.linkedin.com/in/nitzan-pomerantz/" },
 ];
 
-export const ALREADY = ["RAND", "Security Level 5", "Irregular", "Heron", "Palisade", "FAR.AI", "UK AI Security Institute", "US CAISI"];
+export const ALREADY = ["RAND", "Security Level 5", "Irregular", "Heron", "Palisade", "FAR.AI", "UK AI Security Institute"];
