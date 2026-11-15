@@ -1,10 +1,10 @@
 # PLAN: Stealing Superintelligence
 
-Mirror of the Notion plan, **draft v7.4 (Nov 15 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
+Mirror of the Notion plan, **draft v7.5 (Nov 15 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
-Title (decided Nov 15): **Stealing Superintelligence**: *Protecting frontier AI from superpowers, and the world from rogue AI* (replaces the working title "Ctrl+C, Ctrl+V a Fighter Jet"; the Ctrl+C/V gag stays on S2)
+Title (final, Nov 15): **Stealing Superintelligence**: *Protecting from superpowers, and against rogue AI* (replaces the working title "Ctrl+C, Ctrl+V a Fighter Jet" and all earlier subtitles; the Ctrl+C/V gag stays on S2)
 
 ## Spine
 1. The weights *are* the weapon, and stealing them is silent.
@@ -287,4 +287,4 @@ Style block prepended to every prompt: "Cinematic film still, 16:9, low-key ligh
 | Kiss-cam clip: an AI video by Peter Dedene (@dedene), circulated on X | Nitzan's upload |
 
 ## Decided
-17-min plan + 15-min cut (slot unknown) · deck runs on any laptop · no reliance on the workshop or Heron · naming torchtriton and Su Bin is OK · the simulator stays vague · keep the "depends on the contract" joke · hype words OK · title = Stealing Superintelligence: Protecting frontier AI from superpowers, and the world from rogue AI (Nov 15).
+17-min plan + 15-min cut (slot unknown) · deck runs on any laptop · no reliance on the workshop or Heron · naming torchtriton and Su Bin is OK · the simulator stays vague · keep the "depends on the contract" joke · hype words OK · title = Stealing Superintelligence: Protecting from superpowers, and against rogue AI (final, Nov 15).

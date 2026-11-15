@@ -12,7 +12,7 @@
   linear-gradient(0deg, rgba(8,9,11,.85) 0%, transparent 35%); }
 .s0 { justify-content: center; gap: 28px; padding-right: 720px; }
 .s0-title { font: 900 128px/.95 var(--sans); letter-spacing: -.045em; margin-top: 8px; }
-.s0-sub { font-size: 44px; line-height: 1.25; font-weight: 500; color: #c9ccd1; max-width: 980px; }
+.s0-sub { font-size: 44px; line-height: 1.25; font-weight: 500; color: #c9ccd1; max-width: 1110px; text-wrap: balance; }
 .term { font-size: 40px; margin-top: 14px; color: #d8dade; }
 .caret { display: inline-block; width: .55em; height: 1em; background: var(--amb); vertical-align: -.12em; margin-left: 6px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }

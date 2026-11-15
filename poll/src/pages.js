@@ -28,6 +28,7 @@ function page(title, body, extraCss = "") {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d10"><meta name="robots" content="noindex">
+<meta name="description" content="${esc(TALK.subtitle)}"><meta property="og:title" content="${esc(TALK.title)}"><meta property="og:description" content="${esc(TALK.subtitle)}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <title>${esc(title)}</title><style>${BASE_CSS}${extraCss}</style></head><body>${body}</body></html>`;
 }
@@ -40,6 +41,7 @@ const LINKS_CSS = `
 .links b{display:block;font-size:18px}
 .links span{display:block;color:var(--mut);font-size:14px;margin-top:2px}
 .links i{display:block;font:12px var(--mono);color:var(--amb);margin-top:8px;font-style:normal;word-break:break-all}
+.tsub{margin:8px 0 0;font-size:13px;color:var(--mut)}
 .already{font-size:13px;color:var(--mut);border-top:1px solid var(--line);padding-top:14px}
 .already b{color:var(--fg);font-weight:600}
 `;
@@ -47,7 +49,7 @@ function linksHtml() {
   const items = LINKS.map(
     (l) => `<li><a href="${esc(l.u)}" target="_blank" rel="noopener"><b>${esc(l.t)}</b><span>${esc(l.s)}</span><i>${esc(l.u.replace(/^https:\/\//, "").replace(/\/$/, ""))}</i></a></li>`,
   ).join("");
-  return `<div class="brand">${esc(TALK.title)}</div><h1>Thanks! Where to go next</h1>
+  return `<div class="brand">${esc(TALK.title)}</div><p class="tsub">${esc(TALK.subtitle)}</p><h1>Thanks! Where to go next</h1>
 <ul class="links">${items}</ul>
 <p class="already"><b>Already working on this:</b> ${ALREADY.map(esc).join(" · ")}</p>`;
 }

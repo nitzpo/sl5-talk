@@ -2,7 +2,7 @@
 window.SL5_POLLS = {
  "TALK": {
   "title": "Stealing Superintelligence",
-  "subtitle": "Protecting frontier AI from superpowers, and the world from rogue AI",
+  "subtitle": "Protecting from superpowers, and against rogue AI",
   "speaker": "Nitzan Pomerantz"
  },
  "POLLS": [
