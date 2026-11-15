@@ -403,6 +403,8 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s14-big:has(.amb:empty) { visibility: hidden; } /* no votes yet: no number, no sentence (never a fake 0% or a bare claim) */
 .s14-big .amb { font: 900 112px/1 var(--sans); letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .s14-lbl { font-size: 32px; font-weight: 600; }
+.s14-col .bars { flex: 1; }
+.s14-col .bars .wait { margin-top: auto; } /* both columns' vote totals on one line (B1 has 4 options, B2 has 3) */
 
 /* S15 */
 .s15 { --col: calc(1640px / 7); }
