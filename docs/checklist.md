@@ -10,6 +10,7 @@ URLs: deck `https://sl5-deck.nitzpo.workers.dev` · phones `vote.nitzpo.workers.
 - [ ] No load tests on talk day (free tier: 100k requests/day per account; a talk ≈ 40k).
 
 ## At the venue (T−45 min)
+- [ ] Own laptop? Turn off key-grabbing extensions for the deck: Vimium → Options → Excluded URLs → `https://*.nitzpo.workers.dev/*` (keys empty). Vimium eats K, F, G, H, B, N, T, P (and a clicker's `b` black button). Arrows/Space/PgUp/PgDn are safe.
 - [ ] Chrome → deck URL. **Before the projector shows the laptop:** `K` → type the admin key (hidden field; or open the deck with `#key=<token>`). Toast "Phones → warm" = phones on the warm-up. Status dot (bottom-right, shows only while the mouse moves): green = OK, red = poll-server problem; press `N` to read the reason.
 - [ ] Slot is 15 min? Press `C` (15-min cut: drops S9). HUD `N` shows "15-MIN CUT".
 - [ ] Clicker: next / back / black (`B` or `.`) all work. If not: phone remote.
