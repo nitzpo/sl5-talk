@@ -1,6 +1,6 @@
-# SL5 talk deck: "Ctrl+C, Ctrl+V a Fighter Jet"
+# SL5 talk deck: "Stealing Superintelligence"
 
-Subtitle: *Why defending against superpowers and against rogue AI go hand in hand* (Nitzan, Nov 14)
+Subtitle: *Protecting frontier AI from superpowers, and the world from rogue AI* (v7.4, Nov 15; was "Ctrl+C, Ctrl+V a Fighter Jet", the gag stays on S2)
 
 ## What this is
 - 15–20 min TED-style talk by Nitzan (GitHub `nitzpo`) at **Tel Aviv Frontier AI Security Forum '26**, Sun **Nov 22 2026**, Tel Aviv Museum of Art. ≈300 people: cyber offense/defense veterans, intel alumni, AI researchers, founders. Talk in English. Slot length unknown → build the 17-min version with a marked 15-min cut.

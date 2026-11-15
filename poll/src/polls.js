@@ -2,8 +2,8 @@
 // Text comes from PLAN.md; don't edit wording here without updating PLAN.md.
 
 export const TALK = {
-  title: "Ctrl+C, Ctrl+V a Fighter Jet",
-  subtitle: "Why defending against superpowers and against rogue AI go hand in hand",
+  title: "Stealing Superintelligence",
+  subtitle: "Protecting frontier AI from superpowers, and the world from rogue AI",
   speaker: "Nitzan Pomerantz",
 };
 
