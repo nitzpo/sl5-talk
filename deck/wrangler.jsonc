@@ -1,0 +1,10 @@
+// Deck = static assets only. Production: `main` → https://sl5-deck.nitzpo.workers.dev
+// Other branches → Worker Previews (<branch>-sl5-deck.nitzpo.workers.dev), via Workers Builds.
+{
+  "name": "sl5-deck",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": true,
+  "previews": {},
+  "assets": { "directory": "./public" }
+}

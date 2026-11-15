@@ -1,0 +1,13 @@
+{
+  "name": "sl5-talk",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "poll:dev": "cd poll && wrangler d1 migrations apply DB --local --env dev && wrangler dev --env dev --port 8787",
+    "deck:dev": "npx serve deck/public -l 8080",
+    "test:poll": "node --test tests/poll.test.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.158.0"
+  }
+}
