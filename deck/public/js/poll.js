@@ -25,33 +25,58 @@
   var key = LS.get("sl5:deckkey");
   Deck.listen("key", function (k) {
     if (k === "k" || k === "K") {
-      var v = prompt("Admin key for " + (base || "(offline)") + " (blank = remove)", "");
-      if (v !== null) { key = v.trim() || null; LS.set("sl5:deckkey", key); Deck.toast(key ? "Admin key saved" : "Admin key removed"); if (key) Deck.warn(""); }
+      Deck.ask("Admin key for " + (base || "(offline)"), { password: true, hint: "Enter = save · empty = remove · Esc = cancel" }).then(function (v) {
+        if (v === null) return;
+        key = v.trim() || null; LS.set("sl5:deckkey", key);
+        if (!key) return Deck.toast("Admin key removed");
+        Deck.warn(""); Deck.toast("Admin key saved");
+        repush(Deck.current().el); // the push that failed without a key (S0 on load) happens now
+      });
     }
-    if (k === "h" || k === "H") { document.body.classList.toggle("hands"); Deck.toast(document.body.classList.contains("hands") ? "Show-of-hands mode" : "Live polls"); }
+    if (k === "h" || k === "H") { var hs = document.body.classList.toggle("show-hands"); Deck.toast(hs ? "Show-of-hands mode" : "Live polls"); }
     if (k === "a" || k === "A") { if (base) window.open(base + "/admin", "_blank"); else Deck.toast("Offline: no admin page"); }
-    if (k === "p" || k === "P") { // force-apply this slide's poll actions (after a reload / jump)
-      var el = Deck.current().el;
-      pollActions(el).then(function () { if (el.dataset.pollCurrent) Deck.toast("Phones → " + el.dataset.pollCurrent); });
-    }
+    if (k === "p" || k === "P") repush(Deck.current().el); // re-push what phones should show at this slide
   });
 
-  function admin(path, body) {
-    if (!base) return Promise.resolve();
-    if (!key) { Deck.warn("No admin key (press K): phones not switched"); return Promise.resolve(); }
-    return fetch(base + "/api/admin/" + path, {
+  function admin(path, body) { // resolves true only if the server accepted it
+    if (!base) return Promise.resolve(false);
+    if (!key) { Deck.warn("No admin key (press K): phones not switched"); return Promise.resolve(false); }
+    return SL5Fetch(base + "/api/admin/" + path, {
       method: "POST", headers: { "content-type": "application/json", authorization: "Bearer " + key }, body: JSON.stringify(body),
     }).then(function (r) {
       if (r.status === 401) Deck.warn("Admin key rejected (press K)");
       else if (!r.ok) Deck.warn("Poll server error " + r.status);
       else if (path !== "deck") Deck.warn(""); // deck heartbeats must not clear a failed poll switch
-    }).catch(function () { Deck.warn("Poll server unreachable"); });
+      return r.ok;
+    }).catch(function () { Deck.warn("Poll server unreachable"); return false; });
   }
   // close first, then set current: both read-modify-write `open` server-side, so in parallel the
   // close can be overwritten (S5: warm would stay open)
   function pollActions(el) {
     var p = el.dataset.pollClose ? admin("open", { ids: el.dataset.pollClose.split(","), open: false }) : Promise.resolve();
     return p.then(function () { if (el.dataset.pollCurrent) return admin("current", { current: el.dataset.pollCurrent }); });
+  }
+  // What phones should show at a slide, as if the deck had been walked forward from S0: the last data-poll-current
+  // up to here, with that group's polls open minus any data-poll-close since. Used for P, a forward jump, first load.
+  var SLIDES = [].slice.call(document.querySelectorAll("section.slide"));
+  function effective(el) {
+    var cur = null, closed = [], i = SLIDES.indexOf(el);
+    for (var j = 0; j <= i; j++) {
+      var s = SLIDES[j];
+      if (s.dataset.pollCurrent) { cur = s.dataset.pollCurrent; closed = []; }
+      if (s.dataset.pollClose) closed = closed.concat(s.dataset.pollClose.split(","));
+    }
+    var open = D.POLLS.filter(function (p) { return p.grp === cur && closed.indexOf(p.id) < 0; }).map(function (p) { return p.id; });
+    return { cur: cur || "idle", shut: D.POLLS.map(function (p) { return p.id; }).filter(function (id) { return open.indexOf(id) < 0; }) };
+  }
+  function applyEffective(el) {
+    var e = effective(el);
+    return admin("current", { current: e.cur }).then(function (ok) { return ok && e.shut.length ? admin("open", { ids: e.shut, open: false }) : ok; })
+      .then(function (ok) { return { ok: ok, cur: e.cur }; });
+  }
+  function repush(el) {
+    if (!base) return Deck.toast("Offline copy: no phones");
+    applyEffective(el).then(function (r) { Deck.toast(r.ok ? "Phones → " + r.cur : "Phones NOT switched: see the warning"); });
   }
 
   // ---------- QR + URLs ----------
@@ -130,7 +155,7 @@
   function fetchGroups(grps) {
     // one request per group so per-group voter counts stay correct
     return Promise.all(grps.map(function (g) {
-      return fetch(base + "/api/results?grp=" + g, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      return SL5Fetch(base + "/api/results?grp=" + g, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); })
         .then(function (d) { return [g, d]; });
     })).then(function (rs) {
       var out = { polls: {} };
@@ -153,12 +178,16 @@
     }).then(function () { if (el === activeEl) timer = setTimeout(tick, document.hidden ? 5000 : 1000); });
   }
 
+  var lastIdx = -1; // -1 = first load
   Deck.onChange(function (el, step, dir) {
     if (el !== activeEl) {
+      var idx = SLIDES.indexOf(el);
       activeEl = el; enteredAt = Date.now(); clearTimeout(timer);
-      if (dir === 1 || (dir === 0 && el.hasAttribute("data-poll-onload"))) { // forward navigation (or the pre-show slide on load) drives the phones
-        pollActions(el);
-      }
+      // Phones follow the deck forward only. Walking forward: this slide's own actions. First load or a forward jump
+      // (G, presenter jump list): catch up to the slide's effective state. Backward (Home, ←, jump back): phones stay.
+      if (dir === 1) pollActions(el);
+      else if (dir === 0 && idx > lastIdx) applyEffective(el);
+      lastIdx = idx;
       if (liveEls(el).length) { try { render(el, cache); } catch (e) { console.error(e); } tick(); }
     }
   });

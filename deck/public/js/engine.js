@@ -155,28 +155,50 @@
     else (document.documentElement.requestFullscreen || function () {}).call(document.documentElement);
   }
 
-  document.addEventListener("keydown", function (e) {
-    if (thumb) return;
-    if (e.target.closest && e.target.closest("input,textarea")) return;
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    var k = e.key;
-    if (k === "ArrowRight" || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter") { e.preventDefault(); next(); }
-    else if (k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp" || k === "Backspace") { e.preventDefault(); prev(); }
+  // in-page prompt (prompt() exits fullscreen; password mode keeps the admin key off the projector)
+  function ask(label, opts) {
+    return new Promise(function (res) {
+      var ov = document.createElement("div"); ov.className = "ask";
+      ov.innerHTML = '<form><label></label><input autocomplete="off" spellcheck="false"><small></small></form>';
+      ov.querySelector("label").textContent = label;
+      ov.querySelector("small").textContent = (opts && opts.hint) || "Enter = OK · empty = cancel";
+      var inp = ov.querySelector("input"); if (opts && opts.password) inp.type = "password";
+      var done = function (v) { if (!ov.parentNode) return; ov.remove(); res(v); };
+      ov.querySelector("form").onsubmit = function (e) { e.preventDefault(); done(inp.value); };
+      inp.addEventListener("keydown", function (e) { e.stopPropagation(); if (e.key === "Escape") done(null); });
+      ov.addEventListener("click", function (e) { if (e.target === ov) done(null); });
+      document.body.appendChild(ov);
+      setTimeout(function () { inp.focus(); }, 50); // after the K/G keystroke ends, or its letter lands in the field
+    });
+  }
+
+  function key(k, e) { // one dispatch for the keyboard and for keys forwarded by the presenter window
+    var pd = function () { if (e) e.preventDefault(); };
+    if (k === "ArrowRight" || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter") { pd(); next(); }
+    else if (k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp" || k === "Backspace") { pd(); prev(); }
     else if (k === "Home") go(0, 0, 0);
     else if (k === "End") go(list.length - 1, 0, 0);
-    else if (k === "f" || k === "F" || k === "F5") { e.preventDefault(); fullscreen(); }
+    else if (k === "f" || k === "F" || k === "F5") { pd(); fullscreen(); }
     else if (k === "b" || k === "B" || k === "." || k === "w" || k === "W") black();
     else if (k === "s" || k === "S") { if (Deck.openPresenter) Deck.openPresenter(); }
     else if (k === "n" || k === "N") { document.body.classList.toggle("hud"); hud(); }
     else if (k === "c" || k === "C") setCut(!cut);
     else if (k === "t" || k === "T") { t0 = Date.now(); toast("Timer started"); hud(); }
     else if (k === "g" || k === "G") {
-      var id = (prompt("Go to slide id (e.g. s10 or s10.2)") || "").trim().toLowerCase();
-      // unknown id (typo): stay here; fromHash would fall back to S0, the title slide
-      if (id && all.some(function (el) { return el.id === id.split(".")[0]; })) { location.hash = "#" + id; fromHash(); }
-      else if (id) toast("No slide " + id);
+      ask("Go to slide (e.g. s10 or s10.2)").then(function (id) {
+        id = (id || "").trim().toLowerCase();
+        // unknown id (typo): stay here; fromHash would fall back to S0, the title slide
+        if (id && all.some(function (el) { return el.id === id.split(".")[0]; })) { location.hash = "#" + id; fromHash(); }
+        else if (id) toast("No slide " + id);
+      });
     }
     Deck.emit("key", k); // every key: poll.js handles K (admin key), H, A, P
+  }
+  document.addEventListener("keydown", function (e) {
+    if (thumb) return;
+    if (e.target.closest && e.target.closest("input,textarea")) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    key(SL5Key(e), e);
   });
 
   // Mouse: show cursor while moving; click = next (ignore clicks on controls)
@@ -198,7 +220,7 @@
     onChange: function (f) { listeners.push(f); },
     current: function () { return { el: list[cur], step: step, idx: cur, cut: cut }; },
     next: next, prev: prev, go: function (id, s) { var i = list.findIndex(function (el) { return el.id === id; }); if (i >= 0) go(i, s || 0, 0); },
-    toast: toast, warn: warn, params: params, LS: LS, thumb: thumb, black: black, setCut: function (v) { if (v !== cut) setCut(v); },
+    toast: toast, warn: warn, params: params, LS: LS, thumb: thumb, black: black, ask: ask, key: function (k) { key(k, null); }, setCut: function (v) { if (v !== cut) setCut(v); },
     isBlack: function () { return document.body.classList.contains("black"); },
     emit: function (ev, x) { (bus[ev] || []).forEach(function (f) { f(x); }); },
     listen: function (ev, f) { (bus[ev] = bus[ev] || []).push(f); },

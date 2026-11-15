@@ -59,19 +59,24 @@
   var ch = "BroadcastChannel" in window ? new BroadcastChannel("sl5-deck") : null;
   var token = null, remoteOn = false;
   if (ch) ch.onmessage = function (e) { var m = e.data; if (m && m.type === "state") { localSeen = Date.now(); onState(m); } };
+  // Remote sends go one at a time: the server appends to its command queue with a read-modify-write, so two quick taps
+  // in parallel could both land as the same command number and one would be lost. Flash = the deck got it.
+  var sendQ = Promise.resolve();
   function send(cmd, arg) {
-    flash(cmd);
-    if (ch && (isLocal() || !token)) return ch.postMessage({ type: "cmd", cmd: cmd, arg: arg });
+    if (ch && (isLocal() || !token)) { flash(cmd); return ch.postMessage({ type: "cmd", cmd: cmd, arg: arg }); }
     if (!base || !token) return;
-    fetch(base + "/api/admin/remote", {
-      method: "POST", headers: { "content-type": "application/json", authorization: "Bearer " + token },
-      body: JSON.stringify({ cmd: cmd, arg: arg }),
-    }).then(function (r) { if (r.status === 401) needAuth("Token rejected"); }).catch(function () {});
+    sendQ = sendQ.then(function () {
+      return SL5Fetch(base + "/api/admin/remote", {
+        method: "POST", headers: { "content-type": "application/json", authorization: "Bearer " + token },
+        body: JSON.stringify({ cmd: cmd, arg: arg }),
+      }).then(function (r) { if (r.ok) flash(cmd); else if (r.status === 401) needAuth("Token rejected"); else failed(); }, failed);
+    });
   }
+  function failed() { $("p-title").textContent = "⚠ not sent (no connection): tap again"; }
   function startRemote() { if (!remoteOn) { remoteOn = true; pollRemote(); } }
   function pollRemote() {
     if (!token || isLocal()) { remoteOn = false; return; }
-    fetch(base + "/api/admin/deck", { headers: { authorization: "Bearer " + token }, cache: "no-store" })
+    SL5Fetch(base + "/api/admin/deck", { headers: { authorization: "Bearer " + token }, cache: "no-store" })
       .then(function (r) {
         if (r.status === 401) { needAuth("Token rejected"); throw 0; }
         return r.ok ? r.json() : null;
@@ -235,7 +240,7 @@
     if (!base) { box.hidden = false; box.innerHTML = '<div class="hint">Offline: show of hands</div>'; return; }
     var id = st.id;
     Promise.all(cfg.g.map(function (g) {
-      return fetch(base + "/api/results?grp=" + g, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) { return [g, d]; });
+      return SL5Fetch(base + "/api/results?grp=" + g, { cache: "no-store" }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (d) { return [g, d]; });
     })).then(function (rs) {
       if (!st || st.id !== id) return;
       var res = { polls: {} };
@@ -281,12 +286,13 @@
   document.addEventListener("keydown", function (e) {
     if (e.target.closest && e.target.closest("input,textarea")) return;
     if (e.ctrlKey || e.metaKey || e.altKey) return;
-    var k = e.key;
+    var k = SL5Key(e);
     if (k === "ArrowRight" || k === "ArrowDown" || k === "PageDown" || k === " " || k === "Enter") send("next");
     else if (k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp" || k === "Backspace") send("prev");
     else if (k === "b" || k === "B" || k === "." || k === "w" || k === "W") send("black");
     else if (k === "c" || k === "C") send("cut");
     else if (k === "g" || k === "G") jump();
+    else if (/^[hpnt]$/i.test(k)) send("key", k.toLowerCase()); // deck-only keys (show-of-hands, re-push, notes, timer)
     else return;
     e.preventDefault();
   });

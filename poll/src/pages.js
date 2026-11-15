@@ -94,7 +94,9 @@ function esc(s){return String(s).replace(/[&<>"']/g,function(c){return{"&":"&amp
 var vid=lsGet("sl5:vid");
 function vkey(){return "sl5:v:"+S.run+":"+S.epoch}
 var mine=lsGet(vkey())||{};
-function hello(){return fetch("/api/hello",{method:"POST"}).then(function(r){return r.json()}).then(function(d){if(!d.vid)throw d;vid=d.vid;lsSet("sl5:vid",vid);return vid})}
+// fetch that gives up (a hung request must not leave "Sending…" or a dead poll loop forever)
+function tf(u,o){return new Promise(function(res,rej){var c=window.AbortController?new AbortController():null;var t=setTimeout(function(){if(c)c.abort();rej(0)},6000);fetch(u,c?Object.assign({signal:c.signal},o||{}):o).then(function(r){clearTimeout(t);res(r)},function(e){clearTimeout(t);rej(e)})})}
+function hello(){return tf("/api/hello",{method:"POST"}).then(function(r){return r.json()}).then(function(d){if(!d.vid)throw d;vid=d.vid;lsSet("sl5:vid",vid);return vid})}
 function apply(ns){
   var reset=ns.run!==S.run||ns.epoch!==S.epoch, moved=ns.mode!==S.mode||ns.grp!==S.grp;
   S=ns; if(reset)mine=lsGet(vkey())||{}; if(reset||moved)view=null; render();
@@ -175,11 +177,11 @@ function cast(p,i,btn){
     }
   }).catch(function(){busy=false;btn.classList.remove("sel");msg.className="msg err";msg.textContent="No connection. Try again."});
 }
-function post(id,i){return fetch("/api/vote/"+encodeURIComponent(id),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({opt:i,vid:vid})})}
+function post(id,i){return tf("/api/vote/"+encodeURIComponent(id),{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({opt:i,vid:vid})})}
 function tick(){
   clearTimeout(timer);
   if(document.hidden||S.mode==="links")return;
-  fetch("/api/state",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(ns){
+  tf("/api/state",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(ns){
     fails=0;net.textContent="";
     if(ns.rev!==S.rev||ns.run!==S.run||ns.epoch!==S.epoch)apply(ns);else S.poll_ms=ns.poll_ms;
   }).catch(function(){fails++;if(fails>1)net.textContent="Reconnecting…"}).then(schedule);
@@ -277,7 +279,7 @@ function draw(d){
   $("#cfg").onclick=function(){act("config",{poll_ms:+$("#pm").value})};
   $("#rall").onclick=function(){act("reset",{},"Delete ALL votes in run #"+s.run+"?")};
   $("#out").onclick=logout;
-  $("#csv").onclick=function(){fetch("/api/admin/export.csv",{headers:{authorization:"Bearer "+T}}).then(function(r){return r.blob()}).then(function(b){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="sl5-votes-run"+s.run+".csv";a.click()})};
+  $("#csv").onclick=function(){fetch("/api/admin/export.csv",{headers:{authorization:"Bearer "+T}}).then(function(r){if(!r.ok){alert("Export failed ("+r.status+")");throw 0}return r.blob()}).then(function(b){var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="sl5-votes-run"+s.run+".csv";a.click()}).catch(function(){})};
 }
 document.addEventListener("visibilitychange",function(){if(!document.hidden&&T)refresh()});
 if(T)refresh().then(function(){if(!last)login();else loop()});else login();
