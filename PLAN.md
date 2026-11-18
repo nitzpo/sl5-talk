@@ -1,6 +1,6 @@
 # PLAN: Stealing Superintelligence
 
-Mirror of the Notion plan, **draft v7.7 (Nov 19 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
+Mirror of the Notion plan, **draft v7.8 (Nov 19 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -187,7 +187,7 @@ Per-slide times below are from before S8 was cut.
   - Click 1: the simulator GIF plays, with no numbers on screen; caption `nitzpo.github.io/sl5`.
   - Click 2: the air-gap scene, still: SL5 network · AIR GAP wall · the internet, a researcher standing next to the SL5 network with a "HELLO my name is Researcher" sticker. No USB yet (Nov 19).
   - Click 3: the USB stick appears in his hand and he hops onto the wall ("← new network router"). No price or store on screen (Nov 14).
-- **Say:** "You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the **SL5 Explorable**, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. It's open source, and the link will be on your phone at the end. And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router." "Remember, I used to be the guy saying no to him."
+- **Say:** "You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the **SL5 Explorable**, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. It's open source, and the link will be on your phone at the end. And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher [click] just grabs a USB stick and becomes your new network router." "Remember, I used to be the guy saying no to him."
 - **Notes:** last line is a callback to S4.
 
 ### S17 · 14:05 · 📱 C results → distillation → 🎬 silent twin
