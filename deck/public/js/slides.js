@@ -29,7 +29,7 @@
   }
   var fmt = function (n) { return Math.round(n).toLocaleString("en-US"); };
 
-  // ---------- S0: type `scp weights.bin`
+  // ---------- S0: type the scp line (data-text)
   Deck.on("s0", {
     enter: function (el) {
       var t = el.querySelector(".type"), full = t.dataset.text, i = 0;

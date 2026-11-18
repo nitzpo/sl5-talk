@@ -113,11 +113,6 @@ window.SL5_POLLS = {
  ],
  "ALREADY": [
   "RAND",
-  "Security Level 5",
-  "Irregular",
-  "Heron",
-  "Palisade",
-  "FAR.AI",
-  "UK AI Security Institute"
+  "Security Level 5"
  ]
 };

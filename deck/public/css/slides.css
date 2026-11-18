@@ -123,12 +123,12 @@
   border-radius: 12px; letter-spacing: .04em; }
 #s1c .s1c-stamp { transform: rotate(8deg); transition: opacity .15s ease-out .45s, transform .3s cubic-bezier(.3,1.5,.5,1) .45s; }
 #s1c .s1c-stamp:not(.on) { transform: rotate(8deg) scale(2.4); }
-.s1c-photo { position: absolute; left: 1010px; top: 150px; width: 420px; height: 250px; padding: 12px 12px 34px; background: #f2f0ea; box-shadow: 0 14px 34px rgba(0,0,0,.45); transform: rotate(3.5deg); }
+.s1c-photo { position: absolute; left: 1050px; top: 182px; width: 400px; height: 238px; padding: 12px 12px 34px; background: #f2f0ea; box-shadow: 0 14px 34px rgba(0,0,0,.45); transform: rotate(3.5deg); }
 /* surveillance print: grayscale, hard contrast, grain */
 .s1c-photo .img { position: absolute; inset: 12px 12px 34px; background-size: cover; background-position: center 40%; filter: grayscale(1) contrast(1.35) brightness(1.15); }
 .s1c-photo::after { content: ""; position: absolute; inset: 12px 12px 34px; opacity: .55; mix-blend-mode: overlay; pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
-.s1c-clip { position: absolute; left: 34px; top: -46px; width: 34px; height: 104px; transform: rotate(-6deg); filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+.s1c-clip { position: absolute; left: 34px; top: -30px; width: 34px; height: 104px; transform: rotate(-6deg); filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
 .s1c-src { position: absolute; left: 84px; bottom: 46px; font-size: 20px; color: #67625a; }
 
 /* ===================== S2 · old vs AI espionage ===================== */
@@ -263,7 +263,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s6[data-step="4"] .st-p, #s6[data-step="4"] .st-t { opacity: 1; }
 #s6[data-step]:not([data-step="0"]) .lad-head { opacity: 1; }
 #s6 .lad-mark { position: absolute; left: 1350px; top: 520px; font: 700 30px/1.25 var(--sans); color: var(--red); }
-#s6[data-step]:not([data-step="0"]):is([data-step="2"], [data-step="3"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
+#s6[data-step]:not([data-step="0"]):is([data-step="3"], [data-step="4"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
 #s6 .lad-quote { position: absolute; left: 1350px; top: 400px; width: 430px; font-size: 24px; line-height: 1.35; color: var(--amb); }
 #s6 .s6-total { position: absolute; left: 140px; top: 840px; font-size: 28px; color: var(--mut); }
 #s6 .s6-hands { position: absolute; left: 140px; top: 900px; }

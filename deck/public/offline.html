@@ -271,12 +271,12 @@ body.show-cursor #status, body.hud #status { opacity: .9; }
   border-radius: 12px; letter-spacing: .04em; }
 #s1c .s1c-stamp { transform: rotate(8deg); transition: opacity .15s ease-out .45s, transform .3s cubic-bezier(.3,1.5,.5,1) .45s; }
 #s1c .s1c-stamp:not(.on) { transform: rotate(8deg) scale(2.4); }
-.s1c-photo { position: absolute; left: 1010px; top: 150px; width: 420px; height: 250px; padding: 12px 12px 34px; background: #f2f0ea; box-shadow: 0 14px 34px rgba(0,0,0,.45); transform: rotate(3.5deg); }
+.s1c-photo { position: absolute; left: 1050px; top: 182px; width: 400px; height: 238px; padding: 12px 12px 34px; background: #f2f0ea; box-shadow: 0 14px 34px rgba(0,0,0,.45); transform: rotate(3.5deg); }
 /* surveillance print: grayscale, hard contrast, grain */
 .s1c-photo .img { position: absolute; inset: 12px 12px 34px; background-size: cover; background-position: center 40%; filter: grayscale(1) contrast(1.35) brightness(1.15); }
 .s1c-photo::after { content: ""; position: absolute; inset: 12px 12px 34px; opacity: .55; mix-blend-mode: overlay; pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
-.s1c-clip { position: absolute; left: 34px; top: -46px; width: 34px; height: 104px; transform: rotate(-6deg); filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+.s1c-clip { position: absolute; left: 34px; top: -30px; width: 34px; height: 104px; transform: rotate(-6deg); filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
 .s1c-src { position: absolute; left: 84px; bottom: 46px; font-size: 20px; color: #67625a; }
 
 /* ===================== S2 · old vs AI espionage ===================== */
@@ -411,7 +411,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s6[data-step="4"] .st-p, #s6[data-step="4"] .st-t { opacity: 1; }
 #s6[data-step]:not([data-step="0"]) .lad-head { opacity: 1; }
 #s6 .lad-mark { position: absolute; left: 1350px; top: 520px; font: 700 30px/1.25 var(--sans); color: var(--red); }
-#s6[data-step]:not([data-step="0"]):is([data-step="2"], [data-step="3"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
+#s6[data-step]:not([data-step="0"]):is([data-step="3"], [data-step="4"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
 #s6 .lad-quote { position: absolute; left: 1350px; top: 400px; width: 430px; font-size: 24px; line-height: 1.35; color: var(--amb); }
 #s6 .s6-total { position: absolute; left: 140px; top: 840px; font-size: 28px; color: var(--mut); }
 #s6 .s6-hands { position: absolute; left: 140px; top: 900px; }
@@ -703,7 +703,7 @@ One scan covers the whole talk; the phone auto-advances to each later poll. Need
     <div class="kc-ticker mono"><span>MEGASPEED · SINGAPORE · 240,000 GPUs (ALLEGED) · ✅ APPROVED</span></div>
   </div>
   <aside class="notes">"Put on your offensive hat for sixty seconds. Imagine your unit is given a target: a frontier AI lab in California. To build their latest AI model (what we call pre-training), that lab had to spend billions of dollars, build a massive power station, and run 100,000 export-controlled GPUs for six months straight. Your country doesn't have the billions, and because of sanctions, you aren't allowed to buy the chips."
-[click on "buy the chips": kiss-cam frame, clip loops (muted) until the next click] Nvidia line (pick at rehearsal): Gemini: "...Well, unless you meet the CEO of Nvidia at a bar in Taipei, in which case getting 100,000 export-controlled GPUs is surprisingly affordable." Claude: "…Well, unless your data-center executive has dinner with the CEO of Nvidia in Taipei. Then, allegedly, you get access to 240,000 of them." (Facts: Megaspeed, Singapore, under investigation in the US and Singapore over 240,000 restricted chips; the Taipei meeting was a dinner, May 2025, not a bar; Jensen Huang resigned Nov 12, 2026 → "last week" on Nov 22. Re-check the news Nov 21.)
+[click on "buy the chips": kiss-cam frame, clip loops (muted) until the next click] "…unless you have dinner with the CEO of Nvidia in Taipei. Then, allegedly, 240,000 of them become available." (Nov 15: option C. Facts: Megaspeed, Singapore, under investigation in the US and Singapore over 240,000 restricted chips; the Taipei meeting was a dinner, May 2025, not a bar; Jensen Huang resigned Nov 12, 2026 → "last week" on Nov 22. Re-check the news Nov 21.)
 Clicks: billions → GPUs → months, as you say them → kiss cam.</aside>
 </section>
 
@@ -903,8 +903,8 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
 Branches:
 • "Impossible" > 10%: "To the X% who said impossible: I'd love to buy you a drink after. I also have a bridge to sell you."
 • Most pick 3 ($1B): "You're generous to the labs. Let's see if they agree."
-[click: bars become the ladder] "Without knowing it, you just recreated the exact framework that defines our field. Two years ago, researchers at RAND published the foundational report on Securing AI Model Weights. Instead of defining security by compliance checklists, they defined 5 Security Levels, SL1 through SL5, based purely on who can break into your lab: SL1 &amp; SL2 stop amateurs and professional hackers. SL3 stops cybercrime syndicates and insiders (≈$1M). [click] This is roughly where top frontier labs sit today, or below. SL4 stops a standard operation by a state cyber unit (≈$10M), [click] the kind top cyber nations run more than a hundred times a year. SL5 defends model weights against a ≈$1B, multi-year priority campaign by the world's top cyber superpower."
-(Deck: PLAN S6 + S7 in one view; your votes stay on the rungs.)</aside>
+[click: bars become the ladder] "Without knowing it, you just recreated the exact framework that defines our field. Two years ago, researchers at RAND published the foundational report on Securing AI Model Weights. Instead of defining security by compliance checklists, they defined 5 Security Levels, SL1 through SL5, based purely on who can break into your lab: [click: people + time columns] SL1 &amp; SL2 stop amateurs and professional hackers. SL3 stops cybercrime syndicates and insiders (≈$1M). [click] This is roughly where top frontier labs sit today, or below. SL4 stops a standard operation by a state cyber unit (≈$10M), [click] the kind top cyber nations run more than a hundred times a year. SL5 defends model weights against a ≈$1B, multi-year priority campaign by the world's top cyber superpower."
+(Deck: PLAN S6 + S7 in one view; your votes stay on the rungs. Click 1 shows budget only, matching Poll A's $1M / $10M / $1B; Nov 19.)</aside>
 </section>
 
 
@@ -995,7 +995,8 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement se
     </div>
     <p class="s12-scope rise" data-in="1"><span>You can't make an arbitrary system SL5.</span> <span class="amb">You can make a narrow, purpose-built AI data center SL5.</span></p>
   </div>
-  <aside class="notes">"The good news: nobody has to start from zero. RAND and Security Level 5, a nonprofit that grew out of the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."</aside>
+  <aside class="notes">"The good news: nobody has to start from zero. RAND and Security Level 5, formerly the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] Their bet: you can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5. Pick the few properties that really matter, the fewest parts that protect them, and make those parts simple. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."
+On screen at click 1: the first two sentences only (Security Level 5 reviewer, Nov 19: SL5 is impossible for an arbitrary system, possible for a well-scoped AI data center). Sets up S15: that new data center is what takes years.</aside>
 </section>
 
 <!-- ============================== PART 5: WHEN DO YOU LOCK THE DOORS? ============================== -->
@@ -1021,7 +1022,7 @@ The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
   <div class="pad s14">
     <div class="s14-col">
       <div class="kicker">How much does SL5 slow research?</div>
-      <p class="s14-big live"><span class="amb" id="s14-heavy"></span> <span class="s14-lbl">expect a heavy slowdown (30%+)</span></p>
+      <p class="s14-big live"><span class="amb" id="s14-heavy"></span> <span class="s14-lbl">expect &gt;30%</span></p>
       <div class="bars compact live" data-results="B1" data-hl="2,3"></div>
     </div>
     <div class="s14-col" data-in="1">
@@ -1029,13 +1030,13 @@ The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
       <p class="s14-big live"><span class="amb" id="s14-jit"></span> <span class="s14-lbl">would wait for "Just-in-Time"</span></p>
       <div class="bars compact live" data-results="B2" data-hl="1"></div>
     </div>
-    <div class="hands"><span class="tag">Show of hands</span>Heavy slowdown? · Would you wait for "Just-in-Time"?</div>
+    <div class="hands"><span class="tag">Show of hands</span>More than 30%? · Would you wait for "Just-in-Time"?</div>
   </div>
   <aside class="notes">"So X% of you think SL5 hurts research a lot. [click: B2] And Y% would wait until the models look dangerous. That's the pragmatic answer. It's what I'd have said. It's also the answer that loses."
 Branches:
 • "Start right now" wins: "Most of you would start now. Your future CFO disagrees. Let's see why you're right."
 • "Never" > 15%: "And to the X% who said never: at least you're honest."
-(X = "Very painful" + "Crippling" share of B1; Y = "Just-in-Time" share of B2, shown big on screen.)</aside>
+(X = "30–50%" + ">50%" share of B1; Y = "Just-in-Time" share of B2, shown big on screen.)</aside>
 </section>
 
 <section class="slide" id="s15" data-title="Calendar Gantt + RAND quote" data-at="12:35" data-clicks="3">
@@ -1120,7 +1121,7 @@ Source: SL5 Standard v0.1 (Threat Model) counts misaligned AI that may "sabotage
       <div class="lcard"><b class="mono">4</b><p>Talk to me</p><span class="mut">LinkedIn / after the talk</span></div>
     </div>
     <div class="s20-qr"><p class="mut">Missed it? Scan:</p><div class="qrbox" data-qr="links"></div><p class="url small" data-url="links"></p></div>
-    <p class="already mono">Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute</p>
+    <p class="already mono">Working on SL5: RAND · Security Level 5</p>
   </div>
   <aside class="notes">"If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
 Phones still on the vote page switch to the links page automatically.</aside>
@@ -3610,12 +3611,7 @@ window.SL5_POLLS = {
  ],
  "ALREADY": [
   "RAND",
-  "Security Level 5",
-  "Irregular",
-  "Heron",
-  "Palisade",
-  "FAR.AI",
-  "UK AI Security Institute"
+  "Security Level 5"
  ]
 };
 
@@ -4092,7 +4088,7 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   }
   var fmt = function (n) { return Math.round(n).toLocaleString("en-US"); };
 
-  // ---------- S0: type `scp weights.bin`
+  // ---------- S0: type the scp line (data-text)
   Deck.on("s0", {
     enter: function (el) {
       var t = el.querySelector(".type"), full = t.dataset.text, i = 0;

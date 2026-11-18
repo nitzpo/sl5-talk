@@ -3,7 +3,7 @@
 Subtitle: *Protecting from superpowers, and against rogue AI* (final, v7.5, Nov 15; replaces "Ctrl+C, Ctrl+V a Fighter Jet" and all earlier subtitles; the Ctrl+C/V gag stays on S2)
 
 ## What this is
-- 15–20 min TED-style talk by Nitzan (GitHub `nitzpo`) at **Tel Aviv Frontier AI Security Forum '26**, Sun **Nov 22 2026**, Tel Aviv Museum of Art. ≈300 people: cyber offense/defense veterans, intel alumni, AI researchers, founders. Talk in English. Slot length unknown → build the 17-min version with a marked 15-min cut.
+- 15–20 min TED-style talk by Nitzan (GitHub `nitzpo`) at **Tel Aviv Frontier AI Security Forum '26**, Sun **Nov 22 2026**, Tel Aviv Museum of Art. ≈300 people: cyber offense/defense veterans, intel alumni, AI researchers, founders. Talk in English. Slot: assume 20 min (Nov 15) → the full ≈18-min version is the default; the 15-min cut stays as a fallback toggle.
 - **Content source of truth: the Notion plan page** https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954 (Notion MCP). `PLAN.md` is its mirror; build from PLAN.md.
 - **Rule:** when Nitzan says "plan updated": re-fetch the Notion page, sync `PLAN.md`, then tell him what changed (concise diff by slide) and what code it affects. If code and PLAN.md disagree, ask.
 - Deliverables:

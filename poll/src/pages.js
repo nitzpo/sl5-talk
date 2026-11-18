@@ -51,7 +51,7 @@ function linksHtml() {
   ).join("");
   return `<div class="brand">${esc(TALK.title)}</div><p class="tsub">${esc(TALK.subtitle)}</p><h1>Thanks! Where to go next</h1>
 <ul class="links">${items}</ul>
-<p class="already"><b>Already working on this:</b> ${ALREADY.map(esc).join(" · ")}</p>`;
+<p class="already"><b>Working on SL5:</b> ${ALREADY.map(esc).join(" · ")}</p>`;
 }
 export function linksPage() {
   return page(`Links · ${TALK.title}`, `<main>${linksHtml()}</main>`, LINKS_CSS);
