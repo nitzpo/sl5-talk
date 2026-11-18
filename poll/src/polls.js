@@ -58,4 +58,3 @@ export const LINKS = [
   { t: "Talk to me", s: "LinkedIn, or find me after the talk", u: "https://www.linkedin.com/in/nitzan-pomerantz/" },
 ];
 
-export const ALREADY = ["RAND", "Security Level 5"]; // Nov 19 review: only orgs doing SL5 work

@@ -110,9 +110,5 @@ window.SL5_POLLS = {
    "s": "LinkedIn, or find me after the talk",
    "u": "https://www.linkedin.com/in/nitzan-pomerantz/"
   }
- ],
- "ALREADY": [
-  "RAND",
-  "Security Level 5"
  ]
 };

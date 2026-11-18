@@ -122,7 +122,7 @@ Per-slide times below are from before S8 was cut.
   - Click 2: the people and time columns appear (Nov 19).
   - Click 3: a marker at SL3: "Frontier labs: roughly here, or below".
   - Click 4: a quote under SL4: "Top cyber nations run these more than 100 times per year." (RAND)
-  - Footer: RAND RR-A2849-1 (Nevo et al., 2024).
+  - Footer: RAND RR-A2849-1 (Nevo et al., 2024), from click 2 (Nov 19).
 - **Say:** "Without knowing it, you just recreated the exact framework that defines our field. Two years ago, researchers at RAND published the foundational report on **Securing AI Model Weights**. Instead of defining security by compliance checklists, they defined **5 Security Levels, SL1 through SL5**, based purely on who can break into your lab: SL1 & SL2 stop amateurs and professional hackers. SL3 stops cybercrime syndicates and insiders (≈$1M). **This is roughly where top frontier labs sit today, or below.** SL4 stops a standard operation by a state cyber unit (≈$10M), the kind top cyber nations run more than a hundred times a year. SL5 defends model weights against a **≈$1B, multi-year priority campaign by the world's top cyber superpower.**"
 - **Notes:** RAND: OC3 = crime/insider ≤$1M → SL3; OC4 = standard state op ≤$10M, ≈1 yr → SL4; OC5 ≤$1B, years → SL5.
 
@@ -132,7 +132,7 @@ Per-slide times below are from before S8 was cut.
 ## Part 4: Why SL5 is so hard
 
 ### S9 (optional, first to cut) · 7:20 · 😄 #05 fortress + terminal
-- **On screen:** on entry, the question **"Where does enterprise security fail?"** over a fortress wall of enterprise security labels (SSO · EDR · Zero Trust · SOC 2); a small open side door at the bottom. Click 1: zoom into the open side door; a terminal types `pip install turbo-weights-v2` (Author: `dark_wizard_99`, Created: 14 mins ago). Click 2: stamp "REAL: torchtriton, Dec 2022". (Nov 14: one idea per click; the question bridges from the ladder.)
+- **On screen:** on entry, the question **"Where does enterprise security fail?"** over a fortress wall of enterprise security labels (SSO · EDR · Zero Trust · SOC 2); a small open side door at the bottom. Click 1: zoom into the open side door, labeled "one side door →" (Nov 19); a terminal types `pip install turbo-weights-v2` (Author: `dark_wizard_99`, Created: 14 mins ago). Click 2: stamp "REAL: torchtriton, Dec 2022". (Nov 14: one idea per click; the question bridges from the ladder.)
 - **Say:** "Why can't top Silicon Valley security (Okta, Zero Trust, SOC-2) stop an SL5 attacker? Because enterprise security is built to stop ransomware gangs while letting employees work fast. And try telling a PhD machine learning researcher making $2 million a year that he can't `pip install` a random Python package written yesterday by an anonymous guy on GitHub named `dark_wizard_99`, because it makes his training curve converge 2% faster." Optional: "And `dark_wizard_99` is real. In December 2022 his name was torchtriton: PyTorch's own nightly build pulled in a malicious package that read people's SSH keys."
 - **Notes:** text labels, no real vendor logos.
 
@@ -147,11 +147,11 @@ Per-slide times below are from before S8 was cut.
 - **Notes:** 38 attack vectors in 9 categories (RAND). 47 programs: Network 7 · Machine 9 · Physical 7 · Personnel 9 · Supply chain 7 · AI-specific 8. Snippets from `research/sl5_standard.txt` + `rand_full.txt`. OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026; the Saudi-royal contact is a prosecutors' allegation, keep "prosecutors say". OpenAI says no weights were taken (Q&A). It sits here, not at S7's SL4 rung, so it doesn't imply a proven state operation. Flood = verbatim requirement sentences from the SL5 Standard + RAND; Nov 14 review dropped ~70 non-requirements (copyright boilerplate, bibliography, a CEO quote, meta text, attacker descriptions). The click-5 line is the SL5 Standard's own text, not the NIST boilerplate it quotes.
 
 ### S11 · 9:05 · 😄
-- **On screen:** split. Left, "SL5 Two-Person Rule": two people, two keys, a vault. Right, "Startup Two-Person Rule": a PR at "+4,012 −0", review "LGTM 👍" posted "12 seconds later", reviewer's Slack status "🚽".
+- **On screen:** split. Left, "SL5 Two-Person Rule": two people, two keys, a vault. Right (click), headed "another side door ↓" (echoes S9, Nov 19), "Startup Two-Person Rule": a PR at "+4,012 −0", review "LGTM 👍" posted "12 seconds later", reviewer's Slack status "🚽".
 - **Say:** "In SL5 that means real two-person rules: two people physically authorize every sensitive action together. Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."
 
 ### S12 · 9:35 · ⬛ credit cards
-- **On screen:** kicker "The building blocks" (Nitzan, Nov 14). Two cards: **"RAND · Securing AI Model Weights (2024): the attacker tiers"** and **"Security Level 5 · SL5 Standard (2026): the building blocks"**. Click 1 (Nov 19): one line appears under the two cards: **"You can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5."** Click 2: a third card fades in, **"Price? Schedule?"**
+- **On screen:** kicker "The building blocks" (Nitzan, Nov 14). Two cards: **"RAND · Securing AI Model Weights (2024): the attacker tiers"** and **"Security Level 5 · SL5 Standard (2026): the defensive measures"** (Nov 19: was "the building blocks", repeated the kicker; wording from Nitzan's article). Click 1 (Nov 19): a quote appears under the two cards, in quote marks, no attribution: **"You can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5."** Click 2: a third card fades in, **"Price? Schedule?"**
 - **Say:** "The good news: nobody has to start from zero. RAND and Security Level 5, formerly the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] Their bet: you can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5. Pick the few properties that really matter, the fewest parts that protect them, and make those parts simple. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."
 - **Notes:** Nov 19: the scoping line comes from a Security Level 5 reviewer: SL5 is impossible for an arbitrary system, but they believe it's possible for a well-scoped AI data center (a narrow set of critical properties, a small set of components that upholds them, then simplify those components). On screen: the first two sentences only; the rest is spoken. It also sets up S15: that new data center is what takes years. Rewritten Nov 7 in Nitzan's blog wording. Credits RAND + Security Level 5 (sl5.org) and leads into Part 5 (time) without simulator numbers.
 
@@ -185,7 +185,8 @@ Per-slide times below are from before S8 was cut.
 ### S16 (trim in the 15-min cut) · 13:20 · 😄 simulator GIF + USB gag
 - **On screen:**
   - Click 1: the simulator GIF plays, with no numbers on screen; caption `nitzpo.github.io/sl5`.
-  - Click 2: an air-gap wall animation: a researcher hops over it holding up a USB stick ("← new network router"). No price or store on screen (Nov 14).
+  - Click 2: the air-gap scene, still: SL5 network · AIR GAP wall · the internet, a researcher standing next to the SL5 network with a "HELLO my name is Researcher" sticker. No USB yet (Nov 19).
+  - Click 3: the USB stick appears in his hand and he hops onto the wall ("← new network router"). No price or store on screen (Nov 14).
 - **Say:** "You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the **SL5 Explorable**, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. It's open source, and the link will be on your phone at the end. And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router." "Remember, I used to be the guy saying no to him."
 - **Notes:** last line is a callback to S4.
 
@@ -218,7 +219,7 @@ Per-slide times below are from before S8 was cut.
   3. Go deeper: the RAND report · the SL5 Standard
   4. Talk to me: LinkedIn / after the talk
 
-  Small strip: **"Working on SL5: RAND · Security Level 5"** (text, no logos; Nov 19 review: Irregular works on current security, Palisade on communications, FAR.AI and UK AISI on AI security research, none of it SL5 work). Phone links page: same list.
+  No "working on this" strip (Nov 19: dropped; RAND and Security Level 5 are credited on S12 and linked in card 3. The review noted Irregular, Palisade, FAR.AI and UK AISI don't do SL5 work). Phone links page: no list either.
 - **Say:** "If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
 - **Notes:** phones still on the vote page switch to the links page automatically. Phone links page: intro (phone OK) · simulator (`nitzpo.github.io/sl5`, "open it on a computer: it's not built for phones") · GitHub · RAND · SL5 Standard · LinkedIn.
 

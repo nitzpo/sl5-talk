@@ -1,5 +1,5 @@
 // Phone-facing HTML pages (vote, links, admin). Plain inline CSS/JS, no external requests.
-import { TALK, LINKS, ALREADY } from "./polls.js";
+import { TALK, LINKS } from "./polls.js";
 
 export const FAVICON =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#0b0d10"/><rect x="12" y="28" width="40" height="8" rx="4" fill="#ffb020"/></svg>';
@@ -42,16 +42,13 @@ const LINKS_CSS = `
 .links span{display:block;color:var(--mut);font-size:14px;margin-top:2px}
 .links i{display:block;font:12px var(--mono);color:var(--amb);margin-top:8px;font-style:normal;word-break:break-all}
 .tsub{margin:8px 0 0;font-size:13px;color:var(--mut)}
-.already{font-size:13px;color:var(--mut);border-top:1px solid var(--line);padding-top:14px}
-.already b{color:var(--fg);font-weight:600}
 `;
 function linksHtml() {
   const items = LINKS.map(
     (l) => `<li><a href="${esc(l.u)}" target="_blank" rel="noopener"><b>${esc(l.t)}</b><span>${esc(l.s)}</span><i>${esc(l.u.replace(/^https:\/\//, "").replace(/\/$/, ""))}</i></a></li>`,
   ).join("");
   return `<div class="brand">${esc(TALK.title)}</div><p class="tsub">${esc(TALK.subtitle)}</p><h1>Thanks! Where to go next</h1>
-<ul class="links">${items}</ul>
-<p class="already"><b>Working on SL5:</b> ${ALREADY.map(esc).join(" · ")}</p>`;
+<ul class="links">${items}</ul>`;
 }
 export function linksPage() {
   return page(`Links · ${TALK.title}`, `<main>${linksHtml()}</main>`, LINKS_CSS);
