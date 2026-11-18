@@ -179,8 +179,9 @@ await ad.tap("[data-cur='A']").catch(() => {}); ok("admin: set current", await u
 await ad.tap("[data-open='A']").catch(() => {}); ok("admin: open/close a poll", await until(async () => !(await status()).state.open.includes("A")));
 await ad.tap("[data-reset='A']").catch(() => {}); ok("admin: reset one poll", await until(async () => (await status()).polls.find((x) => x.id === "A").counts.every((c) => c === 0)));
 await ad.tap("#rall").catch(() => {}); ok("admin: reset all", await until(async () => (await status()).polls.every((x) => x.counts.every((c) => c === 0))));
-const runs0 = (await status()).runs.length; await ad.tap("[data-run='rehearsal']").catch(() => {});
-ok("admin: new rehearsal run", await until(async () => (await status()).runs.length === runs0 + 1));
+const top = async () => Math.max(...(await status()).runs.map((r) => r.id)); // status lists the newest 30 runs
+const run0 = await top(); await ad.tap("[data-run='rehearsal']").catch(() => {});
+ok("admin: new rehearsal run", await until(async () => (await top()) > run0));
 await ad.fill("#pm", "1500"); await ad.tap("#cfg").catch(() => {}); ok("admin: poll interval", await until(async () => (await status()).state.poll_ms === 1500));
 const dl = ad.waitForEvent("download", { timeout: 4000 }).catch(() => null); await ad.tap("#csv").catch(() => {}); ok("admin: export CSV", !!(await dl));
 
