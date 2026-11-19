@@ -29,12 +29,16 @@
   }
   var fmt = function (n) { return Math.round(n).toLocaleString("en-US"); };
 
-  // ---------- S0: type the scp line (data-text)
+  // ---------- S0: type the scp line (data-text); holding slide may sit for minutes → erase + retype, one cycle ≈ 20s
   Deck.on("s0", {
     enter: function (el) {
-      var t = el.querySelector(".type"), full = t.dataset.text, i = 0;
-      clear("s0"); t.textContent = "";
-      (function next() { if (i <= full.length) { t.textContent = full.slice(0, i++); later("s0", i === 1 ? 900 : 120, next); } })();
+      var t = el.querySelector(".type"), full = t.dataset.text;
+      clear("s0");
+      if (Deck.thumb) { t.textContent = full; return; } // presenter preview: still
+      function show(i) { t.textContent = full.slice(0, i); }
+      function type(i) { show(i); if (i < full.length) later("s0", 120, function () { type(i + 1); }); else later("s0", 11000, function () { erase(i - 1); }); }
+      function erase(i) { show(i); if (i > 0) later("s0", 25, function () { erase(i - 1); }); else later("s0", 900, function () { type(1); }); }
+      erase(0);
     },
     leave: function () { clear("s0"); },
   });

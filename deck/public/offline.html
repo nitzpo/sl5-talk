@@ -1002,10 +1002,10 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement se
 
 <section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="9:35" data-clicks="2">
   <div class="pad s12">
-    <div class="kicker">The building blocks</div>
+    <div class="kicker">Step by step</div>
     <div class="credit">
       <div class="ccard"><p class="cwho">RAND</p><p class="cwhat">Securing AI Model Weights <span class="mut">(2024)</span></p><p class="cgive amb">the attacker tiers</p></div>
-      <div class="ccard"><p class="cwho">Security Level 5</p><p class="cwhat">SL5 Standard <span class="mut">(2026)</span></p><p class="cgive amb">the defensive measures</p></div>
+      <div class="ccard"><p class="cwho">Security Level 5</p><p class="cwhat">SL5 Standard <span class="mut">(2026)</span></p><p class="cgive amb">the building blocks</p></div>
       <div class="ccard qcard3 rise" data-in="2"><p class="cq">Price?<br>Schedule?</p></div>
     </div>
     <blockquote class="s12-scope rise" data-in="1"><span>“You can't make an arbitrary system SL5.</span> <span class="amb">You can make a narrow, purpose-built AI data center SL5.”</span></blockquote>
@@ -4099,12 +4099,16 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   }
   var fmt = function (n) { return Math.round(n).toLocaleString("en-US"); };
 
-  // ---------- S0: type the scp line (data-text)
+  // ---------- S0: type the scp line (data-text); holding slide may sit for minutes → erase + retype, one cycle ≈ 20s
   Deck.on("s0", {
     enter: function (el) {
-      var t = el.querySelector(".type"), full = t.dataset.text, i = 0;
-      clear("s0"); t.textContent = "";
-      (function next() { if (i <= full.length) { t.textContent = full.slice(0, i++); later("s0", i === 1 ? 900 : 120, next); } })();
+      var t = el.querySelector(".type"), full = t.dataset.text;
+      clear("s0");
+      if (Deck.thumb) { t.textContent = full; return; } // presenter preview: still
+      function show(i) { t.textContent = full.slice(0, i); }
+      function type(i) { show(i); if (i < full.length) later("s0", 120, function () { type(i + 1); }); else later("s0", 11000, function () { erase(i - 1); }); }
+      function erase(i) { show(i); if (i > 0) later("s0", 25, function () { erase(i - 1); }); else later("s0", 900, function () { type(1); }); }
+      erase(0);
     },
     leave: function () { clear("s0"); },
   });
