@@ -406,9 +406,9 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s6 .lad-head span { text-align: right; }
 #s6 .lad-head span:first-child { grid-column: 3; }
 /* click 1: budget only (ties to Poll A's $1M / $10M / $1B); click 2: people + time */
-#s6 .st-p, #s6 .st-t { opacity: 0; transition: opacity .5s; }
-#s6[data-step="2"] .st-p, #s6[data-step="2"] .st-t, #s6[data-step="3"] .st-p, #s6[data-step="3"] .st-t,
-#s6[data-step="4"] .st-p, #s6[data-step="4"] .st-t { opacity: 1; }
+#s6 .s6-people, #s6 .s6-time { opacity: 0; transition: opacity .5s; }
+#s6[data-step="2"] .s6-people, #s6[data-step="2"] .s6-time, #s6[data-step="3"] .s6-people, #s6[data-step="3"] .s6-time,
+#s6[data-step="4"] .s6-people, #s6[data-step="4"] .s6-time { opacity: 1; }
 #s6[data-step]:not([data-step="0"]) .lad-head { opacity: 1; }
 #s6 .lad-mark { position: absolute; left: 1350px; top: 520px; font: 700 30px/1.25 var(--sans); color: var(--red); }
 #s6[data-step]:not([data-step="0"]):is([data-step="3"], [data-step="4"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
@@ -606,13 +606,14 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .usb-plug::before, .usb-plug::after { content: ""; position: absolute; left: 10px; width: 9px; height: 6px; background: #5d646e; }
 .usb-plug::before { top: 5px; } .usb-plug::after { bottom: 5px; }
 /* click 1: he just stands next to the SL5 network. Click 2: USB in hand, hop onto the wall, bridge, router.
-   Entered backwards (from S17): final state, no replay. */
+   Any entry into step 2 other than the forward click (jump, reload, back from S17): final state, no replay. */
 #s16[data-step="2"] .hopper { left: 900px; top: 80px; }
 #s16[data-step="2"] .usb { opacity: 1; }
-#s16.fwd[data-step="2"] .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
-#s16.fwd[data-step="2"] .usb { animation: fadein .25s both, hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
+#s16.s16-play .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
+#s16.s16-play .usb { animation: fadein .25s both, hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
 .s16-tag { position: absolute; left: 660px; top: 690px; width: 170px; background: #f4f3ef; color: #17171a; border-radius: 10px; overflow: hidden; text-align: center; transform: rotate(-6deg);
-  box-shadow: 0 8px 22px #0009; transition: opacity .3s .3s; }
+  box-shadow: 0 8px 22px #0009; }
+#s16.s16-play .s16-tag { transition: opacity .3s .3s; } /* fades only while the hop plays; no flash when entering step 2 another way */
 .s16-tag b { display: block; background: #d63a2f; color: #fff; font: 900 24px/1.5 var(--sans); letter-spacing: .08em; }
 .s16-tag small { display: block; background: #d63a2f; color: #fff; font: 600 13px/1.4 var(--sans); padding-bottom: 4px; }
 .s16-tag span { display: block; font: italic 700 27px/1.9 var(--sans); }
@@ -621,12 +622,12 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 @keyframes hopusb { 0% { left: 630px; top: 682px; } 55% { left: 885px; top: 132px; } 100% { left: 985px; top: 122px; } }
 .bridge { position: absolute; left: 140px; top: 100px; width: 1640px; height: 600px; fill: none; stroke: var(--amb); stroke-width: 6; stroke-dasharray: 16 14; opacity: 0; }
 #s16[data-step="2"] .bridge { opacity: 1; animation: flow 1s linear infinite; }
-#s16.fwd[data-step="2"] .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
+#s16.s16-play .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
 @keyframes flow { to { stroke-dashoffset: -60; } }
 .router { position: absolute; left: 1125px; top: 100px; font-size: 30px; color: var(--amb); opacity: 0; }
 .router::before { content: "← "; }
 #s16[data-step="2"] .router { opacity: 1; }
-#s16.fwd[data-step="2"] .router { animation: fadein .5s 2.7s both; }
+#s16.s16-play .router { animation: fadein .5s 2.7s both; }
 
 /* ===================== S17 · C results → silent twin ===================== */
 .s17-c { position: absolute; inset: 110px 140px; display: flex; flex-direction: column; gap: 56px; }
@@ -881,30 +882,30 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
       <div class="lr" data-key="1B" data-opt="2">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $1B budget: a superpower's top-priority operation</div>
-        <div class="lr-rung"><b class="sl">SL5</b><span class="who">Top cyber superpower, priority campaign</span><span class="st st-p">1,000</span><span class="st st-b">$1B</span><span class="st st-t">years</span></div>
+        <div class="lr-rung"><b class="sl">SL5</b><span class="who">Top cyber superpower, priority campaign</span><span class="st s6-people">1,000</span><span class="st s6-budget">$1B</span><span class="st s6-time">years</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="10M" data-opt="1">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $10M budget: a standard state cyber operation</div>
-        <div class="lr-rung"><b class="sl">SL4</b><span class="who">Standard state cyber operation</span><span class="st st-p">100</span><span class="st st-b">$10M</span><span class="st st-t">≈1 year</span></div>
+        <div class="lr-rung"><b class="sl">SL4</b><span class="who">Standard state cyber operation</span><span class="st s6-people">100</span><span class="st s6-budget">$10M</span><span class="st s6-time">≈1 year</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="1M" data-opt="0">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $1M budget: a top-tier crime syndicate or one insider</div>
-        <div class="lr-rung"><b class="sl">SL3</b><span class="who">Cybercrime syndicates, insiders</span><span class="st st-p">10</span><span class="st st-b">$1M</span><span class="st st-t">months</span></div>
+        <div class="lr-rung"><b class="sl">SL3</b><span class="who">Cybercrime syndicates, insiders</span><span class="st s6-people">10</span><span class="st s6-budget">$1M</span><span class="st s6-time">months</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="sl2">
         <div class="lr-track"><div class="lr-fill"></div></div>
-        <div class="lr-rung"><b class="sl">SL2</b><span class="who">Professional hackers</span><span class="st st-p">1</span><span class="st st-b">$10K</span><span class="st st-t">weeks</span></div>
+        <div class="lr-rung"><b class="sl">SL2</b><span class="who">Professional hackers</span><span class="st s6-people">1</span><span class="st s6-budget">$10K</span><span class="st s6-time">weeks</span></div>
       </div>
       <div class="lr" data-key="sl1">
         <div class="lr-track"><div class="lr-fill"></div></div>
-        <div class="lr-rung"><b class="sl">SL1</b><span class="who">Amateurs</span><span class="st st-p">1</span><span class="st st-b">$1K</span><span class="st st-t">days</span></div>
+        <div class="lr-rung"><b class="sl">SL1</b><span class="who">Amateurs</span><span class="st s6-people">1</span><span class="st s6-budget">$1K</span><span class="st s6-time">days</span></div>
       </div>
-      <div class="lad-head mono"><span class="st-p">people</span><span class="st-b">budget</span><span class="st-t">time</span><span class="amb">you</span></div>
+      <div class="lad-head mono"><span class="s6-people">people</span><span class="s6-budget">budget</span><span class="s6-time">time</span><span class="amb">you</span></div>
     </div>
     <div class="lad-mark" data-in="3">◀ Frontier labs:<br>roughly here, or below</div>
     <div class="lad-quote mono" data-in="4">"Top cyber nations run these more than 100 times per year."<span class="mut"> (RAND)</span></div>
@@ -983,7 +984,7 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement se
       <p class="s11-cap">Two people physically authorize every sensitive action.</p>
     </div>
     <div class="s11-col s11-startup" data-in="1">
-      <p class="s11-door">another side door ↓</p>
+      <p class="s11-door"><span data-full-only>another side door ↓</span><span data-cut-only hidden>a side door ↓</span></p>
       <div class="kicker">Startup Two-Person Rule</div>
       <div class="pr">
         <div class="pr-head"><span class="pr-badge">Open</span><b>feat: rewrite weights-server auth</b></div>
@@ -4232,6 +4233,9 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   Deck.on("s16", {
     enter: function (el) { var v = el.querySelector(".sim-video"); if (v) { try { v.currentTime = 0; } catch (e) {} var p = v.play(); if (p && p.catch) p.catch(function () {}); } },
     leave: function (el) { var v = el.querySelector(".sim-video"); if (v) v.pause(); },
+    // USB hop plays only on a forward step 1→2 inside the slide; any other way into step 2 (jump, reload, back from S17)
+    // shows the final state. (Keyed on entry direction it never played after a jump/reload + click.)
+    step: function (el, s, dir) { el.classList.toggle("s16-play", s === 2 && dir === 1); },
   });
 
   // ---------- S10: 47 real blocks (github.com/nitzpo/sl5) → flood of real clauses (SL5 Standard + RAND)

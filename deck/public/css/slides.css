@@ -258,9 +258,9 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 #s6 .lad-head span { text-align: right; }
 #s6 .lad-head span:first-child { grid-column: 3; }
 /* click 1: budget only (ties to Poll A's $1M / $10M / $1B); click 2: people + time */
-#s6 .st-p, #s6 .st-t { opacity: 0; transition: opacity .5s; }
-#s6[data-step="2"] .st-p, #s6[data-step="2"] .st-t, #s6[data-step="3"] .st-p, #s6[data-step="3"] .st-t,
-#s6[data-step="4"] .st-p, #s6[data-step="4"] .st-t { opacity: 1; }
+#s6 .s6-people, #s6 .s6-time { opacity: 0; transition: opacity .5s; }
+#s6[data-step="2"] .s6-people, #s6[data-step="2"] .s6-time, #s6[data-step="3"] .s6-people, #s6[data-step="3"] .s6-time,
+#s6[data-step="4"] .s6-people, #s6[data-step="4"] .s6-time { opacity: 1; }
 #s6[data-step]:not([data-step="0"]) .lad-head { opacity: 1; }
 #s6 .lad-mark { position: absolute; left: 1350px; top: 520px; font: 700 30px/1.25 var(--sans); color: var(--red); }
 #s6[data-step]:not([data-step="0"]):is([data-step="3"], [data-step="4"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
@@ -458,13 +458,14 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .usb-plug::before, .usb-plug::after { content: ""; position: absolute; left: 10px; width: 9px; height: 6px; background: #5d646e; }
 .usb-plug::before { top: 5px; } .usb-plug::after { bottom: 5px; }
 /* click 1: he just stands next to the SL5 network. Click 2: USB in hand, hop onto the wall, bridge, router.
-   Entered backwards (from S17): final state, no replay. */
+   Any entry into step 2 other than the forward click (jump, reload, back from S17): final state, no replay. */
 #s16[data-step="2"] .hopper { left: 900px; top: 80px; }
 #s16[data-step="2"] .usb { opacity: 1; }
-#s16.fwd[data-step="2"] .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
-#s16.fwd[data-step="2"] .usb { animation: fadein .25s both, hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
+#s16.s16-play .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
+#s16.s16-play .usb { animation: fadein .25s both, hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
 .s16-tag { position: absolute; left: 660px; top: 690px; width: 170px; background: #f4f3ef; color: #17171a; border-radius: 10px; overflow: hidden; text-align: center; transform: rotate(-6deg);
-  box-shadow: 0 8px 22px #0009; transition: opacity .3s .3s; }
+  box-shadow: 0 8px 22px #0009; }
+#s16.s16-play .s16-tag { transition: opacity .3s .3s; } /* fades only while the hop plays; no flash when entering step 2 another way */
 .s16-tag b { display: block; background: #d63a2f; color: #fff; font: 900 24px/1.5 var(--sans); letter-spacing: .08em; }
 .s16-tag small { display: block; background: #d63a2f; color: #fff; font: 600 13px/1.4 var(--sans); padding-bottom: 4px; }
 .s16-tag span { display: block; font: italic 700 27px/1.9 var(--sans); }
@@ -473,12 +474,12 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 @keyframes hopusb { 0% { left: 630px; top: 682px; } 55% { left: 885px; top: 132px; } 100% { left: 985px; top: 122px; } }
 .bridge { position: absolute; left: 140px; top: 100px; width: 1640px; height: 600px; fill: none; stroke: var(--amb); stroke-width: 6; stroke-dasharray: 16 14; opacity: 0; }
 #s16[data-step="2"] .bridge { opacity: 1; animation: flow 1s linear infinite; }
-#s16.fwd[data-step="2"] .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
+#s16.s16-play .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
 @keyframes flow { to { stroke-dashoffset: -60; } }
 .router { position: absolute; left: 1125px; top: 100px; font-size: 30px; color: var(--amb); opacity: 0; }
 .router::before { content: "← "; }
 #s16[data-step="2"] .router { opacity: 1; }
-#s16.fwd[data-step="2"] .router { animation: fadein .5s 2.7s both; }
+#s16.s16-play .router { animation: fadein .5s 2.7s both; }
 
 /* ===================== S17 · C results → silent twin ===================== */
 .s17-c { position: absolute; inset: 110px 140px; display: flex; flex-direction: column; gap: 56px; }
