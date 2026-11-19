@@ -161,7 +161,7 @@ body.show-cursor #status, body.hud #status { opacity: .9; }
 .s0 { justify-content: center; gap: 28px; padding-right: 720px; }
 .s0-title { font: 900 128px/.95 var(--sans); letter-spacing: -.045em; margin-top: 8px; }
 .s0-sub { font-size: 44px; line-height: 1.25; font-weight: 500; color: #c9ccd1; max-width: 1110px; text-wrap: balance; }
-.term { font-size: 40px; margin-top: 14px; color: #d8dade; }
+.term { font-size: 30px; margin-top: 14px; color: #d8dade; white-space: nowrap; } /* scp …:~/totally_not_weights/ on one line, clear of the QR card */
 .caret { display: inline-block; width: .55em; height: 1em; background: var(--amb); vertical-align: -.12em; margin-left: 6px; animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .s0-name { font-size: 40px; font-weight: 700; margin-top: 36px; }
@@ -271,6 +271,12 @@ body.show-cursor #status, body.hud #status { opacity: .9; }
   border-radius: 12px; letter-spacing: .04em; }
 #s1c .s1c-stamp { transform: rotate(8deg); transition: opacity .15s ease-out .45s, transform .3s cubic-bezier(.3,1.5,.5,1) .45s; }
 #s1c .s1c-stamp:not(.on) { transform: rotate(8deg) scale(2.4); }
+.s1c-photo { position: absolute; left: 1050px; top: 182px; width: 400px; height: 238px; padding: 12px 12px 34px; background: #f2f0ea; box-shadow: 0 14px 34px rgba(0,0,0,.45); transform: rotate(3.5deg); }
+/* surveillance print: grayscale, hard contrast, grain */
+.s1c-photo .img { position: absolute; inset: 12px 12px 34px; background-size: cover; background-position: center 40%; filter: grayscale(1) contrast(1.35) brightness(1.15); }
+.s1c-photo::after { content: ""; position: absolute; inset: 12px 12px 34px; opacity: .55; mix-blend-mode: overlay; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+.s1c-clip { position: absolute; left: 34px; top: -30px; width: 34px; height: 104px; transform: rotate(-6deg); filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
 .s1c-src { position: absolute; left: 84px; bottom: 46px; font-size: 20px; color: #67625a; }
 
 /* ===================== S2 · old vs AI espionage ===================== */
@@ -399,9 +405,13 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
   font-size: 22px; color: var(--mut); text-transform: uppercase; letter-spacing: .1em; opacity: 0; transition: opacity .5s .6s; }
 #s6 .lad-head span { text-align: right; }
 #s6 .lad-head span:first-child { grid-column: 3; }
+/* click 1: budget only (ties to Poll A's $1M / $10M / $1B); click 2: people + time */
+#s6 .s6-people, #s6 .s6-time { opacity: 0; transition: opacity .5s; }
+#s6[data-step="2"] .s6-people, #s6[data-step="2"] .s6-time, #s6[data-step="3"] .s6-people, #s6[data-step="3"] .s6-time,
+#s6[data-step="4"] .s6-people, #s6[data-step="4"] .s6-time { opacity: 1; }
 #s6[data-step]:not([data-step="0"]) .lad-head { opacity: 1; }
 #s6 .lad-mark { position: absolute; left: 1350px; top: 520px; font: 700 30px/1.25 var(--sans); color: var(--red); }
-#s6[data-step]:not([data-step="0"]):is([data-step="2"], [data-step="3"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
+#s6[data-step]:not([data-step="0"]):is([data-step="3"], [data-step="4"]) .lr[data-key="1M"] .lr-track { border-color: var(--red); }
 #s6 .lad-quote { position: absolute; left: 1350px; top: 400px; width: 430px; font-size: 24px; line-height: 1.35; color: var(--amb); }
 #s6 .s6-total { position: absolute; left: 140px; top: 840px; font-size: 28px; color: var(--mut); }
 #s6 .s6-hands { position: absolute; left: 140px; top: 900px; }
@@ -491,6 +501,8 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 /* ===================== S11 · two-person rules ===================== */
 .s11 { flex-direction: row; gap: 90px; align-items: center; }
 .s11-col { flex: 1; display: flex; flex-direction: column; gap: 30px; }
+.s11-startup { position: relative; }
+.s11-door { position: absolute; left: 0; top: -84px; font: 700 40px var(--sans); color: var(--amb); } /* echoes S9's "one side door" */
 .tpr-scene { background: var(--card); border: 2px solid var(--line); border-radius: 22px; padding: 30px; }
 .tpr-svg { width: 100%; height: auto; display: block; }
 .tpr-svg .person { fill: #c9ccd1; }
@@ -529,6 +541,8 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .cgive { font: 700 32px var(--mono); margin-top: auto; }
 .qcard3 { border-style: dashed; border-color: var(--amb); align-items: center; justify-content: center; }
 .cq { font: 900 84px/1.05 var(--sans); color: var(--amb); text-align: center; }
+.s12-scope { font: italic 700 44px/1.3 var(--sans); max-width: 1500px; margin: 0; padding-left: 34px; border-left: 6px solid var(--amb); } /* S12 click 1 (v7.7): quote, no attribution */
+.s12-scope span:first-child { color: var(--mut); }
 .slide.fwd .ccard:not(.qcard3) { animation: popin .6s cubic-bezier(.3,1.3,.5,1) both; }
 .slide.fwd .ccard:nth-child(2) { animation-delay: .2s; }
 
@@ -584,23 +598,36 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .wall { position: absolute; left: 50%; top: 280px; width: 120px; height: 560px; margin-left: -60px; border-radius: 10px;
   background: repeating-linear-gradient(0deg, #3a3f47 0 46px, #23272e 46px 50px); display: flex; align-items: center; justify-content: center; }
 .wall span { writing-mode: vertical-rl; font: 800 40px var(--mono); letter-spacing: .25em; color: #ecebe8; }
-.hopper { position: absolute; width: 120px; height: 200px; left: 900px; top: 80px; fill: none; stroke: #ecebe8; stroke-width: 9; stroke-linecap: round; }
+.hopper { position: absolute; width: 120px; height: 200px; left: 545px; top: 640px; fill: none; stroke: #ecebe8; stroke-width: 9; stroke-linecap: round; }
 .hopper circle { fill: #ecebe8; stroke: none; }
-.usb { position: absolute; left: 985px; top: 122px; display: flex; align-items: center; transform: rotate(-24deg); filter: drop-shadow(0 6px 18px #0009); } /* in the raised hand */
+.usb { position: absolute; left: 985px; top: 122px; opacity: 0; display: flex; align-items: center; transform: rotate(-24deg); filter: drop-shadow(0 6px 18px #0009); } /* in the raised hand */
 .usb-body { width: 84px; height: 38px; background: var(--amb); border-radius: 9px 4px 4px 9px; }
 .usb-plug { position: relative; width: 32px; height: 26px; background: #c9ced6; border-radius: 0 3px 3px 0; }
 .usb-plug::before, .usb-plug::after { content: ""; position: absolute; left: 10px; width: 9px; height: 6px; background: #5d646e; }
 .usb-plug::before { top: 5px; } .usb-plug::after { bottom: 5px; }
-.s16-gap.on .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
-.s16-gap.on .usb { animation: hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
-@keyframes hop { 0% { left: 600px; top: 640px; } 55% { left: 800px; top: 90px; } 100% { left: 900px; top: 80px; } }
-@keyframes hopusb { 0% { left: 685px; top: 682px; } 55% { left: 885px; top: 132px; } 100% { left: 985px; top: 122px; } }
+/* click 1: he just stands next to the SL5 network. Click 2: USB in hand, hop onto the wall, bridge, router.
+   Any entry into step 2 other than the forward click (jump, reload, back from S17): final state, no replay. */
+#s16[data-step="2"] .hopper { left: 900px; top: 80px; }
+#s16[data-step="2"] .usb { opacity: 1; }
+#s16.s16-play .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
+#s16.s16-play .usb { animation: fadein .25s both, hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
+.s16-tag { position: absolute; left: 660px; top: 690px; width: 170px; background: #f4f3ef; color: #17171a; border-radius: 10px; overflow: hidden; text-align: center; transform: rotate(-6deg);
+  box-shadow: 0 8px 22px #0009; }
+#s16.s16-play .s16-tag { transition: opacity .3s .3s; } /* fades only while the hop plays; no flash when entering step 2 another way */
+.s16-tag b { display: block; background: #d63a2f; color: #fff; font: 900 24px/1.5 var(--sans); letter-spacing: .08em; }
+.s16-tag small { display: block; background: #d63a2f; color: #fff; font: 600 13px/1.4 var(--sans); padding-bottom: 4px; }
+.s16-tag span { display: block; font: italic 700 27px/1.9 var(--sans); }
+#s16[data-step="2"] .s16-tag { opacity: 0; }
+@keyframes hop { 0% { left: 545px; top: 640px; } 55% { left: 800px; top: 90px; } 100% { left: 900px; top: 80px; } }
+@keyframes hopusb { 0% { left: 630px; top: 682px; } 55% { left: 885px; top: 132px; } 100% { left: 985px; top: 122px; } }
 .bridge { position: absolute; left: 140px; top: 100px; width: 1640px; height: 600px; fill: none; stroke: var(--amb); stroke-width: 6; stroke-dasharray: 16 14; opacity: 0; }
-.s16-gap.on .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
+#s16[data-step="2"] .bridge { opacity: 1; animation: flow 1s linear infinite; }
+#s16.s16-play .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
 @keyframes flow { to { stroke-dashoffset: -60; } }
 .router { position: absolute; left: 1125px; top: 100px; font-size: 30px; color: var(--amb); opacity: 0; }
 .router::before { content: "← "; }
-.s16-gap.on .router { animation: fadein .5s 2.7s both; }
+#s16[data-step="2"] .router { opacity: 1; }
+#s16.s16-play .router { animation: fadein .5s 2.7s both; }
 
 /* ===================== S17 · C results → silent twin ===================== */
 .s17-c { position: absolute; inset: 110px 140px; display: flex; flex-direction: column; gap: 56px; }
@@ -631,7 +658,6 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s20-qr { position: absolute; right: 120px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center; gap: 14px; font-size: 28px; }
 .s20-qr .qrbox { width: 320px; height: 320px; }
 .s20-qr .url.small { font-size: 20px; }
-.already { position: absolute; left: 140px; right: 140px; bottom: 60px; font-size: 22px; color: var(--mut); white-space: nowrap; }
 
 /* ===================== S21 · vault + thank you ===================== */
 .s21 { justify-content: center; align-items: center; text-align: center; }
@@ -660,7 +686,7 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
     <div class="kicker">TLV Frontier AI Security Forum '26</div>
     <h1 class="s0-title">Stealing<br>Superintelligence</h1>
     <p class="s0-sub">Protecting from superpowers, and against rogue AI</p>
-    <p class="term mono"><span class="amb">$</span> <span class="type" data-text="scp weights.bin">scp weights.bin</span><span class="caret"></span></p>
+    <p class="term mono"><span class="amb">$</span> <span class="type" data-text="scp weights.bin root@203.0.113.7:~/totally_not_weights/">scp weights.bin root@203.0.113.7:~/totally_not_weights/</span><span class="caret"></span></p>
     <p class="s0-name">Nitzan Pomerantz</p>
   </div>
   <div class="s0-card">
@@ -691,7 +717,7 @@ One scan covers the whole talk; the phone auto-advances to each later poll. Need
     <div class="kc-ticker mono"><span>MEGASPEED · SINGAPORE · 240,000 GPUs (ALLEGED) · ✅ APPROVED</span></div>
   </div>
   <aside class="notes">"Put on your offensive hat for sixty seconds. Imagine your unit is given a target: a frontier AI lab in California. To build their latest AI model (what we call pre-training), that lab had to spend billions of dollars, build a massive power station, and run 100,000 export-controlled GPUs for six months straight. Your country doesn't have the billions, and because of sanctions, you aren't allowed to buy the chips."
-[click on "buy the chips": kiss-cam frame, clip loops (muted) until the next click] Nvidia line (pick at rehearsal): Gemini: "...Well, unless you meet the CEO of Nvidia at a bar in Taipei, in which case getting 100,000 export-controlled GPUs is surprisingly affordable." Claude: "…Well, unless your data-center executive has dinner with the CEO of Nvidia in Taipei. Then, allegedly, you get access to 240,000 of them." (Facts: Megaspeed, Singapore, under investigation in the US and Singapore over 240,000 restricted chips; the Taipei meeting was a dinner, May 2025, not a bar; Jensen Huang resigned Nov 12, 2026 → "last week" on Nov 22. Re-check the news Nov 21.)
+[click on "buy the chips": kiss-cam frame, clip loops (muted) until the next click] "…unless you have dinner with the CEO of Nvidia in Taipei. Then, allegedly, 240,000 of them become available." (Nov 15: option C. Facts: Megaspeed, Singapore, under investigation in the US and Singapore over 240,000 restricted chips; the Taipei meeting was a dinner, May 2025, not a bar; Jensen Huang resigned Nov 12, 2026 → "last week" on Nov 22. Re-check the news Nov 21.)
 Clicks: billions → GPUs → months, as you say them → kiss cam.</aside>
 </section>
 
@@ -724,7 +750,8 @@ Click 1 = microSD + copy stalls. Click 2 = dialog, cursor clicks Delete, copy co
 
 <section class="slide" id="s1c" data-title="What's in the file? (target package)" data-at="1:15" data-clicks="3">
   <div class="s1c-doc">
-    <div class="s1c-hd"><span>TARGET PACKAGE</span><span>EYES ONLY</span></div>
+    <div class="s1c-hd"><span>TARGET PACKAGE</span><span>TOP SECRET</span></div>
+    <div class="s1c-photo"><div class="img" data-img="01-datacenter"></div><svg class="s1c-clip" viewBox="0 0 40 120" aria-hidden="true"><path d="M28 34 V100 a12 12 0 0 1 -24 0 V20 a8 8 0 0 1 16 0 V90" fill="none" stroke="#a9adb3" stroke-width="4" stroke-linecap="round"/></svg></div>
     <div class="s1c-row"><span class="s1c-k">TARGET</span><span>Frontier AI lab, California</span></div>
     <div class="s1c-row"><span class="s1c-k">OBJECTIVE</span><span><b>model_weights.bin</b> (2.0 TB)</span></div>
     <div class="s1c-row"><span class="s1c-k">FITS ON</span><span>One $160 microSD</span></div>
@@ -822,7 +849,6 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
 <section class="slide" id="s5" data-title="Poll A: vote" data-at="4:05" data-poll-current="A" data-poll-close="warm">
   <div class="pad s5">
     <div class="s5-main">
-      <div class="kicker">Your gut · no jargon yet</div>
       <h2 class="s5-q">You need to steal the flagship model weights from a top-3 AI lab <span class="amb">today</span>. What is the <span class="amb">minimum</span> level of attacker needed to pull it off?</h2>
       <div class="s5-opts">
         <div class="s5-opt"><b>1</b><span><em>$1M</em> budget: a top-tier crime syndicate or one insider</span></div>
@@ -842,7 +868,7 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
   <aside class="notes">Say (while voting, ≈60s): "No jargon yet, just your gut… And no, the insiders in the room don't get to vote twice."</aside>
 </section>
 
-<section class="slide" id="s6" data-title="Poll A results → RAND ladder (S6+S7)" data-at="5:05" data-clicks="3">
+<section class="slide" id="s6" data-title="Poll A results → RAND ladder (S6+S7)" data-at="5:05" data-clicks="4">
   <div class="pad s6">
     <div class="kicker k-res" data-out="1">Minimum level of attacker to steal the weights today</div>
     <div class="kicker k-lad" data-in="1">Security Levels: who can break in?</div>
@@ -856,43 +882,43 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
       <div class="lr" data-key="1B" data-opt="2">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $1B budget: a superpower's top-priority operation</div>
-        <div class="lr-rung"><b class="sl">SL5</b><span class="who">Top cyber superpower, priority campaign</span><span class="st">1,000</span><span class="st">$1B</span><span class="st">years</span></div>
+        <div class="lr-rung"><b class="sl">SL5</b><span class="who">Top cyber superpower, priority campaign</span><span class="st s6-people">1,000</span><span class="st s6-budget">$1B</span><span class="st s6-time">years</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="10M" data-opt="1">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $10M budget: a standard state cyber operation</div>
-        <div class="lr-rung"><b class="sl">SL4</b><span class="who">Standard state cyber operation</span><span class="st">100</span><span class="st">$10M</span><span class="st">≈1 year</span></div>
+        <div class="lr-rung"><b class="sl">SL4</b><span class="who">Standard state cyber operation</span><span class="st s6-people">100</span><span class="st s6-budget">$10M</span><span class="st s6-time">≈1 year</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="1M" data-opt="0">
         <div class="lr-track"><div class="lr-fill"></div></div>
         <div class="lr-res">A $1M budget: a top-tier crime syndicate or one insider</div>
-        <div class="lr-rung"><b class="sl">SL3</b><span class="who">Cybercrime syndicates, insiders</span><span class="st">10</span><span class="st">$1M</span><span class="st">months</span></div>
+        <div class="lr-rung"><b class="sl">SL3</b><span class="who">Cybercrime syndicates, insiders</span><span class="st s6-people">10</span><span class="st s6-budget">$1M</span><span class="st s6-time">months</span></div>
         <div class="lr-pct">–</div>
       </div>
       <div class="lr" data-key="sl2">
         <div class="lr-track"><div class="lr-fill"></div></div>
-        <div class="lr-rung"><b class="sl">SL2</b><span class="who">Professional hackers</span><span class="st">1</span><span class="st">$10K</span><span class="st">weeks</span></div>
+        <div class="lr-rung"><b class="sl">SL2</b><span class="who">Professional hackers</span><span class="st s6-people">1</span><span class="st s6-budget">$10K</span><span class="st s6-time">weeks</span></div>
       </div>
       <div class="lr" data-key="sl1">
         <div class="lr-track"><div class="lr-fill"></div></div>
-        <div class="lr-rung"><b class="sl">SL1</b><span class="who">Amateurs</span><span class="st">1</span><span class="st">$1K</span><span class="st">days</span></div>
+        <div class="lr-rung"><b class="sl">SL1</b><span class="who">Amateurs</span><span class="st s6-people">1</span><span class="st s6-budget">$1K</span><span class="st s6-time">days</span></div>
       </div>
-      <div class="lad-head mono"><span>people</span><span>budget</span><span>time</span><span class="amb">you</span></div>
+      <div class="lad-head mono"><span class="s6-people">people</span><span class="s6-budget">budget</span><span class="s6-time">time</span><span class="amb">you</span></div>
     </div>
-    <div class="lad-mark" data-in="2">◀ Frontier labs:<br>roughly here, or below</div>
-    <div class="lad-quote mono" data-in="3">"Top cyber nations run these more than 100 times per year."<span class="mut"> (RAND)</span></div>
+    <div class="lad-mark" data-in="3">◀ Frontier labs:<br>roughly here, or below</div>
+    <div class="lad-quote mono" data-in="4">"Top cyber nations run these more than 100 times per year."<span class="mut"> (RAND)</span></div>
     <p class="s6-total mono live" data-out="1"><span data-total="A" data-unit="vote">–</span></p>
     <div class="hands s6-hands" data-out="1"><span class="tag">Show of hands</span>$1M? · $10M? · $1B? · Impossible?</div>
-    <div class="foot lad-foot" data-in="1"><span>RAND RR-A2849-1 (Nevo et al., 2024)</span><span class="amb">● your votes</span></div>
+    <div class="foot lad-foot" data-in="1"><span data-in="2">RAND RR-A2849-1 (Nevo et al., 2024)</span><span class="amb">● your votes</span></div>
   </div>
   <aside class="notes">[Results] "Look at the screen. Most of you voted that [leading option] could steal the weights today, and almost nobody voted for #4." (Say the #4 part only if it's true.)
 Branches:
 • "Impossible" > 10%: "To the X% who said impossible: I'd love to buy you a drink after. I also have a bridge to sell you."
 • Most pick 3 ($1B): "You're generous to the labs. Let's see if they agree."
-[click: bars become the ladder] "Without knowing it, you just recreated the exact framework that defines our field. Two years ago, researchers at RAND published the foundational report on Securing AI Model Weights. Instead of defining security by compliance checklists, they defined 5 Security Levels, SL1 through SL5, based purely on who can break into your lab: SL1 &amp; SL2 stop amateurs and professional hackers. SL3 stops cybercrime syndicates and insiders (≈$1M). [click] This is roughly where top frontier labs sit today, or below. SL4 stops a standard operation by a state cyber unit (≈$10M), [click] the kind top cyber nations run more than a hundred times a year. SL5 defends model weights against a ≈$1B, multi-year priority campaign by the world's top cyber superpower."
-(Deck: PLAN S6 + S7 in one view; your votes stay on the rungs.)</aside>
+[click: bars become the ladder] "Without knowing it, you just recreated the exact framework that defines our field. Two years ago, researchers at RAND published the foundational report on Securing AI Model Weights. Instead of defining security by compliance checklists, they defined 5 Security Levels, SL1 through SL5, based purely on who can break into your lab: [click: people + time columns] SL1 &amp; SL2 stop amateurs and professional hackers. SL3 stops cybercrime syndicates and insiders (≈$1M). [click] This is roughly where top frontier labs sit today, or below. SL4 stops a standard operation by a state cyber unit (≈$10M), [click] the kind top cyber nations run more than a hundred times a year. SL5 defends model weights against a ≈$1B, multi-year priority campaign by the world's top cyber superpower."
+(Deck: PLAN S6 + S7 in one view; your votes stay on the rungs. Click 1 shows budget only, matching Poll A's $1M / $10M / $1B; Nov 19.)</aside>
 </section>
 
 
@@ -902,7 +928,7 @@ Branches:
   <div class="img ph s9-img" data-img="05-fortress" data-label="#05 fortress"></div><div class="s9-shade"></div>
   <h2 class="h1 s9-q" data-out="1">Where does enterprise security fail?</h2>
   <div class="s9-plaques mono" data-out="1"><span>SSO</span><span>EDR</span><span>Zero Trust</span><span>SOC 2</span></div>
-  <div class="s9-door" data-in="1"><span>the side door</span></div>
+  <div class="s9-door" data-in="1"><span>one side door</span></div>
   <div class="s9-term mono" data-in="1">
     <div class="term-bar"><i></i><i></i><i></i><span>researcher@gpu-node-07</span></div>
     <p class="tl tl0"><span class="amb">$</span> <span class="s9-cmd" data-text="pip install turbo-weights-v2">pip install turbo-weights-v2</span><span class="caret"></span></p>
@@ -939,7 +965,7 @@ OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026. Reports say the d
 Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement sentences from the SL5 Standard + RAND (verbatim; non-requirements filtered out Nov 14). Click-5 line: SL5 Standard, SL5 Supplemental Guidance (PE-3), verbatim.</aside>
 </section>
 
-<section class="slide" id="s11" data-title="Two-person rules" data-at="9:05" data-clicks="1">
+<section class="slide" id="s11" data-title="Two-person rules" data-at="9:05" data-clicks="2">
   <div class="pad s11">
     <div class="s11-col">
       <div class="kicker">SL5 Two-Person Rule</div>
@@ -957,7 +983,8 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement se
       </div>
       <p class="s11-cap">Two people physically authorize every sensitive action.</p>
     </div>
-    <div class="s11-col" data-in="1">
+    <div class="s11-col s11-startup" data-in="1">
+      <p class="s11-door" data-in="2"><span data-full-only>another side door ↓</span><span data-cut-only hidden>a side door ↓</span></p>
       <div class="kicker">Startup Two-Person Rule</div>
       <div class="pr">
         <div class="pr-head"><span class="pr-badge">Open</span><b>feat: rewrite weights-server auth</b></div>
@@ -970,19 +997,21 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement se
       </div>
     </div>
   </div>
-  <aside class="notes">"In SL5 that means real two-person rules: two people physically authorize every sensitive action together. [click] Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom."</aside>
+  <aside class="notes">"In SL5 that means real two-person rules: two people physically authorize every sensitive action together. [click] Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom." [click: "another side door ↓" over the startup PR; let it land]</aside>
 </section>
 
-<section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="9:35" data-clicks="1">
+<section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="9:35" data-clicks="2">
   <div class="pad s12">
-    <div class="kicker">The building blocks</div>
+    <div class="kicker">Step by step</div>
     <div class="credit">
       <div class="ccard"><p class="cwho">RAND</p><p class="cwhat">Securing AI Model Weights <span class="mut">(2024)</span></p><p class="cgive amb">the attacker tiers</p></div>
       <div class="ccard"><p class="cwho">Security Level 5</p><p class="cwhat">SL5 Standard <span class="mut">(2026)</span></p><p class="cgive amb">the building blocks</p></div>
-      <div class="ccard qcard3 rise" data-in="1"><p class="cq">Price?<br>Schedule?</p></div>
+      <div class="ccard qcard3 rise" data-in="2"><p class="cq">Price?<br>Schedule?</p></div>
     </div>
+    <blockquote class="s12-scope rise" data-in="1"><span>“You can't make an arbitrary system SL5.</span> <span class="amb">You can make a narrow, purpose-built AI data center SL5.”</span></blockquote>
   </div>
-  <aside class="notes">"The good news: nobody has to start from zero. RAND and Security Level 5, a nonprofit that grew out of the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."</aside>
+  <aside class="notes">"The good news: nobody has to start from zero. RAND and Security Level 5, formerly the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before. [click] Their bet: you can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5. Pick the few properties that really matter, the fewest parts that protect them, and make those parts simple. [click] What they don't do is put a price or a schedule on any of it. And the schedule turns out to be the whole story."
+On screen at click 1: the first two sentences only (Security Level 5 reviewer, Nov 19: SL5 is impossible for an arbitrary system, possible for a well-scoped AI data center). Sets up S15: that new data center is what takes years.</aside>
 </section>
 
 <!-- ============================== PART 5: WHEN DO YOU LOCK THE DOORS? ============================== -->
@@ -1008,7 +1037,7 @@ The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
   <div class="pad s14">
     <div class="s14-col">
       <div class="kicker">How much does SL5 slow research?</div>
-      <p class="s14-big live"><span class="amb" id="s14-heavy"></span> <span class="s14-lbl">expect a heavy slowdown (30%+)</span></p>
+      <p class="s14-big live"><span class="amb" id="s14-heavy"></span> <span class="s14-lbl">expect &gt;30%</span></p>
       <div class="bars compact live" data-results="B1" data-hl="2,3"></div>
     </div>
     <div class="s14-col" data-in="1">
@@ -1016,13 +1045,13 @@ The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
       <p class="s14-big live"><span class="amb" id="s14-jit"></span> <span class="s14-lbl">would wait for "Just-in-Time"</span></p>
       <div class="bars compact live" data-results="B2" data-hl="1"></div>
     </div>
-    <div class="hands"><span class="tag">Show of hands</span>Heavy slowdown? · Would you wait for "Just-in-Time"?</div>
+    <div class="hands"><span class="tag">Show of hands</span>More than 30%? · Would you wait for "Just-in-Time"?</div>
   </div>
   <aside class="notes">"So X% of you think SL5 hurts research a lot. [click: B2] And Y% would wait until the models look dangerous. That's the pragmatic answer. It's what I'd have said. It's also the answer that loses."
 Branches:
 • "Start right now" wins: "Most of you would start now. Your future CFO disagrees. Let's see why you're right."
 • "Never" > 15%: "And to the X% who said never: at least you're honest."
-(X = "Very painful" + "Crippling" share of B1; Y = "Just-in-Time" share of B2, shown big on screen.)</aside>
+(X = "30–50%" + ">50%" share of B1; Y = "Just-in-Time" share of B2, shown big on screen.)</aside>
 </section>
 
 <section class="slide" id="s15" data-title="Calendar Gantt + RAND quote" data-at="12:35" data-clicks="3">
@@ -1043,7 +1072,7 @@ Branches:
 Optional on the last click: "RAND said it back in 2024: achieving SL5 is currently not possible. Now you know why."</aside>
 </section>
 
-<section class="slide" id="s16" data-title="Simulator + USB gag" data-at="13:20" data-clicks="1">
+<section class="slide" id="s16" data-title="Simulator + USB gag" data-at="13:20" data-clicks="2">
   <div class="pad s16">
     <div class="s16-browser" data-out="1">
       <div class="br-bar"><i></i><i></i><i></i><span class="mono">nitzpo.github.io/sl5</span></div>
@@ -1054,12 +1083,13 @@ Optional on the last click: "RAND said it back in 2024: achieving SL5 is current
       <div class="wall"><span class="mono">AIR GAP</span></div>
       <div class="net net-out"><p class="mono">the internet</p><i></i><i></i><i></i><i></i></div>
       <svg class="hopper" viewBox="0 0 120 200" aria-hidden="true"><circle cx="60" cy="34" r="22"/><path d="M60 58 L60 128 M60 78 L22 100 M60 78 L98 62 M60 128 L32 190 M60 128 L88 190"/></svg>
+      <div class="s16-tag" aria-label="name tag: Researcher"><b>HELLO</b><small>my name is</small><span>Researcher</span></div>
       <div class="usb" aria-label="USB stick"><span class="usb-body"></span><span class="usb-plug"></span></div>
       <svg class="bridge" viewBox="0 0 1640 400" preserveAspectRatio="none" aria-hidden="true"><path d="M300 250 C 600 250, 650 80, 820 80 S 1040 250, 1340 250"/></svg>
       <p class="router mono">new network router</p>
     </div>
   </div>
-  <aside class="notes">"You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. It's open source, and the link will be on your phone at the end. [click] And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher just grabs a USB stick and becomes your new network router."
+  <aside class="notes">"You can't hold 47 interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition. Every run says the same thing: the programs that do worse fail on timing, not on money. It's open source, and the link will be on your phone at the end. [click: the air gap, a researcher next to the SL5 network] And it taught me that controls don't work alone: if you put up an air-gap with no sanctioned way to move files, your smartest researcher [click: USB stick, hop over the wall] just grabs a USB stick and becomes your new network router."
 "Remember, I used to be the guy saying no to him."
 No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
 </section>
@@ -1107,7 +1137,6 @@ Source: SL5 Standard v0.1 (Threat Model) counts misaligned AI that may "sabotage
       <div class="lcard"><b class="mono">4</b><p>Talk to me</p><span class="mut">LinkedIn / after the talk</span></div>
     </div>
     <div class="s20-qr"><p class="mut">Missed it? Scan:</p><div class="qrbox" data-qr="links"></div><p class="url small" data-url="links"></p></div>
-    <p class="already mono">Already working on this: RAND · Security Level 5 · Irregular · Heron · Palisade · FAR.AI · UK AI Security Institute</p>
   </div>
   <aside class="notes">"If any of this got under your skin, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
 Phones still on the vote page switch to the links page automatically.</aside>
@@ -3521,10 +3550,10 @@ window.SL5_POLLS = {
    "short": "How much does SL5 slow down research?",
    "q": "If you lock an AI lab inside that wall of SL5 controls today (strict air-gaps, no open internet, real two-person rules for every action), how much does it slow down AI research?",
    "o": [
-    "Barely (<10%)",
-    "Painful (10–30%)",
-    "Very painful (30–50%)",
-    "Crippling (>50%, top researchers quit)"
+    "<10%",
+    "10–30%",
+    "30–50%",
+    ">50%"
    ]
   },
   {
@@ -3594,15 +3623,6 @@ window.SL5_POLLS = {
    "s": "LinkedIn, or find me after the talk",
    "u": "https://www.linkedin.com/in/nitzan-pomerantz/"
   }
- ],
- "ALREADY": [
-  "RAND",
-  "Security Level 5",
-  "Irregular",
-  "Heron",
-  "Palisade",
-  "FAR.AI",
-  "UK AI Security Institute"
  ]
 };
 
@@ -4079,12 +4099,16 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   }
   var fmt = function (n) { return Math.round(n).toLocaleString("en-US"); };
 
-  // ---------- S0: type `scp weights.bin`
+  // ---------- S0: type the scp line (data-text); holding slide may sit for minutes → erase + retype, one cycle ≈ 20s
   Deck.on("s0", {
     enter: function (el) {
-      var t = el.querySelector(".type"), full = t.dataset.text, i = 0;
-      clear("s0"); t.textContent = "";
-      (function next() { if (i <= full.length) { t.textContent = full.slice(0, i++); later("s0", i === 1 ? 900 : 120, next); } })();
+      var t = el.querySelector(".type"), full = t.dataset.text;
+      clear("s0");
+      if (Deck.thumb) { t.textContent = full; return; } // presenter preview: still
+      function show(i) { t.textContent = full.slice(0, i); }
+      function type(i) { show(i); if (i < full.length) later("s0", 120, function () { type(i + 1); }); else later("s0", 11000, function () { erase(i - 1); }); }
+      function erase(i) { show(i); if (i > 0) later("s0", 25, function () { erase(i - 1); }); else later("s0", 900, function () { type(1); }); }
+      erase(0);
     },
     leave: function () { clear("s0"); },
   });
@@ -4213,6 +4237,9 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   Deck.on("s16", {
     enter: function (el) { var v = el.querySelector(".sim-video"); if (v) { try { v.currentTime = 0; } catch (e) {} var p = v.play(); if (p && p.catch) p.catch(function () {}); } },
     leave: function (el) { var v = el.querySelector(".sim-video"); if (v) v.pause(); },
+    // USB hop plays only on a forward step 1→2 inside the slide; any other way into step 2 (jump, reload, back from S17)
+    // shows the final state. (Keyed on entry direction it never played after a jump/reload + click.)
+    step: function (el, s, dir) { el.classList.toggle("s16-play", s === 2 && dir === 1); },
   });
 
   // ---------- S10: 47 real blocks (github.com/nitzpo/sl5) → flood of real clauses (SL5 Standard + RAND)

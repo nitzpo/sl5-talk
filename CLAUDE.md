@@ -3,7 +3,7 @@
 Subtitle: *Protecting from superpowers, and against rogue AI* (final, v7.5, Nov 15; replaces "Ctrl+C, Ctrl+V a Fighter Jet" and all earlier subtitles; the Ctrl+C/V gag stays on S2)
 
 ## What this is
-- 15–20 min TED-style talk by Nitzan (GitHub `nitzpo`) at **Tel Aviv Frontier AI Security Forum '26**, Sun **Nov 22 2026**, Tel Aviv Museum of Art. ≈300 people: cyber offense/defense veterans, intel alumni, AI researchers, founders. Talk in English. Slot length unknown → build the 17-min version with a marked 15-min cut.
+- 15–20 min TED-style talk by Nitzan (GitHub `nitzpo`) at **Tel Aviv Frontier AI Security Forum '26**, Sun **Nov 22 2026**, Tel Aviv Museum of Art. ≈300 people: cyber offense/defense veterans, intel alumni, AI researchers, founders. Talk in English. Slot: assume 20 min (Nov 15) → the full ≈18-min version is the default; the 15-min cut stays as a fallback toggle.
 - **Content source of truth: the Notion plan page** https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954 (Notion MCP). `PLAN.md` is its mirror; build from PLAN.md.
 - **Rule:** when Nitzan says "plan updated": re-fetch the Notion page, sync `PLAN.md`, then tell him what changed (concise diff by slide) and what code it affects. If code and PLAN.md disagree, ask.
 - Deliverables:
@@ -94,6 +94,7 @@ The user generates the photoreal images in Gemini (Nano Banana Pro); prompts are
 - ⚠️ Learning: CSS class collision blacked out the deck (`body.cursor` state flag vs S1b's `.cursor` SVG with `opacity:0`). Body/state classes use `show-*`/`is-*`; slide-local classes get a slide-specific name.
   - ⚠️ Learning (Nov 15): K (admin key) never worked: engine's keydown `else return;` skipped `Deck.emit("key")` for keys it didn't handle itself, so poll.js never saw K/H/A/P. Tests used `#key=` in the URL, so nobody pressed K. Test every deck shortcut with real keypresses.
   - ⚠️ Learning (Nov 15, review): fixing K made H reachable, and H blacked out the deck: `body.hands` matched `.hands{display:none}` (same collision as `body.cursor`). Tests asserted the class, not what's on screen. Assert visibility (body/slide on screen), not class toggles. Also: a prompt opened on keydown receives that key's letter (focus it after the keystroke).
+  - ⚠️ Learning (Nov 19, review): `.fwd` = the slide was *entered* forward. A click animation keyed on it never plays after a jump/reload + click. Key in-slide click animations on the step hook's `dir` (class set when `s === N && dir === 1`), and give every other way into that step the final state.
   - ⚠️ Learning: Workers Builds overrides the Worker name with the connected Worker, so `wrangler deploy --env dev` in `vote`'s branch trigger deployed to **live `vote`**. Never deploy another worker from a build trigger; each worker gets its own build config.
 
 ## Workflow

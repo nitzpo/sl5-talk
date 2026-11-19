@@ -29,12 +29,16 @@
   }
   var fmt = function (n) { return Math.round(n).toLocaleString("en-US"); };
 
-  // ---------- S0: type `scp weights.bin`
+  // ---------- S0: type the scp line (data-text); holding slide may sit for minutes → erase + retype, one cycle ≈ 20s
   Deck.on("s0", {
     enter: function (el) {
-      var t = el.querySelector(".type"), full = t.dataset.text, i = 0;
-      clear("s0"); t.textContent = "";
-      (function next() { if (i <= full.length) { t.textContent = full.slice(0, i++); later("s0", i === 1 ? 900 : 120, next); } })();
+      var t = el.querySelector(".type"), full = t.dataset.text;
+      clear("s0");
+      if (Deck.thumb) { t.textContent = full; return; } // presenter preview: still
+      function show(i) { t.textContent = full.slice(0, i); }
+      function type(i) { show(i); if (i < full.length) later("s0", 120, function () { type(i + 1); }); else later("s0", 11000, function () { erase(i - 1); }); }
+      function erase(i) { show(i); if (i > 0) later("s0", 25, function () { erase(i - 1); }); else later("s0", 900, function () { type(1); }); }
+      erase(0);
     },
     leave: function () { clear("s0"); },
   });
@@ -163,6 +167,9 @@
   Deck.on("s16", {
     enter: function (el) { var v = el.querySelector(".sim-video"); if (v) { try { v.currentTime = 0; } catch (e) {} var p = v.play(); if (p && p.catch) p.catch(function () {}); } },
     leave: function (el) { var v = el.querySelector(".sim-video"); if (v) v.pause(); },
+    // USB hop plays only on a forward step 1→2 inside the slide; any other way into step 2 (jump, reload, back from S17)
+    // shows the final state. (Keyed on entry direction it never played after a jump/reload + click.)
+    step: function (el, s, dir) { el.classList.toggle("s16-play", s === 2 && dir === 1); },
   });
 
   // ---------- S10: 47 real blocks (github.com/nitzpo/sl5) → flood of real clauses (SL5 Standard + RAND)

@@ -37,10 +37,10 @@ window.SL5_POLLS = {
    "short": "How much does SL5 slow down research?",
    "q": "If you lock an AI lab inside that wall of SL5 controls today (strict air-gaps, no open internet, real two-person rules for every action), how much does it slow down AI research?",
    "o": [
-    "Barely (<10%)",
-    "Painful (10–30%)",
-    "Very painful (30–50%)",
-    "Crippling (>50%, top researchers quit)"
+    "<10%",
+    "10–30%",
+    "30–50%",
+    ">50%"
    ]
   },
   {
@@ -110,14 +110,5 @@ window.SL5_POLLS = {
    "s": "LinkedIn, or find me after the talk",
    "u": "https://www.linkedin.com/in/nitzan-pomerantz/"
   }
- ],
- "ALREADY": [
-  "RAND",
-  "Security Level 5",
-  "Irregular",
-  "Heron",
-  "Palisade",
-  "FAR.AI",
-  "UK AI Security Institute"
  ]
 };

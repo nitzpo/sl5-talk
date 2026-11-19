@@ -218,7 +218,7 @@
     s13: { g: ["BC"], f: function (r) { return { nums: nums("B1", r.polls.B1) + nums("B2", r.polls.B2) + nums("C", r.polls.C) + "<span>phones <b>" + r["v:BC"] + "</b></span>" }; } },
     s14: { g: ["BC"], f: function (r) {
       var b1 = r.polls.B1, b2 = r.polls.B2, x = pct(b1, [2, 3]), y = pct(b2, 1), never = pct(b2, 2), h = [];
-      if (x !== null || y !== null) h.push(["", "X (heavy slowdown) = " + (x === null ? "–" : x + "%") + " · Y (Just-in-Time) = " + (y === null ? "–" : y + "%")]);
+      if (x !== null || y !== null) h.push(["", "X (>30%) = " + (x === null ? "–" : x + "%") + " · Y (Just-in-Time) = " + (y === null ? "–" : y + "%")]);
       if (leader(b2) === 0) h.push(["say", "“Start right now” leads: “Most of you would start now. Your future CFO disagrees. Let's see why you're right.”"]);
       if (never !== null && never > 15) h.push(["say", "Never " + never + "%: “And to the " + never + "% who said never: at least you're honest.”"]);
       return { nums: nums("B1", b1) + nums("B2", b2), hints: h };

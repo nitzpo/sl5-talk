@@ -24,7 +24,10 @@ def css(href: str) -> str:
     path = PUB / href
     text = path.read_text()
     # url(../fonts/x.woff2) → data URI
-    return re.sub(r"url\(([^)\"']+)\)", lambda m: f"url({data_uri((path.parent / m.group(1)).resolve())})", text)
+    def inline(m):  # files only: leave in-page refs (SVG filter url(#id) / url(%23id) inside a data URI) alone
+        ref = m.group(1)
+        return m.group(0) if ref.startswith(("#", "%23", "data:")) else f"url({data_uri((path.parent / ref).resolve())})"
+    return re.sub(r"url\(([^)\"']+)\)", inline, text)
 
 
 def script(src: str) -> str:
