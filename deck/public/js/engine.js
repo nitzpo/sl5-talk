@@ -211,6 +211,12 @@
   addEventListener("resize", fit);
   addEventListener("hashchange", function () {
     var el = list[cur];
+    if (/key=/.test(location.hash)) { // #key=… typed into the open deck: poll.js saves it; stay on this slide
+      var k = SL5UrlKey();
+      if (!location.hash && el) history.replaceState(null, "", location.pathname + location.search + "#" + el.id + (step ? "." + step : ""));
+      if (k) Deck.emit("urlkey", k);
+      if (!location.hash || !el || location.hash.slice(1) === el.id + (step ? "." + step : "")) return;
+    }
     if (!el || location.hash.slice(1) !== el.id + (step ? "." + step : "")) fromHash();
   });
 

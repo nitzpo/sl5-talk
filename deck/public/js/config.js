@@ -24,5 +24,17 @@
     }
     return k;
   };
+  // admin key from the URL: #key=… or ?key=… (also #s5&key=…). Removes it from the address bar; null if none.
+  // Deck + presenter call it on load AND on hashchange (adding #key= to an open tab doesn't reload the page).
+  window.SL5UrlKey = function () {
+    var k = null;
+    function cut(s) {
+      return s.replace(/(^|&)key=([^&]*)/, function (_, a, v) { try { k = decodeURIComponent(v); } catch (e) { k = v; } return ""; }).replace(/^&/, "");
+    }
+    var h = cut(location.hash.slice(1)), q = cut(location.search.slice(1));
+    if (k === null) return null;
+    history.replaceState(null, "", location.pathname + (q ? "?" + q : "") + (h ? "#" + h : ""));
+    return k.trim() || null;
+  };
   window.SL5Config = { API: API, base: base, phoneUrl: base || API.live, phoneHost: (base || API.live).replace(/^https?:\/\//, "") };
 })();
