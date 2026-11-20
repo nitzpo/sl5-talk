@@ -59,9 +59,9 @@ Per-slide times below are from before S8 was cut.
 ### S1b · 0:40 · 😄 (+ #02 microSD)
 - **On screen:**
   - Click 1: everything collapses into one small glowing file icon `model_weights.bin · 2.0 TB`.
-  - Click 2: a microSD on a fingertip with a "$160" tag. A copy progress bar stalls → OS dialog **"Not enough space. Delete 'Call of Duty' to continue?"** [Cancel] [Delete] → the cursor clicks Delete.
-- **Say:** "But here is the crazy thing about AI: when that training run finishes, what actually comes out the other end? A single 2-terabyte file of numbers. That file is the **model weights**: the actual trained brain of the AI. And 2 terabytes is nothing. You can fit a multi-billion-dollar superintelligence on a $160 SD card the size of your fingernail. You just have to delete Call of Duty first."
-- **Notes:** $160 = a 2TB SanDisk microSD. A 2TB file fills a 2TB card (hence "delete Call of Duty first").
+  - Click 2: a microSD on a fingertip with a "$160" tag. A copy progress bar stalls → OS dialog **"Not enough space. Delete 'GTA VI' to continue?"** (Nov 20, Nitzan: was 'Call of Duty'; GTA VI launched 3 days before the talk) [Cancel] [Delete] → the cursor clicks Delete.
+- **Say:** "But here is the crazy thing about AI: when that training run finishes, what actually comes out the other end? A single 2-terabyte file of numbers. That file is the **model weights**: the actual trained brain of the AI. And 2 terabytes is nothing. You can fit a multi-billion-dollar superintelligence on a $160 SD card the size of your fingernail. You just have to delete GTA 6 first. Yes, the one that came out on Thursday."
+- **Notes:** $160 = a 2TB SanDisk microSD. A 2TB file fills a 2TB card (hence "delete GTA 6 first"; no size on screen). GTA VI: PS5 / Xbox Series only (no PC), so not really on an SD card: it's a joke.
 
 ### S1c · 1:15 · ⬛ "What's in the file?" (target package)
 - **On screen:** a paper "target package" slides in, stamped **TOP SECRET** (Nov 19: replaces "EYES ONLY"), with a grainy surveillance photo of the datacenter (#01) paper-clipped to it: TARGET Frontier AI lab, California · OBJECTIVE `model_weights.bin` (2.0 TB) · FITS ON One $160 microSD. Under "WHAT WE GET", three blacked-out lines.
@@ -275,6 +275,7 @@ Style block prepended to every prompt: "Cinematic film still, 16:9, low-key ligh
 | Labs' own safety frameworks track bio/chem weapons uplift + AI that accelerates AI R&D (all three labs); cyber offense (OpenAI, Google DeepMind; not a threshold in Anthropic RSP v3.4) | Anthropic RSP v3.4 (Jul 2026) https://www.anthropic.com/rsp · OpenAI Preparedness Framework v2 (Apr 2025) https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf · Google DeepMind FSF v3.1 (Apr 2026) https://deepmind.google/frontier-safety/ |
 | torchtriton malicious dependency in PyTorch nightly, Dec 25–30 2022 | https://pytorch.org/blog/compromised-nightly-dependency/ · https://www.reversinglabs.com/blog/pytorch-supply-chain-attack-dependency-confusion-burns-devops |
 | Su Bin pleaded guilty (2016) to helping steal F-35/F-22/C-17 data for China; 46 months | https://www.justice.gov/opa/pr/chinese-national-who-conspired-hack-us-defense-contractors-systems-sentenced-46-months |
+| GTA VI launched Thu Nov 19 2026 (PS5, Xbox Series X\|S); install up to 212 GB (not on screen) | Rockstar preload via TweakTown https://www.tweaktown.com/news/114473/rockstar-reveals-gta-6-pre-load-times-confirms-212gb-install-size/index.html · Forbes https://www.forbes.com/sites/erikkain/2026/11/16/gta-6-release-date-time-ps5-xbox-series-x-download-size-day-one-update/ |
 | 2TB microSD ≈ $160 | https://slickdeals.net/f/18883417-159-99-2tb-sandisk-extreme-microsdxc-uhs-i-memory-card-with-adapter-sdsqxav-2t00-gn6ma-at-amazon |
 | Irregular (ex-Pattern Labs): CEO Dan Lahav co-authored the RAND report | https://www.irregular.com/news/securing-ai-model-weights |
 | Event: Tel Aviv Frontier AI Security Forum '26, Nov 22, Tel Aviv Museum of Art, ≈300 people | https://aisecurity.forum/events/events/tlv-26 |

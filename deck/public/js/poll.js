@@ -153,7 +153,7 @@
     Deck.emit("results", { el: el, res: res }); // custom renderers (e.g. S6 ladder rows)
     el.querySelectorAll("[data-voters]").forEach(function (x) {
       var g = groupOf(x.dataset.voters), d = res && res["v:" + g];
-      setText(x, d === undefined ? "–" : String(d));
+      setText(x, d == null ? "–" : String(d)); // null: no results yet (cache empty)
     });
   }
 
