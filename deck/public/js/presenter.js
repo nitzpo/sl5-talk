@@ -301,8 +301,13 @@
   // Mode: a deck in this browser (same laptop) answers "hello" on the channel within ~1s → local.
   // Otherwise (phone, other device) → remote via the poll server with the admin token.
   linkDot(); tickTimer();
-  var km = /key=([^&]+)/.exec(location.hash);
-  if (km) { LS.set("sl5:remote-token", decodeURIComponent(km[1])); history.replaceState(null, "", location.pathname + location.search); }
+  var uk = SL5UrlKey(); // #key=… / ?key=…
+  if (uk) LS.set("sl5:remote-token", uk);
+  addEventListener("hashchange", function () { // #key=… added to the open page (no reload)
+    var k = SL5UrlKey(); if (!k) return;
+    LS.set("sl5:remote-token", k); token = k; hideAuth();
+    if (!isLocal() && !wantLocal && base) startRemote();
+  });
   loadSlides().then(function () {
     if (st) render();
     if (ch) ch.postMessage({ type: "cmd", cmd: "hello" });

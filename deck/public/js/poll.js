@@ -19,10 +19,14 @@
   // offline copy: no vote QR/URL (votes would go nowhere visible); links QR stays
   if (window.SL5_OFFLINE || location.protocol === "file:") document.body.classList.add("is-offline");
 
-  // admin key from #key=… (then stripped from the URL) or localStorage
-  var km = /key=([^&]+)/.exec(location.hash);
-  if (km) { LS.set("sl5:deckkey", decodeURIComponent(km[1])); history.replaceState(null, "", location.pathname + location.search); }
+  // admin key from #key=… / ?key=… (then stripped from the URL) or localStorage
+  var urlKey = thumb ? null : SL5UrlKey();
+  if (urlKey) LS.set("sl5:deckkey", urlKey);
   var key = LS.get("sl5:deckkey");
+  Deck.listen("urlkey", function (k) { // #key=… added to the URL of the open deck (no reload)
+    key = k; LS.set("sl5:deckkey", k); Deck.warn("");
+    repush(Deck.current().el);
+  });
   Deck.listen("key", function (k) {
     if (k === "k" || k === "K") {
       Deck.ask("Admin key for " + (base || "(offline)"), { password: true, hint: "Enter = save · empty = remove · Esc = cancel" }).then(function (v) {
@@ -76,6 +80,7 @@
   }
   function repush(el) {
     if (!base) return Deck.toast("Offline copy: no phones");
+    if (!key) { Deck.warn("No admin key (press K): phones not switched"); return Deck.toast("Phones NOT switched: no admin key (press K)"); }
     applyEffective(el).then(function (r) { Deck.toast(r.ok ? "Phones → " + r.cur : "Phones NOT switched: see the warning"); });
   }
 
@@ -186,7 +191,8 @@
       // Phones follow the deck forward only. Walking forward: this slide's own actions. First load or a forward jump
       // (G, presenter jump list): catch up to the slide's effective state. Backward (Home, ←, jump back): phones stay.
       if (dir === 1) pollActions(el);
-      else if (dir === 0 && idx > lastIdx) applyEffective(el);
+      // first load: toast the result ("Phones → warm" / "NOT switched: no admin key"), so a deck without a key is obvious
+      else if (dir === 0 && idx > lastIdx) { if (lastIdx < 0 && base) repush(el); else applyEffective(el); }
       lastIdx = idx;
       if (liveEls(el).length) { try { render(el, cache); } catch (e) { console.error(e); } tick(); }
     }

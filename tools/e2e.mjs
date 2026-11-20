@@ -1,6 +1,6 @@
 // Real-input end-to-end test: every deck shortcut, the poll flow, a phone, both presenter modes, the admin page and the
-// offline copy, driven like a person would (key presses, clicks, taps, typing). No URL shortcuts (no #key=): the K bug
-// (Nov 15) hid for a week because tests set the admin key through the URL.
+// offline copy, driven like a person would (key presses, clicks, taps, typing). No URL shortcuts (no #key=) outside 4a: the
+// K bug (Nov 15) hid for a week because tests set the admin key through the URL. 4a tests the URL key as a person types it.
 //   local only:  node tools/e2e.mjs [--deck http://localhost:8080] [--api http://localhost:8787] [--token devtoken123]
 // Start first: poll worker (wrangler dev --env dev --port 8787) + deck (python3 -m http.server 8080 -d deck/public).
 // Uses a fresh rehearsal run on the LOCAL worker; refuses non-localhost APIs.
@@ -53,6 +53,7 @@ const seesDeck = () => deck.evaluate(() => { // the deck is actually on screen (
 });
 const shown = (sel) => deck.evaluate((s) => { const e = document.querySelector(s); if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== "hidden"; }, sel);
 
+ok("deck load without a key says so (toast, not just the status dot)", /NOT switched: no admin key/.test(await deck.textContent("#toast")));
 await press("k", 400);
 ok("K asks in a hidden field (no prompt(), no key on the projector)", await deck.evaluate(() => { const i = document.querySelector(".ask input"); return !!i && i.type === "password"; }));
 await answer(TOKEN);
@@ -184,6 +185,35 @@ const run0 = await top(); await ad.tap("[data-run='rehearsal']").catch(() => {})
 ok("admin: new rehearsal run", await until(async () => (await top()) > run0));
 await ad.fill("#pm", "1500"); await ad.tap("#cfg").catch(() => {}); ok("admin: poll interval", await until(async () => (await status()).state.poll_ms === 1500));
 const dl = ad.waitForEvent("download", { timeout: 4000 }).catch(() => null); await ad.tap("#csv").catch(() => {}); ok("admin: export CSV", !!(await dl));
+
+// ===================== 4a. admin key in the URL (what the speaker types into the address bar) =====================
+// Nov 20: #key= added to an already-open deck tab was ignored (no reload; key only read at load) → phones stayed idle.
+const uctx = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
+const ud = await uctx.newPage(); watch(ud, "urlkey");
+const uState = () => ud.evaluate(() => ({ id: Deck.current().el.id, step: Deck.current().step, url: location.href, key: localStorage.getItem("sl5:deckkey"), toast: document.querySelector("#toast").textContent }));
+await admin("current", { current: "idle" });
+await ud.goto(`${DECK}/?api=${API}#key=${TOKEN}`, { waitUntil: "load" });
+let u = await until(async () => { const x = await uState(); return /Phones → warm/.test(x.toast) && x; });
+ok("URL #key= on load: phones → warm, toast, key stored, hidden from the URL", !!u && u.key === TOKEN && !u.url.includes(TOKEN) && (await status()).state.current === "warm", u && u.url);
+await ud.evaluate(() => localStorage.clear()); await ud.goto(`${DECK}/?api=${API}#s5`); await ud.reload({ waitUntil: "load" }); await sleep(800);
+await ud.keyboard.press("ArrowRight"); await sleep(300); await admin("current", { current: "idle" }); // → s6 (S5 has no clicks): phones should be on A
+await ud.goto(`${DECK}/?api=${API}#key=${TOKEN}`); // same document: only the hash changes, like editing the address bar
+u = await until(async () => { const x = await uState(); return /Phones →/.test(x.toast) && x; });
+ok("#key= added to the open deck: stays on the slide, key stored, phones re-pushed, hidden from the URL",
+  !!u && u.id === "s6" && u.step === 0 && u.key === TOKEN && !u.url.includes(TOKEN) && (await status()).state.current === "A", u && JSON.stringify(u));
+await ud.evaluate(() => localStorage.clear()); await admin("current", { current: "idle" });
+await ud.goto(`${DECK}/?api=${API}&key=${TOKEN}#s4`, { waitUntil: "load" });
+u = await until(async () => { const x = await uState(); return /Phones →/.test(x.toast) && x; });
+ok("URL ?key= works too (kept slide + api)", !!u && u.id === "s4" && u.key === TOKEN && !u.url.includes(TOKEN) && u.url.includes("api=") && (await status()).state.current === "warm", u && u.url);
+await ud.close(); // presenter test below must be remote (no deck in this browser)
+const up = await uctx.newPage(); watch(up, "presenter-urlkey");
+await up.goto(`${DECK}/presenter.html?api=${API}&remote`, { waitUntil: "load" });
+await up.evaluate(() => localStorage.removeItem("sl5:remote-token")); await up.reload({ waitUntil: "load" }); await sleep(1800);
+const askedTok = await up.evaluate(() => !document.getElementById("p-auth").hidden);
+await up.goto(`${DECK}/presenter.html?api=${API}&remote#key=${TOKEN}`);
+ok("presenter: #key= added to the open page connects (token box closes), hidden from the URL", askedTok &&
+  await until(async () => up.evaluate((t) => localStorage.getItem("sl5:remote-token") === t && document.getElementById("p-auth").hidden && !location.href.includes(t), TOKEN)));
+await uctx.close();
 
 // ===================== 4b. hung poll server → show of hands =====================
 const hang = await lap.newPage(); watch(hang, "hang");

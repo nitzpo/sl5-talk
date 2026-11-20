@@ -6,14 +6,14 @@ URLs: deck `https://sl5-deck.nitzpo.workers.dev` · phones `vote.nitzpo.workers.
 - [ ] PR merged → `vote` (live) + `sl5-deck` deployed; live `ADMIN_TOKEN` set; `/admin` login works.
 - [ ] Real-phone test on live: rehearsal run → scan S0 QR, vote all 5 polls, see bars move, reset.
 - [ ] `offline.html` saved to USB stick + laptop desktop; opened once from the file (no network) → slides OK.
-- [ ] Ask organizers: slot length (17 or 15 min), clicker model, laptop (own or venue), second screen?, Wi-Fi for audience.
+- [ ] Ask organizers: slot length (20 min = full deck, default; 15 min = `C`), clicker model, laptop (own or venue), second screen?, Wi-Fi for audience.
 - [ ] No load tests on talk day (free tier: 100k requests/day per account; a talk ≈ 40k).
 
 ## At the venue (T−45 min)
-- [ ] Chrome → deck URL. **Before the projector shows the laptop:** `K` → type the admin key (hidden field; or open the deck with `#key=<token>`). Toast "Phones → warm" = phones on the warm-up. Status dot (bottom-right, shows only while the mouse moves): green = OK, red = poll-server problem; press `N` to read the reason.
+- [ ] Chrome → deck URL. **Before the projector shows the laptop:** `K` → type the admin key (hidden field), or open `<deck URL>/#key=<token>` (also works typed into an already-open deck tab; the key is removed from the address bar). Toast "Phones → warm" = phones on the warm-up; "Phones NOT switched: no admin key" → press `K`. (Every deck load/reload toasts one of these.) Use `#key=`, not `?key=` (a query reaches the server logs). Own laptop only for the URL route: on a borrowed one it stays in Chrome history/autocomplete. Status dot (bottom-right, shows only while the mouse moves): green = OK, red = poll-server problem; press `N` to read the reason.
 - [ ] Slot is 15 min? Press `C` (15-min cut: drops S9). HUD `N` shows "15-MIN CUT".
 - [ ] Clicker: next / back / black (`B` or `.`) all work. If not: phone remote.
-- [ ] Presenter view: `S` on the laptop (drag window to the laptop screen) and/or phone → presenter URL → token. Tap Next on phone → deck moves (≈1s). In the presenter window, `H` `P` `N` `T` act on the deck too.
+- [ ] Presenter view: `S` on the laptop (drag window to the laptop screen) and/or phone → presenter URL → token (or `presenter.html#key=<token>`). Tap Next on phone → deck moves (≈1s). In the presenter window, `H` `P` `N` `T` act on the deck too.
 - [ ] Back to the deck window with Alt+Tab / Cmd+` (a click on the slide would advance it), then `F` (fullscreen) **last**: pop-ups (S, A) leave fullscreen.
 - [ ] Admin (phone): **New LIVE run** → all counts 0 → deck on S0 → press `P` (toast "Phones → warm").
 - [ ] Own phone: scan the S0 QR → warm-up question shows. Don't vote (it would count), or vote "None of the above".
