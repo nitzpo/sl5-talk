@@ -3507,6 +3507,7 @@ var qrcode = function() {
     return k;
   };
   // admin key from the URL: #key=… or ?key=… (also #s5&key=…). Removes it from the address bar; null if none.
+  // Prefer #key=: the hash never leaves the browser; ?key= reaches the deck worker (request logs, same-origin Referer).
   // Deck + presenter call it on load AND on hashchange (adding #key= to an open tab doesn't reload the page).
   window.SL5UrlKey = function () {
     var k = null;
@@ -3965,6 +3966,7 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
   }
   function repush(el) {
     if (!base) return Deck.toast("Offline copy: no phones");
+    if (!key) { Deck.warn("No admin key (press K): phones not switched"); return Deck.toast("Phones NOT switched: no admin key (press K)"); }
     applyEffective(el).then(function (r) { Deck.toast(r.ok ? "Phones → " + r.cur : "Phones NOT switched: see the warning"); });
   }
 
@@ -4075,7 +4077,8 @@ window.SL5_S10 = {"source": "github.com/nitzpo/sl5 (blocks-*.json, research/sl5_
       // Phones follow the deck forward only. Walking forward: this slide's own actions. First load or a forward jump
       // (G, presenter jump list): catch up to the slide's effective state. Backward (Home, ←, jump back): phones stay.
       if (dir === 1) pollActions(el);
-      else if (dir === 0 && idx > lastIdx) { if (lastIdx < 0 && urlKey) repush(el); else applyEffective(el); } // key from URL: toast the result
+      // first load: toast the result ("Phones → warm" / "NOT switched: no admin key"), so a deck without a key is obvious
+      else if (dir === 0 && idx > lastIdx) { if (lastIdx < 0 && base) repush(el); else applyEffective(el); }
       lastIdx = idx;
       if (liveEls(el).length) { try { render(el, cache); } catch (e) { console.error(e); } tick(); }
     }

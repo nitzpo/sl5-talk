@@ -80,6 +80,7 @@
   }
   function repush(el) {
     if (!base) return Deck.toast("Offline copy: no phones");
+    if (!key) { Deck.warn("No admin key (press K): phones not switched"); return Deck.toast("Phones NOT switched: no admin key (press K)"); }
     applyEffective(el).then(function (r) { Deck.toast(r.ok ? "Phones → " + r.cur : "Phones NOT switched: see the warning"); });
   }
 
@@ -190,7 +191,8 @@
       // Phones follow the deck forward only. Walking forward: this slide's own actions. First load or a forward jump
       // (G, presenter jump list): catch up to the slide's effective state. Backward (Home, ←, jump back): phones stay.
       if (dir === 1) pollActions(el);
-      else if (dir === 0 && idx > lastIdx) { if (lastIdx < 0 && urlKey) repush(el); else applyEffective(el); } // key from URL: toast the result
+      // first load: toast the result ("Phones → warm" / "NOT switched: no admin key"), so a deck without a key is obvious
+      else if (dir === 0 && idx > lastIdx) { if (lastIdx < 0 && base) repush(el); else applyEffective(el); }
       lastIdx = idx;
       if (liveEls(el).length) { try { render(el, cache); } catch (e) { console.error(e); } tick(); }
     }

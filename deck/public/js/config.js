@@ -25,6 +25,7 @@
     return k;
   };
   // admin key from the URL: #key=… or ?key=… (also #s5&key=…). Removes it from the address bar; null if none.
+  // Prefer #key=: the hash never leaves the browser; ?key= reaches the deck worker (request logs, same-origin Referer).
   // Deck + presenter call it on load AND on hashchange (adding #key= to an open tab doesn't reload the page).
   window.SL5UrlKey = function () {
     var k = null;

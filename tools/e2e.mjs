@@ -53,6 +53,7 @@ const seesDeck = () => deck.evaluate(() => { // the deck is actually on screen (
 });
 const shown = (sel) => deck.evaluate((s) => { const e = document.querySelector(s); if (!e) return false; const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0 && getComputedStyle(e).visibility !== "hidden"; }, sel);
 
+ok("deck load without a key says so (toast, not just the status dot)", /NOT switched: no admin key/.test(await deck.textContent("#toast")));
 await press("k", 400);
 ok("K asks in a hidden field (no prompt(), no key on the projector)", await deck.evaluate(() => { const i = document.querySelector(".ask input"); return !!i && i.type === "password"; }));
 await answer(TOKEN);
