@@ -347,8 +347,6 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s10-flood .s10-key { background: none; color: inherit; transition: background .4s .6s, color .4s .6s; }
 #s10.s10-pick .s10-flood.on .s10-key { background: var(--amb); color: #111; }
 .s10-buried { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1; font-size: 30px; padding: 18px 24px; }
-.s10-count { position: absolute; left: 90px; bottom: 50px; font-size: 26px; color: var(--mut); }
-.s10-count b { color: var(--amb); }
 
 /* ===================== S11 · two-person rules ===================== */
 .s11 { flex-direction: row; gap: 90px; align-items: center; }
