@@ -129,7 +129,7 @@
     var el2 = (t0 ? fmt((Date.now() - t0) / 1000) : "0:00");
     hudEl.innerHTML = '<div class="meta"><span>' + el.id + " · step " + step + "/" + clicksOf(el) + "</span><span>planned " + (el.dataset.at || "–") +
       "</span><span>elapsed " + el2 + "</span><span>" + (cut ? "15-MIN CUT" : "FULL") + "</span><span>next: " + (nx ? nx.id + " " + (nx.dataset.title || "") : "end") +
-      '</span></div>' + (warning ? '<div class="warn">⚠ ' + warning + '</div>' : "") + '<div class="say">' + (n ? n.innerHTML : "") + "</div>";
+      '</span></div>' + (warning ? '<div class="warn">⚠\ufe0e ' + warning + '</div>' : "") + '<div class="say">' + (n ? n.innerHTML : "") + "</div>";
   }
   setInterval(function () { if (t0) hud(); }, 1000);
 

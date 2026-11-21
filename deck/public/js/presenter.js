@@ -72,7 +72,7 @@
       }).then(function (r) { if (r.ok) flash(cmd); else if (r.status === 401) needAuth("Token rejected"); else failed(); }, failed);
     });
   }
-  function failed() { $("p-title").textContent = "⚠ not sent (no connection): tap again"; }
+  function failed() { $("p-title").textContent = "⚠\ufe0e not sent (no connection): tap again"; }
   function startRemote() { if (!remoteOn) { remoteOn = true; pollRemote(); } }
   function pollRemote() {
     if (!token || isLocal()) { remoteOn = false; return; }
@@ -186,8 +186,10 @@
     document.title = s.id + " · Presenter";
   }
 
-  // ---------- live poll numbers + which branch line to say ----------
-  // per slide: groups to fetch and a function that turns results into lines
+  // ---------- live poll numbers + which branch applies ----------
+  // Data only: numbers and which branch of the notes applies, named with the notes' own labels ("Impossible above 10%").
+  // The words to say live only in the speaker notes (Notion "Speaker notes (bullets)"). Nov 21: this box had its own
+  // copy of the old branch lines (drink/bridge, "Let's see if they agree"), which contradicted the v8 notes.
   function pct(d, opts) {
     if (!d || !d.total) return null;
     var n = 0; [].concat(opts).forEach(function (i) { n += d.counts[i] || 0; });
@@ -198,36 +200,35 @@
     if (!d) return "<span>" + id + ": –</span>";
     return "<span>" + id + " <b>" + d.total + "</b>" + (d.open ? "" : ' <i class="mut">closed</i>') + "</span>";
   }
+  // h = [cls, text]: cls "say" (green) = this branch of the notes applies; "" = plain data
   var HINTS = {
     s0: { g: ["warm"], f: function (r) { return { nums: nums("warm", r.polls.warm) + "<span>phones <b>" + r["v:warm"] + "</b></span>" }; } },
     s4: { g: ["warm"], f: function (r) {
       var d = r.polls.warm, red = pct(d, 0), blue = pct(d, 1), h = [];
-      if (red !== null) h.push(red > blue ? ["say", "Red " + red + "% > blue " + blue + "%: “Okay. I'll keep an eye on my laptop.”"] : ["", "Red " + red + "% ≤ blue " + blue + "%: skip the laptop line"]);
+      if (red !== null) h.push(["", "Red " + red + "% · Blue " + blue + "%"]);
+      if (red !== null && red > blue) h.push(["say", "Red team > blue team"]);
       return { nums: nums("warm", d) + "<span>in the room <b>" + r["v:warm"] + "</b></span>", hints: h };
     } },
     s5: { g: ["A"], f: function (r) { return { nums: nums("A", r.polls.A) }; } },
     s6: { g: ["A"], f: function (r) {
       var d = r.polls.A, imp = pct(d, 3), ld = leader(d), h = [];
       if (imp === null) return { nums: nums("A", d), hints: [["", "No votes: show of hands"]] };
-      h.push(["", "Leading: #" + (ld + 1) + " " + P.A.o[ld] + " (" + pct(d, ld) + "%)"]);
-      if (imp > 10) h.push(["say", "Impossible " + imp + "%: “To the " + imp + "% who said impossible: I'd love to buy you a drink after. I also have a bridge to sell you.”"]);
-      else h.push(["say", "Impossible " + imp + "%: say “almost nobody voted for #4”"]);
-      if (ld === 2) h.push(["say", "Most picked $1B: “You're generous to the labs. Let's see if they agree.”"]);
+      h.push(["", "Most picked #" + (ld + 1) + ": " + P.A.o[ld] + " (" + pct(d, ld) + "%) · impossible " + imp + "%"]);
+      if (imp > 10) h.push(["say", "Impossible above 10%"]);
+      if (ld === 2) h.push(["say", "Most picked $1B"]);
       return { nums: nums("A", d), hints: h };
     } },
     s13: { g: ["BC"], f: function (r) { return { nums: nums("B1", r.polls.B1) + nums("B2", r.polls.B2) + nums("C", r.polls.C) + "<span>phones <b>" + r["v:BC"] + "</b></span>" }; } },
     s14: { g: ["BC"], f: function (r) {
       var b1 = r.polls.B1, b2 = r.polls.B2, x = pct(b1, [2, 3]), y = pct(b2, 1), never = pct(b2, 2), h = [];
       if (x !== null || y !== null) h.push(["", "X (>30%) = " + (x === null ? "–" : x + "%") + " · Y (Just-in-Time) = " + (y === null ? "–" : y + "%")]);
-      if (leader(b2) === 0) h.push(["say", "“Start right now” leads: “Most of you would start now. Your future CFO disagrees. Let's see why you're right.”"]);
-      if (never !== null && never > 15) h.push(["say", "Never " + never + "%: “And to the " + never + "% who said never: at least you're honest.”"]);
+      if (leader(b2) === 0) h.push(["say", "Start now wins"]);
+      if (never !== null && never > 15) h.push(["say", "Never above 15% (" + never + "%)"]);
       return { nums: nums("B1", b1) + nums("B2", b2), hints: h };
     } },
     s17: { g: ["BC"], f: function (r) {
       var d = r.polls.C, x = pct(d, [0, 1]), h = [];
       if (x !== null) h.push(["", "X (high + moderate) = " + x + "%"]);
-      if (leader(d) === 0) h.push(["say", "Mostly “High”: “Most of you think it already happened. Maybe. But today they don't even need to steal: there's a cheaper way.”"]);
-      if (leader(d) === 2) h.push(["say", "Mostly “Low”: “Most of you think it hasn't happened yet. Probably right, because today there's a cheaper way.”"]);
       return { nums: nums("C", d), hints: h };
     } },
   };

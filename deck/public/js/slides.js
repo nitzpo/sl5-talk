@@ -167,9 +167,12 @@
   Deck.on("s16", {
     enter: function (el) { var v = el.querySelector(".sim-video"); if (v) { try { v.currentTime = 0; } catch (e) {} var p = v.play(); if (p && p.catch) p.catch(function () {}); } },
     leave: function (el) { var v = el.querySelector(".sim-video"); if (v) v.pause(); },
-    // USB hop plays only on a forward step 1→2 inside the slide; any other way into step 2 (jump, reload, back from S17)
-    // shows the final state. (Keyed on entry direction it never played after a jump/reload + click.)
-    step: function (el, s, dir) { el.classList.toggle("s16-play", s === 2 && dir === 1); },
+  });
+
+  // ---------- S11b: USB hop plays only on the forward click 0→1 inside the slide; any other way into step 1
+  // (jump, reload, back from S12) shows the final state. (Keyed on entry direction it never played after a jump/reload + click.)
+  Deck.on("s11b", {
+    step: function (el, s, dir) { el.classList.toggle("s11b-play", s === 1 && dir === 1); },
   });
 
   // ---------- S10: 47 real blocks (github.com/nitzpo/sl5) → flood of real clauses (SL5 Standard + RAND)
