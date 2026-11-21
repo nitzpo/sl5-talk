@@ -2,7 +2,7 @@
 
 Mirror of the Notion plan, **draft v8 (Nov 21 2026, after rehearsal #1, 24:35)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
-v8 (Nov 21, after rehearsal #1): the deck's speaker notes are now **bullets**, verbatim from the Notion subpage "Speaker notes (bullets) v8" (https://app.notion.com/p/41f58933bf3281578fbdddcf743f426a): <b> = say it close to word for word, ▶ = click, time = target per slide (≈17:30 total; checkpoints: S9 by ~7:30, past 8:30 → skip S9 · S12 by ~10:15 · S18 by ~15:40). The deck's planned times (`data-at`) follow these targets. The air-gap/USB scene moves from S16 to a new **S11b** right after S11. S0, S1a, S1b and S3b lines updated from the rehearsal. The Say lines below are the long-form script; on stage, the bullets win.
+v8 (Nov 21, after rehearsal #1): the deck's speaker notes are now **bullets**, verbatim from the Notion subpage "Speaker notes (bullets) v8" (https://app.notion.com/p/41f58933bf3281578fbdddcf743f426a): <b> = say it close to word for word, ▶ = click, time = target per slide (≈17:30 total; checkpoints: S9 by ~7:30, past 8:30 → skip S9 · S12 by ~10:15 · S18 by ~15:40). The deck's planned times (`data-at`) follow these targets. The air-gap/USB scene moves from S16 to a new **S11b** right after S11. S0, S1a, S1b and S3b lines updated from the rehearsal. S3/S3c (Nov 21): the suitcase line is cut; S3 ends on "Alignment matters, and not only for this. But it only protects a model you still control."; S3c = read the banner once, pause, move on. The Say lines below are the long-form script; on stage, the bullets win.
 v7.9 (Nov 21 rehearsal): plain English (no idioms), polls never state an answer, no unsourced numbers, "several terabytes" spoken (screens keep 2.0 TB); flow = labs first → the audience becomes China at S1c → back to our side at S3a; S10 footer removed; S1a ticker kept (Nitzan, Nov 21; Notion's "no ticker" note was based on a still frame, where the scrolling ticker is off-screen).
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -91,8 +91,8 @@ Per-slide times below are from before S8 was cut.
 
 ### S3c · 3:10 · ⬛
 - **On screen:** black. One line: **"AI alignment without nation-state cybersecurity is just free R&D for your adversary."**
-- **Say:** "Spending millions aligning a model on a breachable server is like putting a 'Do Not Steal' sticker on a suitcase full of cash. AI alignment without nation-state cybersecurity is just free R&D for your adversary."
-- **Notes:** the banner line is on screen; the sticker line is spoken just before it.
+- **Say:** (Nov 21) Said at the end of S3, before clicking: "Alignment matters, and not only for this. But it only protects a model you still control." [click] Then read the banner aloud once, pause, move on (don't explain it): "AI alignment without nation-state cybersecurity is just free R&D for your adversary."
+- **Notes:** the banner line is on screen; banner wording stays (Nitzan, Nov 21). The sticker line ("Do Not Steal" sticker on a suitcase full of cash) was cut Nov 21: it framed alignment as wasted money, which contradicts S18; the new line says alignment only protects a model you still control.
 
 ## Part 2: Who's talking
 
