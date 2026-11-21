@@ -481,12 +481,10 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .br-bar span { margin-left: 20px; flex: 1; background: #0b0d10; border-radius: 8px; padding: 8px 16px; font-size: 24px; color: var(--amb); }
 .br-body { position: absolute; top: 58px; left: 0; right: 0; bottom: 0; background: #03040a; }
 .sim-video { width: 100%; height: 100%; object-fit: contain; display: block; }
-/* ===================== S17 · C results → silent twin ===================== */
+/* ===================== S17 · C results → distillation (silent twin cut Nov 21) ===================== */
 .s17-c { position: absolute; inset: 110px 140px; display: flex; flex-direction: column; gap: 56px; }
 .s17-c .bars { max-width: 1500px; }
-.s17-twin { position: absolute; left: 0; right: 0; top: 160px; display: flex; justify-content: center; gap: 80px; } /* full size: the closer */
 .s17-clip { left: 290px; top: 70px; width: 1340px; --rot: 1deg; }
-.s17-q { position: absolute; right: 26px; top: 10px; font-size: 64px; color: var(--red); font-weight: 800; }
 
 /* ===================== S18 ===================== */
 .s18 { justify-content: center; gap: 70px; }

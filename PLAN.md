@@ -2,7 +2,7 @@
 
 Mirror of the Notion plan, **draft v8 (Nov 21 2026, after rehearsal #1, 24:35)**: https://app.notion.com/p/41158933bf32810aaf6dc2cc614e2954
 Notion is the source of truth; this file is re-synced when Nitzan says "plan updated".
-v8 (Nov 21, after rehearsal #1): the deck's speaker notes are now **bullets**, verbatim from the Notion subpage "Speaker notes (bullets) v8" (https://app.notion.com/p/41f58933bf3281578fbdddcf743f426a): <b> = say it close to word for word, ▶ = click, time = target per slide (≈17:30 total; checkpoints: S9 by ~7:30, past 8:30 → skip S9 · S12 by ~10:15 · S18 by ~15:40). The deck's planned times (`data-at`) follow these targets. The air-gap/USB scene moves from S16 to a new **S11b** right after S11. S0, S1a, S1b and S3b lines updated from the rehearsal. S3/S3c (Nov 21): the suitcase line is cut; S3 ends on "Alignment matters, and not only for this. But it only protects a model you still control."; S3c = read the banner once, pause, move on. The Say lines below are the long-form script; on stage, the bullets win.
+v8 (Nov 21, after rehearsal #1): the deck's speaker notes are now **bullets**, verbatim from the Notion subpage "Speaker notes (bullets) v8" (https://app.notion.com/p/41f58933bf3281578fbdddcf743f426a): <b> = say it close to word for word, ▶ = click, time = target per slide (≈17:30 total; checkpoints: S9 by ~7:30, past 8:30 → skip S9 · S12 by ~10:15 · S18 by ~15:40). The deck's planned times (`data-at`) follow these targets. The air-gap/USB scene moves from S16 to a new **S11b** right after S11. S0, S1a, S1b and S3b lines updated from the rehearsal. S17's silent-twin click cut (Nov 21). S3/S3c (Nov 21): the suitcase line is cut; S3 ends on "Alignment matters, and not only for this. But it only protects a model you still control."; S3c = read the banner once, pause, move on. The Say lines below are the long-form script; on stage, the bullets win.
 v7.9 (Nov 21 rehearsal): plain English (no idioms), polls never state an answer, no unsourced numbers, "several terabytes" spoken (screens keep 2.0 TB); flow = labs first → the audience becomes China at S1c → back to our side at S3a; S10 footer removed; S1a ticker kept (Nitzan, Nov 21; Notion's "no ticker" note was based on a still frame, where the scrolling ticker is off-screen).
 **On screen** = what the audience sees. **Say** = speaker notes (never on screen). **Notes** = facts, branches, build hints.
 
@@ -32,7 +32,7 @@ Anchors: SL5 is complex · Reactive isn't enough · Starting early is what works
 | 2 Who's talking | 3:20–4:05 | S4 | Warm-up results + credential line |
 | 3 How hard is it to steal? | 4:05–6:50 | S5–S7 | Poll A → RAND ladder (S8 cut) |
 | 4 Why SL5 is so hard | 6:50–9:50 | S9–S12 | Wall of text, two-person gag, credit to RAND + Security Level 5 |
-| 5 When do you lock the doors? | 9:50–14:35 | S13–S17 | Polls B1/B2/C → calendar trap + RAND quote → distillation → silent-twin callback |
+| 5 When do you lock the doors? | 9:50–14:35 | S13–S17 | Polls B1/B2/C → calendar trap + RAND quote → distillation (silent-twin callback cut Nov 21) |
 | 6 Call to arms | 14:35–16:50 | S18, S20–S21 | Bridge, links, thank you (S19 cut Nov 14) |
 
 Per-slide times below are from before S8 was cut.
@@ -82,7 +82,7 @@ Per-slide times below are from before S8 was cut.
 ### S3a · 2:30 · 🎬 #03 + #04 (split)
 - **On screen:** left, a sunny San Francisco server room with green lights: "API Online · Safety Evals: PASSED ✅". Click: on the right, a dark air-gapped rack 10,000 km away fades in, running an identical glowing brain.
 - **Say:** "Okay, back to our side. Here is the part that should scare every defender: if someone steals physical weapons or sabotages a machine, something is missing or an alarm goes off. When a nation-state steals AI model weights, *nothing breaks*. The lab's servers keep humming. Meanwhile, 10,000 kilometers away, an identical twin wakes up on an air-gapped cluster."
-- **Notes:** the "silent twin" comes back in S17. Plant it clearly here.
+- **Notes:** the "silent twin" no longer comes back in S17 (cut Nov 21).
 
 ### S3b · 2:55 · 😄 overlay on S3a
 - **On screen:** on the dark side, a progress bar: `$ python veritaserum.py` → `stripping refusals… 100%`. Click: a real excerpt from OpenAI's paper lands over the dark twin (arXiv 2508.03153, §3.1 "Anti-refusal Training"), highlighted: "rewards answers that comply with unsafe prompts" · "refusal rates near 0% for unsafe prompts" (`assets/news/openai-gpt-oss-antirefusal.png`).
@@ -194,12 +194,12 @@ Per-slide times below are from before S8 was cut.
 - **Say:** "You can't hold dozens of interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the **SL5 Explorable**, to build some intuition. Every run says the same thing: the labs that do worse fail on timing, not on money. The link will be on your phone at the end. And it reminded me of something I know too well: controls don't work alone. If you put up an air-gap with no approved way to move files, your smartest researcher [click] just grabs a USB stick and becomes your new network router." "Remember, I used to be the guy saying no to him."
 - **Notes:** Nov 21: the USB part of this script now lives on S11b.
 
-### S17 · 14:05 · 📱 C results → distillation → 🎬 silent twin
+### S17 · 14:05 · 📱 C results → distillation
 - **On screen** (Nov 14 reorder: question → why not yet → what it looks like when it happens):
   - Start: C bars.
   - Click 1: a real news clipping: The Hacker News, "Anthropic Says Seven China-Based AI Labs Ran Industrial-Scale Claude Distillation Attacks" (headline + the article's illustration).
-  - Click 2: the silent-twin split from S3 returns, full size, no text (the closer is spoken).
-- **Say:** "X% of you think it may already have happened. Honestly, maybe not yet. Today, if you're China, you don't even need to steal: there's a cheaper way. [click] Distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. There's a talk later today that goes deep on this. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that never leaves the lab can't be distilled. It can only be stolen. [click] And when that happens, what do we see? Nothing. 'Wait until it looks dangerous' assumes you'll get a warning. Theft doesn't send one. And the building takes four years."
+  - (Nov 21, Nitzan: click 2, the silent twin, cut; S17 ends on the distillation clipping.)
+- **Say:** "X% of you think it may already have happened. Honestly, maybe not yet. Today, if you're China, you don't even need to steal: there's a cheaper way. [click] Distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. There's a talk later today that goes deep on this. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that never leaves the lab can't be distilled. It can only be stolen."
 - **Branch:** C mostly "High": "Most of you think it already happened. Maybe. But today, if you're China, you don't even need to steal: there's a cheaper way." C mostly "Low": "Most of you think it hasn't happened yet. Probably right, because today, if you're China, there's a cheaper way."
 - **Notes:** the core trap linking B2 and C. Distillation: Anthropic reported seven China-based distillation campaigns in 2026 (Sept report; the largest, Alibaba-affiliated, ≈151M exchanges). "The most capable models stay off public APIs" comes from the Security Level 5 interview (unverified word for word), so say it as your own view. The SL5 Standard lists model outputs as assets to protect because they "could be used to distill".
 
