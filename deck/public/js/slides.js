@@ -106,10 +106,12 @@
     leave: function () { clear("s1b"); },
   });
 
-  // ---------- S2: jet pops, then flies off (forward only; static otherwise)
+  // ---------- S2: jet pops, then flies off (forward only; static otherwise).
+  // News clipping (Nov 22): waits for the copied file only on the forward click 1 (back from click 2 / jump: at once).
   Deck.on("s2", {
     step: function (el, s, dir) {
       clear("s2");
+      el.classList.toggle("s2-play", s === 1 && dir === 1);
       var jet = el.querySelector(".jet");
       jet.classList.remove("fly");
       if (s === 3 && dir === 1) later("s2", 2600, function () { jet.classList.add("fly"); });
