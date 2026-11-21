@@ -7,7 +7,9 @@ def unesc(t): return re.sub(r"\\([~$\[\]_*])", r"\1", t)
 def inline(t):
     t = html.escape(unesc(t), quote=False)
     t = t.replace("&lt;b&gt;", "<b>").replace("&lt;/b&gt;", "</b>")
-    return t.replace("▶", '<i class="clk">▶</i>')
+    # U+FE0E = text presentation: the deck fonts (Inter subset) have no ▶, and Apple's fallback for it is the emoji font,
+    # which draws a grey button and ignores the amber colour (iPhone presenter, Nov 21)
+    return t.replace("▶", '<i class="clk">▶\ufe0e</i>')
 secs = {}
 for block in re.split(r"^### ", md, flags=re.M)[1:]:
     head, *lines = block.rstrip("\n").split("\n")
