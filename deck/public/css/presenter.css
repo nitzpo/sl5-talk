@@ -23,7 +23,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .view iframe { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; border: 0; transform-origin: 0 0; pointer-events: none; }
 .view .lbl { position: absolute; left: 8px; top: 6px; font: 700 12px ui-monospace, monospace; color: #fff; background: #000b; padding: 2px 6px; border-radius: 5px; text-transform: uppercase; }
 .side { display: flex; flex-direction: column; gap: 12px; min-height: 0; }
-.notes { flex: 1; overflow: auto; font-size: 21px; line-height: 1.45; white-space: pre-wrap; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+.notes { flex: 1; overflow: auto; font-size: 21px; line-height: 1.45; color: #c9ccd1; background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+/* speaker notes = v8 bullets: <b> = say it close to word for word, ▶ = click (amber), nested lists */
+.notes ul { margin: 0; padding-left: 1.1em; }
+.notes li { margin: .3em 0; }
+.notes li ul { margin-top: .2em; }
+.notes b { color: #fff; font-weight: 700; }
+.notes .clk { font-style: normal; color: var(--amb); font-weight: 700; padding: 0 .1em; }
+.notes .nh { margin: 0 0 .3em; font: 600 .7em ui-monospace, monospace; color: var(--amb); }
 .poll { background: #16130b; border: 1px solid #5c4513; border-radius: 10px; padding: 12px 14px; font-size: 17px; }
 .poll .nums { font: 600 16px ui-monospace, monospace; display: flex; flex-wrap: wrap; gap: 6px 14px; margin-bottom: 6px; }
 .poll .nums b { color: var(--amb); }

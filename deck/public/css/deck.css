@@ -120,7 +120,14 @@ body.black #black { display: block; }
 }
 body.hud #hud { display: block; }
 #hud .meta { font: 600 13px var(--mono); color: var(--amb); margin-bottom: 8px; display: flex; gap: 18px; flex-wrap: wrap; }
-#hud .say { white-space: pre-wrap; }
+#hud .say { color: #c9ccd1; }
+/* speaker notes = v8 bullets: <b> = say it close to word for word, ▶ = click (amber), nested lists */
+#hud .say ul { margin: 0; padding-left: 1.2em; }
+#hud .say li { margin: .3em 0; }
+#hud .say li ul { margin-top: .2em; }
+#hud .say b { color: #fff; font-weight: 700; }
+#hud .say .clk { font-style: normal; color: var(--amb); font-weight: 700; padding: 0 .1em; }
+#hud .say .nh { margin: 0 0 .3em; font: 600 .72em var(--mono, ui-monospace, monospace); color: var(--amb); letter-spacing: .02em; }
 #toast { position: fixed; left: 12px; bottom: 12px; z-index: 60; background: rgba(17,17,17,.85); color: #bbb; border: 1px solid #333; border-radius: 8px; padding: 6px 10px; font: 600 12px var(--mono); opacity: 0; transition: opacity .3s; pointer-events: none; }
 /* presenter-only status: a tiny dot, visible only while the mouse moves or the notes HUD is open */
 #status { position: fixed; right: 10px; bottom: 10px; z-index: 60; width: 10px; height: 10px; border-radius: 50%; background: #3ddc84; opacity: 0; transition: opacity .3s; pointer-events: none; }

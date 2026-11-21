@@ -382,6 +382,48 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s11-col.on .pr-review { animation: popin .4s cubic-bezier(.3,1.5,.5,1) 1.1s both; }
 .s11-col.on .pr-slack { animation: popin .4s cubic-bezier(.3,1.5,.5,1) 2.1s both; }
 
+/* S11b · air gap + USB gag (Nov 21: moved from S16) */
+.s11b-gap { position: absolute; inset: 0; }
+.net { position: absolute; top: 380px; width: 380px; height: 420px; border: 2px solid var(--line); border-radius: 20px; background: var(--card); padding: 26px; }
+.net p { font-size: 26px; color: var(--mut); margin-bottom: 18px; }
+.net i { display: block; height: 46px; margin: 14px 0; border-radius: 8px; background: #20252c; border-left: 6px solid #4a5260; }
+.net-in { left: 140px; } .net-in i { border-left-color: var(--ok); }
+.net-out { right: 140px; } .net-out i { border-left-color: var(--red); }
+.wall { position: absolute; left: 50%; top: 280px; width: 120px; height: 560px; margin-left: -60px; border-radius: 10px;
+  background: repeating-linear-gradient(0deg, #3a3f47 0 46px, #23272e 46px 50px); display: flex; align-items: center; justify-content: center; }
+.wall span { writing-mode: vertical-rl; font: 800 40px var(--mono); letter-spacing: .25em; color: #ecebe8; }
+.hopper { position: absolute; width: 120px; height: 200px; left: 545px; top: 640px; fill: none; stroke: #ecebe8; stroke-width: 9; stroke-linecap: round; }
+.hopper circle { fill: #ecebe8; stroke: none; }
+.usb { position: absolute; left: 985px; top: 122px; opacity: 0; display: flex; align-items: center; transform: rotate(-24deg); filter: drop-shadow(0 6px 18px #0009); } /* in the raised hand */
+.usb-body { width: 84px; height: 38px; background: var(--amb); border-radius: 9px 4px 4px 9px; }
+.usb-plug { position: relative; width: 32px; height: 26px; background: #c9ced6; border-radius: 0 3px 3px 0; }
+.usb-plug::before, .usb-plug::after { content: ""; position: absolute; left: 10px; width: 9px; height: 6px; background: #5d646e; }
+.usb-plug::before { top: 5px; } .usb-plug::after { bottom: 5px; }
+/* start: he just stands next to the SL5 network. Click 1: USB in hand, hop onto the wall, bridge, router.
+   Any entry into step 1 other than the forward click (jump, reload, back from S12): final state, no replay. */
+#s11b[data-step="1"] .hopper { left: 900px; top: 80px; }
+#s11b[data-step="1"] .usb { opacity: 1; }
+#s11b.s11b-play .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
+#s11b.s11b-play .usb { animation: fadein .25s both, hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
+.s11b-tag { position: absolute; left: 660px; top: 690px; width: 170px; background: #f4f3ef; color: #17171a; border-radius: 10px; overflow: hidden; text-align: center; transform: rotate(-6deg);
+  box-shadow: 0 8px 22px #0009; }
+#s11b.s11b-play .s11b-tag { transition: opacity .3s .3s; } /* fades only while the hop plays; no flash when entering step 1 another way */
+.s11b-tag b { display: block; background: #d63a2f; color: #fff; font: 900 24px/1.5 var(--sans); letter-spacing: .08em; }
+.s11b-tag small { display: block; background: #d63a2f; color: #fff; font: 600 13px/1.4 var(--sans); padding-bottom: 4px; }
+.s11b-tag span { display: block; font: italic 700 27px/1.9 var(--sans); }
+#s11b[data-step="1"] .s11b-tag { opacity: 0; }
+@keyframes hop { 0% { left: 545px; top: 640px; } 55% { left: 800px; top: 90px; } 100% { left: 900px; top: 80px; } }
+@keyframes hopusb { 0% { left: 630px; top: 682px; } 55% { left: 885px; top: 132px; } 100% { left: 985px; top: 122px; } }
+.bridge { position: absolute; left: 140px; top: 100px; width: 1640px; height: 600px; fill: none; stroke: var(--amb); stroke-width: 6; stroke-dasharray: 16 14; opacity: 0; }
+#s11b[data-step="1"] .bridge { opacity: 1; animation: flow 1s linear infinite; }
+#s11b.s11b-play .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
+@keyframes flow { to { stroke-dashoffset: -60; } }
+.router { position: absolute; left: 1125px; top: 100px; font-size: 30px; color: var(--amb); opacity: 0; }
+.router::before { content: "← "; }
+#s11b[data-step="1"] .router { opacity: 1; }
+#s11b.s11b-play .router { animation: fadein .5s 2.7s both; }
+
+
 /* S12 · credit cards */
 .s12 { justify-content: center; gap: 60px; }
 .credit { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
@@ -432,53 +474,13 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .s15-quote { position: absolute; inset: 0; background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
 .s15-quote .quote { font-size: 100px; }
 
-/* ===================== S16 · simulator + USB gag ===================== */
+/* ===================== S16 · simulator ===================== */
 .s16-browser { position: absolute; left: 240px; right: 240px; top: 100px; bottom: 100px; border-radius: 18px; overflow: hidden; border: 2px solid #2a2f37; background: #0e1014; box-shadow: 0 30px 90px #000c; }
 .br-bar { height: 58px; display: flex; align-items: center; gap: 10px; padding: 0 20px; background: #15181d; }
 .br-bar i { width: 14px; height: 14px; border-radius: 50%; background: #3a3f47; }
 .br-bar span { margin-left: 20px; flex: 1; background: #0b0d10; border-radius: 8px; padding: 8px 16px; font-size: 24px; color: var(--amb); }
 .br-body { position: absolute; top: 58px; left: 0; right: 0; bottom: 0; background: #03040a; }
 .sim-video { width: 100%; height: 100%; object-fit: contain; display: block; }
-.s16-gap { position: absolute; inset: 0; }
-.net { position: absolute; top: 380px; width: 380px; height: 420px; border: 2px solid var(--line); border-radius: 20px; background: var(--card); padding: 26px; }
-.net p { font-size: 26px; color: var(--mut); margin-bottom: 18px; }
-.net i { display: block; height: 46px; margin: 14px 0; border-radius: 8px; background: #20252c; border-left: 6px solid #4a5260; }
-.net-in { left: 140px; } .net-in i { border-left-color: var(--ok); }
-.net-out { right: 140px; } .net-out i { border-left-color: var(--red); }
-.wall { position: absolute; left: 50%; top: 280px; width: 120px; height: 560px; margin-left: -60px; border-radius: 10px;
-  background: repeating-linear-gradient(0deg, #3a3f47 0 46px, #23272e 46px 50px); display: flex; align-items: center; justify-content: center; }
-.wall span { writing-mode: vertical-rl; font: 800 40px var(--mono); letter-spacing: .25em; color: #ecebe8; }
-.hopper { position: absolute; width: 120px; height: 200px; left: 545px; top: 640px; fill: none; stroke: #ecebe8; stroke-width: 9; stroke-linecap: round; }
-.hopper circle { fill: #ecebe8; stroke: none; }
-.usb { position: absolute; left: 985px; top: 122px; opacity: 0; display: flex; align-items: center; transform: rotate(-24deg); filter: drop-shadow(0 6px 18px #0009); } /* in the raised hand */
-.usb-body { width: 84px; height: 38px; background: var(--amb); border-radius: 9px 4px 4px 9px; }
-.usb-plug { position: relative; width: 32px; height: 26px; background: #c9ced6; border-radius: 0 3px 3px 0; }
-.usb-plug::before, .usb-plug::after { content: ""; position: absolute; left: 10px; width: 9px; height: 6px; background: #5d646e; }
-.usb-plug::before { top: 5px; } .usb-plug::after { bottom: 5px; }
-/* click 1: he just stands next to the SL5 network. Click 2: USB in hand, hop onto the wall, bridge, router.
-   Any entry into step 2 other than the forward click (jump, reload, back from S17): final state, no replay. */
-#s16[data-step="2"] .hopper { left: 900px; top: 80px; }
-#s16[data-step="2"] .usb { opacity: 1; }
-#s16.s16-play .hopper { animation: hop 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
-#s16.s16-play .usb { animation: fadein .25s both, hopusb 1.5s cubic-bezier(.4,0,.3,1) .5s both; }
-.s16-tag { position: absolute; left: 660px; top: 690px; width: 170px; background: #f4f3ef; color: #17171a; border-radius: 10px; overflow: hidden; text-align: center; transform: rotate(-6deg);
-  box-shadow: 0 8px 22px #0009; }
-#s16.s16-play .s16-tag { transition: opacity .3s .3s; } /* fades only while the hop plays; no flash when entering step 2 another way */
-.s16-tag b { display: block; background: #d63a2f; color: #fff; font: 900 24px/1.5 var(--sans); letter-spacing: .08em; }
-.s16-tag small { display: block; background: #d63a2f; color: #fff; font: 600 13px/1.4 var(--sans); padding-bottom: 4px; }
-.s16-tag span { display: block; font: italic 700 27px/1.9 var(--sans); }
-#s16[data-step="2"] .s16-tag { opacity: 0; }
-@keyframes hop { 0% { left: 545px; top: 640px; } 55% { left: 800px; top: 90px; } 100% { left: 900px; top: 80px; } }
-@keyframes hopusb { 0% { left: 630px; top: 682px; } 55% { left: 885px; top: 132px; } 100% { left: 985px; top: 122px; } }
-.bridge { position: absolute; left: 140px; top: 100px; width: 1640px; height: 600px; fill: none; stroke: var(--amb); stroke-width: 6; stroke-dasharray: 16 14; opacity: 0; }
-#s16[data-step="2"] .bridge { opacity: 1; animation: flow 1s linear infinite; }
-#s16.s16-play .bridge { animation: fadein .5s 2.2s both, flow 1s linear 2.2s infinite; }
-@keyframes flow { to { stroke-dashoffset: -60; } }
-.router { position: absolute; left: 1125px; top: 100px; font-size: 30px; color: var(--amb); opacity: 0; }
-.router::before { content: "← "; }
-#s16[data-step="2"] .router { opacity: 1; }
-#s16.s16-play .router { animation: fadein .5s 2.7s both; }
-
 /* ===================== S17 · C results → silent twin ===================== */
 .s17-c { position: absolute; inset: 110px 140px; display: flex; flex-direction: column; gap: 56px; }
 .s17-c .bars { max-width: 1500px; }
