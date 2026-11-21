@@ -1,0 +1,259 @@
+<title>Stealing Superintelligence Script</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one column of slide cards (preview on top, script below) on phones; preview left / script right from 900px.
+   Palette = the deck's own: near-black stage + signal amber; a cool light variant for daylight reading. */
+:root {
+  --bg: #0b0c0f;
+  --surface: #14161b;
+  --raise: #1c1f26;
+  --fg: #f2f1ee;
+  --mut: #959ca6;
+  --line: #262a31;
+  --amb: #ffb020;
+  --amb-soft: rgba(255, 176, 32, .14);
+  --on-amb: #1a1204;
+  --red: #ff6a5f;
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs: 17px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f3f4f6; --surface: #ffffff; --raise: #eceef2; --fg: #15171c; --mut: #5c636d; --line: #dde0e5;
+    --amb: #a86200; --amb-soft: rgba(168, 98, 0, .11); --on-amb: #ffffff; --red: #c4382e; color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #f3f4f6; --surface: #ffffff; --raise: #eceef2; --fg: #15171c; --mut: #5c636d; --line: #dde0e5;
+  --amb: #a86200; --amb-soft: rgba(168, 98, 0, .11); --on-amb: #ffffff; --red: #c4382e; color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--amb); outline-offset: 2px; }
+
+.bar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding-block: 10px 8px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.bar-top { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.bar h1 { font-size: 15px; font-weight: 700; letter-spacing: -.01em; margin: 0; flex: 1 1 auto; min-width: 0; text-wrap: balance; }
+.bar h1 span { color: var(--mut); font-weight: 500; }
+.tools { display: flex; gap: 6px; flex-wrap: wrap; }
+.tbtn {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px;
+  font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+.tbtn[aria-pressed="true"] { background: var(--amb); border-color: var(--amb); color: var(--on-amb); }
+.jump { display: flex; gap: 6px; overflow-x: auto; margin-top: 9px; padding-bottom: 2px; scrollbar-width: none; }
+.jump::-webkit-scrollbar { display: none; }
+.jump a {
+  flex: 0 0 auto; font: 600 12px var(--mono); color: var(--mut); text-decoration: none;
+  border: 1px solid var(--line); border-radius: 6px; padding: 4px 7px; background: var(--surface);
+}
+.jump a.here { color: var(--amb); border-color: var(--amb); }
+
+main {
+  display: flex; flex-direction: column; gap: 14px; max-width: 1180px; margin: 0 auto;
+  padding-block: 14px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; scroll-margin-top: 110px; }
+.card.dropped { opacity: .55; }
+.head { display: flex; align-items: baseline; gap: 10px; padding: 12px 14px 10px; }
+.sid { font: 700 13px var(--mono); color: var(--amb); flex: 0 0 auto; }
+.ttl { font-size: 15px; font-weight: 600; flex: 1 1 auto; min-width: 0; text-wrap: balance; }
+.at { font: 500 12px var(--mono); color: var(--mut); flex: 0 0 auto; font-variant-numeric: tabular-nums; text-align: right; }
+.at b { color: var(--fg); font-weight: 600; }
+.badge { display: inline-block; font: 600 11px var(--mono); color: var(--red); border: 1px solid currentColor; border-radius: 4px; padding: 1px 5px; margin-left: 6px; vertical-align: 1px; }
+
+.body { display: grid; grid-template-columns: 1fr; }
+.pv { position: relative; background: #000; aspect-ratio: 16 / 9; max-width: 100%; cursor: pointer; border-block: 1px solid var(--line); }
+.pv img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.pv .step {
+  position: absolute; right: 8px; bottom: 8px; font: 600 11px var(--mono); color: #fff;
+  background: rgba(0, 0, 0, .66); border-radius: 4px; padding: 3px 6px;
+}
+.dots { display: flex; gap: 6px; padding: 8px 14px 0; flex-wrap: wrap; }
+.dot {
+  font: 600 11px var(--mono); min-width: 28px; padding: 3px 0; border-radius: 5px; cursor: pointer;
+  background: var(--raise); border: 1px solid var(--line); color: var(--mut); font-variant-numeric: tabular-nums;
+}
+.dot.on { background: var(--amb-soft); border-color: var(--amb); color: var(--amb); }
+.txt { padding: 12px 14px 16px; min-width: 0; font-size: var(--fs); line-height: 1.5; color: var(--mut); overflow-wrap: anywhere; }
+.txt ul { margin: 0; padding-left: 1.15em; }
+.txt li { margin: .35em 0; }
+.txt li::marker { color: var(--line); }
+.txt li ul { margin-top: .25em; }
+.txt b { color: var(--fg); font-weight: 650; }
+.txt .nh { margin: 0 0 .4em; font: 600 calc(var(--fs) * .68) var(--mono); color: var(--amb); }
+.clk {
+  display: inline-block; font: 700 calc(var(--fs) * .72) var(--mono); line-height: 1.25; vertical-align: .08em; font-style: normal;
+  color: var(--amb); background: var(--amb-soft); border: 1px solid var(--amb); border-radius: 4px; padding: 0 5px; margin: 0 2px;
+}
+button.clk { cursor: pointer; }
+button.clk.on { background: var(--amb); color: var(--on-amb); }
+.legend { font-size: 13px; line-height: 1.5; color: var(--mut); background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+.legend b { color: var(--fg); }
+.legend .clk { font-size: 11px; }
+
+footer {
+  max-width: 1180px; margin: 0 auto; color: var(--mut); font-size: 12px; line-height: 1.5;
+  padding-block: 0 32px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+footer code { font-family: var(--mono); }
+
+@media (min-width: 900px) {
+  .body { grid-template-columns: minmax(0, 46%) minmax(0, 1fr); align-items: start; }
+  .pvwrap { position: sticky; top: 120px; padding: 0 0 14px 14px; }
+  .pv { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .dots { padding-left: 0; }
+  .txt { padding-top: 0; }
+}
+@media (prefers-reduced-motion: no-preference) { .pv img { transition: opacity .15s; } }
+</style>
+
+<div class="bar">
+  <div class="bar-top">
+    <h1>Stealing Superintelligence <span>· script</span></h1>
+    <div class="tools">
+      <button class="tbtn" id="t-cut" aria-pressed="false" title="15-minute cut: hides dropped slides">15-min cut</button>
+      <button class="tbtn" id="t-small" aria-label="Smaller text">A−</button>
+      <button class="tbtn" id="t-big" aria-label="Larger text">A+</button>
+    </div>
+  </div>
+  <nav class="jump" id="jump" aria-label="Slides"></nav>
+</div>
+<main id="list"><div class="legend" id="legend"></div></main>
+<footer id="foot"></footer>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(function () {
+  "use strict";
+  var D = JSON.parse(document.getElementById("data").textContent);
+  var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+                set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+  var root = document.documentElement, list = document.getElementById("list"), jump = document.getElementById("jump");
+
+  function sec(t) { var m = /^(\d+):(\d\d)$/.exec(t || ""); return m ? +m[1] * 60 + +m[2] : null; }
+  function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+  document.getElementById("legend").innerHTML = D.legend; // sanitized at build time
+  var cards = [];
+  D.slides.forEach(function (s, idx) {
+    var next = D.slides.slice(idx + 1).find(function (n) { return sec(n.at) != null; });
+    var a = sec(s.at), b = next ? sec(next.at) : null;
+    var card = el("article", "card"); card.id = s.id; if (s.drop) card.dataset.drop = "1";
+    var head = el("div", "head");
+    head.appendChild(el("span", "sid", s.id.toUpperCase()));
+    var ttl = el("span", "ttl", s.title); if (s.drop) ttl.appendChild(el("span", "badge", "not in 15-min cut"));
+    head.appendChild(ttl);
+    var at = el("span", "at");
+    if (a == null) at.textContent = s.at === "pre" ? "before" : s.at;
+    else { var bb = el("b", null, s.at); at.appendChild(bb); if (b != null && b > a) at.appendChild(document.createTextNode(" · " + Math.round((b - a)) + "s")); }
+    head.appendChild(at);
+    card.appendChild(head);
+
+    var body = el("div", "body"), pvwrap = el("div", "pvwrap"), pv = el("div", "pv"), img = el("img"), badge = el("span", "step");
+    img.alt = s.id + " preview"; img.loading = idx < 2 ? "eager" : "lazy"; img.decoding = "async";
+    pv.setAttribute("role", "button"); pv.tabIndex = 0; pv.setAttribute("aria-label", "Next step preview");
+    pv.appendChild(img); if (s.clicks) pv.appendChild(badge);
+    pvwrap.appendChild(pv);
+    var dots = [];
+    if (s.clicks) {
+      var dw = el("div", "dots");
+      for (var k = 0; k <= s.clicks; k++) {
+        var d = el("button", "dot", k === 0 ? "start" : String(k)); d.type = "button";
+        d.setAttribute("aria-label", k === 0 ? "Before the first click" : "After click " + k);
+        (function (k) { d.onclick = function () { show(k); }; })(k);
+        dots.push(d); dw.appendChild(d);
+      }
+      pvwrap.appendChild(dw);
+    }
+    body.appendChild(pvwrap);
+
+    var txt = el("div", "txt");
+    txt.innerHTML = s.notes; // sanitized at build time (only ul/li/b/p.nh/i.clk)
+    var chips = [].slice.call(txt.querySelectorAll(".clk"));
+    body.appendChild(txt);
+    card.appendChild(body);
+
+    // ▶ marks link to steps only when the notes mark every click, in order
+    var linked = chips.length === s.clicks && s.clicks > 0;
+    if (linked) chips.forEach(function (c, i) {
+      var b = el("button", "clk", c.textContent); b.type = "button"; b.title = "Show the slide after click " + (i + 1); b.setAttribute("aria-label", "Click " + (i + 1));
+      b.onclick = function () { show(i + 1); }; c.replaceWith(b); chips[i] = b;
+    });
+
+    var step = 0;
+    function show(k) {
+      step = k; img.src = "thumbs/" + s.id + "." + k + ".jpg";
+      badge.textContent = k === 0 ? "start" : "click " + k + "/" + s.clicks;
+      dots.forEach(function (d, i) { d.classList.toggle("on", i === k); });
+      if (linked) chips.forEach(function (c, i) { c.classList.toggle("on", i + 1 === k); });
+    }
+    pv.onclick = function () { show(s.clicks ? (step + 1) % (s.clicks + 1) : 0); };
+    pv.onkeydown = function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); pv.onclick(); } };
+    show(0);
+    list.appendChild(card);
+
+    var j = el("a", null, s.id.toUpperCase()); j.href = "#" + s.id; if (s.drop) j.dataset.drop = "1";
+    jump.appendChild(j);
+    cards.push({ card: card, link: j });
+  });
+
+  document.getElementById("foot").innerHTML = "";
+  document.getElementById("foot").appendChild(el("p", null,
+    "Speaker notes from the deck (commit " + D.commit + "), the same bullets the presenter view shows (Notion: Speaker notes (bullets) v8). " +
+    "Tap a preview or the numbers under it to step through the clicks; each ▶ in the text jumps to that click. " +
+    "This page is a snapshot: after notes change, ask Claude to rebuild it."));
+
+  // toggles (remembered on this device)
+  function toggle(id, cls, key, apply) {
+    var b = document.getElementById(id), on = store.get(key) === "1";
+    function set(v) { on = v; b.setAttribute("aria-pressed", String(v)); apply(v); store.set(key, v ? "1" : "0"); }
+    b.onclick = function () { set(!on); }; set(on);
+  }
+  toggle("t-cut", null, "sl5s:cut", function (v) {
+    cards.forEach(function (c) { var drop = !!c.card.dataset.drop; c.card.hidden = v && drop; c.link.hidden = v && drop; });
+  });
+  var fs = +store.get("sl5s:fs") || 17;
+  function setFs(v) { fs = Math.max(13, Math.min(26, v)); root.style.setProperty("--fs", fs + "px"); store.set("sl5s:fs", String(fs)); }
+  document.getElementById("t-small").onclick = function () { setFs(fs - 1); };
+  document.getElementById("t-big").onclick = function () { setFs(fs + 1); };
+  setFs(fs);
+
+  // jump bar follows the scroll
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        cards.forEach(function (c) { c.link.classList.toggle("here", c.card === e.target); });
+        var l = cards.find(function (c) { return c.card === e.target; }).link;
+        var jr = jump.getBoundingClientRect(), lr = l.getBoundingClientRect();
+        if (lr.left < jr.left || lr.right > jr.right) jump.scrollLeft += lr.left - jr.left - 40;
+      });
+    }, { rootMargin: "-130px 0px -60% 0px" });
+    cards.forEach(function (c) { io.observe(c.card); });
+  }
+  function toHash() { var t = location.hash && document.getElementById(location.hash.slice(1)); if (t && t.classList.contains("card")) t.scrollIntoView(); }
+  addEventListener("hashchange", toHash); toHash();
+
+  // keep the screen on while reading (optional; ignored where not allowed)
+  var lock = null;
+  function wake() { if (lock || !navigator.wakeLock || document.hidden) return; navigator.wakeLock.request("screen").then(function (l) { lock = l; l.addEventListener("release", function () { lock = null; }); }).catch(function () {}); }
+  document.addEventListener("click", wake, { once: true });
+  document.addEventListener("visibilitychange", function () { if (!document.hidden) wake(); });
+})();
+</script>
