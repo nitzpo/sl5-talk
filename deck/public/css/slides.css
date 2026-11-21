@@ -151,6 +151,9 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
   transform: translateY(-20%) rotate(-7deg); background: rgba(8,9,11,.55); mix-blend-mode: normal; }
 .stamp:not(.on) { transform: translateY(-20%) rotate(-7deg) scale(2.4); }
 .stamp.on { transition: opacity .15s ease-out, transform .28s cubic-bezier(.3,1.5,.5,1); }
+/* S2 (Nov 22): real clipping on the stamp click (Defense News, Mar 24 2016), pinned under the PDF; lands just after the stamp */
+.s2-clip { left: 0; top: calc(100% - 132px); width: 620px; --rot: -2deg; }
+.s2-clip.on { transition-delay: .35s; }
 .jet-slot { position: relative; flex: none; width: 660px; height: 210px; }
 .jet { position: absolute; inset: 0; }
 .jet .img { -webkit-mask-image: radial-gradient(ellipse 52% 60% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 52% 60% at 50% 50%, #000 62%, transparent 100%); background-size: contain; background-repeat: no-repeat; }
