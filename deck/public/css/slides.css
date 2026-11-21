@@ -151,6 +151,9 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
   transform: translateY(-20%) rotate(-7deg); background: rgba(8,9,11,.55); mix-blend-mode: normal; }
 .stamp:not(.on) { transform: translateY(-20%) rotate(-7deg) scale(2.4); }
 .stamp.on { transition: opacity .15s ease-out, transform .28s cubic-bezier(.3,1.5,.5,1); }
+/* S2 (Nov 22): real clipping on the stamp click (Defense News, Mar 24 2016), pinned under the PDF; lands just after the stamp */
+.s2-clip { left: 0; top: calc(100% - 132px); width: 620px; --rot: -2deg; }
+.s2-clip.on { transition-delay: .35s; }
 .jet-slot { position: relative; flex: none; width: 660px; height: 210px; }
 .jet { position: absolute; inset: 0; }
 .jet .img { -webkit-mask-image: radial-gradient(ellipse 52% 60% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 52% 60% at 50% 50%, #000 62%, transparent 100%); background-size: contain; background-repeat: no-repeat; }
@@ -481,12 +484,10 @@ kbd { display: inline-block; font: 700 26px var(--mono); color: var(--fg); backg
 .br-bar span { margin-left: 20px; flex: 1; background: #0b0d10; border-radius: 8px; padding: 8px 16px; font-size: 24px; color: var(--amb); }
 .br-body { position: absolute; top: 58px; left: 0; right: 0; bottom: 0; background: #03040a; }
 .sim-video { width: 100%; height: 100%; object-fit: contain; display: block; }
-/* ===================== S17 · C results → silent twin ===================== */
+/* ===================== S17 · C results → distillation (silent twin cut Nov 21) ===================== */
 .s17-c { position: absolute; inset: 110px 140px; display: flex; flex-direction: column; gap: 56px; }
 .s17-c .bars { max-width: 1500px; }
-.s17-twin { position: absolute; left: 0; right: 0; top: 160px; display: flex; justify-content: center; gap: 80px; } /* full size: the closer */
 .s17-clip { left: 290px; top: 70px; width: 1340px; --rot: 1deg; }
-.s17-q { position: absolute; right: 26px; top: 10px; font-size: 64px; color: var(--red); font-weight: 800; }
 
 /* ===================== S18 ===================== */
 .s18 { justify-content: center; gap: 70px; }
