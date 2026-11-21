@@ -32,10 +32,13 @@
     <p class="counter live"><span class="n" data-voters="warm">–</span> in the room</p>
     <p class="hands mut s0-hands">No phone? You'll get a show of hands.</p>
   </div>
-  <aside class="notes">Say: nothing (the MC is talking).
-If a holding slide isn't allowed, use the first 20s of the talk: "Scan this now, you'll need it later. One question, five seconds."
-One scan covers the whole talk; the phone auto-advances to each later poll. Needs organizer OK to put it up before the talk.
-(Deck: entering this slide sets phones to the warm-up, also on reload.)</aside>
+  <aside class="notes">
+<p class="nh">before you start</p>
+<ul>
+<li>QR is up while the MC talks</li>
+<li>If you get the first 20 seconds: <b>"Scan this QR code and keep the page open, you'll need it during the talk. You can answer the first question already."</b></li>
+</ul>
+</aside>
 </section>
 
 <!-- ============================== PART 1: THE HEIST ============================== -->
@@ -52,12 +55,18 @@ One scan covers the whole talk; the phone auto-advances to each later poll. Need
     <div class="kc-screen"><video class="kc-video" muted loop playsinline preload="auto"><source src="img/kisscam.webm" type="video/webm"><source src="img/kisscam.mp4" type="video/mp4"></video><span class="kc-credit mono">AI video: @dedene</span></div>
     <div class="kc-ticker mono"><span>MEGASPEED · SINGAPORE · 240,000 GPUs (ALLEGED) · ✅ APPROVED</span></div>
   </div>
-  <aside class="notes">"This talk is about the most expensive file in the world. To make it, a frontier AI lab spends [click] billions of dollars, builds a massive power station, and runs [click] 100,000 GPUs for [click] six months straight. That's called pre-training. And those GPUs are export-controlled: if you're China, you're not allowed to buy them."
-[click: kiss cam; the clip loops, muted, until the next click] "…unless you have dinner with the CEO of Nvidia in Taipei. Then, allegedly, 240,000 of them become available."
-Facts (re-checked Nov 21): Jensen Huang resigned Nov 11–12 → "last week" on Nov 22; not accused of a crime. Megaspeed (Singapore) is under investigation in the US and Singapore over 240,000 restricted chips (US investigators, CBS Nov 12); the probe started in 2024, before the dinner, so keep "allegedly". The Taipei meeting was a restaurant dinner, May 2025, not a bar. Alice Huang isn't charged anywhere. Only Nvidia reference in the talk.</aside>
+  <aside class="notes">
+<p class="nh">0:45 · 4 clicks</p>
+<ul>
+<li><b>"This talk is about the most expensive file in the world."</b></li>
+<li>To make it, a lab spends <i class="clk">▶</i> billions <i class="clk">▶</i> 100,000 GPUs <i class="clk">▶</i> ~6 months = pre-training</li>
+<li>The GPUs are export-controlled: if you're China, you can't buy them</li>
+<li><i class="clk">▶</i> kiss cam: <b>"But you might find creative ways to get hold of some anyway."</b> Pause, let the clip play</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s1b" data-title="2 TB on a microSD" data-at="0:40" data-clicks="2">
+<section class="slide" id="s1b" data-title="2 TB on a microSD" data-at="0:45" data-clicks="2">
   <div class="img s1b-collapse" data-img="01-datacenter"></div>
   <div class="img ph s1b-sd" data-img="02-microsd" data-label="#02 microSD" data-in="1"></div>
   <div class="pad s1b">
@@ -80,9 +89,14 @@ Facts (re-checked Nov 21): Jensen Huang resigned Nov 11–12 → "last week" on 
       <svg class="fake-cursor" viewBox="0 0 24 24" width="56" height="56"><path d="M3 2l17 10.5-7.6 1.6L9.2 21.5z" fill="#fff" stroke="#000" stroke-width="1.4" stroke-linejoin="round"/></svg>
     </div>
   </div>
-  <aside class="notes">"But here is the crazy thing about AI: when that training run finishes, what actually comes out the other end? That file. Several terabytes of numbers. We call them the model weights: the actual trained brain of the AI. And several terabytes is nothing." [click: microSD, the copy stalls] "You can fit a multi-billion-dollar superintelligence on a $160 SD card the size of your fingernail." [click: dialog; the cursor clicks Delete, the copy completes] "You just have to delete GTA 6 first. Yes, the one that came out on Thursday."
-Say "several terabytes"; the screens keep 2.0 TB.
-(Nov 20: was Call of Duty. GTA VI launched Thu Nov 19 2026 on PS5 / Xbox; install up to 212 GB. Console-only: if a pedant asks, it's a joke.)</aside>
+  <aside class="notes">
+<p class="nh">0:30 · 2 clicks</p>
+<ul>
+<li>When training ends: <b>"That file."</b> A few terabytes = the model weights, the AI's trained brain</li>
+<li><i class="clk">▶</i> Fits on a $160 SD card the size of your fingernail</li>
+<li><i class="clk">▶</i> <b>"You just have to delete GTA 6 first."</b> We know you've been saving space for it for three days</li>
+</ul>
+</aside>
 </section>
 
 <section class="slide" id="s1c" data-title="What's in the file? (target package)" data-at="1:15" data-clicks="3">
@@ -102,12 +116,19 @@ Say "several terabytes"; the screens keep 2.0 TB.
     <div class="s1c-stamp" data-in="3">PRIORITY</div>
     <p class="s1c-src">Payoff list = risks tracked in the labs' own safety frameworks</p>
   </div>
-  <aside class="notes">"So let's say you're China. You can't buy the chips, but maybe you can take the file. You run a hacking unit in Chinese intelligence, and this just landed on your desk. Target: a frontier AI lab in California. Objective: that file. It fits on one $160 SD card. So what do you get? [click] One: cyber offense. A model that helps your hackers. [click] Two: help with biological and chemical weapons. [click] And three, the one a superpower wants most: a head start on the next model. Steal this one, and it helps you build the one after it. And that's not my list. Those are the risks the labs' own safety frameworks track."
-(≈20s, plain. Sets up S2's "national security target" and S3b's guardrails. "FITS ON", not "cost": a cost line would prime Poll A.)
-Fact: bio/chem + AI R&amp;D are tracked by all three (Anthropic RSP v3.4, OpenAI Preparedness v2, Google DeepMind FSF v3.1). Cyber: OpenAI + Google DeepMind only (no cyber threshold in Anthropic's RSP v3.4). So say "the labs'" (together), not "every lab".</aside>
+  <aside class="notes">
+<p class="nh">0:35 · 3 clicks</p>
+<ul>
+<li><b>"So let's say you're China. You can't buy the chips, but maybe you can take the file."</b></li>
+<li>You run a hacking unit in Chinese intelligence. This just landed on your desk</li>
+<li>Read the top: target, objective (that file), fits on one SD card</li>
+<li>What do you get? <i class="clk">▶</i> cyber offense <i class="clk">▶</i> help with bio and chem weapons <i class="clk">▶</i> a head start on the next model (the one a superpower wants most)</li>
+<li><b>"That's not my list. Those are the risks the labs' own safety frameworks track."</b></li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s2" data-title="Old vs AI espionage" data-at="1:35" data-clicks="3">
+<section class="slide" id="s2" data-title="Old vs AI espionage" data-at="1:50" data-clicks="3">
   <div class="pad s2">
     <div class="s2-band s2-old">
       <div class="kicker">Old espionage</div>
@@ -127,12 +148,20 @@ Fact: bio/chem + AI R&amp;D are tracked by all three (Anthropic RSP v3.4, OpenAI
       </div>
     </div>
   </div>
-  <aside class="notes">"Think about how different that is from every other piece of technology ever stolen."
-"In the old world, if your spies broke into Lockheed Martin and stole the complete plans for an F-35 fighter jet, what did you actually have? You had a great PDF. You still didn't have an air force." [click: Ctrl+C, Ctrl+V → the PDF copy] "To turn that PDF into an airplane, you still needed giant factories, rare materials, and ten years of hard engineering." [click: stamp] "And this actually happened: in 2016, a man pleaded guilty to helping China steal F-35 data. China (that's you) still had to build its own plane."
-"With AI, almost all the time and money goes into creating the weights; running them is cheap. Once someone steals that file, they can run it the next morning on a few racks of servers. For the first time in history, stealing the file isn't stealing the plans for the jet." [click: jet] "It's hitting Ctrl+C, Ctrl+V on the finished jet itself."</aside>
+  <aside class="notes">
+<p class="nh">0:55 · 3 clicks</p>
+<ul>
+<li>Different from every other technology ever stolen</li>
+<li>Old: steal the F-35 plans from Lockheed → <b>"You had a great PDF. You still didn't have an air force."</b></li>
+<li><i class="clk">▶</i> Still need factories, materials, ten years (one sentence)</li>
+<li><i class="clk">▶</i> stamp: <b>"In 2016, a man pleaded guilty to helping China steal F-35 data. China (that's you) still had to build its own plane."</b></li>
+<li>AI: almost all the cost is making the weights; running them is cheap. Next morning, a few racks of servers</li>
+<li><i class="clk">▶</i> jet: <b>"It's hitting Ctrl+C, Ctrl+V on the finished jet itself."</b></li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s3a" data-title="The silent twin (+S3b guardrails)" data-at="2:30" data-clicks="3">
+<section class="slide" id="s3a" data-title="The silent twin (+S3b guardrails)" data-at="2:45" data-clicks="3">
   <div class="pad s3a">
     <div class="twin">
       <div class="kicker">San Francisco</div>
@@ -156,22 +185,37 @@ Fact: bio/chem + AI R&amp;D are tracked by all three (Anthropic RSP v3.4, OpenAI
     </div>
     <img class="clip s3b-clip" data-in="3" src="img/openai-antirefusal.webp" alt="OpenAI, Estimating Worst-Case Frontier Risks of Open-Weight LLMs (arXiv:2508.03153), 3.1 Anti-refusal Training: an incremental RL stage that rewards answers that comply with unsafe prompts; capabilities maintained on benchmarks such as GPQA, refusal rates near 0% for unsafe prompts.">
   </div>
-  <aside class="notes">"Okay, back to our side. Here is the part that should scare every defender: if someone steals physical weapons or sabotages a machine, something is missing or an alarm goes off."
-[click: the dark twin fades in] "When a nation-state steals AI model weights, nothing breaks. The lab's servers keep humming. Meanwhile, 10,000 kilometers away, an identical twin wakes up on an air-gapped cluster."
-[click → S3b, 2:55: veritaserum.py] "And what about all the millions of dollars the lab spent on 'AI Safety' and alignment, so the model refuses to help hackers or build bioweapons? All of that safety lives inside those same weights. The moment an attacker has the file on their own servers, they can fine-tune the safety right back out." [click: OpenAI paper] "And that's not my theory. When OpenAI released its own open-weight model last year, its worst-case test assumed an attacker would do exactly this, so they did it themselves. Refusals dropped to near zero, and the model didn't get dumber."
-Source: OpenAI, "Estimating Worst-Case Frontier Risks of Open-Weight LLMs" (Aug 2025, arXiv 2508.03153) §3.1, on gpt-oss-120b. Q&amp;A: the paper's headline is that even the stripped model stayed below the frontier on bio/cyber; that's about capability, not safety. Older, cheaper result: Lermen et al. 2023, Llama 2 (70B), one GPU, &lt;$200. veritaserum.py = Harry Potter wink; "stripping refusals" keeps it clear.
-The "silent twin" comes back in S17. Plant it clearly here.</aside>
+  <aside class="notes">
+<p class="nh">0:50 · 3 clicks (twin + safety)</p>
+<ul>
+<li><b>"Okay, back to our side."</b></li>
+<li>Steal a weapon: something's missing, an alarm goes off</li>
+<li><i class="clk">▶</i> Steal the weights: nothing breaks, the lab's servers keep humming. 10,000 km away, an identical twin wakes up</li>
+<li><i class="clk">▶</i> The safety the lab paid for:
+<ul>
+<li>Some lives on the lab's servers (filters, monitoring): a thief never gets it</li>
+<li>The rest is trained into the weights, and can be fine-tuned out</li>
+</ul></li>
+<li><i class="clk">▶</i> OpenAI paper: OpenAI did it to its own open model. Refusals near zero, the model didn't get dumber</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s3c" data-title="Free R&D" data-at="3:10">
+<section class="slide" id="s3c" data-title="Free R&D" data-at="3:35">
   <div class="pad center">
     <p class="statement s3c-line">AI alignment without nation-state cybersecurity is just <span class="amb">free R&amp;D for your adversary.</span></p>
   </div>
-  <aside class="notes">"Spending millions aligning a model on a breachable server is like putting a 'Do Not Steal' sticker on a suitcase full of cash. AI alignment without nation-state cybersecurity is just free R&amp;D for your adversary."</aside>
+  <aside class="notes">
+<p class="nh">0:15</p>
+<ul>
+<li><b>"Spending millions aligning a model on a breachable server is like putting a 'Do Not Steal' sticker on a suitcase full of cash."</b></li>
+<li>Read the banner, move on</li>
+</ul>
+</aside>
 </section>
 
 <!-- ============================== PART 2: WHO'S TALKING ============================== -->
-<section class="slide" id="s4" data-title="Warm-up results" data-at="3:20">
+<section class="slide" id="s4" data-title="Warm-up results" data-at="3:50">
   <div class="pad s4">
     <div class="kicker">Who's in the room</div>
     <h2 class="h1 s-q">Which side are you on?</h2>
@@ -179,15 +223,19 @@ The "silent twin" comes back in S17. Plant it clearly here.</aside>
     <div class="hands"><span class="tag">Show of hands</span>Red team? Blue team? Both? AI?</div>
     <p class="corner-name">Nitzan Pomerantz</p>
   </div>
-  <aside class="notes">"You were China for a minute there. Let's see who you actually are…"
-"Hi, I'm Nitzan. For years I led security architecture for critical infrastructure here in Israel, the kind of place where developers and researchers work on the inside of the air gap. Mostly, that meant being the guy who says no to the researcher with the USB stick."
-Sets up the S16 callback ("I used to be the guy saying no to him").
-Optional branch if offense &gt; defense: "Okay. I'll keep an eye on my laptop."
-If the warm-up is dropped: same line on a plain name slide.</aside>
+  <aside class="notes">
+<p class="nh">0:45 · warm-up results</p>
+<ul>
+<li><b>"You were China for a minute there. Let's see who you actually are…"</b> React to the bars</li>
+<li>I'm Nitzan. Led security architecture for critical infrastructure in Israel, where people work inside the air gap</li>
+<li><b>"…the guy who says no to the researcher with the USB stick."</b></li>
+<li>Red team &gt; blue team? "I'll keep an eye on my laptop."</li>
+</ul>
+</aside>
 </section>
 
 <!-- ============================== PART 3: HOW HARD IS IT TO STEAL? ============================== -->
-<section class="slide" id="s5" data-title="Poll A: vote" data-at="4:05" data-poll-current="A" data-poll-close="warm">
+<section class="slide" id="s5" data-title="Poll A: vote" data-at="4:35" data-poll-current="A" data-poll-close="warm">
   <div class="pad s5">
     <div class="s5-main">
       <h2 class="s5-q">You need to steal the flagship model weights from a top-3 AI lab <span class="amb">today</span>. What is the <span class="amb">minimum</span> level of attacker needed to pull it off?</h2>
@@ -206,12 +254,17 @@ If the warm-up is dropped: same line on a plain name slide.</aside>
       <div class="hands"><span class="tag">Show of hands</span>We'll count hands in a moment.</div>
     </div>
   </div>
-  <aside class="notes">"Now a real question, and it's already on your phone."
-Read the question and the four options aloud, then: "No jargon yet, just your gut."
-While the last votes come in, react live to the counter. (Insiders joke cut.)</aside>
+  <aside class="notes">
+<p class="nh">1:00 · poll A</p>
+<ul>
+<li><b>"Now a real question, and it's already on your phone."</b></li>
+<li>Read the question and the four options once, slowly</li>
+<li>"No jargon yet, just your gut." React to the live counter</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s6" data-title="Poll A results → RAND ladder (S6+S7)" data-at="5:05" data-clicks="4">
+<section class="slide" id="s6" data-title="Poll A results → RAND ladder (S6+S7)" data-at="5:35" data-clicks="4">
   <div class="pad s6">
     <div class="kicker k-res" data-out="1">Minimum level of attacker to steal the weights today</div>
     <div class="kicker k-lad" data-in="1">Security Levels: who can break in?</div>
@@ -256,18 +309,27 @@ While the last votes come in, react live to the counter. (Insiders joke cut.)</a
     <div class="hands s6-hands" data-out="1"><span class="tag">Show of hands</span>$1M? · $10M? · $1B? · Impossible?</div>
     <div class="foot lad-foot" data-in="1"><span data-in="2">RAND RR-A2849-1 (Nevo et al., 2024)</span><span class="amb">● your votes</span></div>
   </div>
-  <aside class="notes">[Results] "Look at the screen. Most of you voted that [leading option] could steal the weights today, and almost nobody voted for #4." (Say the #4 part only if it's true.)
-Branches:
-• "Nobody/impossible" &gt; 10%: "To the X% who said impossible: I hope you're right."
-• Most pick 3 ($1B): "You're generous to the labs."
-[click: bars become the ladder, budget only] "Those four options weren't random. Two years ago, researchers at RAND published a report on Securing AI Model Weights. Instead of compliance checklists, they defined 5 Security Levels, SL1 through SL5, based purely on who can break into your lab:" [click: people + time columns] "SL1 &amp; SL2: stops amateurs and professional hackers. SL3: stops cybercrime syndicates and insiders (≈$1M)." [click: SL3 marker] "This is roughly where top frontier labs sit today, or below. SL4: stops a standard operation by a state cyber unit (≈$10M)," [click: RAND quote] "the kind top cyber nations run more than a hundred times a year. SL5: defends model weights against a ≈$1B, multi-year priority campaign by the world's top cyber superpower."
-(Deck: PLAN S6 + S7 in one view; your votes stay on the rungs. Click 1 shows budget only, matching Poll A's $1M / $10M / $1B; Nov 19.) Never pre-script the result; rehearse all the branches.</aside>
+  <aside class="notes">
+<p class="nh">1:50 · 4 clicks</p>
+<ul>
+<li>Results: "Most of you picked [X]." Say "almost nobody picked impossible" only if true
+<ul>
+<li>Impossible above 10%: "I hope you're right."</li>
+<li>Most picked $1B: "You're generous to the labs."</li>
+</ul></li>
+<li><i class="clk">▶</i> ladder: <b>"Those four options weren't random."</b> RAND, Securing AI Model Weights (2024): five security levels, each defined by who it stops</li>
+<li><i class="clk">▶</i> people + time. SL1–2: amateurs, professional hackers. SL3: crime syndicates and insiders (~$1M)</li>
+<li><i class="clk">▶</i> <b>"Frontier labs: roughly here, or below."</b></li>
+<li>SL4: a standard state cyber operation (~$10M) <i class="clk">▶</i> "the kind top cyber nations run more than a hundred times a year"</li>
+<li>SL5: the top superpower, ~$1B, a multi-year priority campaign</li>
+</ul>
+</aside>
 </section>
 
 
 
 <!-- ============================== PART 4: WHY SL5 IS SO HARD ============================== -->
-<section class="slide" id="s9" data-title="Fortress + side door (optional)" data-at="7:20" data-clicks="2" data-cut="drop" data-poll-close="A">
+<section class="slide" id="s9" data-title="Fortress + side door (optional)" data-at="7:25" data-clicks="2" data-cut="drop" data-poll-close="A">
   <div class="img ph s9-img" data-img="05-fortress" data-label="#05 fortress"></div><div class="s9-shade"></div>
   <h2 class="h1 s9-q" data-out="1">Where does enterprise security fail?</h2>
   <div class="s9-plaques mono" data-out="1"><span>SSO</span><span>EDR</span><span>Zero Trust</span><span>SOC 2</span></div>
@@ -280,12 +342,17 @@ Branches:
     <p class="tl tl3 ok">Successfully installed turbo-weights-v2</p>
   </div>
   <div class="stamp s9-stamp" data-in="2">REAL: torchtriton, Dec 2022</div>
-  <aside class="notes">"Why can't top Silicon Valley security (Okta, Zero Trust, SOC-2) stop an SL5 attacker? Because enterprise security is built to stop ransomware gangs while letting employees work fast." [click: zoom into the side door; the terminal types] "And try telling a PhD machine learning researcher making $2 million a year that he can't pip install a random Python package written yesterday by an anonymous guy on GitHub named dark_wizard_99, because it makes his training curve converge 2% faster."
-[click: stamp] "And this really happened. In 2022, a fake package slipped into PyTorch, one of the most popular AI tools, and stole its users' secret keys."
-First slide to cut (15-min version drops it).</aside>
+  <aside class="notes">
+<p class="nh">0:45 · 2 clicks · skip if past 8:30</p>
+<ul>
+<li>Why can't top Silicon Valley security stop this? It's built to stop ransomware gangs while people work fast</li>
+<li><i class="clk">▶</i> The $2M/year PhD researcher who pip-installs a package from dark_wizard_99 for 2% faster training</li>
+<li><i class="clk">▶</i> stamp: <b>"And this really happened. In 2022, a fake package slipped into PyTorch and stole its users' secret keys."</b></li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s10" data-title="Wall of text: 3 → 6 → 47 → hundreds → one line (+ OpenAI insider)" data-at="8:05" data-clicks="5" data-poll-close="A">
+<section class="slide" id="s10" data-title="Wall of text: 3 → 6 → 47 → hundreds → one line (+ OpenAI insider)" data-at="8:10" data-clicks="5" data-poll-close="A">
   <div class="pad s10">
     <div class="s10-three" data-out="2">
       <div class="file s10-file">weights.bin <small>· 2.0 TB</small></div>
@@ -301,12 +368,19 @@ First slide to cut (15-min version drops it).</aside>
     <div class="s10-flood" id="s10-flood" data-in="4"></div>
     <div class="file s10-buried" data-in="4">weights.bin</div>
   </div>
-  <aside class="notes">"When people first hear about SL5, they think it's just three bullet points: isolate the network, lock down the hardware, and watch for insiders." [click: news clipping under "Insider Controls"] "And insiders are a real threat. Last month an OpenAI engineer, a Saudi national, was arrested for hiding a listening device in the TV of an executive conference room. Prosecutors say he was in touch with a member of the Saudi royal family." [click: the 3 split into 6 domains] "Then you open the actual RAND report and the SL5 Standard. Dozens of ways in," [click: the 6 move up, the program boxes fill in] "and dozens of big defense projects to close them." [click: flood] "And underneath those, hundreds of brutal physical, silicon, and operational requirements. I am not going to read this slide. No human can hold this list in their head at once." [click: one line lights up] "So let's take just one line. Two authorized people must be present at all times. Two-person integrity."
-No numbers for the programs (47 is your own grouping; Nov 21). OpenAI case: arrested ≈Oct 9, charges unsealed Oct 13, 2026. "Prosecutors say" for the Saudi-royal contact (allegation). OpenAI says no weights were taken (keep for Q&amp;A).
-Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement sentences from the SL5 Standard + RAND (verbatim; non-requirements filtered out Nov 14). Click-5 line: SL5 Standard, SL5 Supplemental Guidance (PE-3), verbatim.</aside>
+  <aside class="notes">
+<p class="nh">1:00 · 5 clicks</p>
+<ul>
+<li>People think SL5 is three bullets: isolate the network, lock down the hardware, watch for insiders</li>
+<li><i class="clk">▶</i> clipping: <b>"And insiders are a real threat."</b> Last month: an OpenAI engineer, a Saudi national, a listening device in an exec conference-room TV. Prosecutors say he was in touch with a Saudi royal</li>
+<li><i class="clk">▶</i> Open RAND and the SL5 Standard: dozens of ways in <i class="clk">▶</i> dozens of big defense projects (my six categories)</li>
+<li><i class="clk">▶</i> Underneath: hundreds of requirements. <b>"I'm not going to read this slide."</b></li>
+<li><i class="clk">▶</i> One line: two authorized people present at all times. Two-person integrity</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s11" data-title="Two-person rules" data-at="9:05" data-clicks="2">
+<section class="slide" id="s11" data-title="Two-person rules" data-at="9:10" data-clicks="2">
   <div class="pad s11">
     <div class="s11-col">
       <div class="kicker">SL5 Two-Person Rule</div>
@@ -338,10 +412,42 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement se
       </div>
     </div>
   </div>
-  <aside class="notes">"In SL5 that means real two-person rules: two people physically authorize every sensitive action together." [click: the startup PR] "Not the startup version, where one engineer writes a 4,000-line pull request and another engineer types 'LGTM 👍' twelve seconds later from the bathroom." [click: "another side door ↓" over the startup PR; let it land]</aside>
+  <aside class="notes">
+<p class="nh">0:30 · 2 clicks</p>
+<ul>
+<li>In SL5: two people physically authorize every sensitive action</li>
+<li><i class="clk">▶</i> The startup version: a 4,000-line pull request, "LGTM 👍" twelve seconds later, from the bathroom</li>
+<li><i class="clk">▶</i> "another side door": say nothing</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="9:35" data-clicks="2">
+<section class="slide" id="s11b" data-title="Air gap + USB gag (from S16)" data-at="9:40" data-clicks="1">
+  <div class="pad s11b">
+    <div class="s11b-gap">
+      <div class="net net-in"><p class="mono">SL5 network</p><i></i><i></i><i></i><i></i></div>
+      <div class="wall"><span class="mono">AIR GAP</span></div>
+      <div class="net net-out"><p class="mono">the internet</p><i></i><i></i><i></i><i></i></div>
+      <svg class="hopper" viewBox="0 0 120 200" aria-hidden="true"><circle cx="60" cy="34" r="22"/><path d="M60 58 L60 128 M60 78 L22 100 M60 78 L98 62 M60 128 L32 190 M60 128 L88 190"/></svg>
+      <div class="s11b-tag" aria-label="name tag: Researcher"><b>HELLO</b><small>my name is</small><span>Researcher</span></div>
+      <div class="usb" aria-label="USB stick"><span class="usb-body"></span><span class="usb-plug"></span></div>
+      <svg class="bridge" viewBox="0 0 1640 400" preserveAspectRatio="none" aria-hidden="true"><path d="M300 250 C 600 250, 650 80, 820 80 S 1040 250, 1340 250"/></svg>
+      <p class="router mono">new network router</p>
+    </div>
+  </div>
+  <aside class="notes">
+<p class="nh">0:30 · 1 click · NEW (the air-gap scene, moved from S16)</p>
+<ul>
+<li>Rules can also backfire when you implement them</li>
+<li>Air gap with no approved way to move files</li>
+<li><i class="clk">▶</i> Your smartest researcher grabs a USB stick: <b>"your new network router."</b></li>
+<li><b>"Remember, I used to be the guy saying no to him."</b></li>
+<li>An air gap doesn't work on its own</li>
+</ul>
+</aside>
+</section>
+
+<section class="slide" id="s12" data-title="RAND + Security Level 5 credit" data-at="10:10" data-clicks="2">
   <div class="pad s12">
     <div class="kicker">Step by step</div>
     <div class="credit">
@@ -351,14 +457,19 @@ Tiles = real block names from github.com/nitzpo/sl5; flood = real requirement se
     </div>
     <blockquote class="s12-scope rise" data-in="1"><span>“You can't make an arbitrary system SL5.</span> <span class="amb">You can make a narrow, purpose-built AI data center SL5.”</span></blockquote>
   </div>
-  <aside class="notes">"The good news: nobody has to start from zero. RAND and Security Level 5, formerly the SL5 Task Force, did the hard part, in the open. They coined the terminology, those attacker tiers, and laid out the building blocks of a defense. Nobody had done that before."
-[click: the quote] "Security Level 5's bet: you can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5. Pick the few properties that really matter, the fewest parts that protect them, and make those parts simple."
-[click: Price? Schedule?] "What they don't give you is a price tag, or a plan with dates. And the calendar turns out to be the whole story."
-On screen at click 1: the first two sentences only (Security Level 5 reviewer, Nov 19: SL5 is impossible for an arbitrary system, possible for a well-scoped AI data center). Sets up S15: that new data center is what takes years.</aside>
+  <aside class="notes">
+<p class="nh">0:50 · 2 clicks</p>
+<ul>
+<li>Good news: nobody starts from zero</li>
+<li>RAND (2024): the attacker tiers. Security Level 5 (formerly the SL5 Task Force): the SL5 Standard, the building blocks</li>
+<li><i class="clk">▶</i> <b>"Security Level 5's bet: you can't make an arbitrary system SL5. You can make a narrow, purpose-built AI data center SL5."</b> Few critical properties, fewest parts, keep them simple</li>
+<li><i class="clk">▶</i> What they don't give you: a price tag, or a plan with dates. <b>"And the calendar turns out to be the whole story."</b></li>
+</ul>
+</aside>
 </section>
 
 <!-- ============================== PART 5: WHEN DO YOU LOCK THE DOORS? ============================== -->
-<section class="slide" id="s13" data-title="Polls B1 + B2 + C: vote" data-at="10:20" data-poll-current="BC">
+<section class="slide" id="s13" data-title="Polls B1 + B2 + C: vote" data-at="11:00" data-poll-current="BC">
   <div class="pad s13">
     <div class="kicker"><span>3 quick questions<span class="live">, on your phone now</span></span></div>
     <div class="cards3">
@@ -369,15 +480,22 @@ On screen at click 1: the first two sentences only (Security Level 5 reviewer, N
     <div class="s13-qr"><div class="qrbox small-qr" data-qr="vote"></div><p class="url small" data-url="vote"></p></div>
     <div class="hands"><span class="tag">Show of hands</span>Think about all three; we'll count hands on each.</div>
   </div>
-  <aside class="notes">While they vote (≈90s), read each question once. Spoken versions (Nov 21; phone and slide text unchanged):
-B1: "If a lab moved its frontier research into an SL5 data center today (air gaps, no internet, two people for every sensitive action), how much would that slow research down?"
-B2: "Given that slowdown and the cost, if you are a lab CEO racing competitors toward AGI, when do you actually lock down to SL5?"
-C (as written): "What is the probability that the raw weights of at least one frontier model have ALREADY been silently stolen by a foreign intelligence service?"
-"Be honest on the CEO one."
-The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
+  <aside class="notes">
+<p class="nh">1:30 · polls B1, B2, C</p>
+<ul>
+<li><b>"Three quick questions, on your phone now."</b></li>
+<li>Read each once:
+<ul>
+<li>B1: how much would it slow research if a lab moved its frontier work into an SL5 data center?</li>
+<li>B2: as a lab CEO, given the slowdown and the cost, when do you lock down?</li>
+<li>C: have frontier weights already been silently stolen?</li>
+</ul></li>
+<li>"Be honest on the CEO one."</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s14" data-title="B1 + B2 results" data-at="11:50" data-clicks="1">
+<section class="slide" id="s14" data-title="B1 + B2 results" data-at="12:30" data-clicks="1">
   <div class="pad s14">
     <div class="s14-col">
       <div class="kicker">How much does SL5 slow research?</div>
@@ -391,14 +509,20 @@ The phone chains B1 → B2 → C. Results are revealed after all three.</aside>
     </div>
     <div class="hands"><span class="tag">Show of hands</span>More than 30%? · Would you wait for "Just-in-Time"?</div>
   </div>
-  <aside class="notes">"So X% of you think SL5 hurts research a lot." [click: B2] "And Y% would wait until the models look dangerous. That's the pragmatic answer. It's what I'd have said. It's also the answer that loses."
-Branches:
-• "Start right now" wins: "Most of you would start now. Your future CFO disagrees. Let's see why you're right."
-• "Never" &gt; 15%: "And to the X% who said never: at least you're honest."
-(X = "30–50%" + "&gt;50%" share of B1; Y = "Just-in-Time" share of B2, shown big on screen.)</aside>
+  <aside class="notes">
+<p class="nh">0:45 · 1 click</p>
+<ul>
+<li>"X% of you think SL5 hurts research a lot."</li>
+<li><i class="clk">▶</i> <b>"And Y% would wait until the models look dangerous. That's the pragmatic answer. It's what I'd have said. It's also the answer that loses."</b>
+<ul>
+<li>Start now wins: "Your future CFO disagrees. Let's see why you're right."</li>
+<li>Never above 15%: "At least you're honest."</li>
+</ul></li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s15" data-title="Calendar Gantt + RAND quote" data-at="12:35" data-clicks="3">
+<section class="slide" id="s15" data-title="Calendar Gantt + RAND quote" data-at="13:15" data-clicks="3">
   <div class="img ph dim" data-img="06-construction" data-label="#06 construction"></div><div class="shade"></div>
   <div class="pad s15">
     <div class="timeline mono">
@@ -412,34 +536,36 @@ Branches:
     <p class="statement s15-line rise" data-in="2" data-out="3">The bottleneck isn't money.<br><span class="amb">It's the calendar.</span></p>
     <div class="s15-quote" data-in="3"><p class="quote">"Achieving SL5 is currently not possible."</p><p class="cite">RAND, 2024</p></div>
   </div>
-  <aside class="notes">"Here's why 'Just-in-Time' fails." [click: bars] "Building a classified facility or custom chips takes up to four years. Even the SL5 Standard says these have to be planned years in advance." [click: line] "The bottleneck isn't money; it's the calendar. The clock starts when you decide, not when you break ground. No budget compresses a four-year calendar."
-[click: RAND quote] Optional: "RAND said it back in 2024: achieving SL5 is currently not possible. Now you know why."</aside>
+  <aside class="notes">
+<p class="nh">0:50 · 3 clicks</p>
+<ul>
+<li>"Here's why Just-in-Time fails."</li>
+<li><i class="clk">▶</i> A classified facility, custom chips: up to four years. The SL5 Standard itself says plan them years ahead</li>
+<li><i class="clk">▶</i> <b>"The bottleneck isn't money; it's the calendar. The clock starts when you decide, not when you break ground. No budget compresses a four-year calendar."</b></li>
+<li><i class="clk">▶</i> RAND quote → <b>"Now you know why."</b> Stop there</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s16" data-title="Simulator + USB gag" data-at="13:20" data-clicks="2">
+<section class="slide" id="s16" data-title="Simulator" data-at="14:05">
   <div class="pad s16">
-    <div class="s16-browser" data-out="1">
+    <div class="s16-browser">
       <div class="br-bar"><i></i><i></i><i></i><span class="mono">nitzpo.github.io/sl5</span></div>
       <div class="br-body"><video class="sim-video" muted loop playsinline preload="auto"><source src="img/sim.webm" type="video/webm"><source src="img/sim.mp4" type="video/mp4"></video></div>
     </div>
-    <div class="s16-gap" data-in="1">
-      <div class="net net-in"><p class="mono">SL5 network</p><i></i><i></i><i></i><i></i></div>
-      <div class="wall"><span class="mono">AIR GAP</span></div>
-      <div class="net net-out"><p class="mono">the internet</p><i></i><i></i><i></i><i></i></div>
-      <svg class="hopper" viewBox="0 0 120 200" aria-hidden="true"><circle cx="60" cy="34" r="22"/><path d="M60 58 L60 128 M60 78 L22 100 M60 78 L98 62 M60 128 L32 190 M60 128 L88 190"/></svg>
-      <div class="s16-tag" aria-label="name tag: Researcher"><b>HELLO</b><small>my name is</small><span>Researcher</span></div>
-      <div class="usb" aria-label="USB stick"><span class="usb-body"></span><span class="usb-plug"></span></div>
-      <svg class="bridge" viewBox="0 0 1640 400" preserveAspectRatio="none" aria-hidden="true"><path d="M300 250 C 600 250, 650 80, 820 80 S 1040 250, 1340 250"/></svg>
-      <p class="router mono">new network router</p>
-    </div>
   </div>
-  <aside class="notes">"You can't hold dozens of interacting controls in your head to see what being two years late costs. So I vibe-coded an open-source interactive simulator, the SL5 Explorable, to build some intuition."
-"Every run says the same thing: the labs that do worse fail on timing, not on money. The link will be on your phone at the end." [click: the air gap, a researcher next to the SL5 network] "And it reminded me of something I know too well: controls don't work alone. If you put up an air-gap with no approved way to move files, your smartest researcher" [click: USB stick, hop over the wall] "just grabs a USB stick and becomes your new network router."
-"Remember, I used to be the guy saying no to him."
-No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
+  <aside class="notes">
+<p class="nh">0:30 · simulator</p>
+<ul>
+<li>Too many interacting controls to hold in your head → I vibe-coded an open-source simulator, the SL5 Explorable</li>
+<li>Built from the RAND report, the SL5 Standard and my own experience</li>
+<li><b>"Every run says the same thing: the labs that do worse fail on timing, not on money."</b></li>
+<li>The link is on your phone at the end</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s17" data-title="C results → distillation → silent twin" data-at="14:05" data-clicks="2">
+<section class="slide" id="s17" data-title="C results → distillation → silent twin" data-at="14:35" data-clicks="2">
   <div class="pad s17">
     <div class="s17-c" data-out="1">
       <div class="kicker">Already silently stolen?</div>
@@ -452,28 +578,36 @@ No numbers on screen. (15-min cut: trim TBD by Nitzan.)</aside>
       <div class="sqbox dark"><div class="img ph" data-img="04-dark-rack" data-label="#04"></div><div class="file twin-file cold">weights.bin</div><p class="s17-q mono">?</p></div>
     </div>
   </div>
-  <aside class="notes">"X% of you think it may already have happened. Honestly, maybe not yet. Today, if you're China, you don't even need to steal: there's a cheaper way."
-[click: news clipping] "Distillation. You copy a model by asking it millions of questions. Anthropic says it caught seven Chinese labs doing that this year, and there's no clean fix. There's a talk later today that goes deep on this. That's why the most capable models will probably never get a public API. They'll stay inside the lab, and a model that never leaves the lab can't be distilled. It can only be stolen."
-[click: the silent twin, no text] "And when that happens, what do we see? Nothing. 'Wait until it looks dangerous' assumes you'll get a warning. Theft doesn't send one. And the building takes four years."
-Branch, mostly "High": "Most of you think it already happened. Maybe. But today, if you're China, you don't even need to steal: there's a cheaper way."
-Branch, mostly "Low": "Most of you think it hasn't happened yet. Probably right, because today, if you're China, there's a cheaper way."
-Distillation: Anthropic, Sept 2026 report: seven China-based labs; largest (Alibaba-affiliated) ≈151M exchanges. "Most capable models stay off public APIs": say it as your own view.</aside>
+  <aside class="notes">
+<p class="nh">1:05 · 2 clicks</p>
+<ul>
+<li>"X% of you think it may already have happened. Maybe not yet." <b>"Today, if you're China, you don't even need to steal: there's a cheaper way."</b></li>
+<li><i class="clk">▶</i> Distillation: copy a model by asking it millions of questions. <b>Anthropic says it caught seven Chinese labs doing it this year.</b> No clean fix; a talk later today goes deep on it</li>
+<li>So the best models will likely stay off public APIs: <b>"can't be distilled. It can only be stolen."</b></li>
+<li><i class="clk">▶</i> twin: <b>"'Wait until it looks dangerous' assumes you'll get a warning. Theft doesn't send one. And the building takes four years."</b></li>
+</ul>
+</aside>
 </section>
 
 <!-- ============================== PART 6: CALL TO ARMS ============================== -->
-<section class="slide" id="s18" data-title="Science vs engineering (+ model as insider)" data-at="15:05" data-clicks="2" data-poll-close="B1,B2,C">
+<section class="slide" id="s18" data-title="Science vs engineering (+ model as insider)" data-at="15:40" data-clicks="2" data-poll-close="B1,B2,C">
   <div class="pad s18">
     <p class="statement s18-a">Alignment: an unsolved <em>science</em> problem.</p>
     <p class="statement s18-b rise" data-in="2">Securing the weights: a <em class="amb">systems-engineering</em> fight.</p>
   </div>
   <img class="clip s18-clip" data-in="1" data-out="2" src="img/sl5-standard-insider.webp" alt="SL5 Standard, Threat Model: misaligned or compromised AI models that may attempt to sabotage research or exfiltrate themselves constitute a distinct form of insider threat. Mitigations for this threat class substantially overlap with nation-state defenses.">
-  <aside class="notes">"Alignment is an unsolved science problem: how do you align a superintelligence so it doesn't turn on humanity? Nobody actually knows how to solve that yet. And until it's solved, the model itself is a risk."
-[click: SL5 Standard excerpt] "The SL5 Standard already treats the model as a possible insider: a misaligned model that tries to sabotage research or copy itself out. And the next line: the defenses overlap with the nation-state ones. The walls that keep a spy agency out are the same walls that keep the model in."
-[click: the systems-engineering line] "So securing the weights does two jobs: it keeps the spies out, and it keeps the model in while alignment catches up. Protecting from superpowers, and against rogue AI. And it's not an unsolved science problem. It is a brutal, messy systems-engineering fight against a nation-state adversary. And unlike alignment, this is a fight where the experience in this room can actually help."
-Source: SL5 Standard v0.1 (Threat Model) counts misaligned AI that may "sabotage research or exfiltrate themselves" as "a distinct form of insider threat"; "Mitigations for this threat class substantially overlap with nation-state defenses."</aside>
+  <aside class="notes">
+<p class="nh">0:55 · 2 clicks</p>
+<ul>
+<li><b>"Alignment is an unsolved science problem."</b> Until it's solved, the model itself is a risk</li>
+<li><i class="clk">▶</i> SL5 Standard: a misaligned model is an insider (sabotage research, copy itself out). The defenses overlap with the nation-state ones: <b>"The walls that keep a spy agency out are the same walls that keep the model in."</b></li>
+<li><i class="clk">▶</i> Two jobs: spies out, model in. <b>"Protecting from superpowers, and against rogue AI."</b></li>
+<li>Not a science problem: a messy systems-engineering fight. <b>"A fight where the experience in this room can actually help."</b></li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s20" data-title="Links" data-at="15:45" data-poll-current="links">
+<section class="slide" id="s20" data-title="Links" data-at="16:35" data-poll-current="links">
   <div class="pad s20">
     <div class="kicker">Links on your phone</div>
     <div class="s20-grid">
@@ -484,11 +618,17 @@ Source: SL5 Standard v0.1 (Threat Model) counts misaligned AI that may "sabotage
     </div>
     <div class="s20-qr"><p class="mut">Missed it? Scan:</p><div class="qrbox" data-qr="links"></div><p class="url small" data-url="links"></p></div>
   </div>
-  <aside class="notes">"If you want to go further, here's where to start. I would rather fix a number than defend it. Everything is open-sourced on GitHub. If you disagree with a number or an attack path, it's a one-file JSON change. The intro works on your phone; the simulator itself needs a computer."
-Phones still on the vote page switch to the links page automatically.</aside>
+  <aside class="notes">
+<p class="nh">0:30</p>
+<ul>
+<li><b>"If you want to go further, here's where to start."</b> The links are on your phones</li>
+<li><b>"I would rather fix a number than defend it."</b> It's open source: disagree with a number or an attack path? A one-file JSON change</li>
+<li>The intro works on a phone; the simulator needs a computer</li>
+</ul>
+</aside>
 </section>
 
-<section class="slide" id="s21" data-title="Vault + thank you" data-at="16:30" data-clicks="1">
+<section class="slide" id="s21" data-title="Vault + thank you" data-at="17:05" data-clicks="1">
   <div class="img ph s21-vault" data-img="07-vault" data-label="#07 vault"></div>
   <div class="s21-close"></div>
   <div class="file s21-file">weights.bin <small>· 2.0 TB</small></div>
@@ -500,9 +640,13 @@ Phones still on the vote page switch to the links page automatically.</aside>
       <p class="url small" data-url="links"></p>
     </div>
   </div>
-  <aside class="notes">"I started this to understand the problem myself. If you know parts of it better than I do, and a lot of you do, come talk to me. Thank you."
-[click] the door closes → black → name, QR and "Thank you" stay up for Q&amp;A.
-(Nov 14: S19 cut; the vault is the ending.)</aside>
+  <aside class="notes">
+<p class="nh">0:20 · 1 click</p>
+<ul>
+<li><b>"I started this to understand the problem myself. If you know parts of it better than I do, and a lot of you do, come talk to me. Thank you."</b></li>
+<li><i class="clk">▶</i> door closes</li>
+</ul>
+</aside>
 </section>
 
 </div>
