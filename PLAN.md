@@ -120,7 +120,7 @@ Per-slide times below are from before S8 was cut.
 ### S7 · 5:35 · ⬛ RAND ladder (animated build)
 - **Deck:** S6 + S7 are one view: the Poll A bars morph into the rungs ($1B → SL5, $10M → SL4, $1M → SL3, Impossible above SL5); the room's % stays on each rung (Nitzan, Nov 7).
 - **On screen:** the bars morph into a 5-rung ladder.
-  - Click 1: SL1→SL5 rungs, each with who it stops and the **budget only** (ties back to Poll A's $1M / $10M / $1B). SL3 rung label: "Cybercrime syndicates" (Nov 21, Nitzan: "insiders" dropped from the label; in RAND, OC3 insiders = lone insiders with access, e.g. a disgruntled employee; state-run insiders are OC4/OC5).
+  - Click 1: SL1→SL5 rungs, each with who it stops and the **budget only** (ties back to Poll A's $1M / $10M / $1B).
   - Click 2: the people and time columns appear (Nov 19).
   - Click 3: a marker at SL3: "Frontier labs: roughly here, or below".
   - Click 4: a quote under SL4: "Top cyber nations run these more than 100 times per year." (RAND)
